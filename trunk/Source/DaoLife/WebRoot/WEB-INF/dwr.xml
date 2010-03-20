@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE dwr PUBLIC
+    "-//GetAhead Limited//DTD Direct Web Remoting 2.0//EN"
+    "/WEB-INF/dwr20.dtd">
+<dwr>	
+	<allow>
+		<convert match="com.innovation.daolife.model.User" converter="bean"></convert>
+		<create creator="spring" javascript="DaolifeAjax">
+			<param name="beanName" value="CommonAjax" />
+			<include method="getUserById" />
+		</create>
+	</allow>
+</dwr>
+
