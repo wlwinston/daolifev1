@@ -1,5 +1,7 @@
 package com.innovation.daolife.model;
 
+import java.util.Date;
+
 /**
  * DlUsers entity.
  * 
@@ -20,11 +22,11 @@ public class DlUsers implements java.io.Serializable {
 	private String homeCity;
 	private String liveCity;
 	private String birthday;
-	private String signupdate;
+	private Date signupdate;
 	private String userGender;
 	private String userInfo;
 	private Byte isclose;
-	private Integer lastLogin;
+	private Date lastLogin;
 	private String musicaddr;
 	private Short followNum;
 	private Short fansNum;
@@ -49,8 +51,8 @@ public class DlUsers implements java.io.Serializable {
 
 	/** minimal constructor */
 	public DlUsers(Short userId, String userName, String password,
-			String userHead, String mailadres, String signupdate,
-			String userInfo, Byte isclose, Integer lastLogin, Short followNum,
+			String userHead, String mailadres, Date signupdate,
+			String userInfo, Byte isclose, Date lastLogin, Short followNum,
 			Short photoNum, String recommendInd, String authEmail, Byte userlock) {
 		this.userId = userId;
 		this.userName = userName;
@@ -72,8 +74,8 @@ public class DlUsers implements java.io.Serializable {
 	public DlUsers(Short userId, String userName, String userUrl,
 			String password, String salt, String userHead, String mailadres,
 			String homeCity, String liveCity, String birthday,
-			String signupdate, String userGender, String userInfo,
-			Byte isclose, Integer lastLogin, String musicaddr, Short followNum,
+			Date signupdate, String userGender, String userInfo,
+			Byte isclose, Date lastLogin, String musicaddr, Short followNum,
 			Short fansNum, Short photoNum, Short atWeekNum, Short atMonthNum,
 			Short atSumNum, String recommendInd,String userAddress,String userPostCode, Integer qq, String msn,
 			String gtalk, String authEmail, Byte userlock) {
@@ -191,11 +193,11 @@ public class DlUsers implements java.io.Serializable {
 		this.birthday = birthday;
 	}
 
-	public String getSignupdate() {
+	public Date getSignupdate() {
 		return this.signupdate;
 	}
 
-	public void setSignupdate(String signupdate) {
+	public void setSignupdate(Date signupdate) {
 		this.signupdate = signupdate;
 	}
 
@@ -223,11 +225,11 @@ public class DlUsers implements java.io.Serializable {
 		this.isclose = isclose;
 	}
 
-	public Integer getLastLogin() {
+	public Date getLastLogin() {
 		return this.lastLogin;
 	}
 
-	public void setLastLogin(Integer lastLogin) {
+	public void setLastLogin(Date lastLogin) {
 		this.lastLogin = lastLogin;
 	}
 
