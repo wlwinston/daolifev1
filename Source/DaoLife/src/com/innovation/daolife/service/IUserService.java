@@ -5,8 +5,12 @@
  */
 package com.innovation.daolife.service;
 
+import java.io.UnsupportedEncodingException;
+import java.security.NoSuchAlgorithmException;
+
 import com.innovation.common.util.PaginationSupport;
 import com.innovation.daolife.action.search.UserSearch;
+import com.innovation.daolife.model.DlUsers;
 import com.innovation.daolife.model.User;
 
 public interface IUserService {
@@ -14,4 +18,5 @@ public interface IUserService {
 	public User getUserById(String id);
 	public PaginationSupport getListBySearch(
 			PaginationSupport paginationSupport, UserSearch userSearch);
+	public void regist(DlUsers user) throws NoSuchAlgorithmException, UnsupportedEncodingException;
 }
