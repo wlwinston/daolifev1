@@ -18,6 +18,7 @@ import org.apache.struts2.interceptor.SessionAware;
 
 import com.innovation.common.util.PaginationSupport;
 import com.innovation.daolife.action.search.UserSearch;
+import com.innovation.daolife.model.DlUsers;
 import com.innovation.daolife.model.User;
 import com.innovation.daolife.service.IUserService;
 import com.opensymphony.xwork2.ActionSupport;
@@ -28,7 +29,7 @@ public class UserAction extends ActionSupport implements SessionAware, ServletRe
 	private Map att;
     private HttpServletRequest request;
     private HttpServletResponse response; 
-	private User user;
+	private DlUsers user;
 	private PaginationSupport paginationSupport ;
 	private UserSearch userSearch;
 	private IUserService userService;
@@ -36,8 +37,8 @@ public class UserAction extends ActionSupport implements SessionAware, ServletRe
 	public void setUserService(IUserService userService) {
 		this.userService = userService;
 	}
-	public String register() throws Exception{
-		userService.addUser(user);
+	public String regist() throws Exception{
+		userService.regist(user);
 		att.put("user", user);
 		return REGISTERSUCCESS;
 	}
@@ -62,12 +63,7 @@ public class UserAction extends ActionSupport implements SessionAware, ServletRe
 		return USERLIST;
 	}
 	
-	public User getUser() {
-		return user;
-	}
-	public void setUser(User user) {
-		this.user = user;
-	}
+	
 	public void setSession(Map att) {
         this.att = att;
     }
@@ -90,5 +86,11 @@ public class UserAction extends ActionSupport implements SessionAware, ServletRe
 	}
 	public void setUserSearch(UserSearch userSearch) {
 		this.userSearch = userSearch;
+	}
+	public DlUsers getUser() {
+		return user;
+	}
+	public void setUser(DlUsers user) {
+		this.user = user;
 	}
 }
