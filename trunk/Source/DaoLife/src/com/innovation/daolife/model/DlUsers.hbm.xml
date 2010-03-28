@@ -8,7 +8,7 @@
     <class name="com.innovation.daolife.model.DlUsers" table="dl_users" catalog="daolife">
         <id name="userId" type="java.lang.Short">
             <column name="user_id" />
-            <generator class="assigned" />
+            <generator class="identity" />
         </id>
         <property name="userName" type="java.lang.String">
             <column name="user_name" length="64" not-null="true" />
@@ -37,8 +37,8 @@
         <property name="birthday" type="java.lang.String">
             <column name="birthday" length="10" />
         </property>
-        <property name="signupdate" type="java.lang.String">
-            <column name="signupdate" length="20" not-null="true" />
+        <property name="signupdate" type="java.util.Date">
+            <column name="signupdate" length="19" not-null="true" />
         </property>
         <property name="userGender" type="java.lang.String">
             <column name="user_gender" length="8" />
@@ -49,8 +49,8 @@
         <property name="isclose" type="java.lang.Byte">
             <column name="isclose" not-null="true" />
         </property>
-        <property name="lastLogin" type="java.lang.Integer">
-            <column name="last_login" not-null="true" />
+        <property name="lastLogin" type="java.util.Date">
+            <column name="last_login" length="19" not-null="true" />
         </property>
         <property name="musicaddr" type="java.lang.String">
             <column name="musicaddr" length="200" />
