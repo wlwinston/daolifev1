@@ -9,4 +9,5 @@
 </bean>
 <bean id="userDao" class="com.innovation.daolife.dao.impl.UserDao" parent="genericDao" />
 <bean id="followrelationDao" class="com.innovation.daolife.dao.impl.FollowrelationDao" parent="genericDao" />
+<bean id="dlUsersDao" class="com.innovation.daolife.dao.impl.DlUsersDao" parent="genericDao" />
 </beans>
