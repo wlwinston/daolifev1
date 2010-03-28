@@ -7,13 +7,18 @@ package com.innovation.common.util;
  */
 public enum Constant
 {
-	USER_ISCLOSED_YES(1),
-	USER_ISCLOSED_NO(0)
+	USER_ISCLOSED_YES("1"),
+	USER_ISCLOSED_NO("0"),
+	USER_USERLOCK_NO("0"),
+	USER_USERLOCK_YES("1"),
+	USER_AUTHMAIL_NOMAIL("0"),
+	USER_RECOMMENDIND_NO("0"),
+	USER_RECOMMENDIND_YES("1")
 	;
 	
 	
-	private String strValue = "";
-	private int intValue = 0;
+	private String strValue;
+	private int intValue;
 
 	Constant(String strValue)
 	{
