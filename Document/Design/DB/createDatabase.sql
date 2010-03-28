@@ -99,6 +99,8 @@ create table daolife.dl_users
    at_month_num         smallint(6),
    at_sum_num           smallint(6),
    recommendInd         varchar(1) not null default '0',
+   user_address         varchar(200),
+   user_postcode        varchar(6),
    qq                   int(15),
    msn                  varchar(50),
    gtalk                varchar(50),
