@@ -33,6 +33,8 @@ public class DlUsers implements java.io.Serializable {
 	private Short atMonthNum;
 	private Short atSumNum;
 	private String recommendInd;
+	private String userAddress;
+	private String userPostcode;
 	private Integer qq;
 	private String msn;
 	private String gtalk;
@@ -73,7 +75,7 @@ public class DlUsers implements java.io.Serializable {
 			String signupdate, String userGender, String userInfo,
 			Byte isclose, Integer lastLogin, String musicaddr, Short followNum,
 			Short fansNum, Short photoNum, Short atWeekNum, Short atMonthNum,
-			Short atSumNum, String recommendInd, Integer qq, String msn,
+			Short atSumNum, String recommendInd,String userAddress,String userPostCode, Integer qq, String msn,
 			String gtalk, String authEmail, Byte userlock) {
 		this.userId = userId;
 		this.userName = userName;
@@ -98,6 +100,8 @@ public class DlUsers implements java.io.Serializable {
 		this.atMonthNum = atMonthNum;
 		this.atSumNum = atSumNum;
 		this.recommendInd = recommendInd;
+		this.userAddress = userAddress;
+		this.userPostcode = userPostCode;
 		this.qq = qq;
 		this.msn = msn;
 		this.gtalk = gtalk;
@@ -329,6 +333,22 @@ public class DlUsers implements java.io.Serializable {
 
 	public void setUserlock(Byte userlock) {
 		this.userlock = userlock;
+	}
+
+	public String getUserAddress() {
+		return userAddress;
+	}
+
+	public void setUserAddress(String userAddress) {
+		this.userAddress = userAddress;
+	}
+
+	public String getUserPostcode() {
+		return userPostcode;
+	}
+
+	public void setUserPostcode(String userPostcode) {
+		this.userPostcode = userPostcode;
 	}
 
 }
