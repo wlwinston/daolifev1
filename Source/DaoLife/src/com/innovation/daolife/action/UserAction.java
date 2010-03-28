@@ -16,6 +16,7 @@ import org.apache.struts2.interceptor.ServletRequestAware;
 import org.apache.struts2.interceptor.ServletResponseAware;
 import org.apache.struts2.interceptor.SessionAware;
 
+import com.innovation.common.util.Md5Util;
 import com.innovation.common.util.PaginationSupport;
 import com.innovation.daolife.action.search.UserSearch;
 import com.innovation.daolife.model.DlUsers;
@@ -33,7 +34,11 @@ public class UserAction extends ActionSupport implements SessionAware, ServletRe
 	private PaginationSupport paginationSupport ;
 	private UserSearch userSearch;
 	private IUserService userService;
-	
+	private String userName;
+	private String password;
+	private static String LOGINSUCCESS = "loginSuccess";
+	private static String LOGINFAILURE = "loginFailure";
+
 	public void setUserService(IUserService userService) {
 		this.userService = userService;
 	}
@@ -63,6 +68,28 @@ public class UserAction extends ActionSupport implements SessionAware, ServletRe
 		return USERLIST;
 	}
 	
+	/**
+	 * @ fengsn
+	 * 用户登录校验
+	 * */
+	public String login() throws Exception{
+		DlUsers dlUser = userService.getUserByNameOrEmail(userName);
+		if(dlUser==null){
+			request.setAttribute("ErrorInfo", "用户不存在，请重新输入!");
+			return LOGINFAILURE;
+		}
+		String salt = dlUser.getSalt();
+		String oldpasswd = dlUser.getPassword();
+		boolean flag = Md5Util.getInstance().checkpassword(password, salt, oldpasswd);
+		if(!flag){
+			request.setAttribute("ErrorInfo", "密码错误，请重新输入!");
+			return LOGINFAILURE;
+		}else{
+			att.put("user", dlUser);
+			return LOGINSUCCESS;
+		}
+	}
+
 	
 	public void setSession(Map att) {
         this.att = att;
@@ -93,4 +120,18 @@ public class UserAction extends ActionSupport implements SessionAware, ServletRe
 	public void setUser(DlUsers user) {
 		this.user = user;
 	}
+	
+	public String getUserName() {
+		return userName;
+	}
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
 }
