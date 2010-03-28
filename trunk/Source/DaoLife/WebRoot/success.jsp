@@ -10,7 +10,7 @@
 </head>
 <body>
 <center>
-注册/登陆成功,欢迎 ${sessionScope.user.username}<br>
+注册/登陆成功,欢迎 ${sessionScope.user.userName}<br>
 
 <table width="500" height="200">
 <tr><td>
