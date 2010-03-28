@@ -91,6 +91,7 @@
     <property name="transactionAttributes">
     <!-- 定义事务传播属性 -->
         <props>
+                <prop key="regist*">PROPAGATION_REQUIRED</prop>
                 <prop key="insert*">PROPAGATION_REQUIRED</prop>
                 <prop key="update*">PROPAGATION_REQUIRED</prop>
                 <prop key="save*">PROPAGATION_REQUIRED</prop>
