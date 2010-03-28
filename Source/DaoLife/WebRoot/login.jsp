@@ -16,7 +16,7 @@
 		<s:fielderror />
 		<s:actionerror/>
 		<s:form action="Login.action" method="post" validate="true">
-			<s:textfield name="username" label="用户名"/><br />
+			<s:textfield name="userName" label="用户名"/><br />
 			<s:password name="password" label="密码"/><br />
 			<s:submit value="登陆"/>
 		</s:form>
