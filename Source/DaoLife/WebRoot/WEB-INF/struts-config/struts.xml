@@ -15,7 +15,7 @@
 			<!-- 指Action抛出Exception异常时，转入名为exception的结果。 -->
 			<exception-mapping exception="java.lang.Exception" result="exception"/>
 		</global-exception-mappings>
-		<action name="Regist" class="UserAction" method="register">
+		<action name="Regist" class="UserAction" method="regist">
 			<result name="registerSuccess">/success.jsp</result>	
 			<result name="input">/regist.jsp</result>
 		</action>
