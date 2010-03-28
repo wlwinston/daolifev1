@@ -61,12 +61,9 @@
     <property name="dataSource">
         <ref local="dataSource" />
     </property>
-    <property name="mappingResources">
-        <list>
-            <value>com/innovation/daolife/model/User.hbm.xml</value>
-            <value>com/innovation/daolife/model/Followrelation.hbm.xml</value>
-        </list>
-    </property>
+    <property name="mappingLocations">
+			<value>classpath*:com/innovation/daolife/model/*.hbm.xml</value>
+	</property>
     <property name="hibernateProperties">
         <props>
             <prop key="hibernate.dialect">${hibernate.dialect}</prop>
