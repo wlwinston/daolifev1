@@ -22,6 +22,11 @@
 		<action name="Userlist" class="UserAction" method="userList">
 			<result name="list">/list.jsp</result>
 		</action>
+		<action name="Login" class="UserAction" method="login">
+			<result name="registerSuccess">/success.jsp</result>	
+			<result name="input">/login.jsp</result>
+		</action>
+		
     </package> 
 
 </struts>
