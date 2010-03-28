@@ -57,7 +57,20 @@ public class UserService implements IUserService {
 	}
 
 	
-
+	/**
+	 * @fsn
+	 * 通过name或者email获得用户信息
+	 * */
+	public DlUsers getUserByNameOrEmail(String name) {
+		DlUsers user = null ;
+		String sql =" From DlUsers u where u.userName=? or u.mailadres = ? ";
+		List<DlUsers> userList = dlUsersDao.find(sql,new String[]{name, name});
+		if(userList.size()>0){
+			user = userList.get(0);
+		}
+		return user;
+	}
+	
 	public void regist(DlUsers user) throws NoSuchAlgorithmException, UnsupportedEncodingException {
 		user.setAtMonthNum((short)0);
 		user.setAtSumNum((short)0);
@@ -79,8 +92,6 @@ public class UserService implements IUserService {
 		user.setSignupdate(now);
 		user.setUserlock(new Byte(Constant.USER_USERLOCK_NO.getStrValue()));
 		user.setAuthEmail(Constant.USER_AUTHMAIL_NOMAIL.getStrValue());
-		String sql = " From DlUsers u where u.userName=?";
-		List<DlUsers> userList = dlUsersDao.find(sql,"wanglei");
 		dlUsersDao.save(user);
 		
 	}
