@@ -76,6 +76,12 @@
         <property name="recommendInd" type="java.lang.String">
             <column name="recommendInd" length="1" not-null="true" />
         </property>
+        <property name="userAddress" type="java.lang.String">
+            <column name="user_address" length="200"  />
+        </property>
+        <property name="userPostcode" type="java.lang.String">
+            <column name="user_postcode" length="6"  />
+        </property>
         <property name="qq" type="java.lang.Integer">
             <column name="qq" />
         </property>
