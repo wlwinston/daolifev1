@@ -26,7 +26,20 @@
 			<result name="registerSuccess">/success.jsp</result>	
 			<result name="input">/login.jsp</result>
 		</action>
-		
+		<action name="FindPassword" class="UserAction" method="findPassword">
+			<result name="findPasswordSuccess">/success.jsp</result>	
+			<result name="input">/login.jsp</result>
+		</action>
+		<action name="ResetPassword" class="UserAction" method="resetPassword">
+			<result name="resetCheckSuccess">/resetPassword.jsp</result>
+			<result name="resetCheckFailue">/success.jsp</result>	
+			<result name="input">/login.jsp</result>
+		</action>
+		<action name="ResetPasswordSave" class="UserAction" method="resetPasswordSave">
+			<result name="setNewPasswordSuccess">/success.jsp</result>	
+			<result name="setNewPasswordFailue">/success.jsp</result>	
+			<result name="input">/login.jsp</result>
+		</action>
     </package> 
 
 </struts>
