@@ -102,6 +102,7 @@
                 <prop key="find*">PROPAGATION_REQUIRED,readOnly</prop>
                 <prop key="load*">PROPAGATION_REQUIRED,readOnly</prop>
                 <prop key="change*">PROPAGATION_REQUIRED</prop>
+                <prop key="reset*">PROPAGATION_REQUIRED</prop>
                 <prop key="*">PROPAGATION_REQUIRED,readOnly</prop>
         </props>
     </property>
