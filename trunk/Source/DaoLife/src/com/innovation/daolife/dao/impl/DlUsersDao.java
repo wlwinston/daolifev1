@@ -10,7 +10,7 @@ import com.innovation.daolife.model.DlUsers;
  * @author MyEclipse Persistence Tools
  */
 
-public class DlUsersDao extends GenericDao<DlUsers, Integer> implements IDlUsersDao {
+public class DlUsersDao extends GenericDao<DlUsers, Short> implements IDlUsersDao {
 	
 	
 } 
