@@ -15,6 +15,8 @@ import org.apache.commons.collections.FastHashMap;
 import org.directwebremoting.WebContext;
 import org.directwebremoting.WebContextFactory;
 
+import com.innovation.daolife.dao.IDlUsersDao;
+import com.innovation.daolife.model.DlUsers;
 import com.innovation.daolife.model.User;
 import com.innovation.daolife.service.IUserService;
 
@@ -27,6 +29,9 @@ import com.innovation.daolife.service.IUserService;
 public class CommonAjax {
 	
 	private IUserService userService;
+	
+	private IDlUsersDao dlUsersDao;
+	
 	public void setUserService(IUserService userService) {
 		this.userService = userService;
 	}
@@ -34,4 +39,34 @@ public class CommonAjax {
 		User user = userService.getUserById(id);
 		return user;
 	}
+	/**
+	 * @author fsn
+	 * 检查用户名和email邮箱是否唯一
+	 * 返回true 唯一
+	 * */
+	public boolean checkUserNameorEmail(String check){
+		boolean flag = true;
+		DlUsers users = userService.getUserByNameOrEmail(check);
+		if(users!=null){
+			flag = false;
+		}
+		return flag;
+	}
+	
+	/**
+	 * @author fsn
+	 * 检查昵称是否唯一
+	 * 返回true 唯一
+	 * */
+	public boolean checkUserNickName(String checke){
+		boolean flag = true;
+		String sql =" From DlUsers u where u.userNickName=? ";
+		List<DlUsers> userList = dlUsersDao.find(sql,checke);
+		if(userList.size()==0){
+			flag = false;
+		}
+		return flag;
+	}
+	
+	
 }		
