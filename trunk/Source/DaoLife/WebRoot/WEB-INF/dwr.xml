@@ -5,9 +5,12 @@
 <dwr>	
 	<allow>
 		<convert match="com.innovation.daolife.model.User" converter="bean"></convert>
+		<convert match="com.innovation.daolife.model.DlUsers" converter="bean"></convert>
 		<create creator="spring" javascript="DaolifeAjax">
 			<param name="beanName" value="CommonAjax" />
 			<include method="getUserById" />
+			<include method="checkUserNameorEmail" />
+			<include method="checkUserNickName" />
 		</create>
 	</allow>
 </dwr>
