@@ -71,6 +71,48 @@ public class UserService implements IUserService {
 		return user;
 	}
 	
+	/**
+	 * @fsn
+	 * 检查用户名的唯一性
+	 * */
+	public boolean checkUserByName(String name) {
+		boolean flag = true;
+		String sql =" From DlUsers u where u.userName=?";
+		List<DlUsers> userList = dlUsersDao.find(sql,name);
+		if(userList.size()>0){
+			flag = false;
+		}
+		return flag;
+	}
+	
+	/**
+	 * @fsn
+	 * 检查邮箱的唯一性
+	 * */
+	public boolean checkUserByEmail(String name) {
+		boolean flag = true;
+		String sql =" From DlUsers u where u.mailadres=?";
+		List<DlUsers> userList = dlUsersDao.find(sql,name);
+		if(userList.size()>0){
+			flag = false;
+		}
+		return flag;
+	}
+	
+	/**
+	 * @fsn
+	 * 检查昵称的唯一性
+	 * */
+	public boolean checkUserByNickName(String name) {
+		boolean flag = true;
+		String sql =" From DlUsers u where u.userNickName=?";
+		List<DlUsers> userList = dlUsersDao.find(sql,name);
+		if(userList.size()>0){
+			flag = false;
+		}
+		return flag;
+	}
+	
 	public void regist(DlUsers user) throws NoSuchAlgorithmException, UnsupportedEncodingException {
 		user.setAtMonthNum((short)0);
 		user.setAtSumNum((short)0);
