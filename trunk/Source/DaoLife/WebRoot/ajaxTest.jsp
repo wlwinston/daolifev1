@@ -26,12 +26,7 @@
 			function checkUserInfo()
 			{   
 				var id=$F("userId");
-				DaolifeAjax.checkUserNameorEmail(id,aftercheckUserInfo);
-			}
-			function checkUserNickNameInfo()
-			{   
-				var id=$F("userId");
-				DaolifeAjax.checkUserNickName(id,aftercheckUserInfo);
+				DaolifeAjax.checkUserName(id,aftercheckUserInfo);
 			}
 			function aftercheckUserInfo(result)
 			{   
@@ -46,7 +41,7 @@
 	<body>
 		<center>
 		<h3>请输入用户ID</h3>
-		<input type ="text" name="userId" id="userId"/> &nbsp; &nbsp; &nbsp; &nbsp; <input type ="button" name="testButton" value="获取信息" onclick="checkUserNickNameInfo()" />
+		<input type ="text" name="userId" id="userId"/> &nbsp; &nbsp; &nbsp; &nbsp; <input type ="button" name="testButton" value="获取信息" onclick="checkUserInfo()" />
 		</center>
 	</body>
 </html>
