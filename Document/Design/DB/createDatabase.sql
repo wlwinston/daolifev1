@@ -78,6 +78,7 @@ create table daolife.dl_users
 (
    user_id              smallint(6) not null auto_increment,
    user_name            varchar(64) not null,
+   user_nickname            varchar(64) not null,
    user_url             varchar(64),
    password             varchar(64) not null,
    salt                 varchar(6),
