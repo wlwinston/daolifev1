@@ -14,6 +14,7 @@ public class DlUsers implements java.io.Serializable {
 
 	private Short userId;
 	private String userName;
+	private String userNickName;
 	private String userUrl;
 	private String password;
 	private String salt;
@@ -50,12 +51,13 @@ public class DlUsers implements java.io.Serializable {
 	}
 
 	/** minimal constructor */
-	public DlUsers(Short userId, String userName, String password,
+	public DlUsers(Short userId, String userName,String userNickName, String password,
 			String userHead, String mailadres, Date signupdate,
 			String userInfo, Byte isclose, Date lastLogin, Short followNum,
 			Short photoNum, String recommendInd, String authEmail, Byte userlock) {
 		this.userId = userId;
 		this.userName = userName;
+		this.userNickName = userNickName;
 		this.password = password;
 		this.userHead = userHead;
 		this.mailadres = mailadres;
@@ -71,7 +73,7 @@ public class DlUsers implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public DlUsers(Short userId, String userName, String userUrl,
+	public DlUsers(Short userId, String userName, String userNickName, String userUrl,
 			String password, String salt, String userHead, String mailadres,
 			String homeCity, String liveCity, String birthday,
 			Date signupdate, String userGender, String userInfo,
@@ -81,6 +83,7 @@ public class DlUsers implements java.io.Serializable {
 			String gtalk, String authEmail, Byte userlock) {
 		this.userId = userId;
 		this.userName = userName;
+		this.userNickName = userNickName;
 		this.userUrl = userUrl;
 		this.password = password;
 		this.salt = salt;
@@ -351,6 +354,14 @@ public class DlUsers implements java.io.Serializable {
 
 	public void setUserPostcode(String userPostcode) {
 		this.userPostcode = userPostcode;
+	}
+
+	public String getUserNickName() {
+		return userNickName;
+	}
+
+	public void setUserNickName(String userNickName) {
+		this.userNickName = userNickName;
 	}
 
 }
