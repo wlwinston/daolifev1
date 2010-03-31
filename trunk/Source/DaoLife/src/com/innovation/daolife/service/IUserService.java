@@ -8,6 +8,8 @@ package com.innovation.daolife.service;
 import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
 
+import org.apache.commons.mail.EmailException;
+
 import com.innovation.common.util.PaginationSupport;
 import com.innovation.daolife.action.search.UserSearch;
 import com.innovation.daolife.model.DlUsers;
@@ -23,4 +25,7 @@ public interface IUserService {
 	public boolean checkUserByName(String name);
 	public boolean checkUserByEmail(String name);
 	public boolean checkUserByNickName(String name);
+	public void resetPasswordEmail(String userName) throws EmailException;
+	public boolean checkAuthCode(Short userId, String authCode);
+	public void resetPassword(Short userId, String newPassword) throws NoSuchAlgorithmException, UnsupportedEncodingException, EmailException;
 }
