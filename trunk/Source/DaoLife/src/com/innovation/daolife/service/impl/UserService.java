@@ -11,9 +11,11 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+import org.apache.commons.mail.EmailException;
 import org.hibernate.criterion.DetachedCriteria;
 
 import com.innovation.common.util.Constant;
+import com.innovation.common.util.DaoLifeEmail;
 import com.innovation.common.util.Md5Util;
 import com.innovation.common.util.PaginationSupport;
 import com.innovation.common.util.RandomString;
@@ -69,6 +71,7 @@ public class UserService implements IUserService {
 			user = userList.get(0);
 		}
 		return user;
+		
 	}
 	
 	/**
@@ -144,6 +147,10 @@ public class UserService implements IUserService {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	public void updateUser(DlUsers user){
+		dlUsersDao.update(user);
+	}
 
 	public IDlUsersDao getDlUsersDao() {
 		return dlUsersDao;
@@ -152,5 +159,61 @@ public class UserService implements IUserService {
 	public void setDlUsersDao(IDlUsersDao dlUsersDao) {
 		this.dlUsersDao = dlUsersDao;
 	}
+	/**
+	 * 发送找回密码email
+	 */
+	public void resetPasswordEmail(String userName) throws EmailException {
+		String authCode = RandomString.getInstance().getRandomString(25);
+		DlUsers user = this.getUserByNameOrEmail(userName);
+		if(user !=  null)
+		{
+			user.setAuthEmail(authCode);
+			this.updateUser(user);
+			DaoLifeEmail daoEmail = new DaoLifeEmail();
+			//地址需改成可配置
+			String authUrl = "http://www.daolife.com/ResetPassword.action?userId="+user.getUserId()+"&authCode="+authCode+"";
+			daoEmail.sendFindPasswordEmail(user.getUserName(), authUrl, user.getMailadres());
+		}
+	}
+	/**
+	 * 校验找回密码密钥是否正确
+	 */
+	public boolean checkAuthCode(Short userId, String authCode) {
+		DlUsers user = dlUsersDao.get(userId);
+		if(user !=  null)
+		{
+			if(authCode.equals(user.getAuthEmail()))
+			{
+				return true;
+			}
+		}
+		return false;
+	}
+	/**
+	 * 重置密码
+	 * @throws UnsupportedEncodingException 
+	 * @throws NoSuchAlgorithmException 
+	 * @throws EmailException 
+	 */
+	public void resetPassword(Short userId, String newPassword) throws NoSuchAlgorithmException, UnsupportedEncodingException, EmailException {
+		DlUsers user = dlUsersDao.get(userId);
+		if(user !=  null)
+		{
+			String salt = RandomString.getInstance().getRandomString(6);
+			String md5Password = Md5Util.getInstance().EncoderByMd5(newPassword, salt);
+			user.setPassword(md5Password);
+			user.setSalt(salt);
+			user.setAuthEmail(RandomString.getInstance().getRandomString(25));
+			this.updateUser(user);
+			DaoLifeEmail daoEmail = new DaoLifeEmail();
+			daoEmail.sendSetPasswordSuccessEmail(user.getUserName(), newPassword, user.getMailadres());
+			
+		}
+		
+		
+	}
+	
+
+	
 
 }
