@@ -41,15 +41,21 @@ public class CommonAjax {
 	}
 	/**
 	 * @author fsn
-	 * 检查用户名和email邮箱是否唯一
+	 * 检查用户名是否唯一
 	 * 返回true 唯一
 	 * */
-	public boolean checkUserNameorEmail(String check){
-		boolean flag = true;
-		DlUsers users = userService.getUserByNameOrEmail(check);
-		if(users!=null){
-			flag = false;
-		}
+	public boolean checkUserName(String username){
+		boolean flag = userService.checkUserByName(username);
+		return flag;
+	}
+	
+	/**
+	 * @author fsn
+	 * 检查邮箱是否唯一
+	 * 返回true 唯一
+	 * */
+	public boolean checkUserEmail(String email){
+		boolean flag = userService.checkUserByEmail(email);
 		return flag;
 	}
 	
@@ -58,13 +64,8 @@ public class CommonAjax {
 	 * 检查昵称是否唯一
 	 * 返回true 唯一
 	 * */
-	public boolean checkUserNickName(String checke){
-		boolean flag = true;
-		String sql =" From DlUsers u where u.userNickName=? ";
-		List<DlUsers> userList = dlUsersDao.find(sql,checke);
-		if(userList.size()==0){
-			flag = false;
-		}
+	public boolean checkUserNickName(String check){
+		boolean flag = userService.checkUserByNickName(check);
 		return flag;
 	}
 	
