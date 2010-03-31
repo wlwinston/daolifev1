@@ -6,16 +6,20 @@
  */
 package com.innovation.daolife.action;
 
+import java.io.UnsupportedEncodingException;
+import java.security.NoSuchAlgorithmException;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.mail.EmailException;
 import org.apache.struts2.interceptor.ServletRequestAware;
 import org.apache.struts2.interceptor.ServletResponseAware;
 import org.apache.struts2.interceptor.SessionAware;
 
+import com.innovation.common.util.Constant;
 import com.innovation.common.util.Md5Util;
 import com.innovation.common.util.PaginationSupport;
 import com.innovation.daolife.action.search.UserSearch;
@@ -36,8 +40,17 @@ public class UserAction extends ActionSupport implements SessionAware, ServletRe
 	private IUserService userService;
 	private String userName;
 	private String password;
+	private Short userId;
+	private String authCode;
+	private String newPassword;
+	private String newPasswordConfirm;
 	private static String LOGINSUCCESS = "loginSuccess";
 	private static String LOGINFAILURE = "loginFailure";
+	private static String FINDPASSWORDSUCCESS = "findPasswordSuccess";
+	private static String RESETCHECKSUCCESS = "resetCheckSuccess";
+	private static String RESETCHECKFAILUE ="resetCheckFailue";
+	private static String SETNEWPASSWORDSUCCESS = "setNewPasswordSuccess";
+	private static String SETNEWPASSWORDFAILUE ="setNewPasswordFailue";
 
 	public void setUserService(IUserService userService) {
 		this.userService = userService;
@@ -48,6 +61,43 @@ public class UserAction extends ActionSupport implements SessionAware, ServletRe
 		return REGISTERSUCCESS;
 	}
 	
+	public String resetPassword(){
+		if( userId == null || authCode == null)
+		{
+			return RESETCHECKFAILUE;
+		}
+		boolean flag = userService.checkAuthCode(userId,authCode);
+		if(flag){
+			request.setAttribute("userId", userId);
+			request.setAttribute("newPassword", "newPassword");
+			return RESETCHECKSUCCESS;
+		}
+		else{
+			return RESETCHECKFAILUE;
+		}
+	}
+	
+	public String resetPasswordSave() throws NoSuchAlgorithmException, UnsupportedEncodingException, EmailException{
+		String forward = SETNEWPASSWORDFAILUE;
+		if(newPassword != null && newPasswordConfirm != null)
+		{
+			if(newPassword.equals(newPasswordConfirm))
+			{
+				if(userId != null)
+				{
+					userService.resetPassword(userId,newPassword);
+					forward = SETNEWPASSWORDSUCCESS;
+				}
+			}
+			else{
+				request.setAttribute("ErrorInfo", Constant.ERROR_RETPASSWORD_PASSWORDCONFIRMERROR.getStrValue());
+			}
+		}
+		else{
+			request.setAttribute("ErrorInfo", Constant.ERROR_RETPASSWORD_NOPASSWORD.getStrValue());
+		}
+		return forward;
+	}
 	
 	public String userList() throws Exception{
 		if(paginationSupport == null)
@@ -68,6 +118,12 @@ public class UserAction extends ActionSupport implements SessionAware, ServletRe
 		return USERLIST;
 	}
 	
+	public String findPassword() throws EmailException {
+		userService.resetPasswordEmail(userName);
+		return FINDPASSWORDSUCCESS;
+	}
+	
+
 	/**
 	 * @ fengsn
 	 * 用户登录校验
@@ -132,6 +188,30 @@ public class UserAction extends ActionSupport implements SessionAware, ServletRe
 	}
 	public void setPassword(String password) {
 		this.password = password;
+	}
+	public String getAuthCode() {
+		return authCode;
+	}
+	public void setAuthCode(String authCode) {
+		this.authCode = authCode;
+	}
+	public Short getUserId() {
+		return userId;
+	}
+	public void setUserId(Short userId) {
+		this.userId = userId;
+	}
+	public String getNewPassword() {
+		return newPassword;
+	}
+	public void setNewPassword(String newPassword) {
+		this.newPassword = newPassword;
+	}
+	public String getNewPasswordConfirm() {
+		return newPasswordConfirm;
+	}
+	public void setNewPasswordConfirm(String newPasswordConfirm) {
+		this.newPasswordConfirm = newPasswordConfirm;
 	}
 
 }
