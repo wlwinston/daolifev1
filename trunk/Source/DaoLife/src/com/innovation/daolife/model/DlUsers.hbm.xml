@@ -13,6 +13,9 @@
         <property name="userName" type="java.lang.String">
             <column name="user_name" length="64" not-null="true" />
         </property>
+        <property name="userNickName" type="java.lang.String">
+            <column name="user_nickname" length="64" not-null="true" />
+        </property>
         <property name="userUrl" type="java.lang.String">
             <column name="user_url" length="64" />
         </property>
