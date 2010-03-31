@@ -9,6 +9,6 @@ import com.innovation.daolife.model.DlUsers;
  * @author MyEclipse Persistence Tools
  */
 
-public interface IDlUsersDao extends IGenericDao<DlUsers, Integer>  {
+public interface IDlUsersDao extends IGenericDao<DlUsers, Short>  {
 
 }
