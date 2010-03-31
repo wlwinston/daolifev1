@@ -20,4 +20,7 @@ public interface IUserService {
 			PaginationSupport paginationSupport, UserSearch userSearch);
 	public void regist(DlUsers user) throws NoSuchAlgorithmException, UnsupportedEncodingException;
 	public DlUsers getUserByNameOrEmail(String name);
+	public boolean checkUserByName(String name);
+	public boolean checkUserByEmail(String name);
+	public boolean checkUserByNickName(String name);
 }
