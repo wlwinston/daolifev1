@@ -9,7 +9,8 @@
 		<create creator="spring" javascript="DaolifeAjax">
 			<param name="beanName" value="CommonAjax" />
 			<include method="getUserById" />
-			<include method="checkUserNameorEmail" />
+			<include method="checkUserName" />
+			<include method="checkUserEmail" />
 			<include method="checkUserNickName" />
 		</create>
 	</allow>
