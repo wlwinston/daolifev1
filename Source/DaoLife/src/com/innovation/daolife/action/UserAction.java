@@ -35,11 +35,13 @@ public class UserAction extends ActionSupport implements SessionAware, ServletRe
     private HttpServletRequest request;
     private HttpServletResponse response; 
 	private DlUsers user;
+	private DlUsers updateUser;
 	private PaginationSupport paginationSupport ;
 	private UserSearch userSearch;
 	private IUserService userService;
 	private String userName;
 	private String password;
+	private String newpassword;
 	private Short userId;
 	private String authCode;
 	private String newPassword;
@@ -61,6 +63,33 @@ public class UserAction extends ActionSupport implements SessionAware, ServletRe
 		return REGISTERSUCCESS;
 	}
 	
+	/**
+	 * @author fsn
+	 * 用户信息更新校验
+	 * */
+	public String update() throws Exception{
+		DlUsers oldUserInfo = (DlUsers) att.get("user");
+		userService.update(updateUser,oldUserInfo);
+		att.put("user", updateUser);
+		return "updateSuccess";
+	}
+	
+	/**
+	 * @author fsn
+	 * 用户密码更新
+	 * */
+	public String updatePsw() throws Exception{
+		DlUsers oldUserInfo = (DlUsers) att.get("user");
+		userService.updatePsw(oldUserInfo,newpassword);
+		return "updatePswSuccess";
+	}
+	
+	public String updatePrepare() throws Exception{
+		DlUsers UserInfo = (DlUsers) att.get("user");
+		updateUser = UserInfo;
+		return "updatePrepareSuccess";
+	}
+
 	public String resetPassword(){
 		if( userId == null || authCode == null)
 		{
@@ -76,7 +105,7 @@ public class UserAction extends ActionSupport implements SessionAware, ServletRe
 			return RESETCHECKFAILUE;
 		}
 	}
-	
+
 	public String resetPasswordSave() throws NoSuchAlgorithmException, UnsupportedEncodingException, EmailException{
 		String forward = SETNEWPASSWORDFAILUE;
 		if(newPassword != null && newPasswordConfirm != null)
@@ -212,6 +241,18 @@ public class UserAction extends ActionSupport implements SessionAware, ServletRe
 	}
 	public void setNewPasswordConfirm(String newPasswordConfirm) {
 		this.newPasswordConfirm = newPasswordConfirm;
+	}
+	public DlUsers getUpdateUser() {
+		return updateUser;
+	}
+	public void setUpdateUser(DlUsers updateUser) {
+		this.updateUser = updateUser;
+	}
+	public String getNewpassword() {
+		return newpassword;
+	}
+	public void setNewpassword(String newpassword) {
+		this.newpassword = newpassword;
 	}
 
 }
