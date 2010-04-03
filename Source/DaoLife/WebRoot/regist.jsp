@@ -10,6 +10,7 @@
 		<h3>请输入注册信息</h3>
 		<s:form action="/Regist.action" method="post" validate="true">
 			<s:textfield id="username" name="user.userName" label="用户名" /><br />
+			<s:textfield id="usernickname" name="user.userNickName" label="昵称" /><br />
 			<s:password id="password" name="user.password" label="密码"/><br />
 			<s:textfield id="email" name="user.mailadres" label="电邮"/><br />
 			<s:textfield id="email" name="user.userUrl" label="个性地址"/><br />

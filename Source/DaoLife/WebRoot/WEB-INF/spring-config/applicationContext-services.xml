@@ -5,6 +5,15 @@
     <property name="dlUsersDao">
         <ref bean="dlUsersDao"/>
     </property>
+     <property name="dlContentatDao">
+        <ref bean="dlContentatDao"/>
+    </property>
+     <property name="dlHotdaoDao">
+        <ref bean="dlHotdaoDao"/>
+    </property>
+    <property name="dlProductDao">
+        <ref bean="dlProductDao"/>
+    </property>
 </bean>
 <bean id="followrelationService" class="com.innovation.daolife.service.impl.FollowrelationService">
     <property name="followrelationDao">
