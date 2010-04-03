@@ -3,7 +3,16 @@
 <html>
 	<head>
 		<title>用户注册</title>
-		<script src="js/prototype.js" type="text/javascript"></script>
+		<script type="text/javascript" src="dwr/engine.js"> </script>
+    	<script type="text/javascript" src="dwr/util.js"> </script> 
+    	<script type="text/javascript" src="dwr/interface/DaolifeAjax.js"></script>
+		<script type="text/javascript" src="js/jquery-1.3.2.min.js"></script>
+		<script type="text/javascript" src="js/form.js"></script>
+		<script language="JavaScript">
+		$(function($){
+			Form.add('username',DaolifeAjax.checkUserName);
+		});
+		</script>
 	</head>
 	<body>
 		<center>
