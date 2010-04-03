@@ -6,8 +6,14 @@
 package com.innovation.common.dao;
 
 import java.io.Serializable;
+import java.sql.SQLException;
 import java.util.Collection;
 import java.util.List;
+
+import javax.transaction.HeuristicMixedException;
+import javax.transaction.HeuristicRollbackException;
+import javax.transaction.RollbackException;
+import javax.transaction.SystemException;
 
 import org.hibernate.LockMode;
 import org.hibernate.criterion.DetachedCriteria;
@@ -35,6 +41,8 @@ public interface IGenericDao<T, ID extends Serializable> {
 	public void update(T t, LockMode lockMode) throws DataAccessException;
 
 	public void update(T t) throws DataAccessException;
+	
+	public void update(String sqlString) throws DataAccessException, SQLException, SecurityException, IllegalStateException, RollbackException, HeuristicMixedException, HeuristicRollbackException, SystemException;
 
 	public void delete(T t, LockMode lockMode) throws DataAccessException;
 
