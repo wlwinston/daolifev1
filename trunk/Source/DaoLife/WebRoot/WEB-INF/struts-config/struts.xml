@@ -19,11 +19,23 @@
 			<result name="registerSuccess">/success.jsp</result>	
 			<result name="input">/regist.jsp</result>
 		</action>
+		<action name="UpdatePsw" class="UserAction" method="updatePsw">
+			<result name="registerSuccess">/success.jsp</result>	
+			<result name="input">/regist.jsp</result>
+		</action>
 		<action name="Userlist" class="UserAction" method="userList">
 			<result name="list">/list.jsp</result>
 		</action>
 		<action name="Login" class="UserAction" method="login">
-			<result name="registerSuccess">/success.jsp</result>	
+			<result name="loginSuccess">/prepare.jsp</result>	
+			<result name="input">/login.jsp</result>
+		</action>
+		<action name="Update" class="UserAction" method="update">
+			<result name="loginSuccess">/success.jsp</result>	
+			<result name="input">/login.jsp</result>
+		</action>
+		<action name="UpdatePrepare" class="UserAction" method="updatePrepare">
+			<result name="updatePrepareSuccess">/modify.jsp</result>	
 			<result name="input">/login.jsp</result>
 		</action>
 		<action name="FindPassword" class="UserAction" method="findPassword">
