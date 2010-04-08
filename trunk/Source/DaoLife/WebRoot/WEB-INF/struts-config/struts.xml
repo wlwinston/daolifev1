@@ -52,6 +52,10 @@
 			<result name="setNewPasswordFailue">/success.jsp</result>	
 			<result name="input">/login.jsp</result>
 		</action>
+		<action name="PostDao" class="DaoAction" method="post">
+			<result name="registerSuccess">/success.jsp</result>	
+			<result name="input">/regist.jsp</result>
+		</action>
     </package> 
 
 </struts>
