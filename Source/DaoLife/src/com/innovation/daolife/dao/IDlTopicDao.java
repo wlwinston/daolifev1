@@ -9,6 +9,6 @@ import com.innovation.daolife.model.DlTopic;
  * @author MyEclipse Persistence Tools
  */
 
-public interface IDlTopicDao  extends IGenericDao<DlTopic, Integer>  {
+public interface IDlTopicDao  extends IGenericDao<DlTopic, Short>  {
 
 }
