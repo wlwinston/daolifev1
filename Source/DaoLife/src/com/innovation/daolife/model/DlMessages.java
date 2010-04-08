@@ -1,5 +1,7 @@
 package com.innovation.daolife.model;
 
+import java.util.Date;
+
 /**
  * DlMessages entity.
  * 
@@ -13,7 +15,7 @@ public class DlMessages implements java.io.Serializable {
 	private Short messageId;
 	private Short userId;
 	private String messageBody;
-	private Integer MTime;
+	private Date MTime;
 	private Short isread;
 
 	// Constructors
@@ -24,7 +26,7 @@ public class DlMessages implements java.io.Serializable {
 
 	/** full constructor */
 	public DlMessages(Short messageId, Short userId, String messageBody,
-			Integer MTime, Short isread) {
+			Date MTime, Short isread) {
 		this.messageId = messageId;
 		this.userId = userId;
 		this.messageBody = messageBody;
@@ -58,11 +60,11 @@ public class DlMessages implements java.io.Serializable {
 		this.messageBody = messageBody;
 	}
 
-	public Integer getMTime() {
+	public Date getMTime() {
 		return this.MTime;
 	}
 
-	public void setMTime(Integer MTime) {
+	public void setMTime(Date MTime) {
 		this.MTime = MTime;
 	}
 
