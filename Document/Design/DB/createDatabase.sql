@@ -140,7 +140,7 @@ create table daolife.dl_content
    topicid              smallint(6) not null default 0,
    content_body         varchar(300) not null,
    posttime             int(10) not null,
-   origin_id            smallint(10) ,
+   origin_id            varchar(400) ,
    retwitt_num          smallint(10) not null default 0,
    status               varchar(1) not null default '0',
    type                 varchar(10) not null default 'อ๘าณ',
