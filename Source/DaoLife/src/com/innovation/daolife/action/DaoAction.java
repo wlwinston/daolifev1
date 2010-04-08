@@ -1,0 +1,93 @@
+/** 
+ *
+ * @author Winston
+ * @version 1.0 
+ * Creation date: MAR 8, 2010 22:46:49 
+ */
+package com.innovation.daolife.action;
+
+import java.io.UnsupportedEncodingException;
+import java.security.NoSuchAlgorithmException;
+import java.sql.SQLException;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import javax.transaction.HeuristicMixedException;
+import javax.transaction.HeuristicRollbackException;
+import javax.transaction.RollbackException;
+import javax.transaction.SystemException;
+
+import org.apache.commons.mail.EmailException;
+import org.apache.struts2.interceptor.ServletRequestAware;
+import org.apache.struts2.interceptor.ServletResponseAware;
+import org.apache.struts2.interceptor.SessionAware;
+import org.springframework.dao.DataAccessException;
+
+import com.innovation.common.util.Constant;
+import com.innovation.common.util.Md5Util;
+import com.innovation.common.util.PaginationSupport;
+import com.innovation.daolife.action.search.UserSearch;
+import com.innovation.daolife.model.DlUsers;
+import com.innovation.daolife.model.User;
+import com.innovation.daolife.service.IDlDaoService;
+import com.innovation.daolife.service.IUserService;
+import com.opensymphony.xwork2.ActionSupport;
+
+public class DaoAction extends ActionSupport implements SessionAware, ServletRequestAware, ServletResponseAware{
+	private static String DAOPOSTSUCCESS = "daoPostSuccess";
+	private Map att;
+    private HttpServletRequest request;
+    private HttpServletResponse response; 
+	private String contextBody ;
+	private IDlDaoService dlDaoService;
+	
+	
+
+	
+	
+	public String post() throws EmailException, DataAccessException, SecurityException, IllegalStateException, SQLException, RollbackException, HeuristicMixedException, HeuristicRollbackException, SystemException {
+		DlUsers user = (DlUsers) att.get("user");
+		dlDaoService.addDao(user,contextBody);
+		return DAOPOSTSUCCESS;
+	}
+	
+
+	
+	
+	public void setSession(Map att) {
+        this.att = att;
+    }
+    
+    public void setServletRequest(HttpServletRequest request) {
+        this.request = request;
+    }
+    
+    public void setServletResponse(HttpServletResponse response) {
+        this.response = response;
+    }
+	
+
+
+
+
+	public void setDlDaoService(IDlDaoService dlDaoService) {
+		this.dlDaoService = dlDaoService;
+	}
+
+
+
+
+	public String getContextBody() {
+		return contextBody;
+	}
+
+
+
+
+	public void setContextBody(String contextBody) {
+		this.contextBody = contextBody;
+	}
+
+}
