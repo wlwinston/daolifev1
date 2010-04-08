@@ -15,9 +15,41 @@
         <ref bean="dlProductDao"/>
     </property>
 </bean>
-<bean id="followrelationService" class="com.innovation.daolife.service.impl.FollowrelationService">
-    <property name="followrelationDao">
-        <ref bean="followrelationDao"/>
+<bean id="dlDaoService" class="com.innovation.daolife.service.impl.DlDaoService">
+    <property name="dlUsersDao">
+        <ref bean="dlUsersDao"/>
+    </property>
+    <property name="daoContentBodyConvert">
+        <ref bean="daoContentBodyConvert"/>
+    </property>
+    <property name="dlContentDao">
+        <ref bean="dlContentDao"/>
+    </property>
+     <property name="dlContentatDao">
+        <ref bean="dlContentatDao"/>
+    </property>
+     <property name="dlTopicDao">
+        <ref bean="dlTopicDao"/>
+    </property>
+    <property name="dlMessagesDao">
+        <ref bean="dlMessagesDao"/>
     </property>
 </bean>
+
+<bean id="daoContentBodyConvert" class="com.innovation.daolife.service.impl.DaoContentBodyConvertService">
+    <property name="dlUsersDao">
+        <ref bean="dlUsersDao"/>
+    </property>
+    
+    <property name="dlContentDao">
+        <ref bean="dlContentDao"/>
+    </property>
+     <property name="dlContentatDao">
+        <ref bean="dlContentatDao"/>
+    </property>
+    <property name="dlTopicDao">
+        <ref bean="dlTopicDao"/>
+    </property>
+</bean>
+
 </beans>
