@@ -9,6 +9,6 @@ import com.innovation.daolife.model.DlContentat;
  * @author MyEclipse Persistence Tools
  */
 
-public interface IDlContentatDao extends IGenericDao<DlContentat, Integer>  {
+public interface IDlContentatDao extends IGenericDao<DlContentat, Short>  {
 
 }

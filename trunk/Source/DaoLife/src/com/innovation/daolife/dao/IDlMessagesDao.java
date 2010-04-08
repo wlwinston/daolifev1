@@ -9,6 +9,6 @@ import com.innovation.daolife.model.DlMessages;
  * @author MyEclipse Persistence Tools
  */
 
-public interface IDlMessagesDao  extends IGenericDao<DlMessages, Integer>  {
+public interface IDlMessagesDao  extends IGenericDao<DlMessages, Short>  {
 
 }
