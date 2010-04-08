@@ -1,5 +1,7 @@
 package com.innovation.daolife.model;
 
+import java.util.Date;
+
 /**
  * DlContent entity.
  * 
@@ -14,8 +16,8 @@ public class DlContent implements java.io.Serializable {
 	private Short userId;
 	private Short topicid;
 	private String contentBody;
-	private Integer posttime;
-	private Short originId;
+	private Date posttime;
+	private String originId;
 	private Short retwittNum;
 	private String status;
 	private String type;
@@ -28,7 +30,7 @@ public class DlContent implements java.io.Serializable {
 
 	/** minimal constructor */
 	public DlContent(Short contentId, Short userId, Short topicid,
-			String contentBody, Integer posttime, Short retwittNum,
+			String contentBody, Date posttime, Short retwittNum,
 			String status, String type) {
 		this.contentId = contentId;
 		this.userId = userId;
@@ -42,7 +44,7 @@ public class DlContent implements java.io.Serializable {
 
 	/** full constructor */
 	public DlContent(Short contentId, Short userId, Short topicid,
-			String contentBody, Integer posttime, Short originId,
+			String contentBody, Date posttime, String originId,
 			Short retwittNum, String status, String type) {
 		this.contentId = contentId;
 		this.userId = userId;
@@ -89,19 +91,19 @@ public class DlContent implements java.io.Serializable {
 		this.contentBody = contentBody;
 	}
 
-	public Integer getPosttime() {
+	public Date getPosttime() {
 		return this.posttime;
 	}
 
-	public void setPosttime(Integer posttime) {
+	public void setPosttime(Date posttime) {
 		this.posttime = posttime;
 	}
 
-	public Short getOriginId() {
+	public String getOriginId() {
 		return this.originId;
 	}
 
-	public void setOriginId(Short originId) {
+	public void setOriginId(String originId) {
 		this.originId = originId;
 	}
 
