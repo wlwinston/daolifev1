@@ -14,6 +14,14 @@ public enum Constant
 	USER_AUTHMAIL_NOMAIL("0"),
 	USER_RECOMMENDIND_NO("0"),
 	USER_RECOMMENDIND_YES("1"),
+	CONTENT_STATUS_INIT("0"),
+	MESSAGE_ISREAD_NO(0),
+	MESSAGE_ISREAD_YES(1),
+	MESSAGE_MESSAGEBODY_ATMESSAGE("你被人@了"),
+	//个人链接前缀
+	LINK_USER_PREFIX("http://www.daolife.com/"),
+	//话题链接前缀
+	LINK_TOPIC_PREFIX("http://www.daolife.com/topicDetail.action?topicId="),
 	ERROR_RETPASSWORD_NOPASSWORD("新密码不能为空"),
 	ERROR_RETPASSWORD_PASSWORDCONFIRMERROR("两次密码不一致"),
 	ERROR_RETPASSWORD_NOIDERROR("用户不存在")
