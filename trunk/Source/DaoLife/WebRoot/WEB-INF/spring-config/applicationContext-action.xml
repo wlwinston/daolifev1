@@ -7,6 +7,10 @@
         scope="prototype">
         <property name="userService" ref="userService" />
     </bean>
+    <bean id="DaoAction" class="com.innovation.daolife.action.DaoAction"
+        scope="prototype">
+        <property name="dlDaoService" ref="dlDaoService" />
+    </bean>
     <bean id="CommonAjax" class="com.innovation.common.Ajax.CommonAjax"
         scope="prototype">
         <property name="userService" ref="userService" />
