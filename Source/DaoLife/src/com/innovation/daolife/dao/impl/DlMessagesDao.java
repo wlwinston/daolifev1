@@ -10,7 +10,7 @@ import com.innovation.daolife.model.DlMessages;
  * @author MyEclipse Persistence Tools
  */
 
-public class DlMessagesDao extends GenericDao<DlMessages, Integer> implements IDlMessagesDao {
+public class DlMessagesDao extends GenericDao<DlMessages, Short> implements IDlMessagesDao {
 	
 	
 }
