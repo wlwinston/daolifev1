@@ -8,7 +8,7 @@
     <class name="com.innovation.daolife.model.DlMessages" table="dl_messages" catalog="daolife">
         <id name="messageId" type="java.lang.Short">
             <column name="message_id" />
-            <generator class="assigned" />
+            <generator class="identity" />
         </id>
         <property name="userId" type="java.lang.Short">
             <column name="user_id" not-null="true" />
@@ -16,8 +16,8 @@
         <property name="messageBody" type="java.lang.String">
             <column name="message_body" length="300" not-null="true" />
         </property>
-        <property name="MTime" type="java.lang.Integer">
-            <column name="m_time" not-null="true" />
+        <property name="MTime" type="java.util.Date">
+            <column name="m_time" length="19"  not-null="true" />
         </property>
         <property name="isread" type="java.lang.Short">
             <column name="isread" not-null="true" />
