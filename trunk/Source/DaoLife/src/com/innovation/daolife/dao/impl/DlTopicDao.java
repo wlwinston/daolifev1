@@ -10,7 +10,7 @@ import com.innovation.daolife.model.DlTopic;
  * @author MyEclipse Persistence Tools
  */
 
-public class DlTopicDao extends GenericDao<DlTopic, Integer> implements IDlTopicDao {
+public class DlTopicDao extends GenericDao<DlTopic, Short> implements IDlTopicDao {
 	
 	
 } 

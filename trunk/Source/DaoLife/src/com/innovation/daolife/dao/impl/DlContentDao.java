@@ -10,7 +10,7 @@ import com.innovation.daolife.model.DlContent;
  * @author MyEclipse Persistence Tools
  */
 
-public class DlContentDao extends GenericDao<DlContent, Integer> implements IDlContentDao {
+public class DlContentDao extends GenericDao<DlContent, Short> implements IDlContentDao {
 	
 	
 } 
