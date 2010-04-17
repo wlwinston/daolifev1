@@ -12,6 +12,7 @@
 			<include method="checkUserName" />
 			<include method="checkUserEmail" />
 			<include method="checkUserNickName" />
+			<include method="upDao" />
 		</create>
 	</allow>
 </dwr>
