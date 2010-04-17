@@ -29,6 +29,7 @@ import com.innovation.daolife.action.search.UserSearch;
 import com.innovation.daolife.dao.IDlContentatDao;
 import com.innovation.daolife.dao.IDlHotdaoDao;
 import com.innovation.daolife.dao.IDlProductDao;
+import com.innovation.daolife.dao.IDlUserrolesDao;
 import com.innovation.daolife.dao.IDlUsersDao;
 import com.innovation.daolife.dao.IFollowrelationDao;
 import com.innovation.daolife.dao.IUserDao;
@@ -37,6 +38,7 @@ import com.innovation.daolife.dao.impl.DlProductDao;
 import com.innovation.daolife.model.DlContentat;
 import com.innovation.daolife.model.DlHotdao;
 import com.innovation.daolife.model.DlProduct;
+import com.innovation.daolife.model.DlUserroles;
 import com.innovation.daolife.model.DlUsers;
 import com.innovation.daolife.model.Followrelation;
 import com.innovation.daolife.model.User;
@@ -51,6 +53,8 @@ public class UserService implements IUserService {
 	private IDlHotdaoDao dlHotdaoDao;
 
 	private IDlProductDao dlProductDao;
+	
+	private IDlUserrolesDao dlUserrolesDao;
 
 	public User getUserById(String id) {
 		User user = null;
@@ -208,6 +212,11 @@ public class UserService implements IUserService {
 		user.setUserlock(new Byte(Constant.USER_USERLOCK_NO.getStrValue()));
 		user.setAuthEmail(Constant.USER_AUTHMAIL_NOMAIL.getStrValue());
 		dlUsersDao.save(user);
+		//保存用户默认角色
+		DlUserroles userRoles = new DlUserroles();
+		userRoles.setRolesName(Constant.WEBSITE_ROLES_DEFAULT.getStrValue());
+		userRoles.setUserId(user.getUserId());
+		dlUserrolesDao.save(userRoles);
 
 	}
 
@@ -308,6 +317,20 @@ public class UserService implements IUserService {
 
 	public void setDlProductDao(IDlProductDao dlProductDao) {
 		this.dlProductDao = dlProductDao;
+	}
+
+	public IDlUserrolesDao getDlUserrolesDao() {
+		return dlUserrolesDao;
+	}
+
+	public void setDlUserrolesDao(IDlUserrolesDao dlUserrolesDao) {
+		this.dlUserrolesDao = dlUserrolesDao;
+	}
+
+	public List<DlUserroles> getRolesListByUserId(Short userId) {
+		String searchSql = " From DlUserroles Where userId = ?";
+		List<DlUserroles> rolesList = dlUserrolesDao.find(searchSql,userId);
+		return rolesList;
 	}
 
 }
