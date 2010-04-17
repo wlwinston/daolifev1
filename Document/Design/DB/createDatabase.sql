@@ -113,6 +113,22 @@ create table daolife.dl_users
 alter table daolife.dl_users comment '用户表';
 
 
+drop table if exists daolife.dl_userroles;
+
+/*==============================================================*/
+/* Table: dl_userroles                                          */
+/*==============================================================*/
+create table daolife.dl_userroles
+(
+   userroles_id         smallint(12) not null auto_increment,
+   user_id              smallint(10) not null,
+   roles_name           varchar(30) not null,
+   primary key (userroles_id)
+);
+
+alter table daolife.dl_userroles comment '用户角色表';
+
+
 /*==============================================================*/
 /* Table: dl_messages                                           */
 /*==============================================================*/
@@ -123,6 +139,7 @@ create table daolife.dl_messages
    message_body         varchar(300) not null,
    m_time               int(10) not null,
    isread               smallint(1) not null default 0,
+   type                 varchar(1) not null,
    primary key (message_id)
 );
 
@@ -140,8 +157,10 @@ create table daolife.dl_content
    topicid              smallint(6) not null default 0,
    content_body         varchar(300) not null,
    posttime             int(10) not null,
-   origin_id            varchar(400) ,
+   origin_id            smallint(10) ,
+   origin_allid         varchar(400) ,
    retwitt_num          smallint(10) not null default 0,
+   up_num               smallint(10) not null default 0,
    status               varchar(1) not null default '0',
    type                 varchar(10) not null default '网页',
    primary key (content_id)
@@ -178,7 +197,7 @@ create table daolife.dl_uplog
    hotdao_id            smallint(10) not null,
    user_id              smallint(10) not null default 0,
    upIp                 varchar(50) not null,
-   uptime               int(10) not null,
+   uptime               datetime not null,
    primary key (uplog_id)
 );
 
