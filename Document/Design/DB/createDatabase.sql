@@ -156,7 +156,7 @@ create table daolife.dl_content
    user_id              smallint(10) not null,
    topicid              smallint(6) not null default 0,
    content_body         varchar(300) not null,
-   posttime             int(10) not null,
+   posttime             datetime not null,
    origin_id            smallint(10) ,
    origin_allid         varchar(400) ,
    retwitt_num          smallint(10) not null default 0,
