@@ -29,22 +29,27 @@ import com.innovation.common.util.Constant;
 import com.innovation.common.util.Md5Util;
 import com.innovation.common.util.PaginationSupport;
 import com.innovation.daolife.action.search.UserSearch;
+import com.innovation.daolife.dao.IDlFriendDao;
+import com.innovation.daolife.model.DlFriend;
 import com.innovation.daolife.model.DlUsers;
 import com.innovation.daolife.model.User;
 import com.innovation.daolife.service.IDlDaoService;
+import com.innovation.daolife.service.IFollowrelationService;
 import com.innovation.daolife.service.IUserService;
 import com.opensymphony.xwork2.ActionSupport;
 
 public class DaoAction extends ActionSupport implements SessionAware, ServletRequestAware, ServletResponseAware{
 	private static String DAOPOSTSUCCESS = "daoPostSuccess";
+	private static String FOLLOWSUCCESS = "followSuccess";
 	private Map att;
     private HttpServletRequest request;
     private HttpServletResponse response; 
 	private String contextBody ;
+	private Short followId ;
+	//private IDlDaoService dlDaoService;
+	private IFollowrelationService followrelationService;
 	private IDlDaoService dlDaoService;
 	private Short orgDaoId;
-	
-	
 
 	
 	
@@ -54,12 +59,13 @@ public class DaoAction extends ActionSupport implements SessionAware, ServletReq
 		return DAOPOSTSUCCESS;
 	}
 	
+
 	public String retwitte() throws Exception {
 		DlUsers user = (DlUsers) att.get(Constant.SESSION_USER_KEY.getStrValue());
 		dlDaoService.addRetwitteDao(user,contextBody,orgDaoId);
 		return DAOPOSTSUCCESS;
 	}
-	
+
 	
 	public void setSession(Map att) {
         this.att = att;
