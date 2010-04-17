@@ -30,6 +30,10 @@ public enum Constant
 	/*********消息内容*********/
 	//@消息内容
 	MESSAGE_MESSAGEBODY_ATMESSAGE("你被人@了"),
+	
+	/*********关注消息内容*********/
+	//@消息内容
+	MESSAGE_MESSAGEBODY_ATTENTION("你被人关注了"),
 	/*********UP错误信息*********/
 	//没有登录
 	UPDAO_ERRORMESSAGE_NOUSER("您还没有登录，请先登录"),
