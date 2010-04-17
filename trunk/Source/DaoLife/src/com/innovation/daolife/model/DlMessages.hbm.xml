@@ -22,5 +22,8 @@
         <property name="isread" type="java.lang.Short">
             <column name="isread" not-null="true" />
         </property>
+        <property name="type" type="java.lang.String">
+            <column name="type" length="1" not-null="true" />
+        </property>
     </class>
 </hibernate-mapping>

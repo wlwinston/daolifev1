@@ -17,6 +17,7 @@ public class DlMessages implements java.io.Serializable {
 	private String messageBody;
 	private Date MTime;
 	private Short isread;
+	private String type;
 
 	// Constructors
 
@@ -26,12 +27,13 @@ public class DlMessages implements java.io.Serializable {
 
 	/** full constructor */
 	public DlMessages(Short messageId, Short userId, String messageBody,
-			Date MTime, Short isread) {
+			Date MTime, Short isread,String type) {
 		this.messageId = messageId;
 		this.userId = userId;
 		this.messageBody = messageBody;
 		this.MTime = MTime;
 		this.isread = isread;
+		this.type = type;
 	}
 
 	// Property accessors
@@ -74,6 +76,14 @@ public class DlMessages implements java.io.Serializable {
 
 	public void setIsread(Short isread) {
 		this.isread = isread;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
 	}
 
 }

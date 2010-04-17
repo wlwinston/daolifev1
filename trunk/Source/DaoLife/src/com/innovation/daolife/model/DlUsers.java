@@ -1,6 +1,7 @@
 package com.innovation.daolife.model;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * DlUsers entity.
@@ -43,6 +44,9 @@ public class DlUsers implements java.io.Serializable {
 	private String gtalk;
 	private String authEmail;
 	private Byte userlock;
+	
+	//用户的角色列表
+	private List<DlUserroles> userRolesList = null ;
 
 	// Constructors
 
@@ -362,6 +366,14 @@ public class DlUsers implements java.io.Serializable {
 
 	public void setUserNickName(String userNickName) {
 		this.userNickName = userNickName;
+	}
+
+	public List<DlUserroles> getUserRolesList() {
+		return userRolesList;
+	}
+
+	public void setUserRolesList(List<DlUserroles> userRolesList) {
+		this.userRolesList = userRolesList;
 	}
 
 }

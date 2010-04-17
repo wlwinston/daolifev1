@@ -22,11 +22,17 @@
         <property name="posttime" type="java.util.Date">
             <column name="posttime" length="19" not-null="true" />
         </property>
-        <property name="originId" type="java.lang.String">
-            <column name="origin_id" length="400" />
+        <property name="originId" type="java.lang.Short">
+            <column name="origin_id"  />
+        </property>
+         <property name="originAllid" type="java.lang.String">
+            <column name="origin_allid" length="400" />
         </property>
         <property name="retwittNum" type="java.lang.Short">
             <column name="retwitt_num" not-null="true" />
+        </property>
+        <property name="upNum" type="java.lang.Short">
+            <column name="up_num" not-null="true" />
         </property>
         <property name="status" type="java.lang.String">
             <column name="status" length="1" not-null="true" />

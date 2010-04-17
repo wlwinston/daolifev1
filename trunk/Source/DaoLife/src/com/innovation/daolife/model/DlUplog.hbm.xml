@@ -8,7 +8,7 @@
     <class name="com.innovation.daolife.model.DlUplog" table="dl_uplog" catalog="daolife">
         <id name="uplogId" type="java.lang.Short">
             <column name="uplog_id" />
-            <generator class="assigned" />
+            <generator class="identity" />
         </id>
         <property name="hotdaoId" type="java.lang.Short">
             <column name="hotdao_id" not-null="true" />
@@ -19,8 +19,8 @@
         <property name="upIp" type="java.lang.String">
             <column name="upIp" length="50" not-null="true" />
         </property>
-        <property name="uptime" type="java.lang.Integer">
-            <column name="uptime" not-null="true" />
+        <property name="uptime" type="java.util.Date">
+            <column name="uptime" length="19" not-null="true" />
         </property>
     </class>
 </hibernate-mapping>
