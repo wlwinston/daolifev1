@@ -50,7 +50,7 @@ public class EmailUtils {
 		email.setHtmlMsg(msg);
 		//发送
 		email.send();
-		System.out.println(subject+" 发送成功");
+		logger.info(subject+" 发送成功");
   }
 	
 	public void sendMultiPartEmail() throws EmailException, UnsupportedEncodingException{
