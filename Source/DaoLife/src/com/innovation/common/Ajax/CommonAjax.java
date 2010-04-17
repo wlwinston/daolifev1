@@ -13,13 +13,16 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.collections.FastHashMap;
+import org.apache.log4j.Logger;
 import org.directwebremoting.WebContext;
 import org.directwebremoting.WebContextFactory;
 
 import com.innovation.common.util.Constant;
+import com.innovation.common.util.EmailUtils;
 import com.innovation.common.util.IPUtils;
 import com.innovation.common.util.ProjectException;
 import com.innovation.daolife.dao.IDlUsersDao;
+import com.innovation.daolife.model.DlCustomerDaoEntry;
 import com.innovation.daolife.model.DlUsers;
 import com.innovation.daolife.model.User;
 import com.innovation.daolife.service.IDlDaoService;
@@ -32,6 +35,8 @@ import com.innovation.daolife.service.IUserService;
  *
  */
 public class CommonAjax {
+	
+	private static Logger logger = Logger.getLogger(CommonAjax.class);
 	
 	private IUserService userService;
 	
@@ -109,6 +114,34 @@ public class CommonAjax {
 		}
 		return upResult;
 	}
+	/**
+	 * 发叨
+	 * @param contentBody 叨内容
+	 * @return 叨的实体对象
+	 * @throws Exception 
+	 */
+	public DlCustomerDaoEntry addDao(String contentBody) throws Exception
+	{
+		WebContext request = WebContextFactory.get();
+		DlCustomerDaoEntry customerDao = null;
+		HttpSession session = request.getSession(false);
+		if(session != null && session.getAttribute(Constant.SESSION_USER_KEY.getStrValue())!=null)
+		{
+			DlUsers user =  (DlUsers) session.getAttribute(Constant.SESSION_USER_KEY.getStrValue());
+			try{
+				customerDao = dlDaoService.addDao(user, contentBody);
+			}
+			catch (Exception e) {
+				logger.info(e.getStackTrace());
+				customerDao = null;
+			}
+		}
+		return customerDao;
+	}
+	
+	
+	
+	
 	
 	public IDlDaoService getDlDaoService() {
 		return dlDaoService;
