@@ -167,6 +167,7 @@ public class UserAction extends ActionSupport implements SessionAware, ServletRe
 			request.setAttribute("ErrorInfo", "用户不存在，请重新输入!");
 			return LOGINFAILURE;
 		}
+		
 		String salt = dlUser.getSalt();
 		String oldpasswd = dlUser.getPassword();
 		boolean flag = Md5Util.getInstance().checkpassword(password, salt, oldpasswd);
