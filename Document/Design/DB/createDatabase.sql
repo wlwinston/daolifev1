@@ -137,7 +137,7 @@ create table daolife.dl_messages
    message_id           smallint(10) not null auto_increment,
    user_id              smallint(10) not null,
    message_body         varchar(300) not null,
-   m_time               int(10) not null,
+   m_time               datetime not null,
    isread               smallint(1) not null default 0,
    type                 varchar(1) not null,
    primary key (message_id)
