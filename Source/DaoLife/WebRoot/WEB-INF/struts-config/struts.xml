@@ -32,7 +32,7 @@
 			<result name="list">/list.jsp</result>
 		</action>
 		<action name="Login" class="UserAction" method="login">
-			<result name="loginSuccess">/prepare.jsp</result>	
+			<result name="loginSuccess">/memberInfoCenter.jsp</result>	
 			<result name="input">/login.jsp</result>
 		</action>
 		<action name="Update" class="UserAction" method="update">
