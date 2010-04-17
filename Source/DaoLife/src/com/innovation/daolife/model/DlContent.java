@@ -17,8 +17,10 @@ public class DlContent implements java.io.Serializable {
 	private Short topicid;
 	private String contentBody;
 	private Date posttime;
-	private String originId;
+	private Short originId;
+	private String originAllid;
 	private Short retwittNum;
+	private Short upNum;
 	private String status;
 	private String type;
 
@@ -30,7 +32,7 @@ public class DlContent implements java.io.Serializable {
 
 	/** minimal constructor */
 	public DlContent(Short contentId, Short userId, Short topicid,
-			String contentBody, Date posttime, Short retwittNum,
+			String contentBody, Date posttime, Short retwittNum,Short upNum,
 			String status, String type) {
 		this.contentId = contentId;
 		this.userId = userId;
@@ -44,14 +46,15 @@ public class DlContent implements java.io.Serializable {
 
 	/** full constructor */
 	public DlContent(Short contentId, Short userId, Short topicid,
-			String contentBody, Date posttime, String originId,
-			Short retwittNum, String status, String type) {
+			String contentBody, Date posttime, Short originId, String originAllid,
+			Short retwittNum,Short upNum, String status, String type) {
 		this.contentId = contentId;
 		this.userId = userId;
 		this.topicid = topicid;
 		this.contentBody = contentBody;
 		this.posttime = posttime;
 		this.originId = originId;
+		this.originAllid = originAllid;
 		this.retwittNum = retwittNum;
 		this.status = status;
 		this.type = type;
@@ -99,11 +102,11 @@ public class DlContent implements java.io.Serializable {
 		this.posttime = posttime;
 	}
 
-	public String getOriginId() {
+	public Short getOriginId() {
 		return this.originId;
 	}
 
-	public void setOriginId(String originId) {
+	public void setOriginId(Short originId) {
 		this.originId = originId;
 	}
 
@@ -129,6 +132,22 @@ public class DlContent implements java.io.Serializable {
 
 	public void setType(String type) {
 		this.type = type;
+	}
+
+	public String getOriginAllid() {
+		return originAllid;
+	}
+
+	public void setOriginAllid(String originAllid) {
+		this.originAllid = originAllid;
+	}
+
+	public Short getUpNum() {
+		return upNum;
+	}
+
+	public void setUpNum(Short upNum) {
+		this.upNum = upNum;
 	}
 
 }

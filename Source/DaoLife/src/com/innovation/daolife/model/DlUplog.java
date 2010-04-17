@@ -1,5 +1,7 @@
 package com.innovation.daolife.model;
 
+import java.util.Date;
+
 /**
  * DlUplog entity.
  * 
@@ -14,7 +16,7 @@ public class DlUplog implements java.io.Serializable {
 	private Short hotdaoId;
 	private Short userId;
 	private String upIp;
-	private Integer uptime;
+	private Date uptime;
 
 	// Constructors
 
@@ -24,7 +26,7 @@ public class DlUplog implements java.io.Serializable {
 
 	/** full constructor */
 	public DlUplog(Short uplogId, Short hotdaoId, Short userId, String upIp,
-			Integer uptime) {
+			Date uptime) {
 		this.uplogId = uplogId;
 		this.hotdaoId = hotdaoId;
 		this.userId = userId;
@@ -66,11 +68,11 @@ public class DlUplog implements java.io.Serializable {
 		this.upIp = upIp;
 	}
 
-	public Integer getUptime() {
+	public Date getUptime() {
 		return this.uptime;
 	}
 
-	public void setUptime(Integer uptime) {
+	public void setUptime(Date uptime) {
 		this.uptime = uptime;
 	}
 
