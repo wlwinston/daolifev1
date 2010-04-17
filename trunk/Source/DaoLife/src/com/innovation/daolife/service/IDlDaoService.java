@@ -23,6 +23,10 @@ import com.innovation.daolife.model.DlUsers;
 import com.innovation.daolife.model.User;
 
 public interface IDlDaoService {
-	public void addDao(DlUsers user ,String contextBody) throws DataAccessException, SecurityException, IllegalStateException, SQLException, RollbackException, HeuristicMixedException, HeuristicRollbackException, SystemException;
+	public void addDao(DlUsers user ,String contextBody) throws Exception ;
+
+	public void addRetwitteDao(DlUsers user, String contextBody, Short orgDaoId) throws Exception ;
+
+	public void addUpDao(String daoId, DlUsers user,String userIp) throws Exception;
 	
 }

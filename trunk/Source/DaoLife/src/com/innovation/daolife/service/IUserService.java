@@ -7,11 +7,13 @@ package com.innovation.daolife.service;
 
 import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
+import java.util.List;
 
 import org.apache.commons.mail.EmailException;
 
 import com.innovation.common.util.PaginationSupport;
 import com.innovation.daolife.action.search.UserSearch;
+import com.innovation.daolife.model.DlUserroles;
 import com.innovation.daolife.model.DlUsers;
 import com.innovation.daolife.model.User;
 
@@ -30,4 +32,5 @@ public interface IUserService {
 	public boolean checkAuthCode(Short userId, String authCode);
 	public void updatePsw(DlUsers user, String newpsw) throws Exception;
 	public void resetPassword(Short userId, String newPassword) throws NoSuchAlgorithmException, UnsupportedEncodingException, EmailException;
+	public List<DlUserroles> getRolesListByUserId(Short userId);
 }
