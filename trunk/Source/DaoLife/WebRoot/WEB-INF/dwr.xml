@@ -18,6 +18,7 @@
 			<include method="checkUserNickName" />
 			<include method="upDao" />
 			<include method="addDao" />
+			<include method="addRetwitteDao" />
 		</create>
 	</allow>
 </dwr>
