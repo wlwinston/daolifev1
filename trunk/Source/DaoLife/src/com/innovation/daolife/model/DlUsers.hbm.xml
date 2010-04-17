@@ -100,5 +100,11 @@
         <property name="userlock" type="java.lang.Byte">
             <column name="userlock" not-null="true" />
         </property>
+        <set name="dlContents" inverse="true" lazy="true"  cascade="all">  
+		     <key>  
+		         <column name="user_id" not-null="true" />  
+		     </key>  
+		     <one-to-many class="com.innovation.daolife.model.DlContent" />  
+ 		</set>
     </class>
 </hibernate-mapping>
