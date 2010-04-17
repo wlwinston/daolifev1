@@ -22,10 +22,15 @@ import com.innovation.common.util.EmailUtils;
 import com.innovation.common.util.IPUtils;
 import com.innovation.common.util.ProjectException;
 import com.innovation.daolife.dao.IDlUsersDao;
+import com.innovation.daolife.dao.impl.DlFriendDao;
+import com.innovation.daolife.dao.impl.DlMessagesDao;
 import com.innovation.daolife.model.DlCustomerDaoEntry;
+import com.innovation.daolife.model.DlFriend;
+import com.innovation.daolife.model.DlMessages;
 import com.innovation.daolife.model.DlUsers;
 import com.innovation.daolife.model.User;
 import com.innovation.daolife.service.IDlDaoService;
+import com.innovation.daolife.service.IFollowrelationService;
 import com.innovation.daolife.service.IUserService;
 
 
@@ -44,6 +49,9 @@ public class CommonAjax {
 	
 	private IDlDaoService dlDaoService;
 	
+	private IFollowrelationService followrelationService;
+	
+	private static String FOLLOWSUCCESS = "followSuccess";
 	
 	public void setUserService(IUserService userService) {
 		this.userService = userService;
@@ -164,7 +172,41 @@ public class CommonAjax {
 		return customerDao;
 	}
 	
+	/**
+	 * Ìí¼Ó¹Ø×¢
+	 * @author fsn
+	 * */
+	public boolean follow(Short followId){
+		DlUsers nowuser = new DlUsers();
+		WebContext request = WebContextFactory.get();
+		HttpSession session = request.getSession(false);
+		if(session != null && session.getAttribute(Constant.SESSION_USER_KEY.getStrValue())!=null){
+		nowuser = (DlUsers) session.getAttribute(Constant.SESSION_USER_KEY.getStrValue());
+		}
+		//String followId = request
+		DlFriend friend = new DlFriend();
+		friend.setFidFollow(followId);
+		friend.setFidFans(nowuser.getUserId());
+		followrelationService.addFollow(friend);
+		
+		return true;
+	}
 	
+	public boolean unFollow(Short followId){
+		DlUsers nowuser = new DlUsers();
+		WebContext request = WebContextFactory.get();
+		HttpSession session = request.getSession(false);
+		if(session != null && session.getAttribute(Constant.SESSION_USER_KEY.getStrValue())!=null){
+		nowuser = (DlUsers) session.getAttribute(Constant.SESSION_USER_KEY.getStrValue());
+		}
+		//String followId = request
+		DlFriend friend = new DlFriend();
+		friend.setFidFollow(followId);
+		friend.setFidFans(nowuser.getUserId());
+		followrelationService.deleteFollow(friend);
+		
+		return true;
+	}
 	
 	
 	
