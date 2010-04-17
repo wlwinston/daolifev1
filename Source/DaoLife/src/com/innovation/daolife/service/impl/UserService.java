@@ -10,8 +10,11 @@ import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 import javax.transaction.Transaction;
 
@@ -26,6 +29,7 @@ import com.innovation.common.util.Md5Util;
 import com.innovation.common.util.PaginationSupport;
 import com.innovation.common.util.RandomString;
 import com.innovation.daolife.action.search.UserSearch;
+import com.innovation.daolife.dao.IDlContentDao;
 import com.innovation.daolife.dao.IDlContentatDao;
 import com.innovation.daolife.dao.IDlHotdaoDao;
 import com.innovation.daolife.dao.IDlProductDao;
@@ -35,6 +39,7 @@ import com.innovation.daolife.dao.IFollowrelationDao;
 import com.innovation.daolife.dao.IUserDao;
 import com.innovation.daolife.dao.impl.DlHotdaoDao;
 import com.innovation.daolife.dao.impl.DlProductDao;
+import com.innovation.daolife.model.DlContent;
 import com.innovation.daolife.model.DlContentat;
 import com.innovation.daolife.model.DlHotdao;
 import com.innovation.daolife.model.DlProduct;
@@ -49,6 +54,8 @@ public class UserService implements IUserService {
 	private IDlUsersDao dlUsersDao;
 
 	private IDlContentatDao dlContentatDao;
+	
+	private IDlContentDao dlContentDao;
 
 	private IDlHotdaoDao dlHotdaoDao;
 
@@ -75,7 +82,35 @@ public class UserService implements IUserService {
 		}
 		return user;
 	}
+	
+	public List<DlContent> getUserDao(Short id) {
+		String sql = " From DlContent u where u.userId=?";
+		List<DlContent> contentList = dlContentDao.find(sql, id);
+//		List<DlContent> dlContentList = new ArrayList();
+//		DlUsers user = userList.get(0);
+//		Set ul = user.getDlContents(); 
+//        Iterator<DlContent> it = ul.iterator();
+//        while(it.hasNext()){
+//        	dlContentList.add(it.next());
+//        }
+		return contentList;
+	}
+	
+	public PaginationSupport getContentListByUser(PaginationSupport paginationSupport,Short userId) {
+		String querysql = " Select c.contentId,c.userId,c.topicid,c.contentBody,c.posttime,c.originId,c.originAllid,c.retwittNum,c.upNum,c.status,c.type From DlContent c INNER JOIN c.dlUsers u where  u.userId = "+userId+"";
+		String countsql =" Select count(c.contentId) From DlContent c INNER JOIN c.dlUsers u where u.userId = "+userId+"";
+		paginationSupport = dlContentatDao.findPageByQuery(querysql, countsql, paginationSupport.getPageSize(), paginationSupport.getStartIndex());
+		return paginationSupport;
+	}
+	
 
+	public PaginationSupport getFollowerContentListByUser(PaginationSupport paginationSupport,Short userId) {
+		String querysql = " Select c.contentId,c.userId,c.topicid,c.contentBody,c.posttime,c.originId,c.originAllid,c.retwittNum,c.upNum,c.status,c.type From DlContent c INNER JOIN c.dlUsers u  INNER JOIN u.dlFancers f where  f.userId = "+userId+"";
+		String countsql =" Select count(c.contentId) From DlContent c INNER JOIN c.dlUsers u INNER JOIN u.dlFancers f where  f.userId = "+userId+"";
+		paginationSupport = dlContentatDao.findPageByQuery(querysql, countsql, paginationSupport.getPageSize(), paginationSupport.getStartIndex());
+		return paginationSupport;
+	}
+	
 	public PaginationSupport getListBySearch(
 			PaginationSupport paginationSupport, UserSearch userSearch) {
 		/*
@@ -331,6 +366,14 @@ public class UserService implements IUserService {
 		String searchSql = " From DlUserroles Where userId = ?";
 		List<DlUserroles> rolesList = dlUserrolesDao.find(searchSql,userId);
 		return rolesList;
+	}
+
+	public IDlContentDao getDlContentDao() {
+		return dlContentDao;
+	}
+
+	public void setDlContentDao(IDlContentDao dlContentDao) {
+		this.dlContentDao = dlContentDao;
 	}
 
 }
