@@ -19,7 +19,7 @@
 	</td>
 </tr>
 <tr>
-	<td valign=top><div align="center" style="font:10pt">请您先核对输入，如果再次出现该错误，请与站长联系。kongyeeku@163.com 谢谢。</div><br></td>
+	<td valign=top><div align="center" style="font:10pt">请您先核对输入，如果再次出现该错误，请与站长联系。 谢谢。</div><br></td>
 </tr>
 </table>
 </body>
