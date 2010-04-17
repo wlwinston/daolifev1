@@ -1,7 +1,9 @@
 package com.innovation.daolife.service.impl;
 
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 import com.innovation.common.util.Constant;
 import com.innovation.daolife.dao.IDlContentDao;
@@ -51,6 +53,14 @@ public class DaoContentBodyConvertService implements IDaoContentBodyConvertServi
 			{
 				DlContentat dlContentat = new DlContentat();
 				user = userList.get(i);
+				Set ul = user.getDlContents(); 
+                
+                Iterator<DlContent> it = ul.iterator();//lazy=true并且不使用强制加载，则此时才真真及联加载
+                
+                while(it.hasNext()){
+                 System.out.println(it.next().getContentBody());
+                }
+				
 				dlContentat.setStatusUid(user.getUserId());
 				dlContentat.setStatusUname(user.getUserNickName());
 				dlContentat.setStatusType("网页");
