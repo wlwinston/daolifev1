@@ -66,11 +66,12 @@ public class DlDaoService implements IDlDaoService {
 	 * @param contextBody 叨内容
 	 * @author winston
 	 */
-	public void addDao(DlUsers user, String contextBody) throws Exception  {
+	public DlCustomerDaoEntry addDao(DlUsers user, String contextBody) throws Exception  {
 		//叨内容处理工具处理叨内容 如@和#
 		DlCustomerDaoEntry customerDaoDao =  daoContentBodyConvert.covertContent(contextBody);
 		//保存新叨
 		this.saveDao(customerDaoDao,user);
+		return customerDaoDao;
 	}
 
 	/**
@@ -80,7 +81,7 @@ public class DlDaoService implements IDlDaoService {
 	 * @throws Exception
 	 * @author winston 
 	 */
-	public void saveDao(DlCustomerDaoEntry customerDaoDao,DlUsers user) throws Exception
+	private  DlCustomerDaoEntry saveDao(DlCustomerDaoEntry customerDaoDao,DlUsers user) throws Exception
 	{
 		DlContent content = customerDaoDao.getDlContent();
 		//设置叨发布时间为当前时间
@@ -117,6 +118,7 @@ public class DlDaoService implements IDlDaoService {
 			dlMessagesDao.save(messageList.get(i));
 			
 		}
+		return customerDaoDao;
 	}
 	
 	/**
