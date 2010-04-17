@@ -23,6 +23,7 @@ public class DlContent implements java.io.Serializable {
 	private Short upNum;
 	private String status;
 	private String type;
+	private DlUsers dlUsers;
 
 	// Constructors
 
@@ -148,6 +149,14 @@ public class DlContent implements java.io.Serializable {
 
 	public void setUpNum(Short upNum) {
 		this.upNum = upNum;
+	}
+
+	public DlUsers getDlUsers() {
+		return dlUsers;
+	}
+
+	public void setDlUsers(DlUsers dlUsers) {
+		this.dlUsers = dlUsers;
 	}
 
 }
