@@ -10,10 +10,15 @@
     <bean id="DaoAction" class="com.innovation.daolife.action.DaoAction"
         scope="prototype">
         <property name="dlDaoService" ref="dlDaoService" />
+        <property name="followrelationService" ref="followrelationService" />
     </bean>
     <bean id="CommonAjax" class="com.innovation.common.Ajax.CommonAjax"
         scope="prototype">
         <property name="userService" ref="userService" />
         <property name="dlDaoService" ref="dlDaoService" />
+    </bean>
+    <bean id="FollowAction" class="com.innovation.daolife.action.FollowAction"
+        scope="prototype">
+        <property name="followrelationService" ref="followrelationService" />
     </bean>
 </beans>

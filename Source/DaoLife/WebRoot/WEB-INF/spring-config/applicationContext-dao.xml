@@ -10,6 +10,7 @@
 <bean id="dlUsersDao" class="com.innovation.daolife.dao.impl.DlUsersDao" parent="genericDao" />
 <bean id="dlContentDao" class="com.innovation.daolife.dao.impl.DlContentDao" parent="genericDao" />
 <bean id="dlMessagesDao" class="com.innovation.daolife.dao.impl.DlMessagesDao" parent="genericDao" />
+<bean id="dlFriendDao" class="com.innovation.daolife.dao.impl.DlFriendDao" parent="genericDao" />
 <bean id="dlTopicDao" class="com.innovation.daolife.dao.impl.DlTopicDao" parent="genericDao" />
 <bean id="dlContentatDao" class="com.innovation.daolife.dao.impl.DlContentatDao" parent="genericDao" />
 <bean id="dlHotdaoDao" class="com.innovation.daolife.dao.impl.DlHotdaoDao" parent="genericDao" />
