@@ -128,13 +128,14 @@ public class DlDaoService implements IDlDaoService {
 	 * @param orgDaoId 原叨ID
 	 * @author winston
 	 */
-	public void addRetwitteDao(DlUsers user, String contextBody, Short orgDaoId) throws Exception {
+	public DlCustomerDaoEntry addRetwitteDao(DlUsers user, String contextBody, Short orgDaoId) throws Exception {
 		//叨内容处理工具处理叨内容 如@和#
 		DlCustomerDaoEntry customerDaoDao =  daoContentBodyConvert.covertContent(contextBody);
 		//转发工具处理转发ID 如被转发叨转发次数加一
 		retwitteUtil.retwitte(customerDaoDao, orgDaoId);
 		//保存新叨
 		this.saveDao(customerDaoDao,user);
+		return customerDaoDao;
 	}
 	
 	/**
