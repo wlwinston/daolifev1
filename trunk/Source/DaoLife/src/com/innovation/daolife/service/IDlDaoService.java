@@ -19,14 +19,17 @@ import org.springframework.dao.DataAccessException;
 
 import com.innovation.common.util.PaginationSupport;
 import com.innovation.daolife.action.search.UserSearch;
+import com.innovation.daolife.model.DlCustomerDaoEntry;
 import com.innovation.daolife.model.DlUsers;
 import com.innovation.daolife.model.User;
 
 public interface IDlDaoService {
-	public void addDao(DlUsers user ,String contextBody) throws Exception ;
+	public DlCustomerDaoEntry addDao(DlUsers user ,String contextBody) throws Exception ;
 
 	public void addRetwitteDao(DlUsers user, String contextBody, Short orgDaoId) throws Exception ;
 
 	public void addUpDao(String daoId, DlUsers user,String userIp) throws Exception;
+	
+   
 	
 }
