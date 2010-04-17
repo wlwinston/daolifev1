@@ -16,6 +16,7 @@
         scope="prototype">
         <property name="userService" ref="userService" />
         <property name="dlDaoService" ref="dlDaoService" />
+        <property name="followrelationService" ref="followrelationService" />
     </bean>
     <bean id="FollowAction" class="com.innovation.daolife.action.FollowAction"
         scope="prototype">
