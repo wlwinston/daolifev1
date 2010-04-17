@@ -8,6 +8,7 @@ package com.innovation.daolife.action;
 
 import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -23,6 +24,7 @@ import com.innovation.common.util.Constant;
 import com.innovation.common.util.Md5Util;
 import com.innovation.common.util.PaginationSupport;
 import com.innovation.daolife.action.search.UserSearch;
+import com.innovation.daolife.model.DlUserroles;
 import com.innovation.daolife.model.DlUsers;
 import com.innovation.daolife.model.User;
 import com.innovation.daolife.service.IUserService;
@@ -59,7 +61,7 @@ public class UserAction extends ActionSupport implements SessionAware, ServletRe
 	}
 	public String regist() throws Exception{
 		userService.regist(user);
-		att.put("user", user);
+		att.put(Constant.SESSION_USER_KEY.getStrValue(), user);
 		return REGISTERSUCCESS;
 	}
 	
@@ -68,7 +70,7 @@ public class UserAction extends ActionSupport implements SessionAware, ServletRe
 	 * 用户信息更新校验
 	 * */
 	public String update() throws Exception{
-		DlUsers oldUserInfo = (DlUsers) att.get("user");
+		DlUsers oldUserInfo = (DlUsers) att.get(Constant.SESSION_USER_KEY.getStrValue());
 		userService.update(updateUser,oldUserInfo);
 		att.put("user", updateUser);
 		return "updateSuccess";
@@ -79,22 +81,24 @@ public class UserAction extends ActionSupport implements SessionAware, ServletRe
 	 * 用户密码更新
 	 * */
 	public String updatePsw() throws Exception{
-		DlUsers oldUserInfo = (DlUsers) att.get("user");
+		DlUsers oldUserInfo = (DlUsers) att.get(Constant.SESSION_USER_KEY.getStrValue());
 		userService.updatePsw(oldUserInfo,newpassword);
 		return "updatePswSuccess";
 	}
 	
 	public String updatePrepare() throws Exception{
-		DlUsers UserInfo = (DlUsers) att.get("user");
+		DlUsers UserInfo = (DlUsers) att.get(Constant.SESSION_USER_KEY.getStrValue());
 		updateUser = UserInfo;
 		return "updatePrepareSuccess";
 	}
 
 	public String resetPassword(){
+		//如果用户ID和验证码为空则返回校验错误页面
 		if( userId == null || authCode == null)
 		{
 			return RESETCHECKFAILUE;
 		}
+		//校验验证码是否正确
 		boolean flag = userService.checkAuthCode(userId,authCode);
 		if(flag){
 			request.setAttribute("userId", userId);
@@ -170,7 +174,10 @@ public class UserAction extends ActionSupport implements SessionAware, ServletRe
 			request.setAttribute("ErrorInfo", "密码错误，请重新输入!");
 			return LOGINFAILURE;
 		}else{
-			att.put("user", dlUser);
+			//查询该人员所有的角色
+			List<DlUserroles> userRolesList = userService.getRolesListByUserId(dlUser.getUserId());
+			dlUser.setUserRolesList(userRolesList);
+			att.put(Constant.SESSION_USER_KEY.getStrValue(), dlUser);
 			return LOGINSUCCESS;
 		}
 	}
