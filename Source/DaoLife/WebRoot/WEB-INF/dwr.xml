@@ -6,6 +6,10 @@
 	<allow>
 		<convert match="com.innovation.daolife.model.User" converter="bean"></convert>
 		<convert match="com.innovation.daolife.model.DlUsers" converter="bean"></convert>
+		<convert match="com.innovation.daolife.model.DlContent" converter="bean"></convert>DlMessages
+		<convert match="com.innovation.daolife.model.DlContentat" converter="bean"></convert>
+		<convert match="com.innovation.daolife.model.DlMessages" converter="bean"></convert>
+		<convert match="com.innovation.daolife.model.DlCustomerDaoEntry" converter="bean"></convert>
 		<create creator="spring" javascript="DaolifeAjax">
 			<param name="beanName" value="CommonAjax" />
 			<include method="getUserById" />
@@ -13,6 +17,7 @@
 			<include method="checkUserEmail" />
 			<include method="checkUserNickName" />
 			<include method="upDao" />
+			<include method="addDao" />
 		</create>
 	</allow>
 </dwr>
