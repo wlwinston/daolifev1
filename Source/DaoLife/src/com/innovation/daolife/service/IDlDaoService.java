@@ -26,7 +26,7 @@ import com.innovation.daolife.model.User;
 public interface IDlDaoService {
 	public DlCustomerDaoEntry addDao(DlUsers user ,String contextBody) throws Exception ;
 
-	public void addRetwitteDao(DlUsers user, String contextBody, Short orgDaoId) throws Exception ;
+	public DlCustomerDaoEntry addRetwitteDao(DlUsers user, String contextBody, Short orgDaoId) throws Exception ;
 
 	public void addUpDao(String daoId, DlUsers user,String userIp) throws Exception;
 	
