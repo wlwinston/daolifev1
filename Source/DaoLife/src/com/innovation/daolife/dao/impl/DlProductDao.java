@@ -10,7 +10,7 @@ import com.innovation.daolife.model.DlProduct;
  * @author MyEclipse Persistence Tools
  */
 
-public class DlProductDao extends GenericDao<DlProduct, Integer> implements IDlProductDao {
+public class DlProductDao extends GenericDao<DlProduct, Short> implements IDlProductDao {
 	
 	
 } 
