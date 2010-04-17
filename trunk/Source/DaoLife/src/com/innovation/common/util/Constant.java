@@ -17,7 +17,29 @@ public enum Constant
 	CONTENT_STATUS_INIT("0"),
 	MESSAGE_ISREAD_NO(0),
 	MESSAGE_ISREAD_YES(1),
+	/*********角色************/
+	//默认角色
+	WEBSITE_ROLES_DEFAULT("daolife_user"),
+	/*********消息类型*********/
+	//@消息
+	MESSAGE_TYPE_AT("0"),
+	//站内信
+	MESSAGE_TYPE_MAIL("1"),
+	//关注
+	MESSAGE_TYPE_FOLLOW("2"),
+	/*********消息内容*********/
+	//@消息内容
 	MESSAGE_MESSAGEBODY_ATMESSAGE("你被人@了"),
+	/*********UP错误信息*********/
+	//没有登录
+	UPDAO_ERRORMESSAGE_NOUSER("您还没有登录，请先登录"),
+	//多次顶同一叨
+	UPDAO_ERRORMESSAGE_ONLYONE("您已经顶过一次该叨，请不要重复顶"),
+	//操作异常
+	UPDAO_ERRORMESSAGE_EXCEPTION("操作失败，请联系网站管理员"),
+	/*******session默认存储user信息key*************/
+	SESSION_USER_KEY("daoLifeUser"),
+	
 	//个人链接前缀
 	LINK_USER_PREFIX("http://www.daolife.com/"),
 	//话题链接前缀
