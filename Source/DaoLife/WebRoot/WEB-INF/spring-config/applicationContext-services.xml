@@ -5,6 +5,9 @@
     <property name="dlUsersDao">
         <ref bean="dlUsersDao"/>
     </property>
+    <property name="dlUserrolesDao">
+        <ref bean="dlUserrolesDao"/>
+    </property>
      <property name="dlContentatDao">
         <ref bean="dlContentatDao"/>
     </property>
@@ -22,10 +25,16 @@
     <property name="daoContentBodyConvert">
         <ref bean="daoContentBodyConvert"/>
     </property>
+    <property name="retwitteUtil">
+        <ref bean="retwitteUtil"/>
+    </property>
     <property name="dlContentDao">
         <ref bean="dlContentDao"/>
     </property>
-     <property name="dlContentatDao">
+     <property name="dlUplogDao">
+        <ref bean="dlUplogDao"/>
+    </property>
+    <property name="dlContentatDao">
         <ref bean="dlContentatDao"/>
     </property>
      <property name="dlTopicDao">
@@ -49,6 +58,13 @@
     </property>
     <property name="dlTopicDao">
         <ref bean="dlTopicDao"/>
+    </property>
+</bean>
+
+
+<bean id="retwitteUtil" class="com.innovation.daolife.service.impl.RetwitteUtilService">
+   <property name="dlContentDao">
+        <ref bean="dlContentDao"/>
     </property>
 </bean>
 

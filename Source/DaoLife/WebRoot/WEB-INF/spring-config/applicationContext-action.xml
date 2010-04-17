@@ -14,5 +14,6 @@
     <bean id="CommonAjax" class="com.innovation.common.Ajax.CommonAjax"
         scope="prototype">
         <property name="userService" ref="userService" />
+        <property name="dlDaoService" ref="dlDaoService" />
     </bean>
 </beans>
