@@ -119,6 +119,7 @@ public class CommonAjax {
 	 * @param contentBody 叨内容
 	 * @return 叨的实体对象
 	 * @throws Exception 
+	 * @author winston
 	 */
 	public DlCustomerDaoEntry addDao(String contentBody) throws Exception
 	{
@@ -138,6 +139,31 @@ public class CommonAjax {
 		}
 		return customerDao;
 	}
+	/**
+	 * 转叨
+	 * @param contentBody
+	 * @param orgDaoId
+	 * @return 叨的实体对象
+	 * @author winston
+	 */
+	public DlCustomerDaoEntry addRetwitteDao (String contentBody, Short orgDaoId)  {
+		WebContext request = WebContextFactory.get();
+		DlCustomerDaoEntry customerDao = null;
+		HttpSession session = request.getSession(false);
+		if(session != null && session.getAttribute(Constant.SESSION_USER_KEY.getStrValue())!=null)
+		{
+			DlUsers user =  (DlUsers) session.getAttribute(Constant.SESSION_USER_KEY.getStrValue());
+			try{
+				customerDao = dlDaoService.addRetwitteDao(user, contentBody, orgDaoId);
+			}
+			catch (Exception e) {
+				logger.info(e.getStackTrace());
+				customerDao = null;
+			}
+		}
+		return customerDao;
+	}
+	
 	
 	
 	
