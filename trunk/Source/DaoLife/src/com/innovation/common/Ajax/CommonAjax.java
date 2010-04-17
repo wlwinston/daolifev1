@@ -10,14 +10,19 @@ import java.util.Map;
 import java.util.Set;
 
 import javax.servlet.ServletException;
+import javax.servlet.http.HttpSession;
 
 import org.apache.commons.collections.FastHashMap;
 import org.directwebremoting.WebContext;
 import org.directwebremoting.WebContextFactory;
 
+import com.innovation.common.util.Constant;
+import com.innovation.common.util.IPUtils;
+import com.innovation.common.util.ProjectException;
 import com.innovation.daolife.dao.IDlUsersDao;
 import com.innovation.daolife.model.DlUsers;
 import com.innovation.daolife.model.User;
+import com.innovation.daolife.service.IDlDaoService;
 import com.innovation.daolife.service.IUserService;
 
 
@@ -31,6 +36,9 @@ public class CommonAjax {
 	private IUserService userService;
 	
 	private IDlUsersDao dlUsersDao;
+	
+	private IDlDaoService dlDaoService;
+	
 	
 	public void setUserService(IUserService userService) {
 		this.userService = userService;
@@ -68,6 +76,48 @@ public class CommonAjax {
 		boolean flag = userService.checkUserByNickName(check);
 		return flag;
 	}
+	
+	
+	/**
+	 * 顶叨
+	 * @param daoId 被顶叨ID
+	 * @return 返回错误信息，如果为空则顶叨成功
+	 * @author winston
+	 */
+	public String upDao(String daoId)
+	{
+		String upResult = "";
+		try{
+			WebContext request = WebContextFactory.get();
+			
+			HttpSession session = request.getSession(false);
+			if(session != null && session.getAttribute(Constant.SESSION_USER_KEY.getStrValue())!=null)
+			{
+				DlUsers user =  (DlUsers) session.getAttribute(Constant.SESSION_USER_KEY.getStrValue());
+				String ip = new IPUtils().getIpAddr(request);
+				dlDaoService.addUpDao(daoId,user,ip);
+			}
+			else{
+				upResult = Constant.UPDAO_ERRORMESSAGE_NOUSER.getStrValue();
+			}
+		}
+		catch(Exception e){
+			if(e instanceof ProjectException)
+			{
+				upResult = e.getMessage();
+			}
+		}
+		return upResult;
+	}
+	
+	public IDlDaoService getDlDaoService() {
+		return dlDaoService;
+	}
+	public void setDlDaoService(IDlDaoService dlDaoService) {
+		this.dlDaoService = dlDaoService;
+	}
+	
+	
 	
 	
 }		
