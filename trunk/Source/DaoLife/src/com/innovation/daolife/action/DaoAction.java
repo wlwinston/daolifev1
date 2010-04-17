@@ -42,18 +42,23 @@ public class DaoAction extends ActionSupport implements SessionAware, ServletReq
     private HttpServletResponse response; 
 	private String contextBody ;
 	private IDlDaoService dlDaoService;
+	private Short orgDaoId;
 	
 	
 
 	
 	
-	public String post() throws EmailException, DataAccessException, SecurityException, IllegalStateException, SQLException, RollbackException, HeuristicMixedException, HeuristicRollbackException, SystemException {
-		DlUsers user = (DlUsers) att.get("user");
+	public String post() throws Exception {
+		DlUsers user = (DlUsers) att.get(Constant.SESSION_USER_KEY.getStrValue());
 		dlDaoService.addDao(user,contextBody);
 		return DAOPOSTSUCCESS;
 	}
 	
-
+	public String retwitte() throws Exception {
+		DlUsers user = (DlUsers) att.get(Constant.SESSION_USER_KEY.getStrValue());
+		dlDaoService.addRetwitteDao(user,contextBody,orgDaoId);
+		return DAOPOSTSUCCESS;
+	}
 	
 	
 	public void setSession(Map att) {
@@ -88,6 +93,14 @@ public class DaoAction extends ActionSupport implements SessionAware, ServletReq
 
 	public void setContextBody(String contextBody) {
 		this.contextBody = contextBody;
+	}
+
+	public Short getOrgDaoId() {
+		return orgDaoId;
+	}
+
+	public void setOrgDaoId(Short orgDaoId) {
+		this.orgDaoId = orgDaoId;
 	}
 
 }
