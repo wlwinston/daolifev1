@@ -114,6 +114,7 @@
     <!-- 需要自动创建事务代理的bean -->
         <list>
             <value>userService</value>
+            <value>followrelationService</value>
             <value>dlDaoService</value>
            	<value>daoContentBodyConvert</value>
         </list>

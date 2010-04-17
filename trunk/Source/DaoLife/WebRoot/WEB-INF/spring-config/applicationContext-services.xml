@@ -18,6 +18,19 @@
         <ref bean="dlProductDao"/>
     </property>
 </bean>
+
+<bean id="followrelationService" class="com.innovation.daolife.service.impl.FollowrelationService" >
+ 	<property name="dlFriendDao">
+        <ref bean="dlFriendDao"/>
+    </property>
+    <property name="dlMessagesDao">
+        <ref bean="dlMessagesDao"/>
+    </property>
+    <property name="dlUsersDao">
+        <ref bean="dlUsersDao"/>
+    </property>
+</bean>
+
 <bean id="dlDaoService" class="com.innovation.daolife.service.impl.DlDaoService">
     <property name="dlUsersDao">
         <ref bean="dlUsersDao"/>
@@ -60,7 +73,6 @@
         <ref bean="dlTopicDao"/>
     </property>
 </bean>
-
 
 <bean id="retwitteUtil" class="com.innovation.daolife.service.impl.RetwitteUtilService">
    <property name="dlContentDao">
