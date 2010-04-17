@@ -92,7 +92,7 @@ public class  PaginationSupport implements Serializable{
 	   }
 	    } else {
 	   this.totalCount = 0;
-	   pages[0]=1;
+	   //pages[0]=1;
 	  }
 	 }
 	 public int getTotalCount() {
