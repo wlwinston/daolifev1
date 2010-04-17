@@ -46,7 +46,8 @@ public class DlUsers implements java.io.Serializable {
 	private String authEmail;
 	private Byte userlock;
 	private Set dlContents;
-	
+	private Set dlFollowers;
+	private Set dlFancers;
 	//用户的角色列表
 	private List<DlUserroles> userRolesList = null ;
 
@@ -384,6 +385,22 @@ public class DlUsers implements java.io.Serializable {
 
 	public void setDlContents(Set dlContents) {
 		this.dlContents = dlContents;
+	}
+
+	public Set getDlFollowers() {
+		return dlFollowers;
+	}
+
+	public void setDlFollowers(Set dlFollowers) {
+		this.dlFollowers = dlFollowers;
+	}
+
+	public Set getDlFancers() {
+		return dlFancers;
+	}
+
+	public void setDlFancers(Set dlFancers) {
+		this.dlFancers = dlFancers;
 	}
 
 }
