@@ -15,6 +15,7 @@
 			<include method="getUserById" />
 			<include method="checkUserName" />
 			<include method="checkUserEmail" />
+			<include method="checkUserAddress" />
 			<include method="checkUserNickName" />
 			<include method="unFollow" />
 			<include method="follow" />
