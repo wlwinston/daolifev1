@@ -18,8 +18,9 @@ public enum Constant
 	MESSAGE_ISREAD_NO(0),
 	MESSAGE_ISREAD_YES(1),
 	/*********每页数据量********/
-	PAGESIZE_FRIENDDAO(20),
-	PAGESIZE_MYDAO(20),
+	PAGESIZE_FRIENDDAO(5),
+	PAGESIZE_MYDAO(5),
+	
 	/*********角色************/
 	//默认角色
 	WEBSITE_ROLES_DEFAULT("daolife_user"),
