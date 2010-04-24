@@ -1,5 +1,7 @@
 package com.innovation.daolife.model;
 
+import java.util.Set;
+
 /**
  * DlContentat entity.
  * 
@@ -16,7 +18,7 @@ public class DlContentat implements java.io.Serializable {
 	private Short statusUid;
 	private String statusUname;
 	private String statusType;
-
+	private DlUsers dlUsers;
 	// Constructors
 
 	/** default constructor */
@@ -92,6 +94,14 @@ public class DlContentat implements java.io.Serializable {
 
 	public void setStatusType(String statusType) {
 		this.statusType = statusType;
+	}
+
+	public DlUsers getDlUsers() {
+		return dlUsers;
+	}
+
+	public void setDlUsers(DlUsers dlUsers) {
+		this.dlUsers = dlUsers;
 	}
 
 }

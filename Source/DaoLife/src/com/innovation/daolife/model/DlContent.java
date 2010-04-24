@@ -1,6 +1,7 @@
 package com.innovation.daolife.model;
 
 import java.util.Date;
+import java.util.Set;
 
 /**
  * DlContent entity.
@@ -30,6 +31,7 @@ public class DlContent implements java.io.Serializable {
 	private String type;
 	//发叨人信息
 	private DlUsers dlUsers;
+	private Set atUsers;
 
 	// Constructors
 
@@ -163,6 +165,14 @@ public class DlContent implements java.io.Serializable {
 
 	public void setDlUsers(DlUsers dlUsers) {
 		this.dlUsers = dlUsers;
+	}
+
+	public Set getAtUsers() {
+		return atUsers;
+	}
+
+	public void setAtUsers(Set atUsers) {
+		this.atUsers = atUsers;
 	}
 
 }
