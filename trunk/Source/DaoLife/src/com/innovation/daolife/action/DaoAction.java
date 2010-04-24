@@ -109,4 +109,13 @@ public class DaoAction extends ActionSupport implements SessionAware, ServletReq
 		this.orgDaoId = orgDaoId;
 	}
 
+	public IFollowrelationService getFollowrelationService() {
+		return followrelationService;
+	}
+
+	public void setFollowrelationService(
+			IFollowrelationService followrelationService) {
+		this.followrelationService = followrelationService;
+	}
+
 }
