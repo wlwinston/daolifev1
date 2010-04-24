@@ -32,4 +32,6 @@ public interface IDlDaoService {
 	
 	public PaginationSupport getAtContentListByUser(PaginationSupport paginationSupport,Short userId);
 	
+	public PaginationSupport getHotDao(PaginationSupport paginationSupport);
+
 }
