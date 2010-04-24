@@ -16,14 +16,14 @@ public class  PaginationSupport implements Serializable{
 
 	public final static int PAGESIZE = 30;
 
-	//Ã¿Ò³¶àÉÙÊı¾İÁ¿ 
+	//Ã¿Ò³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 
 	private int pageSize = PAGESIZE;
 	 private String pageSizeString ;
 	 
-	 //×Ü¹²ÓĞ¶àÉÙÊı¾İÁ¿
+	 //ï¿½Ü¹ï¿½ï¿½Ğ¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	 private int totalCount;
 
-	 //µ±Ç°Ò³
+	 //ï¿½ï¿½Ç°Ò³
 	 private int currentPage;
 
 	 private int startIndex;
@@ -38,10 +38,10 @@ public class  PaginationSupport implements Serializable{
 
 	 private int previousIndex;
 
-	 //×Ü¹²¶àÉÙÒ³
+	 //ï¿½Ü¹ï¿½ï¿½ï¿½ï¿½ï¿½Ò³
 	 private int pageCount;
 
-	 //ÓµÓĞÊı¾İ
+	 //Óµï¿½ï¿½ï¿½ï¿½ï¿½
 	 private List items;
 	 
 	 private int lastIndex;
@@ -171,7 +171,11 @@ public class  PaginationSupport implements Serializable{
 	  this.lastIndex =lastIndex ;
 	 }
 	 public int getLastIndex() {
-	  return indexes[indexes.length-1];
+		if(indexes.length>0)
+			return indexes[indexes.length-1];
+		else{
+			return 0;
+		}
 	 }
 
 	 
