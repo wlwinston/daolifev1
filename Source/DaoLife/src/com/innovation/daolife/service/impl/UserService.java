@@ -101,6 +101,32 @@ public class UserService implements IUserService {
 		return contentList;
 	}
 	
+	/**
+	 * @author fengsn
+	 * 查询关注的好友
+	 * */
+	public PaginationSupport getFollowListByUser(PaginationSupport paginationSupport,Short userId) {
+		String querysql = " Select f From DlUsers u INNER JOIN u.dlFollowers f  where  u.userId = "+userId+" and f.userId<>"+userId+"";
+		String countsql =" Select count(f.userId) From DlUsers u INNER JOIN u.dlFancers f  where  u.userId = "+userId+" and f.userId<>"+userId+"";
+		paginationSupport = dlUsersDao.findPageByQuery(querysql, countsql, paginationSupport.getPageSize(), paginationSupport.getStartIndex());
+		return paginationSupport;
+	}
+	
+	/**
+	 * @author fengsn
+	 * 查询关注我的好友
+	 * */
+	public PaginationSupport getFanListByUser(PaginationSupport paginationSupport,Short userId) {
+		String querysql = " Select f From DlUsers u INNER JOIN u.dlFancers f  where  u.userId = "+userId+" and f.userId<>"+userId+"";
+		String countsql =" Select count(f.userId) From DlUsers u INNER JOIN u.dlFancers f  where  u.userId = "+userId+" and f.userId<>"+userId+"";
+		paginationSupport = dlUsersDao.findPageByQuery(querysql, countsql, paginationSupport.getPageSize(), paginationSupport.getStartIndex());
+		return paginationSupport;
+	}
+	
+	/**
+	 * @author fengsn
+	 * 查询客户自己的dao
+	 * */
 	public PaginationSupport getContentListByUser(PaginationSupport paginationSupport,Short userId) {
 		String querysql = " Select c From DlContent c INNER JOIN c.dlUsers u where  u.userId = "+userId+"";
 		String countsql =" Select count(c.contentId) From DlContent c INNER JOIN c.dlUsers u where u.userId = "+userId+"";
@@ -117,7 +143,10 @@ public class UserService implements IUserService {
 		return paginationSupport;
 	}
 	
-
+	/**
+	 * @author fengsn
+	 * 查询好友的dao
+	 * */
 	public PaginationSupport getFollowerContentListByUser(PaginationSupport paginationSupport,Short userId) {
 		String querysql = " Select c From DlContent c INNER JOIN c.dlUsers u  INNER JOIN u.dlFancers f where  f.userId = "+userId+"";
 		String countsql =" Select count(c.contentId) From DlContent c INNER JOIN c.dlUsers u INNER JOIN u.dlFancers f where  f.userId = "+userId+"";
