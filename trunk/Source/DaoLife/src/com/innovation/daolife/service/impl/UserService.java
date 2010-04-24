@@ -22,6 +22,7 @@ import org.apache.commons.mail.EmailException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.DetachedCriteria;
+import org.springframework.beans.BeanUtils;
 
 import com.innovation.common.util.Constant;
 import com.innovation.common.util.DaoLifeEmail;
@@ -31,6 +32,7 @@ import com.innovation.common.util.RandomString;
 import com.innovation.daolife.action.search.UserSearch;
 import com.innovation.daolife.dao.IDlContentDao;
 import com.innovation.daolife.dao.IDlContentatDao;
+import com.innovation.daolife.dao.IDlFriendDao;
 import com.innovation.daolife.dao.IDlHotdaoDao;
 import com.innovation.daolife.dao.IDlProductDao;
 import com.innovation.daolife.dao.IDlUserrolesDao;
@@ -41,6 +43,7 @@ import com.innovation.daolife.dao.impl.DlHotdaoDao;
 import com.innovation.daolife.dao.impl.DlProductDao;
 import com.innovation.daolife.model.DlContent;
 import com.innovation.daolife.model.DlContentat;
+import com.innovation.daolife.model.DlFriend;
 import com.innovation.daolife.model.DlHotdao;
 import com.innovation.daolife.model.DlProduct;
 import com.innovation.daolife.model.DlUserroles;
@@ -62,6 +65,8 @@ public class UserService implements IUserService {
 	private IDlProductDao dlProductDao;
 	
 	private IDlUserrolesDao dlUserrolesDao;
+	
+	private IDlFriendDao dlFriendDao;
 
 	public User getUserById(String id) {
 		User user = null;
@@ -100,6 +105,15 @@ public class UserService implements IUserService {
 		String querysql = " Select c From DlContent c INNER JOIN c.dlUsers u where  u.userId = "+userId+"";
 		String countsql =" Select count(c.contentId) From DlContent c INNER JOIN c.dlUsers u where u.userId = "+userId+"";
 		paginationSupport = dlContentatDao.findPageByQuery(querysql, countsql, paginationSupport.getPageSize(), paginationSupport.getStartIndex());
+		List<DlContent> itemList = paginationSupport.getItems();
+		for(Iterator<DlContent> it = itemList.iterator();it.hasNext();)
+		{
+			DlContent dlContent = it.next();
+			DlUsers user = new DlUsers();
+			BeanUtils.copyProperties(dlContent.getDlUsers(), user);
+			dlContent.setDlUsers(user);
+		}
+		paginationSupport.setItems(itemList);
 		return paginationSupport;
 	}
 	
@@ -108,6 +122,15 @@ public class UserService implements IUserService {
 		String querysql = " Select c From DlContent c INNER JOIN c.dlUsers u  INNER JOIN u.dlFancers f where  f.userId = "+userId+"";
 		String countsql =" Select count(c.contentId) From DlContent c INNER JOIN c.dlUsers u INNER JOIN u.dlFancers f where  f.userId = "+userId+"";
 		paginationSupport = dlContentatDao.findPageByQuery(querysql, countsql, paginationSupport.getPageSize(), paginationSupport.getStartIndex());
+		List<DlContent> itemList = paginationSupport.getItems();
+		for(Iterator<DlContent> it = itemList.iterator();it.hasNext();)
+		{
+			DlContent dlContent = it.next();
+			DlUsers user = new DlUsers();
+			BeanUtils.copyProperties(dlContent.getDlUsers(), user);
+			dlContent.setDlUsers(user);
+		}
+		paginationSupport.setItems(itemList);
 		return paginationSupport;
 	}
 	
@@ -265,7 +288,11 @@ public class UserService implements IUserService {
 		userRoles.setRolesName(Constant.WEBSITE_ROLES_DEFAULT.getStrValue());
 		userRoles.setUserId(user.getUserId());
 		dlUserrolesDao.save(userRoles);
-
+		//保存自己是自己的好友
+		DlFriend dlFriend = new DlFriend();
+		dlFriend.setFidFans(user.getUserId());
+		dlFriend.setFidFollow(user.getUserId());
+		dlFriendDao.save(dlFriend);
 	}
 
 	public User addUser(User user) {
@@ -387,6 +414,14 @@ public class UserService implements IUserService {
 
 	public void setDlContentDao(IDlContentDao dlContentDao) {
 		this.dlContentDao = dlContentDao;
+	}
+
+	public IDlFriendDao getDlFriendDao() {
+		return dlFriendDao;
+	}
+
+	public void setDlFriendDao(IDlFriendDao dlFriendDao) {
+		this.dlFriendDao = dlFriendDao;
 	}
 
 }
