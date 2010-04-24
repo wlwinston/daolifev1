@@ -8,6 +8,7 @@ package com.innovation.daolife.service;
 import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
+import java.util.List;
 
 import javax.transaction.HeuristicMixedException;
 import javax.transaction.HeuristicRollbackException;
@@ -19,6 +20,7 @@ import org.springframework.dao.DataAccessException;
 
 import com.innovation.common.util.PaginationSupport;
 import com.innovation.daolife.action.search.UserSearch;
+import com.innovation.daolife.model.DlContent;
 import com.innovation.daolife.model.DlCustomerDaoEntry;
 import com.innovation.daolife.model.DlUsers;
 import com.innovation.daolife.model.User;
@@ -33,5 +35,7 @@ public interface IDlDaoService {
 	public PaginationSupport getAtContentListByUser(PaginationSupport paginationSupport,Short userId);
 	
 	public PaginationSupport getHotDao(PaginationSupport paginationSupport);
+	
+	public List<DlContent> getTopicContent(Short topicId);
 
 }
