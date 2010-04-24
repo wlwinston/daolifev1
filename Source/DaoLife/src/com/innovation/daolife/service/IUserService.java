@@ -38,5 +38,6 @@ public interface IUserService {
 	public PaginationSupport getFollowListByUser(PaginationSupport paginationSupport,Short userId);
 	public PaginationSupport getFanListByUser(PaginationSupport paginationSupport,Short userId);
 	public PaginationSupport getContentListByUser(PaginationSupport paginationSupport,Short userId);
+	public PaginationSupport getHotUser(PaginationSupport paginationSupport);
 	public PaginationSupport getFollowerContentListByUser(PaginationSupport paginationSupport,Short userId);
 }
