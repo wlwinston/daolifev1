@@ -53,6 +53,9 @@
      <property name="dlTopicDao">
         <ref bean="dlTopicDao"/>
     </property>
+    <property name="dlHotdaoDao">
+        <ref bean="dlHotdaoDao"/>
+    </property>
     <property name="dlMessagesDao">
         <ref bean="dlMessagesDao"/>
     </property>
