@@ -51,6 +51,7 @@ public class DlUsers implements java.io.Serializable {
 	private Set dlContents;
 	private Set dlFollowers;
 	private Set dlFancers;
+	private Set dlContentat;
 	//用户的角色列表
 	private List<DlUserroles> userRolesList = null ;
 
@@ -404,6 +405,14 @@ public class DlUsers implements java.io.Serializable {
 
 	public void setDlFancers(Set dlFancers) {
 		this.dlFancers = dlFancers;
+	}
+
+	public Set getDlContentat() {
+		return dlContentat;
+	}
+
+	public void setDlContentat(Set dlContentat) {
+		this.dlContentat = dlContentat;
 	}
 
 }

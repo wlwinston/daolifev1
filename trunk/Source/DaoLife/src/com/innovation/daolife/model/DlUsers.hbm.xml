@@ -112,6 +112,12 @@
 		     </key>  
 		   <many-to-many class="com.innovation.daolife.model.DlUsers" column="fid_follow" />
  		</set>
+ 		<set name="dlContentat" table="dl_contentat" inverse="true" lazy="true" cascade="all">  
+		     <key>  
+		         <column name="statusUid" not-null="true" />  
+		     </key>  
+		   <many-to-many class="com.innovation.daolife.model.DlUsers" column="user_id" />
+ 		</set>
  		<set name="dlFancers" table="dl_friend" inverse="true" lazy="true"  cascade="all">  
 		     <key>  
 		         <column name="fid_follow" not-null="true" />  
