@@ -26,6 +26,7 @@ public interface IUserService {
 	public DlUsers getUserByNameOrEmail(String name);
 	public boolean checkUserByName(String name);
 	public boolean checkUserByEmail(String name);
+	public boolean checkUserByAdress(String name);
 	public boolean checkUserByNickName(String name);
 	public void update(DlUsers newUser,DlUsers oldUser) throws Exception;
 	public void resetPasswordEmail(String userName) throws EmailException;
