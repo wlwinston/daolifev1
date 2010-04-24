@@ -20,6 +20,7 @@ import org.directwebremoting.WebContextFactory;
 import com.innovation.common.util.Constant;
 import com.innovation.common.util.EmailUtils;
 import com.innovation.common.util.IPUtils;
+import com.innovation.common.util.PaginationSupport;
 import com.innovation.common.util.ProjectException;
 import com.innovation.daolife.dao.IDlUsersDao;
 import com.innovation.daolife.dao.impl.DlFriendDao;
@@ -56,10 +57,10 @@ public class CommonAjax {
 	public void setUserService(IUserService userService) {
 		this.userService = userService;
 	}
-	public User getUserById(String id){
+	/*public User getUserById(String id){
 		User user = userService.getUserById(id);
 		return user;
-	}
+	}*/
 	/**
 	 * @author fsn
 	 * 检查用户名是否唯一
@@ -100,7 +101,66 @@ public class CommonAjax {
 		return flag;
 	}
 	
-	
+	/**
+	 * 获取我的叨
+	 * @param daoId 被顶叨ID
+	 * @return 返回错误信息，如果为空则顶叨成功
+	 * @author winston
+	 */
+	public PaginationSupport getMyDao(int pages)
+	{
+		if(pages<0)
+		{
+			pages = 1;
+		}
+		int pageSize = Constant.PAGESIZE_MYDAO.getIntValue();
+		int startIndex = pageSize*(pages-1);
+		PaginationSupport paginationSupport = new PaginationSupport(pageSize, startIndex);
+		WebContext request = WebContextFactory.get();
+		
+		HttpSession session = request.getSession(false);
+		if(session != null && session.getAttribute(Constant.SESSION_USER_KEY.getStrValue())!=null)
+		{
+			DlUsers user =  (DlUsers) session.getAttribute(Constant.SESSION_USER_KEY.getStrValue());
+			Short userId = user.getUserId();
+			paginationSupport = userService.getContentListByUser(paginationSupport, userId);
+		}
+		else{
+			return  null;
+		}
+		return paginationSupport;
+		
+	}
+	/**
+	 * 获取我的叨
+	 * @param daoId 被顶叨ID
+	 * @return 返回错误信息，如果为空则顶叨成功
+	 * @author winston
+	 */
+	public PaginationSupport getAllDao(int pages)
+	{
+		if(pages<0)
+		{
+			pages = 1;
+		}
+		int pageSize = Constant.PAGESIZE_MYDAO.getIntValue();
+		int startIndex = pageSize*(pages-1);
+		PaginationSupport paginationSupport = new PaginationSupport(pageSize, startIndex);
+		WebContext request = WebContextFactory.get();
+		
+		HttpSession session = request.getSession(false);
+		if(session != null && session.getAttribute(Constant.SESSION_USER_KEY.getStrValue())!=null)
+		{
+			DlUsers user =  (DlUsers) session.getAttribute(Constant.SESSION_USER_KEY.getStrValue());
+			Short userId = user.getUserId();
+			paginationSupport = userService.getFollowerContentListByUser(paginationSupport, userId);
+		}
+		else{
+			return  null;
+		}
+		return paginationSupport;
+		
+	}
 	/**
 	 * 顶叨
 	 * @param daoId 被顶叨ID
@@ -132,6 +192,7 @@ public class CommonAjax {
 		}
 		return upResult;
 	}
+	
 	/**
 	 * 发叨
 	 * @param contentBody 叨内容
