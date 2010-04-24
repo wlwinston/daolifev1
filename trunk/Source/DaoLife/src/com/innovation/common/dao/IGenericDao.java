@@ -57,6 +57,8 @@ public interface IGenericDao<T, ID extends Serializable> {
 			throws DataAccessException;
 
 	public List<T> find(String queryString) throws DataAccessException;
+	
+	public List findWithoutT(String queryString) throws DataAccessException;
 
 	public List<T> list()throws DataAccessException;
 	

@@ -149,6 +149,20 @@ public class GenericDao<T, ID extends Serializable> extends HibernateDaoSupport
 	public List<T> find(String queryString) throws DataAccessException {
 		return (List<T>) getHibernateTemplate().find(queryString);
 	}
+	
+	
+	/**
+	 * 
+	 * 示例：.find("from bean.User"); 返回所有User对象
+	 * 
+	 * @param queryString
+	 *            查询语句
+	 * @param value
+	 *            条件对象
+	 */
+	public List findWithoutT(String queryString) throws DataAccessException {
+		return (List) getHibernateTemplate().find(queryString);
+	}
 
 	/**
 	 * 刷新实例
@@ -216,6 +230,8 @@ public class GenericDao<T, ID extends Serializable> extends HibernateDaoSupport
 		stmt.executeUpdate();
 		tx.commit();
 	}
+	
+	
 
 	/**
 	 * 获取全部实体
