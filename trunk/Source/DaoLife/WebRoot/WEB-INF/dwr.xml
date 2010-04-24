@@ -22,6 +22,9 @@
 			<include method="upDao" />
 			<include method="addDao" />
 			<include method="addRetwitteDao" />
+			<include method="getAllDao" />
+			<include method="getMyDao" />
+			<include method="getPesonalDao" />
 		</create>
 	</allow>
 </dwr>
