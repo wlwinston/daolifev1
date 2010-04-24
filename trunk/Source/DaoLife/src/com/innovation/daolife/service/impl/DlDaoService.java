@@ -244,6 +244,15 @@ public class DlDaoService implements IDlDaoService {
 		dlContentDao.saveOrUpdate(content);
 
 	}
+	
+	/**
+	 * 获得话题中的dao
+	 * */
+	public List<DlContent> getTopicContent(Short topicId){
+		String sql = "From DlContent u where u.topicid=?";
+		List<DlContent> result = dlContentDao.find(sql, topicId);
+		return result;
+	}
 
 	public IDaoContentBodyConvertService getDaoContentBodyConvert() {
 		return daoContentBodyConvert;
