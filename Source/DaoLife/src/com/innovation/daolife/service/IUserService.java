@@ -35,6 +35,8 @@ public interface IUserService {
 	public void updatePsw(DlUsers user, String newpsw) throws Exception;
 	public void resetPassword(Short userId, String newPassword) throws NoSuchAlgorithmException, UnsupportedEncodingException, EmailException;
 	public List<DlUserroles> getRolesListByUserId(Short userId);
+	public PaginationSupport getFollowListByUser(PaginationSupport paginationSupport,Short userId);
+	public PaginationSupport getFanListByUser(PaginationSupport paginationSupport,Short userId);
 	public PaginationSupport getContentListByUser(PaginationSupport paginationSupport,Short userId);
 	public PaginationSupport getFollowerContentListByUser(PaginationSupport paginationSupport,Short userId);
 }
