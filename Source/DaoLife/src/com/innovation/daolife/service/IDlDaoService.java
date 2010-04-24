@@ -30,6 +30,6 @@ public interface IDlDaoService {
 
 	public void addUpDao(String daoId, DlUsers user,String userIp) throws Exception;
 	
-   
+	public PaginationSupport getAtContentListByUser(PaginationSupport paginationSupport,Short userId);
 	
 }
