@@ -16,11 +16,14 @@ public class  PaginationSupport implements Serializable{
 
 	public final static int PAGESIZE = 30;
 
-	 private int pageSize = PAGESIZE;
+	//每页多少数据量 
+	private int pageSize = PAGESIZE;
 	 private String pageSizeString ;
 	 
+	 //总共有多少数据量
 	 private int totalCount;
 
+	 //当前页
 	 private int currentPage;
 
 	 private int startIndex;
@@ -35,8 +38,10 @@ public class  PaginationSupport implements Serializable{
 
 	 private int previousIndex;
 
+	 //总共多少页
 	 private int pageCount;
 
+	 //拥有数据
 	 private List items;
 	 
 	 private int lastIndex;
