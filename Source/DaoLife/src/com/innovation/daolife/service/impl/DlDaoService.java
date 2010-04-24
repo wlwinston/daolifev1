@@ -137,6 +137,16 @@ public class DlDaoService implements IDlDaoService {
 		this.saveDao(customerDaoDao,user);
 		return customerDaoDao;
 	}
+	/**
+	 * @author fengsn
+	 * 查询@用户的dao内容
+	 * */
+	public PaginationSupport getAtContentListByUser(PaginationSupport paginationSupport,Short userId) {
+		String querysql = " Select c From DlContent c INNER JOIN c.dlUsers u  INNER JOIN u.dlContentat f where  f.statusUid = "+userId+"";
+		String countsql =" Select count(c.contentId) From DlContent c INNER JOIN c.dlUsers u INNER JOIN u.dlContentat f where  f.statusUid = "+userId+"";		paginationSupport = dlContentatDao.findPageByQuery(querysql, countsql, paginationSupport.getPageSize(), paginationSupport.getStartIndex());
+		paginationSupport = dlContentatDao.findPageByQuery(querysql, countsql, paginationSupport.getPageSize(), paginationSupport.getStartIndex());
+		return paginationSupport;
+	}
 	
 	/**
 	 * 顶叨处理
