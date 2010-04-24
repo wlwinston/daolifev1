@@ -144,12 +144,26 @@ public class UserService implements IUserService {
 	}
 	
 	/**
+	 * @author fengsn 
+	 * 查询最热dao友
+	 */
+	public PaginationSupport getHotUser(PaginationSupport paginationSupport) {
+		//Short daoNum = this.getdaoNum();
+		String querysql = " Select c From DlUsers c order by recommendInd desc,at_sum_num desc";
+		String countsql = " Select count(c.userId) From DlUsers c order by recommendInd desc,at_sum_num desc";
+		paginationSupport = dlUsersDao.findPageByQuery(querysql, countsql,
+				paginationSupport.getPageSize(), paginationSupport
+						.getStartIndex());
+		return paginationSupport;
+	}
+	
+	/**
 	 * @author fengsn
 	 * 查询好友的dao
 	 * */
 	public PaginationSupport getFollowerContentListByUser(PaginationSupport paginationSupport,Short userId) {
-		String querysql = " Select c From DlContent c INNER JOIN c.dlUsers u  INNER JOIN u.dlFancers f where  f.userId = "+userId+"";
-		String countsql =" Select count(c.contentId) From DlContent c INNER JOIN c.dlUsers u INNER JOIN u.dlFancers f where  f.userId = "+userId+"";
+		String querysql = " Select c From DlContent c INNER JOIN c.dlUsers u  INNER JOIN u.dlFancers f where  f.userId = "+userId+" order by c.posttime desc";
+		String countsql =" Select count(c.contentId) From DlContent c INNER JOIN c.dlUsers u INNER JOIN u.dlFancers f where  f.userId = "+userId+" order by c.posttime desc";
 		paginationSupport = dlContentatDao.findPageByQuery(querysql, countsql, paginationSupport.getPageSize(), paginationSupport.getStartIndex());
 		List<DlContent> itemList = paginationSupport.getItems();
 		for(Iterator<DlContent> it = itemList.iterator();it.hasNext();)
