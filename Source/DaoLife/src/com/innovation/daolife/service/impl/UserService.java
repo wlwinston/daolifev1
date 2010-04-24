@@ -97,7 +97,7 @@ public class UserService implements IUserService {
 	}
 	
 	public PaginationSupport getContentListByUser(PaginationSupport paginationSupport,Short userId) {
-		String querysql = " Select c.contentId,c.userId,c.topicid,c.contentBody,c.posttime,c.originId,c.originAllid,c.retwittNum,c.upNum,c.status,c.type From DlContent c INNER JOIN c.dlUsers u where  u.userId = "+userId+"";
+		String querysql = " Select c From DlContent c INNER JOIN c.dlUsers u where  u.userId = "+userId+"";
 		String countsql =" Select count(c.contentId) From DlContent c INNER JOIN c.dlUsers u where u.userId = "+userId+"";
 		paginationSupport = dlContentatDao.findPageByQuery(querysql, countsql, paginationSupport.getPageSize(), paginationSupport.getStartIndex());
 		return paginationSupport;
@@ -105,7 +105,7 @@ public class UserService implements IUserService {
 	
 
 	public PaginationSupport getFollowerContentListByUser(PaginationSupport paginationSupport,Short userId) {
-		String querysql = " Select c.contentId,c.userId,c.topicid,c.contentBody,c.posttime,c.originId,c.originAllid,c.retwittNum,c.upNum,c.status,c.type From DlContent c INNER JOIN c.dlUsers u  INNER JOIN u.dlFancers f where  f.userId = "+userId+"";
+		String querysql = " Select c From DlContent c INNER JOIN c.dlUsers u  INNER JOIN u.dlFancers f where  f.userId = "+userId+"";
 		String countsql =" Select count(c.contentId) From DlContent c INNER JOIN c.dlUsers u INNER JOIN u.dlFancers f where  f.userId = "+userId+"";
 		paginationSupport = dlContentatDao.findPageByQuery(querysql, countsql, paginationSupport.getPageSize(), paginationSupport.getStartIndex());
 		return paginationSupport;
