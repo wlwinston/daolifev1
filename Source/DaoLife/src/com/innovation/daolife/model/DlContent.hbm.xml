@@ -10,7 +10,7 @@
             <column name="content_id" />
             <generator class="identity" />
         </id>
-        <many-to-one name="dlUsers" column="user_id" class="com.innovation.daolife.model.DlUsers" insert="false" update="false" not-null="true" >
+        <many-to-one name="dlUsers" column="user_id" class="com.innovation.daolife.model.DlUsers"  insert="false" update="false" not-null="true" >
   		</many-to-one>
         <property name="userId" type="java.lang.Short">
             <column name="user_id" not-null="true" />
