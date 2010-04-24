@@ -82,6 +82,16 @@ public class CommonAjax {
 	
 	/**
 	 * @author fsn
+	 * 检查邮箱是否唯一
+	 * 返回true 唯一
+	 * */
+	public boolean checkUserAddress(String adress){
+		boolean flag = userService.checkUserByAdress(adress);
+		return flag;
+	}
+	
+	/**
+	 * @author fsn
 	 * 检查昵称是否唯一
 	 * 返回true 唯一
 	 * */
@@ -218,6 +228,13 @@ public class CommonAjax {
 	}
 	public void setDlDaoService(IDlDaoService dlDaoService) {
 		this.dlDaoService = dlDaoService;
+	}
+	public IFollowrelationService getFollowrelationService() {
+		return followrelationService;
+	}
+	public void setFollowrelationService(
+			IFollowrelationService followrelationService) {
+		this.followrelationService = followrelationService;
 	}
 	
 	
