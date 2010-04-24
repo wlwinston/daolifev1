@@ -17,6 +17,9 @@ public enum Constant
 	CONTENT_STATUS_INIT("0"),
 	MESSAGE_ISREAD_NO(0),
 	MESSAGE_ISREAD_YES(1),
+	/*********每页数据量********/
+	PAGESIZE_FRIENDDAO(20),
+	PAGESIZE_MYDAO(20),
 	/*********角色************/
 	//默认角色
 	WEBSITE_ROLES_DEFAULT("daolife_user"),
