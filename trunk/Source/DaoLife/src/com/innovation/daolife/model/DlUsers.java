@@ -15,11 +15,14 @@ public class DlUsers implements java.io.Serializable {
 	// Fields
 
 	private Short userId;
+	//»À–’√˚
 	private String userName;
+	//Í«≥∆
 	private String userNickName;
 	private String userUrl;
 	private String password;
 	private String salt;
+	//Õ∑œÒ
 	private String userHead;
 	private String mailadres;
 	private String homeCity;

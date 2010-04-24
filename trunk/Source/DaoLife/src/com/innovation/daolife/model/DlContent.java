@@ -15,14 +15,20 @@ public class DlContent implements java.io.Serializable {
 	private Short contentId;
 	private Short userId;
 	private Short topicid;
+	//叨内容
 	private String contentBody;
+	//叨提交时间
 	private Date posttime;
+	//原有ID
 	private Short originId;
 	private String originAllid;
+	//转发数
 	private Short retwittNum;
+	//顶数
 	private Short upNum;
 	private String status;
 	private String type;
+	//发叨人信息
 	private DlUsers dlUsers;
 
 	// Constructors
