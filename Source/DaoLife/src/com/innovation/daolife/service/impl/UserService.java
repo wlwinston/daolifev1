@@ -172,6 +172,19 @@ public class UserService implements IUserService {
 		}
 		return flag;
 	}
+	
+	/**
+	 * @fsn 检查邮箱的唯一性
+	 */
+	public boolean checkUserByAdress(String name) {
+		boolean flag = true;
+		String sql = " From DlUsers u where u.userUrl=?";
+		List<DlUsers> userList = dlUsersDao.find(sql, name);
+		if (userList.size() > 0) {
+			flag = false;
+		}
+		return flag;
+	}
 
 	/**
 	 * @fsn 检查昵称的唯一性
