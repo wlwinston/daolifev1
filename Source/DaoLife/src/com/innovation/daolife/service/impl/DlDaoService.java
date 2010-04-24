@@ -18,6 +18,8 @@ import javax.transaction.RollbackException;
 import javax.transaction.SystemException;
 
 import org.apache.commons.mail.EmailException;
+import org.hibernate.Query;
+import org.hibernate.Session;
 import org.hibernate.criterion.DetachedCriteria;
 import org.omg.CORBA.UserException;
 import org.springframework.dao.DataAccessException;
@@ -31,15 +33,18 @@ import com.innovation.common.util.RandomString;
 import com.innovation.daolife.action.search.UserSearch;
 import com.innovation.daolife.dao.IDlContentDao;
 import com.innovation.daolife.dao.IDlContentatDao;
+import com.innovation.daolife.dao.IDlHotdaoDao;
 import com.innovation.daolife.dao.IDlMessagesDao;
 import com.innovation.daolife.dao.IDlTopicDao;
 import com.innovation.daolife.dao.IDlUplogDao;
 import com.innovation.daolife.dao.IDlUsersDao;
 import com.innovation.daolife.dao.IFollowrelationDao;
 import com.innovation.daolife.dao.IUserDao;
+import com.innovation.daolife.dao.impl.DlHotdaoDao;
 import com.innovation.daolife.model.DlContent;
 import com.innovation.daolife.model.DlContentat;
 import com.innovation.daolife.model.DlCustomerDaoEntry;
+import com.innovation.daolife.model.DlHotdao;
 import com.innovation.daolife.model.DlMessages;
 import com.innovation.daolife.model.DlUplog;
 import com.innovation.daolife.model.DlUsers;
@@ -59,6 +64,7 @@ public class DlDaoService implements IDlDaoService {
 	private IDlMessagesDao dlMessagesDao;
 	private IDaoContentBodyConvertService daoContentBodyConvert;
 	private IRetwitteUtilService retwitteUtil;
+	private IDlHotdaoDao dlHotdaoDao;
 
 	/**
 	 * 发新叨处理
@@ -137,6 +143,7 @@ public class DlDaoService implements IDlDaoService {
 		this.saveDao(customerDaoDao,user);
 		return customerDaoDao;
 	}
+	
 	/**
 	 * @author fengsn
 	 * 查询@用户的dao内容
@@ -146,6 +153,37 @@ public class DlDaoService implements IDlDaoService {
 		String countsql =" Select count(c.contentId) From DlContent c INNER JOIN c.dlUsers u INNER JOIN u.dlContentat f where  f.statusUid = "+userId+"";		paginationSupport = dlContentatDao.findPageByQuery(querysql, countsql, paginationSupport.getPageSize(), paginationSupport.getStartIndex());
 		paginationSupport = dlContentatDao.findPageByQuery(querysql, countsql, paginationSupport.getPageSize(), paginationSupport.getStartIndex());
 		return paginationSupport;
+	}
+	
+	/**
+	 * @author fengsn
+	 * 查询@用户的dao内容
+	 * */
+	public PaginationSupport getHotDao(PaginationSupport paginationSupport) {
+		Short daoNum = this.getdaoNum();
+		String querysql = " Select c From DlHotdao c where  c.daonum = "+daoNum+" orderby upSum" ;
+		String countsql =" Select count(c.hotdaoId) From DlHotdao c where  c.daonum = "+daoNum+" orderby upSum" ;
+		paginationSupport = dlHotdaoDao.findPageByQuery(querysql, countsql, paginationSupport.getPageSize(), paginationSupport.getStartIndex());
+		return paginationSupport;
+	}
+	
+	/**
+	 * 查询hotdao中的daonum最大值
+	 * */
+	private Short getdaoNum(){
+		String sql = " select (i.daonum) from DlHotdao as i";
+		//dlHotdaoDao
+		List<Short> daoList = dlHotdaoDao.findWithoutT(sql);
+		Short result = 1;
+		if(daoList.size()>0){
+			for(int i=0;i<daoList.size();i++){
+				Short tmp_dao = daoList.get(i);
+				if(tmp_dao>result){
+					result = tmp_dao;
+				}
+			}
+		}
+		return result;
 	}
 	
 	/**
@@ -244,13 +282,12 @@ public class DlDaoService implements IDlDaoService {
 		this.dlUplogDao = dlUplogDao;
 	}
 
-	
+	public IDlHotdaoDao getDlHotdaoDao() {
+		return dlHotdaoDao;
+	}
 
+	public void setDlHotdaoDao(IDlHotdaoDao dlHotdaoDao) {
+		this.dlHotdaoDao = dlHotdaoDao;
+	}
 	
-	
-	
-	
-
-	
-
 }
