@@ -181,9 +181,9 @@ public class DlDaoService implements IDlDaoService {
 	public PaginationSupport getHotDao(PaginationSupport paginationSupport) {
 		Short daoNum = this.getdaoNum();
 		String querysql = " Select c From DlHotdao c where  c.daonum = "
-				+ daoNum + " order by upSum";
+				+ daoNum + " order by upSum desc";
 		String countsql = " Select count(c.hotdaoId) From DlHotdao c where  c.daonum = "
-				+ daoNum + " order by upSum";
+				+ daoNum + " order by upSum desc";
 		paginationSupport = dlHotdaoDao.findPageByQuery(querysql, countsql,
 				paginationSupport.getPageSize(), paginationSupport
 						.getStartIndex());
