@@ -42,6 +42,11 @@
         <property name="type" type="java.lang.String">
             <column name="type" length="10" not-null="true" />
         </property>
-        
+ 		<set name="atUsers" table="dl_contentat" inverse="true" lazy="false"  cascade="all">  
+		     <key>  
+		         <column name="content_id" not-null="true" />  
+		     </key>  
+		   <many-to-many class="com.innovation.daolife.model.DlUsers" column="status_id" />
+ 		</set>
     </class>
 </hibernate-mapping>
