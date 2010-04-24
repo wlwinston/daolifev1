@@ -137,6 +137,42 @@ public class CommonAjax {
 	 * @return 返回错误信息，如果为空则顶叨成功
 	 * @author winston
 	 */
+	public PaginationSupport getPesonalDao(int pages,short userId)
+	{
+		if(pages<0)
+		{
+			pages = 1;
+		}
+		int pageSize = Constant.PAGESIZE_MYDAO.getIntValue();
+		int startIndex = pageSize*(pages-1);
+		PaginationSupport paginationSupport = new PaginationSupport(pageSize, startIndex);
+		WebContext request = WebContextFactory.get();
+		
+		HttpSession session = request.getSession(false);
+		if(session != null && session.getAttribute(Constant.SESSION_USER_KEY.getStrValue())!=null)
+		{
+			DlUsers user = userService.getUsersById(userId) ;
+			//Short userId = user.getUserId();
+			if(user!=null)
+			{
+				paginationSupport = userService.getContentListByUser(paginationSupport, userId);
+			}
+			else{
+				return null;
+			}
+		}
+		else{
+			return  null;
+		}
+		return paginationSupport;
+		
+	}
+	/**
+	 * 获取我好友的叨
+	 * @param daoId 被顶叨ID
+	 * @return 返回错误信息，如果为空则顶叨成功
+	 * @author winston
+	 */
 	public PaginationSupport getAllDao(int pages)
 	{
 		if(pages<0)
