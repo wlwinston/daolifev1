@@ -16,14 +16,13 @@ public class  PaginationSupport implements Serializable{
 
 	public final static int PAGESIZE = 30;
 
-	//ÿҳ������� 
+ 
 	private int pageSize = PAGESIZE;
 	 private String pageSizeString ;
 	 
-	 //�ܹ��ж������
+	
 	 private int totalCount;
 
-	 //��ǰҳ
 	 private int currentPage;
 
 	 private int startIndex;
@@ -38,10 +37,10 @@ public class  PaginationSupport implements Serializable{
 
 	 private int previousIndex;
 
-	 //�ܹ�����ҳ
+
 	 private int pageCount;
 
-	 //ӵ�����
+	
 	 private List items;
 	 
 	 private int lastIndex;
@@ -53,8 +52,8 @@ public class  PaginationSupport implements Serializable{
 	 public  PaginationSupport(int pageSize,
 	   int startIndex) {
 	  setPageSize(pageSize);
-	  setStartIndex(startIndex);
-	  
+	  //setStartIndex(startIndex);
+	  this.startIndex = startIndex;
 	 }
 
 	 public  PaginationSupport(List items, int totalCount) {
