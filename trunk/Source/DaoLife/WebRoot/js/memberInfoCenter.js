@@ -172,8 +172,10 @@ articleBox.prototype = {
 			this.html.push(this.element[l].getHtml());
 		}
 		this.html.push('<div>');
-		for(var i = 0, l = this.pageCount; i < l; ++i){
-			this.html.push('<a href="javascript:doPage(' + (i+1) + ')" style="margin-left:10px;">' + (i+1) + '</a>');
+		if(this.pageCount > 1){
+			for(var i = 0, l = this.pageCount; i < l; ++i){
+				this.html.push('<a href="javascript:doPage(' + (i+1) + ')" style="margin-left:10px;">' + (i+1) + '</a>');
+			}
 		}
 		this.html.push('</div>');
 		this.html.push('</center>');
@@ -212,8 +214,10 @@ articleBox.prototype = {
 	,getpagebar : function(){
 		var html = [];
 		html.push('<div>');
-		for(var i = 0, l = this.pageCount; i < l; ++i){
-			html.push('<a href="javascript:doPage(' + (i+1) + ')" style="margin-left:10px;">' + (i+1) + '</a>');
+		if(this.pageCount > 1){
+			for(var i = 0, l = this.pageCount; i < l; ++i){
+				html.push('<a href="javascript:doPage(' + (i+1) + ')" style="margin-left:10px;">' + (i+1) + '</a>');
+			}
 		}
 		html.push('</div>');
 		return html.join('');
