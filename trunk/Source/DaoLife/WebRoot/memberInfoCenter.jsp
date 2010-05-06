@@ -14,6 +14,7 @@
 		<script type="text/javascript" src="dwr/interface/DaolifeAjax.js"></script>
 		<script type="text/javascript" src="js/jquery-1.3.2.min.js"></script>
 		<script type="text/javascript" src="js/memberInfoCenter.js"></script>
+		<script type="text/javascript" src="js/correctPNG.js"></script>
 		<link href="styles/body.css" rel="stylesheet" type="text/css" />
 		<link href="styles/index.css" rel="stylesheet" type="text/css" />
 		<link href="styles/daolifemare.css" rel="stylesheet" type="text/css" />
