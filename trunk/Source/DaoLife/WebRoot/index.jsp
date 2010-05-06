@@ -365,7 +365,7 @@
 									<div class="dao1">
 										<div>
 											<h3>
-												<a href="text.html">注册</a>
+												<a href="regist.jsp">注册</a>
 											</h3>
 										</div>
 										<div class="dao2">
