@@ -113,10 +113,10 @@
 				<div class="daohang">
 					<ul>
 						<li>
-							<a href="index.html">首页 </a>
+							<a href="index.jsp">首页 </a>
 						</li>
 						<li style="background-image: url(images/daohang%20%20hover.gif)">
-							<a href="myhome.html">我的首页</a>
+							<a href="memberInfoCenter.jsp">我的首页</a>
 						</li>
 						<li>
 							<a href="daolife.html">Dao Life</a>

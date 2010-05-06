@@ -204,7 +204,7 @@ articleBox.prototype = {
 			}
 		}
 		var html = [];
-		html.push('<div>');
+		html.push('<div  style="margin-top:20px;">');
 		for(var i = 0, l = this.pageCount; i < l; ++i){
 			html.push('<a href="javascript:doPage(' + (i+1) + ')" style="margin-left:10px;">' + (i+1) + '</a>');
 		}
@@ -213,7 +213,7 @@ articleBox.prototype = {
 	}
 	,getpagebar : function(){
 		var html = [];
-		html.push('<div>');
+		html.push('<div  style="margin-top:20px;">');
 		if(this.pageCount > 1){
 			for(var i = 0, l = this.pageCount; i < l; ++i){
 				html.push('<a href="javascript:doPage(' + (i+1) + ')" style="margin-left:10px;">' + (i+1) + '</a>');
