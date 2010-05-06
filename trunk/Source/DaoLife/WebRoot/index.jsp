@@ -92,7 +92,7 @@
 							<a href="index.html">首页</a>
 						</li>
 						<li>
-							<a href="myhome.html">我的首页</a>
+							<a href="memberInfoCenter.jsp">我的首页</a>
 						</li>
 						<li>
 							<a href="daolife.html">Dao Life</a>
