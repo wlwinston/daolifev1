@@ -1,0 +1,27 @@
+/*-------全局css定义----------*/
+body {
+	margin:0;
+	padding:0;
+	width:100%;
+	background:#ededed url(images/bg.jpg) top repeat-x;
+	font-size: 12px;
+	color: #666666;
+}
+img {border:0px;}
+ui,li,ol,dl,dt,dd {
+	list-style-type: none;
+}
+a:link {
+	color: #0098b6;
+	text-decoration: none;
+}
+a:visited {
+	text-decoration: none;
+	color: #0098b6;
+}
+a:hover {
+
+}
+a:active {
+	text-decoration: none;
+}
