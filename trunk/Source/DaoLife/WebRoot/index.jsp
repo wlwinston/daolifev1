@@ -473,7 +473,7 @@
 													</tr>
 													<tr>
 														<td height="32">
-															<a href="zhuce.html">
+															<a href="regist.jsp">
 																<img src="images/zuce1.gif" width="122" height="32" />
 															</a>
 														</td>
