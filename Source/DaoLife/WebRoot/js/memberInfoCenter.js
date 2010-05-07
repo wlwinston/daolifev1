@@ -194,22 +194,14 @@ articleBox.prototype = {
 	}
 	,reload : function(){
 		$('#articlebox').empty();
-		for(var i = 0, l = this.element.length; i < l ; ++i){
-			$('#articlebox').get(0).innerHTML = this.element[i].getHtml() + $('#articlebox').get(0).innerHTML;
-			if(i == (l - 1)){
-				$('#article_' + this.element[i].id).css({
-					display:'none'
-				})
-				$('#article_' + this.element[i].id).fadeIn(1100);
-			}
-		}
 		var html = [];
-		html.push('<div  style="margin-top:20px;">');
-		for(var i = 0, l = this.pageCount; i < l; ++i){
-			html.push('<a href="javascript:doPage(' + (i+1) + ')" style="margin-left:10px;">' + (i+1) + '</a>');
+		for(var i = 0, l = this.element.length; i < l ; ++i){
+			html.push(this.element[i].getHtml());
 		}
-		html.push('</div>');
-		$('#articlebox').get(0).innerHTML += html.join('');
+		$('#articlebox').get(0).innerHTML = html.join('') + this.getpagebar();
+		if(this.element.length){
+			$('#article_' + this.element[0].id).hide().fadeIn(1100);
+		}
 	}
 	,getpagebar : function(){
 		var html = [];
@@ -230,11 +222,7 @@ articleBox.prototype = {
 			//$('#articlebox').get(0).innerHTML = this.element[i].getHtml() + $('#articlebox').get(0).innerHTML;
 		}
 		$('#articlebox').get(0).innerHTML = html.join('') + this.getpagebar();
-		$('#articlebox').css({
-			display : 'none'
-		});
-		$('#articlebox').fadeIn(1100);
-		
+		$('#articlebox').hide().fadeIn(1100);
 	}
 }
 var myBox = function(){}
@@ -243,19 +231,19 @@ myBox.articleBox = new articleBox();
 //myBox.articleBox.add(new article(1,'高建','我在真理部上班','images/myhome_30.gif','100','100','100'));
 function doPage(page){
 	myBox.articleBox.currentPage = page;
-	doReload(true);
+	doReload(function(){
+		myBox.articleBox.load();
+	});
 }
-function doReload(status){
+function doReload(fn){
 	myBox.articleBox.clean();
 	DaolifeAjax.getAllDao(myBox.articleBox.currentPage,function(rs){
 		myBox.articleBox.setpage(rs.totalCount,rs.pageCount,rs.currentPage);
 		for(var i = 0, l = rs.items.length; i < l; ++i){
 			myBox.articleBox.add(new article(rs.items[i].contentId,rs.items[i].dlUsers.userNickName,rs.items[i].contentBody,'images/myhome_30.gif',0,rs.items[i].retwittNum,rs.items[i].upNum));
 		}
-		if(status){
-			myBox.articleBox.load();
-		}else{
-			myBox.articleBox.reload();
+		if(fn){
+			fn();
 		}
 	});
 }
@@ -264,7 +252,9 @@ function doSubmit(){
 		DaolifeAjax.addDao($('#articlecontent').val(),function(rs){
 			if(rs != null){
 				$('#articlecontent').val('');
-				doReload(false);
+				doReload(function(){
+					myBox.articleBox.reload();
+				});
 			}else{
 				alert('发送信息失败');
 			}
@@ -411,7 +401,9 @@ function getPageSize() {
 	return arrayPageSize;
 };
 $(function($){
-	doReload(true);
+	doReload(function(){
+		myBox.articleBox.load();
+	});
 	$('#articleandreply').get(0).innerHTML = myBox.articleBox.getHtml();
 	//var ab1 = new articleBox();
 	//ab1.add(new article(1,'高建','我在真理部上班','images/myhome_30.gif','100','100','100'));
