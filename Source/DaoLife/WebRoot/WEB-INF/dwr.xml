@@ -9,6 +9,7 @@
 		<convert match="com.innovation.daolife.model.DlContent" converter="bean"></convert>
 		<convert match="com.innovation.daolife.model.DlContentat" converter="bean"></convert>
 		<convert match="com.innovation.daolife.model.DlMessages" converter="bean"></convert>
+		<convert match="com.innovation.daolife.model.DlHotdao" converter="bean"></convert>
 		<convert match="com.innovation.daolife.model.DlCustomerDaoEntry" converter="bean"></convert>
 		<convert match="com.innovation.common.util.PaginationSupport" converter="bean"></convert>
 		<create creator="spring" javascript="DaolifeAjax">
