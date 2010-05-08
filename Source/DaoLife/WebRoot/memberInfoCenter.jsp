@@ -220,23 +220,14 @@
 							<table width="514" height="51" border="0" align="center"
 								cellpadding="0" cellspacing="0" class="xia1">
 								<tr>
-									<td width="118" height="50">
-										<a href="myhome.html"><img src="images/myhome_21.gif"
-												alt="" width="112" height="24" />
-										</a>
+									<td width="112" height="50" align="center" valign="middle">
+										<a href="javascript:doStatus(1)" class="status"><img src="images/myhome_21.gif" alt="" width="112" height="24" /></a>
 									</td>
-									<td width="91" align="center" valign="middle">
-										<a href="wozaidao.html"><img src="images/myhome_23.gif"
-												width="48" height="23" />
-										</a><a href="touxiang.html"></a>
+									<td width="112" align="center" valign="middle">
+										<a href="javascript:doStatus(2)" class="status"><img src="images/myhome_23.gif" width="48" height="23" /></a>
 									</td>
-									<td width="101" align="center" valign="middle">
-										<a href="kankan.html"><img src="images/myhome_25.gif"
-												width="65" height="23" />
-										</a><a href="daolife.html"></a>
-									</td>
-									<td width="168" align="center" valign="middle">
-										&nbsp;
+									<td width="112" align="center" valign="middle">
+										<a href="javascript:doStatus(3)" class="status"><img src="images/myhome_25.gif" width="65" height="23" /></a>
 									</td>
 								</tr>
 							</table>
