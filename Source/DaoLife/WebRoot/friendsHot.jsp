@@ -1,5 +1,8 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
+<%@ page isELIgnored="false" %>
 <%@taglib prefix="s" uri="/struts-tags"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
@@ -12,6 +15,9 @@
 		<link href="styles/daolifemare.css" rel="stylesheet" type="text/css" />
 		<link href="styles/chanpin.css" rel="stylesheet" type="text/css" />
 		<link href="styles/td.css" rel="stylesheet" type="text/css" />
+		<script type="text/javascript" src="dwr/engine.js"> </script>
+    	<script type="text/javascript" src="dwr/util.js"> </script> 
+		<script type="text/javascript" src="dwr/interface/DaolifeAjax.js"></script>
 		<script type="text/javascript" src="js/jquery-1.3.2.min.js"></script>
 		<script type="text/javascript" src="js/common.js"></script>
 		<script type="text/javascript" src="js/friendsHot.js"></script>

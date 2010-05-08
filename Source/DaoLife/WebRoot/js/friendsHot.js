@@ -44,7 +44,7 @@ friendsHot.prototype = {
 function friendsHotBox(){
 	this.element = [];
 	this.totalCount = 1;
-	this.pageCount = 5;
+	this.pageCount = 1;
 	this.currentPage = 1;
 }
 friendsHotBox.prototype = {
@@ -60,6 +60,17 @@ friendsHotBox.prototype = {
 	}
 	,add : function(article){
 		this.element.push(article);
+		this._element[article.id] = article;
+	}
+	,getElementById : function(id){
+		if(this._element[id]){
+			return this._element[id];
+		}
+		return null;
+	}
+	,clean : function(){
+		this.element = [];
+		this._element = [];
 	}
 	,setpage : function(totalCount,pageCount,currentPage){
 		this.totalCount = totalCount;
@@ -68,13 +79,13 @@ friendsHotBox.prototype = {
 	}
 	,getpagebar : function(){
 		var html = [];
-		html.push('<div class="yem1"><ul>');
+		html.push('<div class="yem1"><center><ul>');
 		if(this.pageCount > 1){
 			for(var i = 0, l = this.pageCount; i < l; ++i){
-				html.push('<li><a href="javascript://">' + (i + 1) + '</a></li>');
+				html.push('<li><a href="javascript:doPage(' + (i+1) + ')">' + (i + 1) + '</a></li>');
 			}
 		}
-		html.push('</ul></div>')
+		html.push('</ul></center></div>')
 		return html.join('');
 	}
 	,load : function(){
@@ -87,11 +98,32 @@ friendsHotBox.prototype = {
 		$('#friendshotbox').hide().fadeIn(1100);
 	}
 }
-$(function($){
-	var fh = new friendsHot(1,1,'zhouy','拒绝歧视非主流','images/myhome_30.gif','男 26岁','北京市 设计师',true,12345);
-	var fhb = new friendsHotBox();
-	for(var i = 1, l = 6; i < l; ++i){
-		fhb.add(new friendsHot(1,1,'zhouy','拒绝歧视非主流','images/myhome_30.gif','男 26岁','北京市 设计师',true,12345));
+var myBox = function(){}
+myBox.articleBox = new friendsHotBox();
+function doPage(page){
+	myBox.articleBox.currentPage = page;
+	doReload(function(){
+		myBox.articleBox.load();
+	});
+}
+function doReload(fn){
+	myBox.articleBox.clean();
+	var func = function(rs){
+		myBox.articleBox.setpage(rs.totalCount,rs.pageCount,rs.currentPage);
+		for(var i = 0, l = rs.items.length; i < l; ++i){
+			var baseinfo = rs.items[i].userGender + ' ' +rs.items[i].birthday;
+			var otherinfo = rs.items[i].userAddress;
+			myBox.articleBox.add(new friendsHot(rs.items[i].userId,((rs.currentPage - 1) * rs.pageCount) + (i + 1),rs.items[i].userNickName,rs.items[i].contentBody,'images/myhome_30.gif',baseinfo,otherinfo,rs.items[i].followFlag,rs.items[i].fansNum));
+		}
+		if(fn){
+			fn();
+		}
 	}
-	$('#box').get(0).innerHTML = fhb.getHtml();
+	DaolifeAjax.getHotUser(myBox.articleBox.currentPage,func);
+}
+$(function($){
+	doReload(function(){
+		myBox.articleBox.load();
+	})
+	$('#box').get(0).innerHTML = myBox.articleBox.getHtml();
 });
