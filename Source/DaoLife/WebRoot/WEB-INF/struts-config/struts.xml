@@ -128,7 +128,16 @@
 			</interceptor-ref> 
 		 	<interceptor-ref name="defaultStack" /> 
 		</action>
-		
+		<action name="index" class="WebCommonAction" method="index">
+			<result name="index">index.jsp</result>
+			 
+		 	<interceptor-ref name="defaultStack" /> 
+		</action>
+		<action name="" class="WebCommonAction" method="index">
+			<result name="index">index.jsp</result>
+			 
+		 	<interceptor-ref name="defaultStack" /> 
+		</action>
 		<action name="MyPage" class="UserAction" method="myPage">
 			<result name="myPageSuccess">/memberInfoCenter.jsp</result>	
 			<result name="forbidden">forbidden.jsp</result>

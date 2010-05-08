@@ -26,4 +26,10 @@
         scope="prototype">
         <property name="followrelationService" ref="followrelationService" />
     </bean>
+    <bean id="WebCommonAction" class="com.innovation.daolife.action.WebCommonAction"
+        scope="prototype">
+         <property name="userService" ref="userService" />
+        <property name="daoService" ref="dlDaoService" />
+        <property name="productService" ref="productService" />
+    </bean>
 </beans>

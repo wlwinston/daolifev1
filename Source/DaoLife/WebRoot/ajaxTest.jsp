@@ -9,17 +9,18 @@
     	<script type="text/javascript" src="js/jquery-1.3.2.min.js"></script>
     	<script type="text/javascript" src="js/form.js"></script>
 		<script language="JavaScript">
-		/*
+		
 			function showUserInfo()
 			{   
-				var id=$F("userId");
-				DaolifeAjax.getUserById(id,showresult);
+				//var id=$F("userId");
+				DaolifeAjax.getAllDao(2,showresult);
 			}
 			function showresult(result)
 			{	
 				if(result != null)
 				{
-					alert("userName===="+result.username+"\n"+"password===="+result.password+"\n"+"email===="+result.email);
+					alert(result.items[0].dlUsers.userName);
+					//alert("userName===="+result.username+"\n"+"password===="+result.password+"\n"+"email===="+result.email);
 				}
 			}	
 			function refresh(){
@@ -38,13 +39,12 @@
 					alert("false");
 				}
 			}
-		*/
 			$(function(){
 				Form.add('userId',DaolifeAjax.checkUserName);
 			});
 		</script>
 	</head>
-	<body>
+	<body onload="showUserInfo()">
 		<center>
 		<h3>请输入用户ID</h3>
 		<input type ="text" name="userId" id="userId"/> 
