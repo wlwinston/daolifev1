@@ -37,5 +37,7 @@ public interface IDlDaoService {
 	public PaginationSupport getHotDao(PaginationSupport paginationSupport);
 	
 	public List<DlContent> getTopicContent(Short topicId);
+	
+	public PaginationSupport getContentListByTime(PaginationSupport paginationSupport);
 
 }
