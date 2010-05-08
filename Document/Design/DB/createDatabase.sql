@@ -177,11 +177,14 @@ alter table daolife.dl_content comment 'ß¶ÄÚÈÝ±í';
 create table daolife.dl_product
 (
    product_id           smallint(6) not null auto_increment,
-   product_name         varchar(20) not null,
-   product_url          varchar(20) not null,
-   product_author       varchar(20) not null,
-   product_authorurl    varchar(20) not null,
+   product_name         varchar(300) not null,
+   product_url          varchar(200) not null,
+   product_pic          varchar(200) NOT NULL,
+   product_author       varchar(64) not null,
+   product_authorurl    varchar(64) not null,
    product_sum          smallint(6) not null default 0,
+   product_daonum       smallint(6) NOT NULL,
+   product_posttime               datetime not null,
    primary key (product_id)
 );
 
