@@ -25,6 +25,7 @@
 			<include method="addDao" />
 			<include method="addRetwitteDao" />
 			<include method="getAllDao" />
+			<include method="getHotUser" />
 			<include method="getHotDao" />
 			<include method="getMyDao" />
 			<include method="getPesonalDao" />
