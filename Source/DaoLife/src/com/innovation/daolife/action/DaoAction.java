@@ -50,7 +50,6 @@ public class DaoAction extends ActionSupport implements SessionAware, ServletReq
 	private IFollowrelationService followrelationService;
 	private IDlDaoService dlDaoService;
 	private Short orgDaoId;
-
 	
 	
 	public String post() throws Exception {
@@ -94,7 +93,7 @@ public class DaoAction extends ActionSupport implements SessionAware, ServletReq
 		return contextBody;
 	}
 
-
+	
 
 
 	public void setContextBody(String contextBody) {
