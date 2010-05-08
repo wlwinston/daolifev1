@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.mail.EmailException;
+import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.interceptor.ServletRequestAware;
 import org.apache.struts2.interceptor.ServletResponseAware;
 import org.apache.struts2.interceptor.SessionAware;
@@ -28,6 +29,7 @@ import com.innovation.daolife.model.DlUserroles;
 import com.innovation.daolife.model.DlUsers;
 import com.innovation.daolife.model.User;
 import com.innovation.daolife.service.IUserService;
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
 public class UserAction extends ActionSupport implements SessionAware, ServletRequestAware, ServletResponseAware{
@@ -55,7 +57,10 @@ public class UserAction extends ActionSupport implements SessionAware, ServletRe
 	private static String RESETCHECKFAILUE ="resetCheckFailue";
 	private static String SETNEWPASSWORDSUCCESS = "setNewPasswordSuccess";
 	private static String SETNEWPASSWORDFAILUE ="setNewPasswordFailue";
-
+	private static String MEMBERINFO ="memberInfo";
+	private static String MYPAGE = "myPage";
+	private static String NOPERSON = "noPerson";
+	private static String PERSONPAGE = "personPage";
 	public void setUserService(IUserService userService) {
 		this.userService = userService;
 	}
@@ -156,7 +161,93 @@ public class UserAction extends ActionSupport implements SessionAware, ServletRe
 		return FINDPASSWORDSUCCESS;
 	}
 	
-
+	public String memberInfo() throws Exception{
+		//查询好友的叨
+		if(paginationSupport == null)
+		{
+			paginationSupport = new PaginationSupport(1, 1);
+		}
+		DlUsers user = (DlUsers) att.get(Constant.SESSION_USER_KEY.getStrValue());
+		Short uid = user.getUserId();
+		//sess.getMaxInactiveInterval()
+		paginationSupport = userService.getFollowerContentListByUser(paginationSupport, uid);
+		return MEMBERINFO;
+	}
+	
+	public String myDaoList() throws Exception{
+		//查询自己的叨
+		if(paginationSupport == null)
+		{
+			paginationSupport = new PaginationSupport(1, 1);
+		}
+		DlUsers user = (DlUsers) att.get(Constant.SESSION_USER_KEY.getStrValue());
+		Short uid = user.getUserId();
+		//sess.getMaxInactiveInterval()
+		paginationSupport = userService.getContentListByUser(paginationSupport, uid);
+		return MEMBERINFO;
+	}
+	/**
+	 * 个人页面
+	 * @return
+	 * @throws Exception
+	 */
+	public String personalPage() throws Exception{
+		//查询访问某人的个页面
+		ActionContext context = ActionContext.getContext();   
+	    HttpServletRequest myRequest = (HttpServletRequest) context.get(ServletActionContext.HTTP_REQUEST);   
+	    Map session = context.getSession();   
+		if(paginationSupport == null)
+		{
+			paginationSupport = new PaginationSupport(10, 1);
+		}
+		DlUsers user = (DlUsers) session.get(Constant.SESSION_USER_KEY.getStrValue());
+		Short uid = user.getUserId();
+		if(userId == null)
+		{
+			String actionUrl = myRequest.getServletPath();
+			if(actionUrl.length() > 1)
+			{
+				actionUrl = actionUrl.substring(1, actionUrl.length());
+				if(actionUrl.indexOf("//")<0)
+				{
+					user = userService.getUserByUrl(actionUrl);
+					if(user != null)
+					{
+						userId = user.getUserId();
+					}
+					else{
+						return NOPERSON;
+					}
+				}
+				else{
+					return NOPERSON;
+				}
+			}
+			else{
+				return NOPERSON;
+			}
+		}
+		else{
+			user = userService.getUsersById(userId);
+		}
+			if(userId.equals(uid))
+			{
+				return MYPAGE;
+			}
+			else{
+				if(user == null)
+				{
+					return NOPERSON;
+				}
+				else{
+					paginationSupport = userService.getContentListByUser(paginationSupport, userId);
+				}
+			}
+		
+		//sess.getMaxInactiveInterval()
+		
+		return PERSONPAGE;
+	}
 	/**
 	 * @ fengsn
 	 * 用户登录校验
