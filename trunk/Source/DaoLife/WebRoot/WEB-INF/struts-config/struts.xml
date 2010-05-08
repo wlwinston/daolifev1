@@ -45,9 +45,8 @@
 		<action name="Userlist" class="UserAction" method="userList">
 			<result name="list">/list.jsp</result>
 		</action>
-		<action name="Login" class="UserAction" method="login">
-			<result name="loginSuccess">/follow.jsp</result>	
-			<result name="loginSuccess">/memberInfoCenter.jsp</result>	
+		<action name="Login" class="UserAction" method="login">	
+			<result name="loginSuccess" type="redirect">MyPage.action</result>	
 			<result name="input">/login.jsp</result>
 		</action>
 		<action name="Update" class="UserAction" method="update">
@@ -121,6 +120,15 @@
 		<action name="PersonPage" class="UserAction" method="personalPage">
 			<result name="noPerson">/404.jsp</result>	
 			<result name="personPage">personalPage.jsp</result>
+			<interceptor-ref name="auth"> 
+		        <param name="allowedRoles">daolife_user</param> 
+			</interceptor-ref> 
+		 	<interceptor-ref name="defaultStack" /> 
+		</action>
+		
+		<action name="MyPage" class="UserAction" method="myPage">
+			<result name="myPageSuccess">/memberInfoCenter.jsp</result>	
+			<result name="forbidden">forbidden.jsp</result>
 			<interceptor-ref name="auth"> 
 		        <param name="allowedRoles">daolife_user</param> 
 			</interceptor-ref> 
