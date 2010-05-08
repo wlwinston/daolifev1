@@ -39,6 +39,7 @@ public class UserAction extends ActionSupport implements SessionAware, ServletRe
     private HttpServletRequest request;
     private HttpServletResponse response; 
 	private DlUsers user;
+	private DlUsers personalInfo;
 	private DlUsers updateUser;
 	private PaginationSupport paginationSupport ;
 	private UserSearch userSearch;
@@ -61,6 +62,7 @@ public class UserAction extends ActionSupport implements SessionAware, ServletRe
 	private static String MYPAGE = "myPage";
 	private static String NOPERSON = "noPerson";
 	private static String PERSONPAGE = "personPage";
+	private static String NOLOGIN = "unLogin";
 	public void setUserService(IUserService userService) {
 		this.userService = userService;
 	}
@@ -218,12 +220,13 @@ public class UserAction extends ActionSupport implements SessionAware, ServletRe
 		ActionContext context = ActionContext.getContext();   
 	    HttpServletRequest myRequest = (HttpServletRequest) context.get(ServletActionContext.HTTP_REQUEST);   
 	    Map session = context.getSession();   
-		if(paginationSupport == null)
-		{
-			paginationSupport = new PaginationSupport(10, 1);
-		}
-		DlUsers user = (DlUsers) session.get(Constant.SESSION_USER_KEY.getStrValue());
-		Short uid = user.getUserId();
+	    if(session.get(Constant.SESSION_USER_KEY.getStrValue()) == null)
+	    {
+	    	return NOLOGIN;
+	    }
+		DlUsers myUser = (DlUsers) session.get(Constant.SESSION_USER_KEY.getStrValue());
+		
+		Short uid = myUser.getUserId();
 		if(userId == null)
 		{
 			String actionUrl = myRequest.getServletPath();
@@ -232,10 +235,10 @@ public class UserAction extends ActionSupport implements SessionAware, ServletRe
 				actionUrl = actionUrl.substring(1, actionUrl.length());
 				if(actionUrl.indexOf("//")<0)
 				{
-					user = userService.getUserByUrl(actionUrl);
-					if(user != null)
+					personalInfo = userService.getUserByUrl(actionUrl);
+					if(personalInfo != null)
 					{
-						userId = user.getUserId();
+						userId = personalInfo.getUserId();
 					}
 					else{
 						return NOPERSON;
@@ -250,19 +253,16 @@ public class UserAction extends ActionSupport implements SessionAware, ServletRe
 			}
 		}
 		else{
-			user = userService.getUsersById(userId);
+			personalInfo = userService.getUsersById(userId);
 		}
 			if(userId.equals(uid))
 			{
 				return MYPAGE;
 			}
 			else{
-				if(user == null)
+				if(personalInfo == null)
 				{
 					return NOPERSON;
-				}
-				else{
-					paginationSupport = userService.getContentListByUser(paginationSupport, userId);
 				}
 			}
 		
@@ -380,6 +380,12 @@ public class UserAction extends ActionSupport implements SessionAware, ServletRe
 	}
 	public void setNewpassword(String newpassword) {
 		this.newpassword = newpassword;
+	}
+	public DlUsers getPersonalInfo() {
+		return personalInfo;
+	}
+	public void setPersonalInfo(DlUsers personalInfo) {
+		this.personalInfo = personalInfo;
 	}
 
 }
