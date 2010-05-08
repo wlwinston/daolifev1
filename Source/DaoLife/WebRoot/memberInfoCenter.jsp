@@ -8,7 +8,7 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
 		<meta name="叨" content="叨微博客" />
-		<title><s:property value="#session['daoLifeUser'].userName"/>
+		<title><s:property value="#session['daoLifeUser'].userNickName"/>
 		的首页
 		</title>
 		<script type="text/javascript" src="dwr/engine.js"> </script>
@@ -28,116 +28,7 @@
 
 		<body>
 		<!--top头部区域-->
-		<div class="top1">
-			<div class="top2">
-				<div class="logo">
-					<a href="index.jsp"><img src="images/top_07.gif" width="62"
-							height="63" />
-					</a>
-				</div>
-				<div class="tiao">
-
-
-					<div class="tiao1">
-						<img src="images/top_04.gif" />
-					</div>
-
-					<div class="tiao2">
-						<img src="images/top_08.gif" />
-					</div>
-					<div class="tiao3">
-						<table width="98%" border="0" cellspacing="0" cellpadding="0">
-							<tr>
-								<td>
-									<img src="images/top_09.gif" width="118" height="8" />
-								</td>
-							</tr>
-							<tr>
-								<td height="53" align="center" background="images/top_11.gif">
-									<table width="68" border="0" cellspacing="0" cellpadding="0">
-										<tr>
-											<td width="79" align="center">
-												有5条新评论
-											</td>
-										</tr>
-										<tr>
-											<td align="center">
-												有8条叨@您
-											</td>
-										</tr>
-										<tr>
-											<td align="center">
-												有8封站内信
-											</td>
-										</tr>
-										<tr>
-											<td align="center">
-												有3位新关注
-											</td>
-										</tr>
-									</table>
-								</td>
-							</tr>
-							<tr>
-								<td align="left" valign="top">
-									<img src="images/top_13.gif" width="118" height="6" />
-								</td>
-							</tr>
-						</table>
-					</div>
-				</div>
-				<!--表单-->
-				<div class="select">
-					<form action="" method="post" name="frm">
-
-						<table width="227" height="32" border="0" cellpadding="0"
-							cellspacing="0" background="images/farm.gif">
-							<tr>
-								<td height="32" align="left" valign="middle">
-									<table width="98%" border="0" cellspacing="0" cellpadding="0">
-										<tr>
-											<td width="86%" height="25">
-												<label>
-													&nbsp;&nbsp;
-													<input name="textfield" type="text" id="textfield"
-														style="border: 0px;" value="产品: 电影 妞儿 牛逼" />
-												</label>
-											</td>
-											<td width="14%">
-												<input type="image" src="images/selsect.gif" />
-											</td>
-										</tr>
-									</table>
-								</td>
-							</tr>
-						</table>
-					</form>
-				</div>
-
-
-				<!--导航-->
-				<div class="daohang">
-					<ul>
-						<li>
-							<a href="index.jsp">首页 </a>
-						</li>
-						<li style="background-image: url(images/daohang%20%20hover.gif)">
-							<a href="memberInfoCenter.jsp">我的首页</a>
-						</li>
-						<li>
-							<a href="daolife.html">Dao Life</a>
-						</li>
-						<li>
-							<a href="look.html">随便看看</a>
-						</li>
-						<li>
-							<a href="daohot1.html">最叨</a>
-						</li>
-					</ul>
-				</div>
-			</div>
-
-		</div>
+		<jsp:include page="menu.jsp" flush="true"></jsp:include>
 		<!--banner区域-->
 		<div class="banner">
 			<div class="banner1">
@@ -276,7 +167,7 @@
 												</td>
 												<td width="78" align="center"
 													class="STYLE4 STYLE7 STYLE5 STYLE6">
-													<a href="wozaidao.html"><s:property value="#session['daoLifeUser'].contentsSize"/></a>
+													<a href="javascript:doStatus(2)"><s:property value="#session['daoLifeUser'].contentsSize"/></a>
 												</td>
 											</tr>
 											<tr>
@@ -287,7 +178,7 @@
 													<a href="guanzhuwode.html">关注我</a>
 												</td>
 												<td align="center">
-													<a href="wozaidao.html">叨</a>
+													<a href="javascript:doStatus(2)">叨</a>
 												</td>
 											</tr>
 										</table>
@@ -341,65 +232,7 @@
 									</tr>
 								</table>
 							</div>
-							<div class="Box">
-								最热叨友
-							</div>
-							<div class="touxiang1">
-								<a href="touxiang.html"><img src="images/touxiang.gif"
-										width="76" height="77" />
-								</a>
-								<img src="images/touxiang.gif" width="76" height="77" />
-								<img src="images/touxiang.gif" width="76" height="77" />
-								<img src="images/touxiang.gif" width="76" height="77" />
-								<img src="images/touxiang.gif" width="76" height="77" />
-								<img src="images/touxiang.gif" width="76" height="77" />
-								<img src="images/touxiang.gif" width="76" height="77" />
-								<img src="images/touxiang.gif" width="76" height="77" />
-								<img src="images/touxiang.gif" width="76" height="77" />
-							</div>
-							<div class="moer">
-								<table width="77%" height="19" border="0" cellpadding="0"
-									cellspacing="0">
-									<tr>
-										<td width="27%" align="right">
-											<img src="images/moer.gif" width="14" height="13" />
-										</td>
-										<td width="73%" align="right">
-											<a href="daohot.html">查看全部</a>
-										</td>
-									</tr>
-								</table>
-							</div>
-							<div class="Box">
-								最热叨句
-							</div>
-							<div class="daoju1">
-								<a href="touxiang.html">@高建</a>
-							</div>
-							<div class="daoju2">
-								我在真理部上班
-							</div>
-							<div class="daoju3">
-								<a href="daohot1.html">64514人支持</a>
-							</div>
-							<div class="daoju1">
-								<a href="touxiang.html">@高建</a>
-							</div>
-							<div class="daoju2">
-								我在真理部上班
-							</div>
-							<div class="daoju3">
-								<a href="daohot1.html">64514人支持</a>
-							</div>
-							<div class="daoju1">
-								<a href="touxiang.html">@高建</a>
-							</div>
-							<div class="daoju2">
-								我在真理部上班
-							</div>
-							<div class="daoju3">
-								<a href="daohot1.html">64514人支持</a>
-							</div>
+							<s:action name="hotWidget" executeResult="true" />  
 							<div class="Box">
 								我的叨T
 							</div>
