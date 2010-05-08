@@ -64,7 +64,15 @@ public class WebCommonAction extends ActionSupport implements SessionAware, Serv
 		hotDaoList =  paginationSupport.getItems();
 		return INDEX;
 	} 
-	
+	public String hotWidget(){
+		PaginationSupport paginationSupport = new PaginationSupport(9,0);
+		paginationSupport =  userService.getHotUser(paginationSupport,null);
+		hotUserList =  paginationSupport.getItems();
+		paginationSupport = new PaginationSupport(3,0);
+		paginationSupport =  daoService.getHotDao(paginationSupport);
+		hotDaoList =  paginationSupport.getItems();
+		return INDEX;
+	} 
 	public void setSession(Map att) {
         this.att = att;
     }

@@ -83,6 +83,12 @@ public class UserService implements IUserService {
 		try {
 			// int userId = Integer.parseInt(id);
 			user = dlUsersDao.get(id);
+			if(user != null)
+			{
+				String sql = " From DlContent u where u.userId=?";
+				List<DlContent> contentList = dlContentDao.find(sql, id);
+				user.setContentsSize(contentList.size());
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
