@@ -129,6 +129,26 @@ public class CommonAjax {
 		
 	}
 	/**
+	 * 获取最热dao
+	 * @param daoId 被顶叨ID
+	 * @return 返回错误信息，如果为空则顶叨成功
+	 * @author winston
+	 */
+	public PaginationSupport getHotDao(int pages){
+		if(pages<0)
+		{
+			pages = 1;
+		}
+		int pageSize = Constant.PAGESIZE_MYDAO.getIntValue();
+		int startIndex = pageSize*(pages-1);
+		PaginationSupport paginationSupport = new PaginationSupport(pageSize, startIndex);
+		WebContext request = WebContextFactory.get();
+		HttpSession session = request.getSession(false);
+		paginationSupport = dlDaoService.getHotDao(paginationSupport);
+		return paginationSupport;
+	}
+	
+	/**
 	 * 获取我的叨
 	 * @param daoId 被顶叨ID
 	 * @return 返回错误信息，如果为空则顶叨成功
