@@ -21,6 +21,7 @@
 		<link href="styles/daolifemare.css" rel="stylesheet" type="text/css" />
 		<link href="styles/myhome.css" rel="stylesheet" type="text/css" />
 		<link href="styles/daolife.css" rel="stylesheet" type="text/css" />
+		<link href="styles/chanpin.css" rel="stylesheet" type="text/css" />
 	</head>
 		<body>
 		<!--top头部区域-->
