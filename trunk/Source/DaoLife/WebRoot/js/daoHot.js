@@ -28,15 +28,16 @@ daoHot.prototype = {
 		html.push('</tr>');
 		html.push('<tr><td>' + this.content + '</td></tr>');
 		html.push('<tr><td>&nbsp;</td><td width="149" align="center">&nbsp;</td></tr>');
-		html.push('<tr><td height="14">&nbsp;</td><td width="149" align="center"><a href="javascript://">回复</a>&nbsp;&nbsp;<a href="javascript:doForward(' + this.id + ',\'' + this.picurl + '\',\'' + this.name + '\',\'' + this.content + '\')">转发</a>&nbsp;&nbsp;<a href="javascript://">顶他</a></td></tr>');
+		html.push('<tr><td height="14">&nbsp;</td><td width="149" align="center"><a href="javascript://">回复</a>&nbsp;&nbsp;<a href="javascript:doForward(' + this.id + ')">转发</a>&nbsp;&nbsp;<a href="javascript://">顶他</a></td></tr>');
 		html.push('</table>');
 		return html.join('');
 	}
 }
 function daoHotBox(){
 	this.element = [];
+	this._element = [];
 	this.totalCount = 1;
-	this.pageCount = 5;
+	this.pageCount = 1;
 	this.currentPage = 1;
 }
 daoHotBox.prototype = {
@@ -52,21 +53,32 @@ daoHotBox.prototype = {
 	}
 	,add : function(article){
 		this.element.push(article);
+		this._element[article.id] = article;
+	}
+	,getElementById : function(id){
+		if(this._element[id]){
+			return this._element[id];
+		}
+		return null;
 	}
 	,setpage : function(totalCount,pageCount,currentPage){
 		this.totalCount = totalCount;
 		this.pageCount = pageCount;
 		this.currentPage = currentPage;
 	}
+	,clean : function(){
+		this.element = [];
+		this._element = [];
+	}
 	,getpagebar : function(){
 		var html = [];
-		html.push('<div class="yem1"><ul>');
+		html.push('<div class="yem1"><center><ul>');
 		if(this.pageCount > 1){
 			for(var i = 0, l = this.pageCount; i < l; ++i){
-				html.push('<li><a href="javascript://">' + (i + 1) + '</a></li>');
+				html.push('<li><a href="javascript:doPage(' + (i+1) + ')">' + (i + 1) + '</a></li>');
 			}
 		}
-		html.push('</ul></div>')
+		html.push('</ul></center></div>')
 		return html.join('');
 	}
 	,load : function(){
@@ -79,11 +91,37 @@ daoHotBox.prototype = {
 		$('#daohotbox').hide().fadeIn(1100);
 	}
 }
-$(function($){
-	var dh = new daoHot(1,1,'zhouy','拒绝歧视非主流','images/myhome_30.gif');
-	var dhb = new daoHotBox();
-	for(var i = 1, l = 6; i < l; ++i){
-		dhb.add(new daoHot(i,i,'zhouy','拒绝歧视非主流','images/myhome_30.gif'));
+var myBox = function(){}
+myBox.articleBox = new daoHotBox();
+function doPage(page){
+	myBox.articleBox.currentPage = page;
+	doReload(function(){
+		myBox.articleBox.load();
+	});
+}
+function doReload(fn){
+	myBox.articleBox.clean();
+	var func = function(rs){
+		myBox.articleBox.setpage(rs.totalCount,rs.pageCount,rs.currentPage);
+		for(var i = 0, l = rs.items.length; i < l; ++i){
+			myBox.articleBox.add(new daoHot(rs.items[i].userId,((rs.currentPage - 1) * rs.pageCount) + (i + 1),rs.items[i].dlUsers.userNickName,rs.items[i].contentBody,'images/myhome_30.gif'));
+		}
+		if(fn){
+			fn();
+		}
 	}
-	$('#box').get(0).innerHTML = dhb.getHtml();
+	DaolifeAjax.getHotDao(myBox.articleBox.currentPage,func);
+}
+function doForward(id){
+	var item =myBox.articleBox.getElementById(id);
+	if(item){
+		var rf = new forward(item.id,item.picurl,item.name,item.content);
+		mask(rf.getHtml());
+	}
+}
+$(function($){
+	doReload(function(){
+		myBox.articleBox.load();
+	})
+	$('#box').get(0).innerHTML = myBox.articleBox.getHtml();
 });
