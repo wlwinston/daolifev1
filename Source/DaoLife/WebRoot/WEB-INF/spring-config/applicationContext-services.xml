@@ -8,6 +8,9 @@
     <property name="dlUserrolesDao">
         <ref bean="dlUserrolesDao"/>
     </property>
+    <property name="dlContentDao">
+        <ref bean="dlContentDao"/>
+    </property>
      <property name="dlContentatDao">
         <ref bean="dlContentatDao"/>
     </property>
