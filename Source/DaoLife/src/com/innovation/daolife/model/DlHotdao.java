@@ -20,6 +20,7 @@ public class DlHotdao implements java.io.Serializable {
 	private Date posttime;
 	private Short upSum;
 	private Short userId;
+	private DlUsers dlUsers;
 
 	// Constructors
 
@@ -104,6 +105,14 @@ public class DlHotdao implements java.io.Serializable {
 
 	public void setUserId(Short userId) {
 		this.userId = userId;
+	}
+
+	public DlUsers getDlUsers() {
+		return dlUsers;
+	}
+
+	public void setDlUsers(DlUsers dlUsers) {
+		this.dlUsers = dlUsers;
 	}
 
 }
