@@ -11,16 +11,25 @@
             <generator class="assigned" />
         </id>
         <property name="productName" type="java.lang.String">
-            <column name="product_name" length="20" not-null="true" />
+            <column name="product_name" length="300" not-null="true" />
         </property>
         <property name="productUrl" type="java.lang.String">
-            <column name="product_url" length="20" not-null="true" />
+            <column name="product_url" length="200" not-null="true" />
         </property>
         <property name="productAuthor" type="java.lang.String">
-            <column name="product_author" length="20" not-null="true" />
+            <column name="product_author" length="64" not-null="true" />
         </property>
         <property name="productAuthorurl" type="java.lang.String">
-            <column name="product_authorurl" length="20" not-null="true" />
+            <column name="product_authorurl" length="64" not-null="true" />
+        </property>
+        <property name="productPic" type="java.lang.String">
+            <column name="product_pic" length="200" not-null="true" />
+        </property>
+        <property name="productDaonum" type="java.lang.Short">
+            <column name="product_daonum" not-null="true" />
+        </property>
+        <property name="productPosttime" type="java.util.Date">
+            <column name="product_posttime" length="19" not-null="true" />
         </property>
         <property name="productSum" type="java.lang.Short">
             <column name="product_sum" not-null="true" />

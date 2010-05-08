@@ -24,11 +24,14 @@
         <property name="retwittNum" type="java.lang.Short">
             <column name="retwitt_num" not-null="true" />
         </property>
-        <property name="posttime" type="java.lang.Integer">
+        <property name="posttime" type="java.util.Date">
             <column name="posttime" not-null="true" />
         </property>
         <property name="upSum" type="java.lang.Short">
             <column name="up_sum" not-null="true" />
+        </property>
+        <property name="userId" type="java.lang.Short">
+            <column name="user_id" not-null="true" />
         </property>
     </class>
 </hibernate-mapping>

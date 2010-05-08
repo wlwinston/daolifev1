@@ -1,5 +1,7 @@
 package com.innovation.daolife.model;
 
+import java.util.Date;
+
 /**
  * DlProduct entity.
  * 
@@ -15,6 +17,9 @@ public class DlProduct implements java.io.Serializable {
 	private String productUrl;
 	private String productAuthor;
 	private String productAuthorurl;
+	private String productPic;
+	private Short productDaonum;
+	private Date productPosttime;
 	private Short productSum;
 
 	// Constructors
@@ -25,12 +30,16 @@ public class DlProduct implements java.io.Serializable {
 
 	/** full constructor */
 	public DlProduct(Short productId, String productName, String productUrl,
-			String productAuthor, String productAuthorurl, Short productSum) {
+			String productAuthor, String productAuthorurl, String productPic,
+			Short productDaonum, Date productPosttime, Short productSum) {
 		this.productId = productId;
 		this.productName = productName;
 		this.productUrl = productUrl;
 		this.productAuthor = productAuthor;
 		this.productAuthorurl = productAuthorurl;
+		this.productPic = productPic;
+		this.productDaonum = productDaonum;
+		this.productPosttime = productPosttime;
 		this.productSum = productSum;
 	}
 
@@ -74,6 +83,30 @@ public class DlProduct implements java.io.Serializable {
 
 	public void setProductAuthorurl(String productAuthorurl) {
 		this.productAuthorurl = productAuthorurl;
+	}
+
+	public String getProductPic() {
+		return this.productPic;
+	}
+
+	public void setProductPic(String productPic) {
+		this.productPic = productPic;
+	}
+
+	public Short getProductDaonum() {
+		return this.productDaonum;
+	}
+
+	public void setProductDaonum(Short productDaonum) {
+		this.productDaonum = productDaonum;
+	}
+
+	public Date getProductPosttime() {
+		return this.productPosttime;
+	}
+
+	public void setProductPosttime(Date productPosttime) {
+		this.productPosttime = productPosttime;
 	}
 
 	public Short getProductSum() {
