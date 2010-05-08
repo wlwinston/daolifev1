@@ -110,10 +110,10 @@
 				<div class="daohang">
 					<ul>
 						<li>
-							<a href="index.html">首页 </a>
+							<a href="index.jsp">首页 </a>
 						</li>
 						<li>
-							<a href="myhome.html">我的首页</a>
+							<a href="memberInfoCenter.jsp">我的首页</a>
 						</li>
 						<li>
 							<a href="daolife.html">Dao Life</a>
@@ -141,7 +141,7 @@
 								<td width="12%" height="40" align="center">
 									<a href="daohot1.html"><img src="images/daohot1_03.gif"
 											alt="" width="113" height="22" />
-									</a><a href="look.html"></a>
+									</a>
 								</td>
 								<td width="13%" align="center">
 									<a href="daohot.html"><img src="images/daohot1_05.gif"
