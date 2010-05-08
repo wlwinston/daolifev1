@@ -166,9 +166,7 @@ public class CommonAjax {
 		WebContext request = WebContextFactory.get();
 		
 		HttpSession session = request.getSession(false);
-		if(session != null && session.getAttribute(Constant.SESSION_USER_KEY.getStrValue())!=null)
-		{
-			DlUsers user = userService.getUsersById(userId) ;
+		DlUsers user = userService.getUsersById(userId) ;
 			//Short userId = user.getUserId();
 			if(user!=null)
 			{
@@ -177,10 +175,7 @@ public class CommonAjax {
 			else{
 				return null;
 			}
-		}
-		else{
-			return  null;
-		}
+		
 		return paginationSupport;
 		
 	}
