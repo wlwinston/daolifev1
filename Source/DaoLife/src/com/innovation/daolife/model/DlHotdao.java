@@ -17,6 +17,7 @@ public class DlHotdao implements java.io.Serializable {
 	private Short retwittNum;
 	private Integer posttime;
 	private Short upSum;
+	private DlUsers dlUsers;
 
 	// Constructors
 
@@ -92,6 +93,14 @@ public class DlHotdao implements java.io.Serializable {
 
 	public void setUpSum(Short upSum) {
 		this.upSum = upSum;
+	}
+
+	public DlUsers getDlUsers() {
+		return dlUsers;
+	}
+
+	public void setDlUsers(DlUsers dlUsers) {
+		this.dlUsers = dlUsers;
 	}
 
 }

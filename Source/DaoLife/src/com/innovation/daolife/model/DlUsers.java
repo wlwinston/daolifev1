@@ -48,12 +48,13 @@ public class DlUsers implements java.io.Serializable {
 	private String gtalk;
 	private String authEmail;
 	private Byte userlock;
+	private Set dlHotdaos;
 	private Set dlContents;
 	private Set dlFollowers;
 	private Set dlFancers;
 	private Set contentatmes;
 	private boolean followFlag = false;
-	
+	private int  contentsSize;
 	//用户的角色列表
 	private List<DlUserroles> userRolesList = null ;
 
@@ -423,6 +424,22 @@ public class DlUsers implements java.io.Serializable {
 
 	public void setFollowFlag(boolean followFlag) {
 		this.followFlag = followFlag;
+	}
+
+	public int getContentsSize() {
+		return contentsSize;
+	}
+
+	public void setContentsSize(int contentsSize) {
+		this.contentsSize = contentsSize;
+	}
+
+	public Set getDlHotdaos() {
+		return dlHotdaos;
+	}
+
+	public void setDlHotdaos(Set dlHotdaos) {
+		this.dlHotdaos = dlHotdaos;
 	}
 
 	
