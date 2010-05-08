@@ -41,6 +41,7 @@ import com.innovation.daolife.dao.IFollowrelationDao;
 import com.innovation.daolife.dao.IUserDao;
 import com.innovation.daolife.dao.impl.DlHotdaoDao;
 import com.innovation.daolife.dao.impl.DlProductDao;
+import com.innovation.daolife.dao.impl.UserDao;
 import com.innovation.daolife.model.DlContent;
 import com.innovation.daolife.model.DlContentat;
 import com.innovation.daolife.model.DlFriend;
@@ -465,6 +466,17 @@ public class UserService implements IUserService {
 
 	public void setDlFriendDao(IDlFriendDao dlFriendDao) {
 		this.dlFriendDao = dlFriendDao;
+	}
+	
+	public DlUsers getUserByUrl(String userUrl){
+		DlUsers user = null;
+		String searchSql = " From DlUsers u where u.userUrl=?";
+		List<DlUsers> userList = dlUsersDao.find(searchSql,userUrl);
+		if(userList != null && userList.size()>0)
+		{
+			user = userList.iterator().next();
+		}
+		return user;
 	}
 
 }
