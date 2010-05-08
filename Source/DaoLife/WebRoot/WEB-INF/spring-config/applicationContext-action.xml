@@ -3,6 +3,10 @@
 <beans>
 
     
+    <bean id="ProductAction" class="com.innovation.daolife.action.ProductAction"
+        scope="prototype">
+        <property name="productService" ref="productService" />
+    </bean>
     <bean id="UserAction" class="com.innovation.daolife.action.UserAction"
         scope="prototype">
         <property name="userService" ref="userService" />
