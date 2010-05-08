@@ -53,14 +53,6 @@ public class DaoContentBodyConvertService implements IDaoContentBodyConvertServi
 			{
 				DlContentat dlContentat = new DlContentat();
 				user = userList.get(i);
-				Set ul = user.getDlContents(); 
-                
-                Iterator<DlContent> it = ul.iterator();//lazy=true并且不使用强制加载，则此时才真真及联加载
-                
-                while(it.hasNext()){
-                 System.out.println(it.next().getContentBody());
-                }
-				
 				dlContentat.setStatusUid(user.getUserId());
 				dlContentat.setStatusUname(user.getUserNickName());
 				dlContentat.setStatusType("网页");
@@ -98,13 +90,13 @@ public class DaoContentBodyConvertService implements IDaoContentBodyConvertServi
 			for(int i =0 ;i<userList.size();i++)
 			{
 				DlUsers newUser = userList.get(i);
-				String newUserLinkString =  "< a href ='"+Constant.LINK_USER_PREFIX.getStrValue()+newUser.getUserUrl()+"' target='_blank'>@"+newUser.getUserNickName()+" </a>";
+				String newUserLinkString =  "<a href ='"+Constant.LINK_USER_PREFIX.getStrValue()+newUser.getUserUrl()+"' target='_blank'>@"+newUser.getUserNickName()+" </a>";
 				contextBody = contextBody.replaceAll("@"+newUser.getUserNickName()+" ",newUserLinkString);
 			}
 		}
 		if(topicId != 0 )
 		{
-			String newTopicLinkString =  "< a href ='"+Constant.LINK_TOPIC_PREFIX.getStrValue()+topicId+"' target='_blank'>#"+topicName+" </a>";
+			String newTopicLinkString =  "<a href ='"+Constant.LINK_TOPIC_PREFIX.getStrValue()+topicId+"' target='_blank'>#"+topicName+" </a>";
 			contextBody = contextBody.replaceAll("#"+topicName+" ",newTopicLinkString);
 		}
 		content.setContentBody(contextBody);
