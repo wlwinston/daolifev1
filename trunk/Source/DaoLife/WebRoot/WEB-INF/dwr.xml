@@ -28,6 +28,7 @@
 			<include method="getHotUser" />
 			<include method="getHotDao" />
 			<include method="getMyDao" />
+			<include method="getContentsByTime" />
 			<include method="getPesonalDao" />
 		</create>
 	</allow>
