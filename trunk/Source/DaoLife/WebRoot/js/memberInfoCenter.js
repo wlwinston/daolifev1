@@ -219,7 +219,6 @@ articleBox.prototype = {
 		var html = [];
 		for(var i = 0, l = this.element.length; i < l ; ++i){
 			html.push(this.element[i].getHtml());
-			//$('#articlebox').get(0).innerHTML = this.element[i].getHtml() + $('#articlebox').get(0).innerHTML;
 		}
 		html.push(this.getpagebar());
 		$('#articlebox').get(0).innerHTML = html.join('');
@@ -228,9 +227,7 @@ articleBox.prototype = {
 }
 var myBox = function(){}
 myBox.status = 1;
-//myBox.index = 1;
 myBox.articleBox = new articleBox();
-//myBox.articleBox.add(new article(1,'高建','我在真理部上班','images/myhome_30.gif','100','100','100'));
 function doPage(page){
 	myBox.articleBox.currentPage = page;
 	doReload(function(){
@@ -272,27 +269,25 @@ function doSubmit(){
 	}
 }
 function doStatus(id){
+	myBox.status = id;
 	$('.status').each(function(i){
 		switch(i + 1){
 			case 1:
 				var html = '<img height="23" width="77" alt="" src="images/1154a_03.gif">';
 				if(id == 1){
 					html = '<img src="images/myhome_21.gif" alt="" width="112" height="24" />';
-					myBox.status = id;
 				}
 				break;
 			case 2:
 				var html = '<img src="images/myhome_23.gif" width="48" height="23" />';
 				if(id == 2){
 					html = '<img height="22" width="112" src="images/1154a_06.gif">';
-					myBox.status = id;
 				}
 				break;
 			case 3:
 				var html = '<img height="23" width="65" src="images/myhome_25.gif">';
 				if(id == 3){
 					html = '<img height="23" width="112" src="images/kankan.gif">';
-					myBox.status = id;
 				}
 				break;
 		}
@@ -306,16 +301,5 @@ $(function($){
 	doReload(function(){
 		myBox.articleBox.load();
 	});
-	$('#articleandreply').get(0).innerHTML = myBox.articleBox.getHtml();
-	//var ab1 = new articleBox();
-	//ab1.add(new article(1,'高建','我在真理部上班','images/myhome_30.gif','100','100','100'));
-	//ab1.add(new article(2,'周云','我听这么牛逼的音乐还是没有妞喜欢我','images/myhome_30.gif','100','100','100'));
-	//var rb1 = new replyBox(1);
-	//rb1.add(new reply(1,1,'Tony','没妞怎么了','images/myhome_39.gif'));
-	//rb1.add(new reply(2,1,'Sam','有什么大不了的','images/myhome_39.gif'));
-	//var rb2 = new replyBox(2);
-	//rb2.add(new reply(1,2,'Tony','没妞怎么了','images/myhome_39.gif'));
-	//rb2.add(new reply(2,2,'Sam','有什么大不了的','images/myhome_39.gif'));
-	//$('#articleandreply').get(0).innerHTML = ab1.getHtml();// +  rb.getHtml() //$('.Welcome center').get(0).innerHTML;
-	
+	$('#articleandreply').get(0).innerHTML = myBox.articleBox.getHtml();	
 });
