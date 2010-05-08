@@ -451,6 +451,33 @@ public class CommonAjax {
 		}
 
 	}
+	
+	
+	public boolean checkAuthCode(String authCode)
+	{
+		WebContext request = WebContextFactory.get();
+		HttpSession session = request.getSession(false);
+		if (session != null
+				&& session.getAttribute("rand") != null) {
+			if(authCode!=null && authCode.trim().length()>0)
+			{
+				String authRand = (String) session.getAttribute("rand");
+				if(authCode.equals(authRand))
+				{
+					return true;
+				}
+				else{
+					return false;
+				}
+			}
+			else{
+				return false;
+			}
+			
+		} else {
+			return false;
+		}
+	}
 
 	public IDlDaoService getDlDaoService() {
 		return dlDaoService;
