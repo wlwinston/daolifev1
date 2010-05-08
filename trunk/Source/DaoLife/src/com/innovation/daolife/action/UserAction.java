@@ -96,6 +96,17 @@ public class UserAction extends ActionSupport implements SessionAware, ServletRe
 		updateUser = UserInfo;
 		return "updatePrepareSuccess";
 	}
+	
+	public String myPage() throws Exception{
+		DlUsers UserInfo = (DlUsers) att.get(Constant.SESSION_USER_KEY.getStrValue());
+		//updateUser = UserInfo;
+		if(UserInfo!=null){
+			return "myPageSuccess";
+		}else{
+			return "forbidden";
+		}
+		//return "myPageSuccess";
+	}
 
 	public String resetPassword(){
 		//如果用户ID和验证码为空则返回校验错误页面
