@@ -100,7 +100,7 @@
         <property name="userlock" type="java.lang.Byte">
             <column name="userlock" not-null="true" />
         </property>
-        <set name="dlContents" inverse="true" lazy="false"  cascade="all"  order-by="posttime desc">  
+        <set name="dlContents" inverse="true" lazy="false"  cascade="all" >  
 		     <key>  
 		         <column name="user_id" not-null="true" />  
 		     </key>  
