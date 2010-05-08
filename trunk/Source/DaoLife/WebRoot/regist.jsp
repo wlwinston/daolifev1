@@ -207,6 +207,18 @@
 										</td>
 									</tr>
 									<tr>
+										<th height="21" align="right">
+											<span class="allow">*</span>昵称：
+										</th>
+										<td>
+											<label>
+												<input type="text" name="user.userNickName" id="nick" />
+												<span id="nick_info" class="info"></span>
+											</label>
+										</td>
+									</tr>
+									<!--
+									<tr>
 										<th>&nbsp;</th>
 										<td><hr/></td>
 									</tr>
@@ -222,6 +234,7 @@
 											</label>
 										</td>
 									</tr>
+									-->
 									<tr>
 										<th>&nbsp;</th>
 										<td><hr/></td>
