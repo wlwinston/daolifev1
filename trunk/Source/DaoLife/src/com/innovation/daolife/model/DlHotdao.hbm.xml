@@ -10,6 +10,8 @@
             <column name="hotdao_id" />
             <generator class="assigned" />
         </id>
+        <many-to-one name="dlUsers" column="user_id" class="com.innovation.daolife.model.DlUsers"  insert="false" update="false" not-null="true" >
+  		</many-to-one>
         <property name="daonum" type="java.lang.Short">
             <column name="daonum" not-null="true" />
         </property>
