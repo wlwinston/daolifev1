@@ -243,6 +243,22 @@ public class CommonAjax {
 		return paginationSupport;
 
 	}
+	
+	/**
+	 * Ëæ±ã¿´¿´
+	 * @author fsn
+	 */
+	public PaginationSupport getContentsByTime(int pages) {
+		if (pages < 0) {
+			pages = 1;
+		}
+		int pageSize = Constant.PAGESIZE_MYDAO.getIntValue();
+		int startIndex = pageSize * (pages - 1);
+		PaginationSupport paginationSupport = new PaginationSupport(pageSize,
+				startIndex);
+		paginationSupport = dlDaoService.getContentListByTime(paginationSupport);
+		return paginationSupport;
+	}
 
 	/**
 	 * ¶¥ß¶
