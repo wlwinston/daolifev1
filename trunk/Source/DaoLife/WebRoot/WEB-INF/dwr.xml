@@ -29,6 +29,8 @@
 			<include method="getHotDao" />
 			<include method="getMyDao" />
 			<include method="getContentsByTime" />
+			<include method="getMyFollowFriend" />
+			<include method="getMyFanFriend" />
 			<include method="getPesonalDao" />
 		</create>
 	</allow>
