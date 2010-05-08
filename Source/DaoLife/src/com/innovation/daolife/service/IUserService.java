@@ -13,12 +13,14 @@ import org.apache.commons.mail.EmailException;
 
 import com.innovation.common.util.PaginationSupport;
 import com.innovation.daolife.action.search.UserSearch;
+import com.innovation.daolife.model.DlContent;
 import com.innovation.daolife.model.DlUserroles;
 import com.innovation.daolife.model.DlUsers;
 import com.innovation.daolife.model.User;
 
 public interface IUserService {
 	public User addUser(User user);
+	public List<DlContent> getUserDao(Short id);
 	//public User getUserById(String id);
 	public DlUsers getUsersById(Short id);
 	public DlUsers getUserByUrl(String userUrl);
