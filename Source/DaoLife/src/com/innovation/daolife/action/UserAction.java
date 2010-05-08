@@ -70,6 +70,11 @@ public class UserAction extends ActionSupport implements SessionAware, ServletRe
 		return REGISTERSUCCESS;
 	}
 	
+	public String logout() throws Exception{
+		request.getSession().invalidate();
+		return "clearSuccess";
+	}
+	
 	/**
 	 * @author fsn
 	 * 用户信息更新校验
@@ -101,6 +106,10 @@ public class UserAction extends ActionSupport implements SessionAware, ServletRe
 		DlUsers UserInfo = (DlUsers) att.get(Constant.SESSION_USER_KEY.getStrValue());
 		//updateUser = UserInfo;
 		if(UserInfo!=null){
+			int size = userService.getUserDao(UserInfo.getUserId()).size();
+			UserInfo.setContentsSize(size);
+//			att.put(Constant.SESSION_USER_KEY.getStrValue(), UserInfo);
+//			att.put(Constant.SESSION_USERDAOS_KEY.getStrValue(), size);
 			return "myPageSuccess";
 		}else{
 			return "forbidden";
