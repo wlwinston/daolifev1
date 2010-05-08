@@ -280,19 +280,23 @@ function doStatus(id){
 					html = '<img src="images/myhome_21.gif" alt="" width="112" height="24" />';
 					myBox.status = id;
 				}
-				$(this).get(0).innerHTML = html;
 				break;
 			case 2:
 				var html = '<img src="images/myhome_23.gif" width="48" height="23" />';
 				if(id == 2){
-					html = '<img height="22" width="113" src="images/1154a_06.gif">';
+					html = '<img height="22" width="112" src="images/1154a_06.gif">';
 					myBox.status = id;
 				}
-				$(this).get(0).innerHTML = html;
 				break;
 			case 3:
+				var html = '<img height="23" width="65" src="images/myhome_25.gif">';
+				if(id == 3){
+					html = '<img height="23" width="112" src="images/kankan.gif">';
+					myBox.status = id;
+				}
 				break;
 		}
+		$(this).get(0).innerHTML = html;
 	});
 	doReload(function(){
 		myBox.articleBox.load();
