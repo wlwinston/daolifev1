@@ -9,6 +9,6 @@ import com.innovation.daolife.model.DlHotdao;
  * @author MyEclipse Persistence Tools
  */
 
-public interface IDlHotdaoDao  extends IGenericDao<DlHotdao, Integer>  {
+public interface IDlHotdaoDao  extends IGenericDao<DlHotdao, Short>  {
 
 }
