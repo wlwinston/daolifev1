@@ -57,10 +57,7 @@ public class CommonAjax {
 	public void setUserService(IUserService userService) {
 		this.userService = userService;
 	}
-	/*public User getUserById(String id){
-		User user = userService.getUserById(id);
-		return user;
-	}*/
+
 	/**
 	 * @author fsn
 	 * 检查用户名是否唯一
