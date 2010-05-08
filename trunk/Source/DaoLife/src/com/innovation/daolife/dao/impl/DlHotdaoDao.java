@@ -10,7 +10,7 @@ import com.innovation.daolife.model.DlHotdao;
  * @author MyEclipse Persistence Tools
  */
 
-public class DlHotdaoDao extends GenericDao<DlHotdao, Integer> implements IDlHotdaoDao {
+public class DlHotdaoDao extends GenericDao<DlHotdao, Short> implements IDlHotdaoDao {
 	
 	
 } 
