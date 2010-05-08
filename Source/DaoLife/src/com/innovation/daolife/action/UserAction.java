@@ -106,8 +106,8 @@ public class UserAction extends ActionSupport implements SessionAware, ServletRe
 		DlUsers UserInfo = (DlUsers) att.get(Constant.SESSION_USER_KEY.getStrValue());
 		//updateUser = UserInfo;
 		if(UserInfo!=null){
-			int size = userService.getUserDao(UserInfo.getUserId()).size();
-			UserInfo.setContentsSize(size);
+//			int size = userService.getUserDao(UserInfo.getUserId()).size();
+//			UserInfo.setContentsSize(size);
 //			att.put(Constant.SESSION_USER_KEY.getStrValue(), UserInfo);
 //			att.put(Constant.SESSION_USERDAOS_KEY.getStrValue(), size);
 			return "myPageSuccess";
@@ -295,6 +295,8 @@ public class UserAction extends ActionSupport implements SessionAware, ServletRe
 			//查询该人员所有的角色
 			List<DlUserroles> userRolesList = userService.getRolesListByUserId(dlUser.getUserId());
 			dlUser.setUserRolesList(userRolesList);
+			int size = userService.getUserDao(dlUser.getUserId()).size();
+			dlUser.setContentsSize(size);
 			att.put(Constant.SESSION_USER_KEY.getStrValue(), dlUser);
 			return LOGINSUCCESS;
 		}
