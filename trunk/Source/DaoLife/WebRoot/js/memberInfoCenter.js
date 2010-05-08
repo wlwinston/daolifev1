@@ -260,6 +260,9 @@ function doReload(fn){
 		case 2:
 			DaolifeAjax.getMyDao(myBox.articleBox.currentPage,func);
 			break;
+		case 3:
+			DaolifeAjax.getContentsByTime(myBox.articleBox.currentPage,func);
+			break;
 	}
 }
 function doSubmit(){
