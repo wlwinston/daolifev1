@@ -93,6 +93,9 @@
    <property name="dlContentDao">
         <ref bean="dlContentDao"/>
     </property>
+    <property name="dlHotdaoDao">
+        <ref bean="dlHotdaoDao"/>
+    </property>
 </bean>
 
 </beans>

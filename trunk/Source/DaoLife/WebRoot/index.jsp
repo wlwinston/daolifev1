@@ -112,6 +112,8 @@
 		<div class="banner">
 			<div class="banner1">
 				<div id='mbox_content'>
+				<s:if test="{productList!=null}">
+					<s:iterator  value="productList" status="productList">
 					<div class='mbox'>
 						<table width="1002" height="300" border="0" cellspacing="0" cellpadding="0">
 						  <tr>
@@ -127,7 +129,7 @@
 						                    <td width="71">&nbsp;</td>
 						                    <td width="284" align="left" valign="bottom"><table width="87%" border="0" cellspacing="0" cellpadding="0">
 						                      <tr>
-						                        <td align="left"><span class="STYLE1">Dao 0055</span></td>
+						                        <td align="left"><span class="STYLE1">第<s:property value="productDaonum"/>期</span></td>
 						                      </tr>
 						                    </table></td>
 						                  </tr>
@@ -137,11 +139,9 @@
 						                <td width="13%" rowspan="2" align="center" valign="bottom">&nbsp;</td>
 						                <td width="63%" height="74" align="left" valign="bottom"><table width="68%" border="0" cellspacing="5" cellpadding="0">
 						                  <tr>
-						                    <td height="19" align="left"><span class="STYLE4">我听这么牛逼的音乐</span></td>
+						                    <td height="19" align="left"><span class="STYLE4"><s:property value="productName" escape="false"/></span></td>
 						                  </tr>
-						                  <tr>
-						                    <td align="left"><span class="STYLE4">还是没妞儿喜欢我</span></td>
-						                  </tr>
+						                  
 						                </table></td>
 						                <td width="24%" align="center" valign="bottom">&nbsp;</td>
 						              </tr>
@@ -149,7 +149,7 @@
 						              <tr>
 						                <td height="42" align="left" valign="bottom"><table width="69%" border="0" cellspacing="5" cellpadding="0">
 						                  <tr>
-						                    <td height="19" align="left"><span class="STYLE4">@The5th.Chan 2010.10.1</span></td>
+						                    <td height="19" align="left"><span class="STYLE4">@<s:property value="productAuthor" /> <s:date name="productPosttime" format="yyyy.MM.dd"/></span></td>
 						                  </tr>
 						                </table></td>
 						                <td height="42" align="center" valign="bottom">&nbsp;</td>
@@ -157,8 +157,8 @@
 						              <tr>
 						                <td height="65" colspan="3" align="center" valign="bottom"><table width="45%" border="0" cellspacing="5" cellpadding="0">
 						                  <tr>
-						                    <td height="32"><a href="touxiang.html"><img src="images/1124_03.gif" width="122" height="32" border="0" /></a></td>
-						                    <td><a href="http://www.taobao.com"><img src="images/1124_05.gif" width="122" height="32" border="0" /></a></td>
+						                    <td height="32"><a href="<s:property value="productAuthorurl" />"><img src="images/1124_03.gif" width="122" height="32" border="0" /></a></td>
+						                    <td><a href="<s:property value="productUrl" />"><img src="images/1124_05.gif" width="122" height="32" border="0" /></a></td>
 						                    <td><a href="chanpinmoer.htmml"><img src="images/1124_07.gif" width="123" height="32" border="0" /></a></td>
 						                  </tr>
 						                  
@@ -174,130 +174,8 @@
 						  </tr>
 						</table>
 					</div>
-					<div class='mbox'>
-						<table width="1002" height="300" border="0" cellspacing="0" cellpadding="0">
-						  <tr>
-						    <td height="104" align="left" valign="top" background="images/banner_03.gif"><table width="1002" border="0" cellspacing="0" cellpadding="0">
-						      <tr>
-						        <td width="53" height="299" align="center" valign="middle">&nbsp;</td>
-						        <td width="897" align="left" valign="top"><table width="100%" border="0" cellspacing="0" cellpadding="0">
-						          <tr>
-						            <td width="58%" height="298" align="right" valign="top"><table width="100%" border="0" cellspacing="0" cellpadding="0">
-						              <tr>
-						                <td height="85" colspan="3" align="left" valign="bottom"><table width="355" height="21" border="0" cellpadding="0" cellspacing="0">
-						                  <tr>
-						                    <td width="71">&nbsp;</td>
-						                    <td width="284" align="left" valign="bottom"><table width="87%" border="0" cellspacing="0" cellpadding="0">
-						                      <tr>
-						                        <td align="left"><span class="STYLE1">Dao 0055</span></td>
-						                      </tr>
-						                    </table></td>
-						                  </tr>
-						                </table></td>
-						              </tr>
-						              <tr>
-						                <td width="13%" rowspan="2" align="center" valign="bottom">&nbsp;</td>
-						                <td width="63%" height="74" align="left" valign="bottom"><table width="68%" border="0" cellspacing="5" cellpadding="0">
-						                  <tr>
-						                    <td height="19" align="left"><span class="STYLE4">我听这么牛逼的音乐</span></td>
-						                  </tr>
-						                  <tr>
-						                    <td align="left"><span class="STYLE4">还是没妞儿喜欢我</span></td>
-						                  </tr>
-						                </table></td>
-						                <td width="24%" align="center" valign="bottom">&nbsp;</td>
-						              </tr>
-						              
-						              <tr>
-						                <td height="42" align="left" valign="bottom"><table width="69%" border="0" cellspacing="5" cellpadding="0">
-						                  <tr>
-						                    <td height="19" align="left"><span class="STYLE4">@The5th.Chan 2010.10.1</span></td>
-						                  </tr>
-						                </table></td>
-						                <td height="42" align="center" valign="bottom">&nbsp;</td>
-						              </tr>
-						              <tr>
-						                <td height="65" colspan="3" align="center" valign="bottom"><table width="45%" border="0" cellspacing="5" cellpadding="0">
-						                  <tr>
-						                    <td height="32"><a href="touxiang.html"><img src="images/1124_03.gif" width="122" height="32" border="0" /></a></td>
-						                    <td><a href="http://www.taobao.com"><img src="images/1124_05.gif" width="122" height="32" border="0" /></a></td>
-						                    <td><a href="chanpinmoer.htmml"><img src="images/1124_07.gif" width="123" height="32" border="0" /></a></td>
-						                  </tr>
-						                  
-						                </table></td>
-						              </tr>
-						            </table></td>
-						            <td width="42%" align="center"><img src="images/T11.png" width="223" height="247" /></td>
-						          </tr>
-						        </table></td>
-						        <td width="52">&nbsp;</td>
-						      </tr>
-						    </table></td>
-						  </tr>
-						</table>
-					</div>
-					<div class='mbox'>
-						<table width="1002" height="300" border="0" cellspacing="0" cellpadding="0">
-						  <tr>
-						    <td height="104" align="left" valign="top" background="images/banner_03.gif"><table width="1002" border="0" cellspacing="0" cellpadding="0">
-						      <tr>
-						        <td width="53" height="299" align="center" valign="middle">&nbsp;</td>
-						        <td width="897" align="left" valign="top"><table width="100%" border="0" cellspacing="0" cellpadding="0">
-						          <tr>
-						            <td width="58%" height="298" align="right" valign="top"><table width="100%" border="0" cellspacing="0" cellpadding="0">
-						              <tr>
-						                <td height="85" colspan="3" align="left" valign="bottom"><table width="355" height="21" border="0" cellpadding="0" cellspacing="0">
-						                  <tr>
-						                    <td width="71">&nbsp;</td>
-						                    <td width="284" align="left" valign="bottom"><table width="87%" border="0" cellspacing="0" cellpadding="0">
-						                      <tr>
-						                        <td align="left"><span class="STYLE1">Dao 0055</span></td>
-						                      </tr>
-						                    </table></td>
-						                  </tr>
-						                </table></td>
-						              </tr>
-						              <tr>
-						                <td width="13%" rowspan="2" align="center" valign="bottom">&nbsp;</td>
-						                <td width="63%" height="74" align="left" valign="bottom"><table width="68%" border="0" cellspacing="5" cellpadding="0">
-						                  <tr>
-						                    <td height="19" align="left"><span class="STYLE4">我听这么牛逼的音乐</span></td>
-						                  </tr>
-						                  <tr>
-						                    <td align="left"><span class="STYLE4">还是没妞儿喜欢我</span></td>
-						                  </tr>
-						                </table></td>
-						                <td width="24%" align="center" valign="bottom">&nbsp;</td>
-						              </tr>
-						              
-						              <tr>
-						                <td height="42" align="left" valign="bottom"><table width="69%" border="0" cellspacing="5" cellpadding="0">
-						                  <tr>
-						                    <td height="19" align="left"><span class="STYLE4">@The5th.Chan 2010.10.1</span></td>
-						                  </tr>
-						                </table></td>
-						                <td height="42" align="center" valign="bottom">&nbsp;</td>
-						              </tr>
-						              <tr>
-						                <td height="65" colspan="3" align="center" valign="bottom"><table width="45%" border="0" cellspacing="5" cellpadding="0">
-						                  <tr>
-						                    <td height="32"><a href="touxiang.html"><img src="images/1124_03.gif" width="122" height="32" border="0" /></a></td>
-						                    <td><a href="http://www.taobao.com"><img src="images/1124_05.gif" width="122" height="32" border="0" /></a></td>
-						                    <td><a href="chanpinmoer.htmml"><img src="images/1124_07.gif" width="123" height="32" border="0" /></a></td>
-						                  </tr>
-						                  
-						                </table></td>
-						              </tr>
-						            </table></td>
-						            <td width="42%" align="center"><img src="images/T11.png" width="223" height="247" /></td>
-						          </tr>
-						        </table></td>
-						        <td width="52">&nbsp;</td>
-						      </tr>
-						    </table></td>
-						  </tr>
-						</table>
-					</div>
+					</s:iterator>
+				</s:if>
 				</div>
 				<div id='mbox_button_left' class='mbox_button'>
 					<div>
@@ -490,80 +368,38 @@
 								</form>
 							</div>
 							<div class="Box">
-								最热叨友
+								最热叨友<span><a href="javascript://">查看全部</a></span>
 							</div>
-							<div class="touxiang1">
-								<a href="touxiang.html"><img src="images/touxiang.gif"
-										width="76" height="77" />
-								</a>
-								<a href="touxiang.html"><img src="images/touxiang.gif"
-										width="76" height="77" />
-								</a>
-								<a href="touxiang.html"><img src="images/touxiang.gif"
-										width="76" height="77" />
-								</a>
-								<a href="touxiang.html"><img src="images/touxiang.gif"
-										width="76" height="77" />
-								</a>
-								<a href="touxiang.html"><img src="images/touxiang.gif"
-										width="76" height="77" />
-								</a>
-								<a href="touxiang.html"><img src="images/touxiang.gif"
-										width="76" height="77" />
-								</a>
-								<a href="touxiang.html"><img src="images/touxiang.gif"
-										width="76" height="77" />
-								</a>
-								<a href="touxiang.html"><img src="images/touxiang.gif"
-										width="76" height="77" />
-								</a>
-								<a href="touxiang.html"><img src="images/touxiang.gif"
-										width="76" height="77" />
-								</a>
-							</div>
-							<div class="moer">
-								<table width="77%" height="19" border="0" cellpadding="0"
-									cellspacing="0">
-									<tr>
-										<td width="27%" align="right">
-											<img src="images/moer.gif" width="14" height="13" />
-										</td>
-										<td width="73%" align="right">
-											<a href="daohot.html">查看全部</a>
-										</td>
-									</tr>
-								</table>
+							<div class="daolist">
+								<s:if test="{hotUserList!=null}">
+								<s:iterator  value="hotUserList" status="hotUserList">
+								<div>
+									<a href="touxiang.html">
+										<img src="images/touxiang.gif" width="76" height="77" />
+										<p><s:property value="userNickName"/><p>
+									</a>
+								</div>
+								
+								</s:iterator>
+								</s:if>
 							</div>
 							<div class="Box">
-								最热叨句
+								最热叨句<span><a href="javascript://">查看全部</a></span>
 							</div>
+							<s:if test="{hotDaoList!=null}">
+							<s:iterator  value="hotDaoList" status="hotDaoList">
 							<div class="daoju1">
-								<a href="touxiang.html">@高建</a>
+								<a href="touxiang.html">@<s:property value="userName"/></a>
 							</div>
 							<div class="daoju2">
-								我在真理部上班
+								<s:property value="contentBody" escape="false"/>
 							</div>
 							<div class="daoju3">
-								<a href="myhome.html">64514人支持</a>
+								<a href="myhome.html"><s:property value="upSum"/>人支持</a>
 							</div>
-							<div class="daoju1">
-								<a href="touxiang.html">@高建</a>
-							</div>
-							<div class="daoju2">
-								我在真理部上班
-							</div>
-							<div class="daoju3">
-								<a href="myhome.html">64514人支持</a>
-							</div>
-							<div class="daoju1">
-								<a href="touxiang.html">@高建</a>
-							</div>
-							<div class="daoju2">
-								我在真理部上班
-							</div>
-							<div class="daoju3">
-								<a href="myhome.html">64514人支持</a>
-							</div>
+							
+							</s:iterator>
+							</s:if>
 						</div>
 					</td>
 				</tr>
