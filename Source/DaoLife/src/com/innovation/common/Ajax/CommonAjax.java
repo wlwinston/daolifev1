@@ -142,9 +142,38 @@ public class CommonAjax {
 		int pageSize = Constant.PAGESIZE_MYDAO.getIntValue();
 		int startIndex = pageSize*(pages-1);
 		PaginationSupport paginationSupport = new PaginationSupport(pageSize, startIndex);
+//		WebContext request = WebContextFactory.get();
+//		HttpSession session = request.getSession(false);
+		paginationSupport = dlDaoService.getHotDao(paginationSupport);
+		return paginationSupport;
+	}
+	
+	/**
+	 * 获取最热dao
+	 * @param daoId 被顶叨ID
+	 * @return 返回错误信息，如果为空则顶叨成功
+	 * @author winston
+	 */
+	public PaginationSupport getHotUser(int pages){
+		if(pages<0)
+		{
+			pages = 1;
+		}
+		int pageSize = Constant.PAGESIZE_MYDAO.getIntValue();
+		int startIndex = pageSize*(pages-1);
+		PaginationSupport paginationSupport = new PaginationSupport(pageSize, startIndex);
 		WebContext request = WebContextFactory.get();
 		HttpSession session = request.getSession(false);
-		paginationSupport = dlDaoService.getHotDao(paginationSupport);
+		if(session != null && session.getAttribute(Constant.SESSION_USER_KEY.getStrValue())!=null)
+		{
+			DlUsers user =  (DlUsers) session.getAttribute(Constant.SESSION_USER_KEY.getStrValue());
+//			Short userId = user.getUserId();
+			paginationSupport = userService.getHotUser(paginationSupport, user);
+		}
+		else{
+//			DlUsers user = new DlUsers();
+			paginationSupport = userService.getHotUser(paginationSupport, null);
+		}
 		return paginationSupport;
 	}
 	
