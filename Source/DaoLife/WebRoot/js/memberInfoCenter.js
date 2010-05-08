@@ -135,7 +135,7 @@ article.prototype = {
 		this.html.push('<table width="250" border="0" cellspacing="2" cellpadding="2">');
 		this.html.push('<tr>');
 		this.html.push('<td width="78">回复<a href="javascript:doArticle(' + this.id + ')">（' + this.replyAmount + '）</a></td>');
-		this.html.push('<td width="75">转发<a href="javascript:doForward(' + this.id + ',\'' + this.picurl + '\',\'' + this.name + '\',\'' + this.content + '\')">（' + this.forwardAmount + '）</a></td>');
+		this.html.push('<td width="75">转发<a href="javascript:doForward(' + this.id + ')">（' + this.forwardAmount + '）</a></td>');
 		this.html.push('<td width="77">顶他<a href="#">（' + this.dingAmount + '）</a></td>');
 		this.html.push('</tr>');
 		this.html.push('</table>');
@@ -182,9 +182,17 @@ articleBox.prototype = {
 	}
 	,add : function(article){
 		this.element.push(article);
+		this._element[article.id] = article;
+	}
+	,getElementById : function(id){
+		if(this._element[id]){
+			return this._element[id];
+		}
+		return null;
 	}
 	,clean : function(){
 		this.element = [];
+		this._element = [];
 	}
 	,reload : function(){
 		$('#articlebox').empty();
@@ -200,13 +208,13 @@ articleBox.prototype = {
 	}
 	,getpagebar : function(){
 		var html = [];
-		html.push('<div class="yem1"><ul>');
+		html.push('<div class="yem1"><center><ul>');
 		if(this.pageCount > 1){
 			for(var i = 0, l = this.pageCount; i < l; ++i){
 				html.push('<li><a href="javascript:doPage(' + (i+1) + ')">' + (i + 1) + '</a></li>');
 			}
 		}
-		html.push('</ul></div>')
+		html.push('</ul></center></div>')
 		return html.join('');
 	}
 	,initpage : function(){
@@ -296,6 +304,13 @@ function doStatus(id){
 	doReload(function(){
 		myBox.articleBox.load();
 	});
+}
+function doForward(id){
+	var item =myBox.articleBox.getElementById(id);
+	if(item){
+		var rf = new forward(item.id,item.picurl,item.name,item.content);
+		mask(rf.getHtml());
+	}
 }
 $(function($){
 	doReload(function(){

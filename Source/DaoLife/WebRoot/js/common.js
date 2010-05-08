@@ -104,10 +104,6 @@ forward.prototype = {
 		return this.html.join('');
 	}
 }
-function doForward(id,picurl,name,content){
-	var rf = new forward(id,picurl,name,content);
-	mask(rf.getHtml());
-}
 function mask(html){
 	$('body').append('<div id="mask-overlay"></div><div id="mask-forward">' + html + '</div>').css({
 		overflow : 'hidden'
