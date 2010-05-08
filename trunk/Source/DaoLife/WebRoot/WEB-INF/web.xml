@@ -33,11 +33,21 @@
   	<servlet-class>org.directwebremoting.servlet.DwrServlet</servlet-class>
   	<load-on-startup>5</load-on-startup>
   </servlet>
-  
+  <!-- auth Image -->
+  <servlet>
+        <servlet-name>RandomImageServlet</servlet-name>
+        <servlet-class>com.innovation.servlet.AuthImg</servlet-class>
+        <load-on-startup>6</load-on-startup>
+  </servlet>
   <servlet-mapping>
   	<servlet-name>DWR</servlet-name>
   	<url-pattern>/dwr/*</url-pattern>
   </servlet-mapping>
+  <servlet-mapping>
+        <servlet-name>RandomImageServlet</servlet-name>
+        <url-pattern>*.auth</url-pattern>
+  </servlet-mapping>
+  
   <!-- Struts 2.0 -->
     <filter>
         <filter-name>struts2</filter-name>
