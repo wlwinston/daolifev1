@@ -27,6 +27,7 @@ create table daolife.dl_hotdao
    retwitt_num          smallint(10) not null default 0,
    posttime             int(10) not null,
    up_sum               smallint(10) not null,
+   user_id              smallint(10) not null,
    primary key (hotdao_id)
 );
 
