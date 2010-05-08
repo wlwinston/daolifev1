@@ -114,6 +114,8 @@ public class UserAction extends ActionSupport implements SessionAware, ServletRe
 			return RESETCHECKFAILUE;
 		}
 	}
+	
+	
 
 	public String resetPasswordSave() throws NoSuchAlgorithmException, UnsupportedEncodingException, EmailException{
 		String forward = SETNEWPASSWORDFAILUE;
@@ -254,6 +256,10 @@ public class UserAction extends ActionSupport implements SessionAware, ServletRe
 	 * */
 	public String login() throws Exception{
 		DlUsers dlUser = userService.getUserByNameOrEmail(userName);
+//		PaginationSupport rePaginationSupport = new PaginationSupport();
+//		rePaginationSupport.setPageSize(10);
+//		rePaginationSupport.setStartIndex(1);
+//		userService.getFollowerContentListByUser(rePaginationSupport,dlUser.getUserId());
 		if(dlUser==null){
 			request.setAttribute("ErrorInfo", "用户不存在，请重新输入!");
 			return LOGINFAILURE;
