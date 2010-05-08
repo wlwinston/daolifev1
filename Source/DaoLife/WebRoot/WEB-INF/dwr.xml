@@ -32,6 +32,7 @@
 			<include method="getMyFollowFriend" />
 			<include method="getMyFanFriend" />
 			<include method="getPesonalDao" />
+			<include method="checkAuthCode" />
 		</create>
 	</allow>
 </dwr>
