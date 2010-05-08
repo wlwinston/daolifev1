@@ -209,6 +209,11 @@ articleBox.prototype = {
 		html.push('</ul></div>')
 		return html.join('');
 	}
+	,initpage : function(){
+		this.totalCount = 1;
+		this.pageCount = 1;
+		this.currentPage = 1;
+	}
 	,load : function(){
 		$('#articlebox').empty();
 		var html = [];
@@ -222,6 +227,7 @@ articleBox.prototype = {
 	}
 }
 var myBox = function(){}
+myBox.status = 1;
 //myBox.index = 1;
 myBox.articleBox = new articleBox();
 //myBox.articleBox.add(new article(1,'高建','我在真理部上班','images/myhome_30.gif','100','100','100'));
@@ -233,7 +239,7 @@ function doPage(page){
 }
 function doReload(fn){
 	myBox.articleBox.clean();
-	DaolifeAjax.getAllDao(myBox.articleBox.currentPage,function(rs){
+	var func = function(rs){
 		myBox.articleBox.setpage(rs.totalCount,rs.pageCount,rs.currentPage);
 		for(var i = 0, l = rs.items.length; i < l; ++i){
 			myBox.articleBox.add(new article(rs.items[i].contentId,rs.items[i].dlUsers.userNickName,rs.items[i].contentBody,'images/myhome_30.gif',0,rs.items[i].retwittNum,rs.items[i].upNum));
@@ -241,7 +247,15 @@ function doReload(fn){
 		if(fn){
 			fn();
 		}
-	});
+	}
+	switch(myBox.status){
+		case 1:
+			DaolifeAjax.getAllDao(myBox.articleBox.currentPage,func);
+			break;
+		case 2:
+			DaolifeAjax.getMyDao(myBox.articleBox.currentPage,func);
+			break;
+	}
 }
 function doSubmit(){
 	if($('#articlecontent').val() != null){
@@ -256,6 +270,33 @@ function doSubmit(){
 			}
 		});
 	}
+}
+function doStatus(id){
+	$('.status').each(function(i){
+		switch(i + 1){
+			case 1:
+				var html = '<img height="23" width="77" alt="" src="images/1154a_03.gif">';
+				if(id == 1){
+					html = '<img src="images/myhome_21.gif" alt="" width="112" height="24" />';
+					myBox.status = id;
+				}
+				$(this).get(0).innerHTML = html;
+				break;
+			case 2:
+				var html = '<img src="images/myhome_23.gif" width="48" height="23" />';
+				if(id == 2){
+					html = '<img height="22" width="113" src="images/1154a_06.gif">';
+					myBox.status = id;
+				}
+				$(this).get(0).innerHTML = html;
+				break;
+			case 3:
+				break;
+		}
+	});
+	doReload(function(){
+		myBox.articleBox.load();
+	});
 }
 $(function($){
 	doReload(function(){
