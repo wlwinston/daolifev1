@@ -148,14 +148,39 @@ public class UserService implements IUserService {
 	 * @author fengsn 
 	 * 查询最热dao友
 	 */
-	public PaginationSupport getHotUser(PaginationSupport paginationSupport) {
+	public PaginationSupport getHotUser(PaginationSupport paginationSupport,DlUsers user) {
 		//Short daoNum = this.getdaoNum();
-		String querysql = " Select c From DlUsers c order by recommendInd desc,at_sum_num desc";
-		String countsql = " Select count(c.userId) From DlUsers c order by recommendInd desc,at_sum_num desc";
-		paginationSupport = dlUsersDao.findPageByQuery(querysql, countsql,
-				paginationSupport.getPageSize(), paginationSupport
-						.getStartIndex());
+			String querysql = " Select c From DlUsers c order by recommendInd desc,at_sum_num desc";
+			String countsql = " Select count(c.userId) From DlUsers c order by recommendInd desc,at_sum_num desc";
+			paginationSupport = dlUsersDao.findPageByQuery(querysql, countsql,
+					paginationSupport.getPageSize(), paginationSupport
+							.getStartIndex());
+		if(user!=null){
+			List<DlUsers> itemList = paginationSupport.getItems();
+			Short fanId = user.getUserId();
+			for(Iterator<DlUsers> it = itemList.iterator();it.hasNext();)
+			{
+				DlUsers dlUsers = it.next();
+				Short followId = dlUsers.getUserId();
+				if(checkRela(followId,fanId)){
+					dlUsers.setFollowFlag(true);
+				}
+				//dlUsers.setFollowFlag(true);
+			}
+			paginationSupport.setItems(itemList);
+		}
 		return paginationSupport;
+	}
+	
+	private boolean checkRela(Short followId,Short fanId){
+		boolean result = false;
+		String sql = " From DlFriend u where u.fidFollow=? and u.fidFans=?";
+		List<DlFriend> friendList = dlFriendDao.find(sql,
+				new Short[] { followId, fanId });
+		if(friendList.size()>0){
+			result = true;
+		}
+		return result;
 	}
 	
 	/**
@@ -310,6 +335,7 @@ public class UserService implements IUserService {
 		user.setAtWeekNum((short) 0);
 		user.setFansNum((short) 0);
 		user.setFollowNum((short) 0);
+		user.setUserInfo("这个人很懒,什么都没留下！");
 		user.setUserHead("default");
 		user.setRecommendInd(Constant.USER_RECOMMENDIND_NO.getStrValue());
 		user.setIsclose(new Byte(Constant.USER_ISCLOSED_NO.getStrValue()));
