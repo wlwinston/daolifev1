@@ -176,7 +176,31 @@ public class DlDaoService implements IDlDaoService {
 						.getStartIndex());
 		return paginationSupport;
 	}
+	
+	/**
+	 * @author fengsn
+	 * 随便看看 返回dlcontent
+	 * 按照时间排序 返回
+	 * */
+	public PaginationSupport getContentListByTime(
+			PaginationSupport paginationSupport){
+		String querysql = " Select c From DlContent c order by posttime desc";
+		String countsql = " Select count(c.contentId) From DlContent c order by posttime desc";
+		paginationSupport = dlContentatDao.findPageByQuery(querysql, countsql,
+				paginationSupport.getPageSize(), paginationSupport
+						.getStartIndex());
+		List<DlContent> itemList = paginationSupport.getItems();
+		for(Iterator<DlContent> it = itemList.iterator();it.hasNext();)
+		{
+			DlContent dlContent = it.next();
+			DlUsers user = new DlUsers();
+			BeanUtils.copyProperties(dlContent.getDlUsers(), user);
+			dlContent.setDlUsers(user);
+		}
+		paginationSupport.setItems(itemList);
 
+		return paginationSupport;
+	}
 	/**
 	 * @author fengsn 
 	 * return 获得最热dao
