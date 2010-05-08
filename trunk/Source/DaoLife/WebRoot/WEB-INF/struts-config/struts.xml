@@ -49,6 +49,9 @@
 			<result name="loginSuccess" type="redirect">MyPage.action</result>	
 			<result name="input">/login.jsp</result>
 		</action>
+		<action name="Logout" class="UserAction" method="logout">	
+			<result name="clearSuccess" type="redirect">/index.jsp</result>	
+		</action>
 		<action name="Update" class="UserAction" method="update">
 			<result name="loginSuccess">/success.jsp</result>	
 			<result name="input">/login.jsp</result>
