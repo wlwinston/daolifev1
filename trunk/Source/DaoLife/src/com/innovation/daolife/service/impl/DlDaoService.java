@@ -10,6 +10,7 @@ import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.transaction.HeuristicMixedException;
@@ -22,6 +23,7 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.criterion.DetachedCriteria;
 import org.omg.CORBA.UserException;
+import org.springframework.beans.BeanUtils;
 import org.springframework.dao.DataAccessException;
 
 import com.innovation.common.util.Constant;
@@ -176,7 +178,8 @@ public class DlDaoService implements IDlDaoService {
 	}
 
 	/**
-	 * @author fengsn 查询@用户的dao内容
+	 * @author fengsn 
+	 * return 获得最热dao
 	 */
 	public PaginationSupport getHotDao(PaginationSupport paginationSupport) {
 		Short daoNum = this.getdaoNum();
@@ -187,6 +190,17 @@ public class DlDaoService implements IDlDaoService {
 		paginationSupport = dlHotdaoDao.findPageByQuery(querysql, countsql,
 				paginationSupport.getPageSize(), paginationSupport
 						.getStartIndex());
+		
+		List<DlHotdao> itemList = paginationSupport.getItems();
+		for(Iterator<DlHotdao> it = itemList.iterator();it.hasNext();)
+		{
+			DlHotdao dlHotdao = it.next();
+			DlUsers user = new DlUsers();
+			BeanUtils.copyProperties(dlHotdao.getDlUsers(), user);
+			dlHotdao.setDlUsers(user);
+		}
+		paginationSupport.setItems(itemList);
+		
 		return paginationSupport;
 	}
 
