@@ -122,7 +122,7 @@
 		</action>
 		<action name="PersonPage" class="UserAction" method="personalPage">
 			<result name="noPerson">/404.jsp</result>	
-			<result name="personPage">personalPage.jsp</result>
+			<result name="personPage">pesonalDao.jsp</result>
 			<interceptor-ref name="auth"> 
 		        <param name="allowedRoles">daolife_user</param> 
 			</interceptor-ref> 
