@@ -256,7 +256,12 @@ public class DlDaoService implements IDlDaoService {
 		DlContent content = dlContentDao.get(uplog.getHotdaoId());
 		content.setUpNum((short) (content.getUpNum() + 1));
 		dlContentDao.saveOrUpdate(content);
-
+		DlHotdao hotdao = dlHotdaoDao.get(uplog.getHotdaoId());
+		if(hotdao != null && hotdao.getHotdaoId() != null)
+		{
+			hotdao.setUpSum(content.getUpNum());
+			dlHotdaoDao.saveOrUpdate(hotdao);
+		}
 	}
 	
 	/**
