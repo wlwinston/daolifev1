@@ -14,7 +14,7 @@
 		<script type="text/javascript" src="dwr/interface/DaolifeAjax.js"></script>
 		<script type="text/javascript" src="js/jquery-1.3.2.min.js"></script>
 		<script type="text/javascript" src="js/common.js"></script>
-		<script type="text/javascript" src="js/memberInfoCenter.js"></script>
+		<script type="text/javascript" src="js/pesonalDao.js"></script>
 		<script type="text/javascript" src="js/correctPNG.js"></script>
 		<link href="styles/body.css" rel="stylesheet" type="text/css" />
 		<link href="styles/index.css" rel="stylesheet" type="text/css" />
@@ -24,6 +24,7 @@
 		<link href="styles/chanpin.css" rel="stylesheet" type="text/css" />
 	</head>
 		<body>
+		<input type="hidden" value="6" id="getUserId" />
 		<!--top头部区域-->
 		<div class="top1">
 			<div class="top2">
@@ -135,10 +136,6 @@
 			</div>
 
 		</div>
-		<!--banner区域-->
-		<!--中间小条-->
-
-		<!--内容区域-->
 		<div class="zhuti">
 			<table class="zhuti3" width="650" height="1022" border="0" cellpadding="0"
 				cellspacing="0" class="zhuti1">
