@@ -8,7 +8,9 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
 		<meta name="叨" content="叨微博客" />
-		<title>${sessionScope.user.userName}的首页</title>
+		<title><s:property value="#session['daoLifeUser'].userName"/>
+		的首页
+		</title>
 		<script type="text/javascript" src="dwr/engine.js"> </script>
     	<script type="text/javascript" src="dwr/util.js"> </script> 
 		<script type="text/javascript" src="dwr/interface/DaolifeAjax.js"></script>
@@ -23,12 +25,13 @@
 		<link href="styles/daolife.css" rel="stylesheet" type="text/css" />
 		<link href="styles/chanpin.css" rel="stylesheet" type="text/css" />
 	</head>
+
 		<body>
 		<!--top头部区域-->
 		<div class="top1">
 			<div class="top2">
 				<div class="logo">
-					<a href="index.html"><img src="images/top_07.gif" width="62"
+					<a href="index.jsp"><img src="images/top_07.gif" width="62"
 							height="63" />
 					</a>
 				</div>
@@ -241,13 +244,13 @@
 								cellpadding="0" cellspacing="0" class="xia1">
 								<tr>
 									<td width="120" class="Box1">
-										the5gg.com
+									<s:property value="#session['daoLifeUser'].userNickName"/>
 									</td>
 									<td width="127" align="left" valign="middle">
 										&nbsp;
 									</td>
 									<td align="left" valign="middle">
-										<a href="#">退出登陆</a>
+										<a href="Logout.action" >退出登陆</a>
 									</td>
 								</tr>
 							</table>
@@ -265,15 +268,15 @@
 											<tr>
 												<td width="76" height="33" align="center"
 													class="STYLE4 STYLE7 STYLE5 STYLE6">
-													<a href="woguanzhude.html">6</a>
+													<a href="woguanzhude.html"><s:property value="#session['daoLifeUser'].followNum"/></a>
 												</td>
 												<td width="76" align="center"
 													class="STYLE4 STYLE7 STYLE5 STYLE6">
-													<a href="guanzhuwode.html">4</a>
+													<a href="guanzhuwode.html"><s:property value="#session['daoLifeUser'].fansNum"/></a>
 												</td>
 												<td width="78" align="center"
 													class="STYLE4 STYLE7 STYLE5 STYLE6">
-													<a href="wozaidao.html">5</a>
+													<a href="wozaidao.html"><s:property value="#session['daoLifeUser'].contentsSize"/></a>
 												</td>
 											</tr>
 											<tr>
