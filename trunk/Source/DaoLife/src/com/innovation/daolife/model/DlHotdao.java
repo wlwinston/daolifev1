@@ -1,5 +1,7 @@
 package com.innovation.daolife.model;
 
+import java.util.Date;
+
 /**
  * DlHotdao entity.
  * 
@@ -15,9 +17,9 @@ public class DlHotdao implements java.io.Serializable {
 	private String userName;
 	private String contentBody;
 	private Short retwittNum;
-	private Integer posttime;
+	private Date posttime;
 	private Short upSum;
-	private DlUsers dlUsers;
+	private Short userId;
 
 	// Constructors
 
@@ -27,7 +29,7 @@ public class DlHotdao implements java.io.Serializable {
 
 	/** full constructor */
 	public DlHotdao(Short hotdaoId, Short daonum, String userName,
-			String contentBody, Short retwittNum, Integer posttime, Short upSum) {
+			String contentBody, Short retwittNum, Date posttime, Short upSum,Short userId) {
 		this.hotdaoId = hotdaoId;
 		this.daonum = daonum;
 		this.userName = userName;
@@ -35,6 +37,7 @@ public class DlHotdao implements java.io.Serializable {
 		this.retwittNum = retwittNum;
 		this.posttime = posttime;
 		this.upSum = upSum;
+		this.userId = userId;
 	}
 
 	// Property accessors
@@ -79,11 +82,11 @@ public class DlHotdao implements java.io.Serializable {
 		this.retwittNum = retwittNum;
 	}
 
-	public Integer getPosttime() {
+	public Date getPosttime() {
 		return this.posttime;
 	}
 
-	public void setPosttime(Integer posttime) {
+	public void setPosttime(Date posttime) {
 		this.posttime = posttime;
 	}
 
@@ -95,12 +98,12 @@ public class DlHotdao implements java.io.Serializable {
 		this.upSum = upSum;
 	}
 
-	public DlUsers getDlUsers() {
-		return dlUsers;
+	public Short getUserId() {
+		return userId;
 	}
 
-	public void setDlUsers(DlUsers dlUsers) {
-		this.dlUsers = dlUsers;
+	public void setUserId(Short userId) {
+		this.userId = userId;
 	}
 
 }
