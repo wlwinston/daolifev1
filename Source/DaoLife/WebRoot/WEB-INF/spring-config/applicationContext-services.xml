@@ -17,6 +17,9 @@
     <property name="dlProductDao">
         <ref bean="dlProductDao"/>
     </property>
+    <property name="dlFriendDao">
+        <ref bean="dlFriendDao"/>
+    </property>
 </bean>
 
 <bean id="followrelationService" class="com.innovation.daolife.service.impl.FollowrelationService" >
