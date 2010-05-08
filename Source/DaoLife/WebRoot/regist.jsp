@@ -18,29 +18,6 @@
 		<link href="styles/daolife.css" rel="stylesheet" type="text/css" />
 	</head>
 	<body>
-	<!-- 
-		<center>
-		<h3>请输入注册信息</h3>
-		<s:form action="/Regist.action" method="post" validate="true">
-			<s:textfield id="username" name="user.userName" label="用户名" /><br />
-			<s:textfield id="usernickname" name="user.userNickName" label="昵称" /><br />
-			<s:password id="password" name="user.password" label="密码"/><br />
-			<s:textfield id="email" name="user.mailadres" label="电邮"/><br />
-			<s:textfield id="email" name="user.userUrl" label="个性地址"/><br />
-			<s:textfield id="email" name="user.birthday" label="生日"/><br />
-			<s:textfield id="email" name="user.userGender" label="性别"/><br />
-			<s:textfield id="email" name="user.userInfo" label="个人介绍"/><br />
-			<s:textfield id="email" name="user.musicaddr" label="音乐地址"/><br />
-			<s:textfield id="email" name="user.userAddress" label="地址"/><br />
-			<s:textfield id="email" name="user.userPostcode" label="邮编"/><br />
-			<s:textfield id="email" name="user.musicaddr" label="音乐地址"/><br />
-			<s:textfield id="email" name="user.musicaddr" label="音乐地址"/><br />
-			<s:textfield id="email" name="user.musicaddr" label="音乐地址"/><br />
-			
-			<s:submit value="注册"/>
-		</s:form>
-		</center>
-	 -->
 		<div class="top1">
 			<div class="top2">
 				<div class="logo">
@@ -132,10 +109,10 @@
 				<div class="daohang">
 					<ul>
 						<li>
-							<a href="index.html">首页 </a>
+							<a href="index.jsp">首页 </a>
 						</li>
 						<li style="background-image: url(images/daohang%20%20hover.gif)">
-							<a href="myhome.html">我的首页</a>
+							<a href="memberInfoCenter.jsp">我的首页</a>
 						</li>
 						<li>
 							<a href="daolife.html">Dao Life</a>
