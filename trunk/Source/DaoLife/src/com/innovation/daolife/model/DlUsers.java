@@ -52,6 +52,8 @@ public class DlUsers implements java.io.Serializable {
 	private Set dlFollowers;
 	private Set dlFancers;
 	private Set contentatmes;
+	private boolean followFlag = false;
+	
 	//用户的角色列表
 	private List<DlUserroles> userRolesList = null ;
 
@@ -413,6 +415,14 @@ public class DlUsers implements java.io.Serializable {
 
 	public void setContentatmes(Set contentatmes) {
 		this.contentatmes = contentatmes;
+	}
+
+	public boolean isFollowFlag() {
+		return followFlag;
+	}
+
+	public void setFollowFlag(boolean followFlag) {
+		this.followFlag = followFlag;
 	}
 
 	
