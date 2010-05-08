@@ -373,6 +373,62 @@ public class CommonAjax {
 		// String followId = request
 
 	}
+	
+	/**
+	 * @author fengsn
+	 * 我关注的dao友
+	 * */
+	public PaginationSupport getMyFollowFriend(int pages){
+		if (pages < 0) {
+			pages = 1;
+		}
+		int pageSize = Constant.PAGESIZE_MYDAO.getIntValue();
+		int startIndex = pageSize * (pages - 1);
+		PaginationSupport paginationSupport = new PaginationSupport(pageSize,
+				startIndex);
+		WebContext request = WebContextFactory.get();
+		HttpSession session = request.getSession(false);
+		if (session != null
+				&& session
+						.getAttribute(Constant.SESSION_USER_KEY.getStrValue()) != null) {
+			DlUsers user = (DlUsers) session
+					.getAttribute(Constant.SESSION_USER_KEY.getStrValue());
+			Short userId = user.getUserId();
+			paginationSupport = userService.getFollowListByUser(
+					paginationSupport, userId);
+		} else {
+			return null;
+		}
+		return paginationSupport;
+	}
+	
+	/**
+	 * @author fengsn
+	 * 关注我的dao友
+	 * */
+	public PaginationSupport getMyFanFriend(int pages) {
+		if (pages < 0) {
+			pages = 1;
+		}
+		int pageSize = Constant.PAGESIZE_MYDAO.getIntValue();
+		int startIndex = pageSize * (pages - 1);
+		PaginationSupport paginationSupport = new PaginationSupport(pageSize,
+				startIndex);
+		WebContext request = WebContextFactory.get();
+		HttpSession session = request.getSession(false);
+		if (session != null
+				&& session
+						.getAttribute(Constant.SESSION_USER_KEY.getStrValue()) != null) {
+			DlUsers user = (DlUsers) session
+					.getAttribute(Constant.SESSION_USER_KEY.getStrValue());
+			Short userId = user.getUserId();
+			paginationSupport = userService.getFanListByUser(
+					paginationSupport, userId);
+		} else {
+			return null;
+		}
+		return paginationSupport;
+	}
 
 	public boolean unFollow(Short followId) {
 		DlUsers nowuser = new DlUsers();
