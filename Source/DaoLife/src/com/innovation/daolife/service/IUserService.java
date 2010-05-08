@@ -21,6 +21,7 @@ public interface IUserService {
 	public User addUser(User user);
 	//public User getUserById(String id);
 	public DlUsers getUsersById(Short id);
+	public DlUsers getUserByUrl(String userUrl);
 	public PaginationSupport getListBySearch(
 			PaginationSupport paginationSupport, UserSearch userSearch);
 	public void regist(DlUsers user) throws NoSuchAlgorithmException, UnsupportedEncodingException;
