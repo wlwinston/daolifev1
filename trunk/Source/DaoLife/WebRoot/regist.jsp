@@ -222,9 +222,9 @@
 										</th>
 										<td align="left" valign="top">
 											<label>
-												<input name="textfield2" type="text" id="textfield2"
-													size="5" style="width:60px;" />
-												<img src="images/zc.gif" width="100" height="24" />&nbsp;<a href="#">换一张</a>
+												<input type="text" size="5" style="width:60px;" id="yzm" />
+												<img src="servlet/dao.auth" width="100" height="24" />&nbsp;<a href="#">换一张</a>
+												<span id="yzm_info" class="info"></span>
 											</label>
 										</td>
 									</tr>

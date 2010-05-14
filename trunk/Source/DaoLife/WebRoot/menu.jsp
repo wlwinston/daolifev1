@@ -78,16 +78,16 @@
 				<div class="daohang">
 					<ul>
 						<li style="background-image: url(images/daohang%20%20hover.gif)">
-							<a href="">首页</a>
+							<a href="index.jsp">首页</a>
 						</li>
 						<li>
 							<a href="MyPage.action">我的首页</a>
 						</li>
 						<li>
-							<a href="daolife.html">Dao Life</a>
+							<a href="myAttention.jsp">Dao Life</a>
 						</li>
 						<li>
-							<a href="look.html">随便看看</a>
+							<a href="daoHot.jsp">随便看看</a>
 						</li>
 						<li>
 							<a href="daohot1.html">最叨</a>

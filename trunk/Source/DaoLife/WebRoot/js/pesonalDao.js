@@ -160,6 +160,7 @@ article.prototype = {
 //发布的集合
 function articleBox(){
 	this.element = [];
+	this._element = [];
 	this.html = [];
 	this.totalCount = 1;
 	this.pageCount = 1;
@@ -182,6 +183,13 @@ articleBox.prototype = {
 	}
 	,add : function(article){
 		this.element.push(article);
+		this._element[article.id] = article;
+	}
+	,getElementById : function(id){
+		if(this._element[id]){
+			return this._element[id];
+		}
+		return null;
 	}
 	,clean : function(){
 		this.element = [];
@@ -245,6 +253,19 @@ function doReload(fn){
 		}
 	}
 	DaolifeAjax.getPesonalDao(myBox.articleBox.currentPage,$('#getUserId').val(),func);
+}
+function doForward(id){
+	var item =myBox.articleBox.getElementById(id);
+	if(item){
+		var rf = new forward(item.id,item.picurl,item.name,item.content);
+		mask(rf.getHtml(),function(){
+			DaolifeAjax.addRetwitteDao($('#forward-msg').val(),id,function(rs){
+				if(rs){
+					maskHide();
+				}
+			})
+		});
+	}
 }
 $(function($){
 	doReload(function(){
