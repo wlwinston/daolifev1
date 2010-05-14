@@ -22,11 +22,11 @@ daoHot.prototype = {
 		html.push('<td width="92" rowspan="4" align="left" valign="top">');
 		html.push('<a href="PersonPage.action?userId=' + this.id + '"><img src="' + this.picurl + '" width="78" height="77" /></a>');
 		html.push('</td>');
-		html.push('<td width="367"><a href="PersonPage.action?userId=' + this.id + '">' + this.name + '</a></td>');
+		html.push('<td width="367" align="left"><a href="PersonPage.action?userId=' + this.id + '">' + this.name + '</a></td>');
 		html.push('<td width="150" rowspan="4">&nbsp;</td>');
 		html.push('<td width="149" rowspan="2" align="center">&nbsp;</td>');
 		html.push('</tr>');
-		html.push('<tr><td>' + this.content + '</td></tr>');
+		html.push('<tr><td align="left">' + this.content + '</td></tr>');
 		html.push('<tr><td>&nbsp;</td><td width="149" align="center">&nbsp;</td></tr>');
 		html.push('<tr><td height="14">&nbsp;</td><td width="149" align="center"><a href="javascript://">回复</a>&nbsp;&nbsp;<a href="javascript:doForward(' + this.id + ')">转发</a>&nbsp;&nbsp;<a href="javascript://">顶他</a></td></tr>');
 		html.push('</table>');
