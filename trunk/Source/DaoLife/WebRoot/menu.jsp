@@ -78,7 +78,7 @@
 				<div class="daohang">
 					<ul>
 						<li style="background-image: url(images/daohang%20%20hover.gif)">
-							<a href="index.jsp">首页</a>
+							<a href="index.action">首页</a>
 						</li>
 						<li>
 							<a href="MyPage.action">我的首页</a>
