@@ -82,17 +82,17 @@ forward.prototype = {
         this.html.push('</table>');
       	this.html.push('<table width="510" border="0" cellspacing="0" cellpadding="0">');
         this.html.push('<tr>');
-        this.html.push('<td height="74" colspan="2" align="center" valign="top"><form action="" method="post" enctype="multipart/form-data" name="hueifu" id="hueifu2">');
+        this.html.push('<td height="74" colspan="2" align="center" valign="top"><form action="" onsubmit="return false" method="post" enctype="multipart/form-data" name="hueifu" id="hueifu2">');
         this.html.push('<table width="493" border="0" cellspacing="4" cellpadding="0">');
         this.html.push('<tr>');
         this.html.push('<td height="62" colspan="2" align="center" valign="top"><label></label>');
         this.html.push('<label>');
-        this.html.push('<textarea name="textarea2" cols="45" rows="5" class="tabledao" id="textarea2" style="background-image:url(images/myhome_42.gif);border:0; width:495px; height:53px;overflow : hidden"></textarea>');
+        this.html.push('<textarea id="forward-msg" name="textarea2" cols="45" rows="5" class="tabledao" id="textarea2" style="background-image:url(images/myhome_42.gif);border:0; width:495px; height:53px;overflow : hidden">' + this.content.replace(/<[^>].*?>/g,"") + '</textarea>');
         this.html.push('</label></td>');
         this.html.push('</tr>');
         this.html.push('<tr>');
         this.html.push('<td width="370" height="22" align="left" valign="top"><label></label></td>');
-        this.html.push('<td width="123"><input type="image" src="images/1134.gif" href="images/myhome_11.gif" /></td>');
+        this.html.push('<td width="123"><input id="forward-button" type="image" src="images/1134.gif" href="images/myhome_11.gif" /></td>');
         this.html.push('</tr>');
         this.html.push('</table>');
         this.html.push('</form></td>');
@@ -104,7 +104,7 @@ forward.prototype = {
 		return this.html.join('');
 	}
 }
-function mask(html){
+function mask(html,fn){
 	$('body').append('<div id="mask-overlay"></div><div id="mask-forward">' + html + '</div>').css({
 		overflow : 'hidden'
 	});
@@ -130,6 +130,7 @@ function mask(html){
 		$('#mask-forward').fadeIn()
 	});
 	$('#mask-overlay').click(maskHide);
+	$('#forward-button').click(fn)
 }
 function maskHide(){
 	$('body').css({
@@ -138,7 +139,36 @@ function maskHide(){
 	$('#mask-forward').fadeOut(function(){
 		$(this).remove();
 	})
-	$(this).fadeOut(function(){
+	$('#mask-overlay').fadeOut(function(){
 		$(this).remove();
 	});
+}
+function getUserGender(sex){
+	switch(sex){
+		case 0:
+			sex = '性别：女';
+			break;
+		case 1 : 
+			sex = '性别：男';
+			break;
+		default :
+			sex = '性别：保密';
+			
+	}
+	return sex;
+}
+function getUserBirthday(btd){
+	var str = '保密';
+	if(btd && btd != 'null' && btd != ''){
+		var year = (new Date()).getFullYear();
+		str = year - (btd.split('-'))[0];
+	}
+	return '年龄：' + str;
+}
+function getUserAddress(adr){
+	var str = '保密';
+	if(adr && adr != 'null' && adr != ''){
+		str = adr;
+	}
+	return '城市：' + str;
 }

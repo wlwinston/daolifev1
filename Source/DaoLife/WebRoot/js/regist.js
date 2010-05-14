@@ -95,4 +95,5 @@ $(function($){
 		}
 	},'邮箱格式不正确或邮箱已存在','例:example@daolife.com');
 	Form.add('nick',DaolifeAjax.checkUserNickName,'昵称格式不正确或已经存在','请输入昵称');
+	Form.add('yzm',DaolifeAjax.checkAuthCode,'验证码不正确','请输入验证码');
 });

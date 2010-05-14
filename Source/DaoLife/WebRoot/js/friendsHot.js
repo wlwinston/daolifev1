@@ -20,9 +20,9 @@ friendsHot.prototype = {
 		html.push('</table>');
 		html.push('</td>');
 		html.push('<td width="92" rowspan="4" align="left" valign="top">');
-		html.push('<a href="touxiang.html"><img src="' + this.picurl + '" width="78" height="77" /></a>');
+		html.push('<a href="PersonPage.action?userId=' + this.id + '"><img src="' + this.picurl + '" width="78" height="77" /></a>');
 		html.push('</td>');
-		html.push('<td width="367">' + this.name + '</td>');
+		html.push('<td width="367"><a href="PersonPage.action?userId=' + this.id + '">' + this.name + '</a></td>');
 		html.push('<td width="150" rowspan="4">&nbsp;</td>');
 		html.push('<td width="149" rowspan="2" align="center">');
 		html.push('<img src="images/daohot_13.gif" width="61" height="24" />');
@@ -113,7 +113,7 @@ function doReload(fn){
 		for(var i = 0, l = rs.items.length; i < l; ++i){
 			var baseinfo = rs.items[i].userGender + ' ' +rs.items[i].birthday;
 			var otherinfo = rs.items[i].userAddress;
-			myBox.articleBox.add(new friendsHot(rs.items[i].userId,((rs.currentPage - 1) * rs.pageCount) + (i + 1),rs.items[i].userNickName,rs.items[i].contentBody,'images/myhome_30.gif',baseinfo,otherinfo,rs.items[i].followFlag,rs.items[i].fansNum));
+			myBox.articleBox.add(new friendsHot(rs.items[i].userId,((rs.currentPage - 1) * rs.pageCount) + (i + 1),rs.items[i].userNickName,rs.items[i].userInfo,'images/myhome_30.gif',baseinfo,otherinfo,rs.items[i].followFlag,rs.items[i].fansNum));
 		}
 		if(fn){
 			fn();

@@ -12,11 +12,11 @@ reply.prototype = {
 		this.html = [];
 		this.html.push('<table id="reply_' + this.id + '" width="510" border="0" cellspacing="0" cellpadding="2">');
 		this.html.push('<tr>');
-		this.html.push('<td width="45" height="50" align="left" valign="top"><img src="' + this.picurl + '" width="38" height="38" /></td>');
+		this.html.push('<td width="45" height="50" align="left" valign="top"><a href="PersonPage.action?userId=' + this.id + '"><img src="' + this.picurl + '" width="38" height="38" /></a></td>');
 		this.html.push('<td width="457" align="left" valign="top">');
 		this.html.push('<table width="432" height="46" border="0" cellpadding="0" cellspacing="0">');
 		this.html.push('<tr>');
-		this.html.push('<td width="432" height="26">' + this.name + '</td>');
+		this.html.push('<td width="432" height="26"><a href="PersonPage.action?userId=' + this.id + '">' + this.name + '</a></td>');
 		this.html.push('</tr>');
 		this.html.push('<tr>');
 		this.html.push('<td height="20" align="left">');
@@ -110,8 +110,9 @@ function doArticle(id){
 	}
 }
 //发布的单条数据
-function article(id,name,content,picurl,replyAmount,forwardAmount,dingAmount){
+function article(id,uid,name,content,picurl,replyAmount,forwardAmount,dingAmount){
 	this.id = id;
+	this.uid = uid;
 	this.name = name;
 	this.content = content;
 	this.picurl = picurl;
@@ -125,10 +126,10 @@ article.prototype = {
 		this.html = [];
 		this.html.push('<table id="article_' + this.id + '" width="540" border="0" cellspacing="4" cellpadding="4">');
 		this.html.push('<tr>');
-		this.html.push('<td width="47" height="44"><img src="' + this.picurl + '" width="78" height="77" /></td>');
+		this.html.push('<td width="47" height="44"><a href="PersonPage.action?userId=' + this.uid + '"><img src="' + this.picurl + '" width="78" height="77" /></a></td>');
 		this.html.push('<td width="465" align="left" valign="top">');
 		this.html.push('<table width="432" height="78" border="0" cellpadding="0" cellspacing="0">');
-		this.html.push('<tr><td width="432">' + this.name + '</td></tr>');
+		this.html.push('<tr><td width="432"><a href="PersonPage.action?userId=' + this.uid + '">' + this.name + '</a></td></tr>');
 		this.html.push('<tr><td>' + this.content + '</td></tr>');
 		this.html.push('<tr>');
 		this.html.push('<td align="right">');
@@ -160,6 +161,7 @@ article.prototype = {
 //发布的集合
 function articleBox(){
 	this.element = [];
+	this._element = [];
 	this.html = [];
 	this.totalCount = 1;
 	this.pageCount = 1;
@@ -247,7 +249,7 @@ function doReload(fn){
 	var func = function(rs){
 		myBox.articleBox.setpage(rs.totalCount,rs.pageCount,rs.currentPage);
 		for(var i = 0, l = rs.items.length; i < l; ++i){
-			myBox.articleBox.add(new article(rs.items[i].contentId,rs.items[i].dlUsers.userNickName,rs.items[i].contentBody,'images/myhome_30.gif',0,rs.items[i].retwittNum,rs.items[i].upNum));
+			myBox.articleBox.add(new article(rs.items[i].contentId,rs.items[i].dlUsers.userId,rs.items[i].dlUsers.userNickName,rs.items[i].contentBody,'images/myhome_30.gif',0,rs.items[i].retwittNum,rs.items[i].upNum));
 		}
 		if(fn){
 			fn();
@@ -312,7 +314,16 @@ function doForward(id){
 	var item =myBox.articleBox.getElementById(id);
 	if(item){
 		var rf = new forward(item.id,item.picurl,item.name,item.content);
-		mask(rf.getHtml());
+		mask(rf.getHtml(),function(){
+			DaolifeAjax.addRetwitteDao($('#forward-msg').val(),id,function(rs){
+				if(rs){
+					maskHide();
+					doReload(function(){
+						myBox.articleBox.load();
+					});
+				}
+			})
+		});
 	}
 }
 $(function($){
