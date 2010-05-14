@@ -65,7 +65,19 @@ $(function($){
 	$('#regist').submit(function(){
 		return Form.isValid();
 	})
-	Form.add('username',DaolifeAjax.checkUserName,'账号格式不正确或已经存在','请输入登陆账号');
+	Form.add('username',function(val,fn){
+		if(val != null && val != ''){
+			DaolifeAjax.checkUserName(val,function(rs){
+				if(rs){
+					fn.call(this,true);
+				}else{
+					fn.call(this,false);
+				}
+			});
+		}else{
+			fn.call(this,false);
+		}
+	},'账号格式不正确或已经存在','请输入登陆账号');
 	Form.add('password',function(val,fn){
 		if((val.length > 5) && (val.length < 17)){
 			fn.call(this,true);
@@ -94,6 +106,21 @@ $(function($){
 			fn.call(this,false);
 		}
 	},'邮箱格式不正确或邮箱已存在','例:example@daolife.com');
-	Form.add('nick',DaolifeAjax.checkUserNickName,'昵称格式不正确或已经存在','请输入昵称');
+	Form.add('nick',function(val,fn){
+		if(val != null && val != ''){
+			DaolifeAjax.checkUserNickName(val,function(rs){
+				if(rs){
+					fn.call(this,true);
+				}else{
+					fn.call(this,false);
+				}
+			});
+		}else{
+			fn.call(this,false);
+		}
+	},'昵称格式不正确或已经存在','请输入昵称');
 	Form.add('yzm',DaolifeAjax.checkAuthCode,'验证码不正确','请输入验证码');
 });
+function reflashpic(){
+	$('#picyzm').attr('src','servlet/dao.auth?time='+Math.random());
+}
