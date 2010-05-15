@@ -28,6 +28,7 @@
 			<include method="getHotUser" />
 			<include method="getHotDao" />
 			<include method="getMyDao" />
+			<include method="getRewriteContentDao" />
 			<include method="getContentsByTime" />
 			<include method="getMyFollowFriend" />
 			<include method="getMyFanFriend" />
