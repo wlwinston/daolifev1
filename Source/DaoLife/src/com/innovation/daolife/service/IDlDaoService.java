@@ -39,5 +39,11 @@ public interface IDlDaoService {
 	public List<DlContent> getTopicContent(Short topicId);
 	
 	public PaginationSupport getContentListByTime(PaginationSupport paginationSupport);
+	
+	/**
+	 * @author fengsn 
+	 * 查询转发dao的相关信息
+	 */
+	public PaginationSupport getRewriteInfoList(PaginationSupport paginationSupport, Short contentId);
 
 }
