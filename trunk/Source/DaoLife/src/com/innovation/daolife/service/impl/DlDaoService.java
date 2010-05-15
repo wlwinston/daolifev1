@@ -178,6 +178,27 @@ public class DlDaoService implements IDlDaoService {
 	}
 	
 	/**
+	 * @author fengsn 
+	 * 查询转发dao的相关信息
+	 */
+	public PaginationSupport getRewriteInfoList(
+			PaginationSupport paginationSupport, Short contentId) {
+		String querysql = " Select c From DlContent c  where  c.originAllid = '"+contentId+"' or c.originAllid like '%,"+contentId+",%' or c.originAllid like '"+contentId+",%' or c.originAllid like '%,"+contentId+"'";
+		String countsql =" Select count(c.contentId) From DlContent c  where  c.originAllid = '"+contentId+"' or c.originAllid like '%,"+contentId+",%' or c.originAllid like '"+contentId+",%' or c.originAllid like '%,"+contentId+"'";
+		paginationSupport = dlContentatDao.findPageByQuery(querysql, countsql, paginationSupport.getPageSize(), paginationSupport.getStartIndex());
+		List<DlContent> itemList = paginationSupport.getItems();
+		for(Iterator<DlContent> it = itemList.iterator();it.hasNext();)
+		{
+			DlContent dlContent = it.next();
+			DlUsers user = new DlUsers();
+			BeanUtils.copyProperties(dlContent.getDlUsers(), user);
+			dlContent.setDlUsers(user);
+		}
+		paginationSupport.setItems(itemList);
+		return paginationSupport;
+	}
+	
+	/**
 	 * @author fengsn
 	 * 随便看看 返回dlcontent
 	 * 按照时间排序 返回
