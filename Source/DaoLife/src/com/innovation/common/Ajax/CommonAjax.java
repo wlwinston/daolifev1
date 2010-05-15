@@ -89,6 +89,36 @@ public class CommonAjax {
 		boolean flag = userService.checkUserByNickName(check);
 		return flag;
 	}
+	
+	/**
+	 * 获取转发dao的信息
+	 * 
+	 * @param contentId
+	 *            被转发ID
+	 * @author fsn
+	 */
+	public PaginationSupport getRewriteContentDao(int pages,Short contentId) {
+		if (pages < 0) {
+			pages = 1;
+		}
+		int pageSize = Constant.PAGESIZE_MYDAO.getIntValue();
+		int startIndex = pageSize * (pages - 1);
+		PaginationSupport paginationSupport = new PaginationSupport(pageSize,
+				startIndex);
+		WebContext request = WebContextFactory.get();
+
+		HttpSession session = request.getSession(false);
+		if (session != null
+				&& session
+						.getAttribute(Constant.SESSION_USER_KEY.getStrValue()) != null) {
+			paginationSupport = dlDaoService.getRewriteInfoList(
+					paginationSupport, contentId);
+		} else {
+			return null;
+		}
+		return paginationSupport;
+
+	}
 
 	/**
 	 * 获取我的叨
