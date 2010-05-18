@@ -25,6 +25,7 @@ import com.innovation.common.util.ProjectException;
 import com.innovation.daolife.dao.IDlUsersDao;
 import com.innovation.daolife.dao.impl.DlFriendDao;
 import com.innovation.daolife.dao.impl.DlMessagesDao;
+import com.innovation.daolife.model.DlContent;
 import com.innovation.daolife.model.DlCustomerDaoEntry;
 import com.innovation.daolife.model.DlFriend;
 import com.innovation.daolife.model.DlMessages;
@@ -508,7 +509,13 @@ public class CommonAjax {
 			return false;
 		}
 	}
-
+	
+	
+	public DlContent getDlContentById(Short contentId) throws Exception
+	{
+		DlContent content = dlDaoService.getDao(contentId);
+		return content;
+	}
 	public IDlDaoService getDlDaoService() {
 		return dlDaoService;
 	}

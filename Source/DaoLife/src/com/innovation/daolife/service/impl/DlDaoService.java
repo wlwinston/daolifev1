@@ -391,4 +391,12 @@ public class DlDaoService implements IDlDaoService {
 		this.dlHotdaoDao = dlHotdaoDao;
 	}
 
+	public DlContent getDao(Short daoId) throws Exception {
+		DlContent content = dlContentDao.get(daoId);
+		DlUsers user = new DlUsers();
+		BeanUtils.copyProperties(content.getDlUsers(), user);
+		content.setDlUsers(user);
+		return content;
+	}
+
 }
