@@ -40,8 +40,11 @@ public interface IDlDaoService {
 	
 	public PaginationSupport getContentListByTime(PaginationSupport paginationSupport);
 	
+	
+	public DlContent getDao(Short daoId) throws Exception ;
 	/**
-	 * @author fengsn 
+	 * 
+	 *  * @author fengsn 
 	 * 查询转发dao的相关信息
 	 */
 	public PaginationSupport getRewriteInfoList(PaginationSupport paginationSupport, Short contentId);
