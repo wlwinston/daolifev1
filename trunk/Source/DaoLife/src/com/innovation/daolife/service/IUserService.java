@@ -23,6 +23,7 @@ public interface IUserService {
 	public List<DlContent> getUserDao(Short id);
 	//public User getUserById(String id);
 	public DlUsers getUsersById(Short id);
+	public DlUsers getPesonalUserById(Short id,DlUsers nowuser);
 	public DlUsers getUserByUrl(String userUrl);
 	public PaginationSupport getListBySearch(
 			PaginationSupport paginationSupport, UserSearch userSearch);
