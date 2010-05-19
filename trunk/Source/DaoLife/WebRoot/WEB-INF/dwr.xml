@@ -33,6 +33,7 @@
 			<include method="getMyFollowFriend" />
 			<include method="getMyFanFriend" />
 			<include method="getPesonalDao" />
+			<include method="getPesonalUserById" />
 			<include method="checkAuthCode" />
 			<include method="getDlContentById" />
 		</create>
