@@ -120,11 +120,15 @@ function article(id,uid,name,content,picurl,replyAmount,forwardAmount,dingAmount
 	this.forwardAmount = forwardAmount;
 	this.dingAmount = dingAmount;
 	this.html = [];
+	this.isDingValid = true;
 }
 article.prototype = {
 	getHtml : function(){
+		return '<div id="article_' + this.id + '">' + this.getElement() + '</div>'
+	}
+	,getElement : function(){
 		this.html = [];
-		this.html.push('<table id="article_' + this.id + '" width="540" border="0" cellspacing="4" cellpadding="4">');
+		this.html.push('<table width="540" border="0" cellspacing="4" cellpadding="4">');
 		this.html.push('<tr>');
 		this.html.push('<td width="47" height="44"><a href="PersonPage.action?userId=' + this.uid + '"><img src="' + this.picurl + '" width="78" height="77" /></a></td>');
 		this.html.push('<td width="465" align="left" valign="top">');
@@ -137,7 +141,11 @@ article.prototype = {
 		this.html.push('<tr>');
 		this.html.push('<td width="78">回复<a href="javascript:doArticle(' + this.id + ')">（' + this.replyAmount + '）</a></td>');
 		this.html.push('<td width="75">转发<a href="javascript:doForward(' + this.id + ')">（' + this.forwardAmount + '）</a></td>');
-		this.html.push('<td width="77">顶他<a href="#">（' + this.dingAmount + '）</a></td>');
+		if(this.isDingValid){
+			this.html.push('<td width="77">顶他<a href="javascript:doDing(' + this.id + ')">（' + this.dingAmount + '）</a></td>');
+		}else{
+			this.html.push('<td width="77">顶他<a href="javascript://">（' + this.dingAmount + '）</a></td>');
+		}
 		this.html.push('</tr>');
 		this.html.push('</table>');
 		this.html.push('</td>');
@@ -147,6 +155,15 @@ article.prototype = {
 		this.html.push('</tr>');
 		this.html.push('</table>');
 		return this.html.join('');
+	}
+	,reload : function(){
+		//this.isDingValid = false;
+		var myself = this;
+		DaolifeAjax.getDlContentById(this.id,function(rs){
+			myself.forwardAmount = rs.retwittNum;
+			myself.dingAmount = rs.upNum; 
+			$('#article_' + myself.id).get(0).innerHTML = myself.getElement();
+		});
 	}
 	,getId : function(){
 		return this.id;
@@ -318,13 +335,25 @@ function doForward(id){
 			DaolifeAjax.addRetwitteDao($('#forward-msg').val(),id,function(rs){
 				if(rs){
 					maskHide();
+					myBox.articleBox.getElementById(id).reload();
+					/*
 					doReload(function(){
 						myBox.articleBox.load();
 					});
+					*/
 				}
 			})
 		});
 	}
+}
+function doDing(id){
+	DaolifeAjax.upDao(id,function(rs){
+		if(rs){
+			alert(rs);
+		}else{
+			myBox.articleBox.getElementById(id).reload();
+		}
+	});
 }
 $(function($){
 	doReload(function(){
