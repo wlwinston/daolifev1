@@ -16,9 +16,12 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
+import javax.servlet.http.HttpSession;
 import javax.transaction.Transaction;
 
 import org.apache.commons.mail.EmailException;
+import org.directwebremoting.WebContext;
+import org.directwebremoting.WebContextFactory;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.DetachedCriteria;
@@ -91,6 +94,27 @@ public class UserService implements IUserService {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
+		}
+		return user;
+	}
+	
+	public DlUsers getPesonalUserById(Short id,DlUsers nowuser) {
+		DlUsers user = null;
+		try {
+			// int userId = Integer.parseInt(id);
+			user = dlUsersDao.get(id);
+			if(user != null)
+			{
+				String sql = " From DlContent u where u.userId=?";
+				List<DlContent> contentList = dlContentDao.find(sql, id);
+				user.setContentsSize(contentList.size());
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		Short fanId = nowuser.getUserId();
+		if(checkRela(id,fanId)){
+			user.setFollowFlag(true);
 		}
 		return user;
 	}
