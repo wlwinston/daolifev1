@@ -76,17 +76,23 @@ public class FollowrelationService implements IFollowrelationService {
 		List<DlFriend> userList = dlFriendDao.find(sql,
 				new Short[] { friend.getFidFollow(), friend.getFidFans() });
 		friend = userList.get(0);
-		dlFriendDao.delete(friend);
+ 		dlFriendDao.delete(friend);
 		Short fan = friend.getFidFans();
 		Short followId = friend.getFidFollow();
 		//user±íÌí¼Ófans¼ÇÂ¼ follow fans
 		DlUsers user = dlUsersDao.get(fan);
 		int folloeNum = user.getFollowNum()-1;
+		if(folloeNum<0){
+			folloeNum = 0;
+		}
 		user.setFollowNum((short)folloeNum);
 		dlUsersDao.update(user);
 		
 		DlUsers followuser = dlUsersDao.get(followId);
 		int fanNum = followuser.getFansNum()-1;
+		if(fanNum<0){
+			fanNum = 0;
+		}
 		followuser.setFansNum((short)fanNum);
 		dlUsersDao.update(followuser);
 	}
