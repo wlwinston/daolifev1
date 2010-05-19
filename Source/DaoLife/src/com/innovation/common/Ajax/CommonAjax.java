@@ -95,8 +95,21 @@ public class CommonAjax {
 	 * @author fsn 根据userId获得用户信息
 	 */
 	public DlUsers getPesonalUserById(Short id) {
-		DlUsers user = userService.getUsersById(id);
-		return user;
+		
+		WebContext request = WebContextFactory.get();
+
+		HttpSession session = request.getSession(false);
+		if (session != null
+				&& session
+						.getAttribute(Constant.SESSION_USER_KEY.getStrValue()) != null) {
+			DlUsers nowuser = (DlUsers) session
+			.getAttribute(Constant.SESSION_USER_KEY.getStrValue());
+			DlUsers user = userService.getPesonalUserById(id,nowuser);
+			return user;
+		} else {
+			return null;
+		}
+		
 	}
 	
 	/**
