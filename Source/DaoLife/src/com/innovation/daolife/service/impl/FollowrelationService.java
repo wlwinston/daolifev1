@@ -72,7 +72,7 @@ public class FollowrelationService implements IFollowrelationService {
 	
 	public void deleteFollow(DlFriend friend){
 		//dlFriendDao
-		String sql = " From DlFriend u where u.fidFollow=? or u.fidFans = ? ";
+		String sql = " From DlFriend u where u.fidFollow=? and u.fidFans = ? ";
 		List<DlFriend> userList = dlFriendDao.find(sql,
 				new Short[] { friend.getFidFollow(), friend.getFidFans() });
 		friend = userList.get(0);
