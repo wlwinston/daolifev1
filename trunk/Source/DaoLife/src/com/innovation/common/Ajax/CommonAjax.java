@@ -92,6 +92,14 @@ public class CommonAjax {
 	}
 	
 	/**
+	 * @author fsn 根据userId获得用户信息
+	 */
+	public DlUsers getPesonalUserById(Short id) {
+		DlUsers user = userService.getUsersById(id);
+		return user;
+	}
+	
+	/**
 	 * 获取转发dao的信息
 	 * 
 	 * @param contentId
