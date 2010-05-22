@@ -1,7 +1,6 @@
 package com.innovation.common.util;
 /**
- * �����з�װ����ϵͳ���õ���һЩ�̶�����ĳ���Ϣ�� ���еĳ���Ϣ(����ͨ�õĳ���)���������Ϊ ����-�ֶ���-����
- * ����������һ������ֶ���ĵ�һ��������ͬ��ʡ��һ��
+ * 常量配置，表名-字段名-类型
  * 
  * @author winston
  */
@@ -17,44 +16,43 @@ public enum Constant
 	CONTENT_STATUS_INIT("0"),
 	MESSAGE_ISREAD_NO(0),
 	MESSAGE_ISREAD_YES(1),
-	/*********ÿҳ���********/
+	/*********每页数量********/
 	PAGESIZE_FRIENDDAO(20),
 	PAGESIZE_MYDAO(20),
 	
-	/*********��ɫ************/
-	//Ĭ�Ͻ�ɫ
+	/*********网站角色***********/
+	//普通用户
 	WEBSITE_ROLES_DEFAULT("daolife_user"),
-	/*********��Ϣ����*********/
-	//@��Ϣ
+	/*********消息类型********/
+	//被人@
 	MESSAGE_TYPE_AT("0"),
-	//վ����
+	//私信
 	MESSAGE_TYPE_MAIL("1"),
-	//��ע
+	//被人关注
 	MESSAGE_TYPE_FOLLOW("2"),
-	/*********��Ϣ����*********/
-	//@��Ϣ����
-	MESSAGE_MESSAGEBODY_ATMESSAGE("�㱻��@��"),
+	/*********消息*********/
+	//被人@消息
+	MESSAGE_MESSAGEBODY_ATMESSAGE("您被人@了"),
 	
-	/*********��ע��Ϣ����*********/
-	//@��Ϣ����
-	MESSAGE_MESSAGEBODY_ATTENTION("�㱻�˹�ע��"),
-	/*********UP������Ϣ*********/
-	//û�е�¼
-	UPDAO_ERRORMESSAGE_NOUSER("��û�е�¼�����ȵ�¼"),
-	//��ζ�ͬһ߶
-	UPDAO_ERRORMESSAGE_ONLYONE("���Ѿ�����һ�θ�߶���벻Ҫ�ظ���"),
-	//�����쳣
-	UPDAO_ERRORMESSAGE_EXCEPTION("����ʧ�ܣ���jϵ��վ����Ա"),
-	/*******sessionĬ�ϴ洢user��Ϣkey*************/
+	//被人关注
+	MESSAGE_MESSAGEBODY_ATTENTION("您被人关注了"),
+	/*********UP叨消息*********/
+	//未登录
+	UPDAO_ERRORMESSAGE_NOUSER("您还未登录，请您先登录"),
+	//仅顶一次߶
+	UPDAO_ERRORMESSAGE_ONLYONE("您已经顶过一次了"),
+	//顶叨异常
+	UPDAO_ERRORMESSAGE_EXCEPTION("顶叨出错了"),
+	/*******session个人信息key*************/
 	SESSION_USER_KEY("daoLifeUser"),
 	
-	//����t��ǰ׺
+	//网站地址׺
 	LINK_USER_PREFIX("http://www.daolife.com/"),
-	//����t��ǰ׺
+	//网站话题ID׺
 	LINK_TOPIC_PREFIX("http://www.daolife.com/topicDetail.action?topicId="),
-	ERROR_RETPASSWORD_NOPASSWORD("�����벻��Ϊ��"),
-	ERROR_RETPASSWORD_PASSWORDCONFIRMERROR("}�����벻һ��"),
-	ERROR_RETPASSWORD_NOIDERROR("�û�������")
+	ERROR_RETPASSWORD_NOPASSWORD("您未提交新的密码"),
+	ERROR_RETPASSWORD_PASSWORDCONFIRMERROR("密码和确认密码不匹配"),
+	ERROR_RETPASSWORD_NOIDERROR("您的帐户不存在")
 	;
 	
 	

@@ -69,50 +69,47 @@ public class DlDaoService implements IDlDaoService {
 	private IDlHotdaoDao dlHotdaoDao;
 
 	/**
-	 * ·¢ĞÂß¶´¦Àí
+	 * æ–°å‘ä¸€æ¡å¨
 	 * 
 	 * @param user
-	 *            µ±Ç°²Ù×÷ÈË¶ÔÏó
+	 *          å‘å¨äºº
 	 * @param contextBody
-	 *            ß¶ÄÚÈİ
+	 *          å¨å†…å®¹æ˜Ÿç³»
 	 * @author winston
 	 */
 	public DlCustomerDaoEntry addDao(DlUsers user, String contextBody)
 			throws Exception {
-		// ß¶ÄÚÈİ´¦Àí¹¤¾ß´¦Àíß¶ÄÚÈİ Èç@ºÍ#
 		DlCustomerDaoEntry customerDaoDao = daoContentBodyConvert
 				.covertContent(contextBody);
-		// ±£´æĞÂß¶
 		this.saveDao(customerDaoDao, user);
 		return customerDaoDao;
 	}
 
 	/**
-	 * ±£´æĞÂß¶
+	 * ä¿å­˜å¨ß¶
 	 * 
 	 * @param customerDaoDao
-	 *            ĞÂß¶Âß¼­¶ÔÏó
+	 *           å¨å†…å®¹
 	 * @param user
-	 *            ²Ù×÷ÈË
+	 *            å‘å¨äºº
 	 * @throws Exception
 	 * @author winston
 	 */
 	private DlCustomerDaoEntry saveDao(DlCustomerDaoEntry customerDaoDao,
 			DlUsers user) throws Exception {
 		DlContent content = customerDaoDao.getDlContent();
-		// ÉèÖÃß¶·¢²¼Ê±¼äÎªµ±Ç°Ê±¼ä
 		content.setPosttime(new Date());
-		// ÉèÖÃ³õÊ¼×ª·¢´ÎÊıºÍ±»¶¥´ÎÊıÎª0
+		//é»˜è®¤è¢«è½¬æ•°é‡å’Œè¢«é¡¶æ•°é‡
 		content.setRetwittNum((short) 0);
 		content.setUpNum((short) 0);
-		// ÉèÖÃß¶µÄ×´Ì¬Îª³õÊ¼×´Ì¬
+		//å¨çš„çŠ¶æ€
 		content.setStatus(Constant.CONTENT_STATUS_INIT.getStrValue());
-		// ÉèÖÃ·¢²¼ÈË
+		//å‘å¨ID
 		content.setUserId(user.getUserId());
-		// ÉèÖÃ·¢²¼ÊÖ¶Î¡­¡­´Ë´¦´ıÀ©Õ¹£¨»á°üÀ¨WAP,ÊÖ»ú¿Í»§¶Ë£©
-		content.setType("ÍøÒ³");
+		// å¨å‘å¸ƒå½¢å¼ç±»å‹
+		content.setType("ç½‘é¡µ");
 		dlContentDao.save(content);
-		// ±£´æ±»@¼ÇÂ¼
+		// è·å–è¢«atäººæ•°ç›®
 		List<DlContentat> atList = customerDaoDao.getDlContentatList();
 		String uidString = "WHERE 1<>1 ";
 		for (int i = 0; i < atList.size(); i++) {
@@ -122,11 +119,11 @@ public class DlDaoService implements IDlDaoService {
 			short atUserID = atContentat.getStatusUid();
 			uidString += " OR user_id = " + atUserID;
 		}
-		// ±»@ÈËµÄ±»@´ÎÊı¼ÓÒ»
+		// ä¿®æ”¹ç”¨æˆ·è¢«@æ•°ç›®
 		uidString = "UPDATE dl_users SET at_week_num = at_week_num + 1,at_month_num = at_month_num + 1,at_sum_num = at_sum_num + 1 "
 				+ uidString;
 		dlUsersDao.update(uidString);
-		// ¸ø±»@ÈË±£´æ±»@ĞÂÏûÏ¢
+		// æ¶ˆæ¯LIST
 		List<DlMessages> messageList = customerDaoDao.getDlMessageList();
 		for (int i = 0; i < atList.size(); i++) {
 
@@ -137,30 +134,30 @@ public class DlDaoService implements IDlDaoService {
 	}
 
 	/**
-	 * ×ªß¶´¦Àí
+	 * è½¬å¨
 	 * 
 	 * @param user
-	 *            µ±Ç°²Ù×÷ÈË¶ÔÏó
+	 *            è½¬åˆ°äºº
 	 * @param contextBody
-	 *            ×ªß¶ÄÚÈİ
+	 *            è½¬å¨å†…å®¹
 	 * @param orgDaoId
 	 *            Ô­ß¶ID
 	 * @author winston
 	 */
 	public DlCustomerDaoEntry addRetwitteDao(DlUsers user, String contextBody,
 			Short orgDaoId) throws Exception {
-		// ß¶ÄÚÈİ´¦Àí¹¤¾ß´¦Àíß¶ÄÚÈİ Èç@ºÍ#
+		//å‘å¨å·¥å…·
 		DlCustomerDaoEntry customerDaoDao = daoContentBodyConvert
 				.covertContent(contextBody);
-		// ×ª·¢¹¤¾ß´¦Àí×ª·¢ID Èç±»×ª·¢ß¶×ª·¢´ÎÊı¼ÓÒ»
+		//è½¬åˆ°å·¥å…·ç±»
 		retwitteUtil.retwitte(customerDaoDao, orgDaoId);
-		// ±£´æĞÂß¶
+		// ä¿å­˜å¨ß¶
 		this.saveDao(customerDaoDao, user);
 		return customerDaoDao;
 	}
 
 	/**
-	 * @author fengsn ²éÑ¯@ÓÃ»§µÄdaoÄÚÈİ
+	 * @author fengsn 
 	 */
 	public PaginationSupport getAtContentListByUser(
 			PaginationSupport paginationSupport, Short userId) {
@@ -179,7 +176,6 @@ public class DlDaoService implements IDlDaoService {
 	
 	/**
 	 * @author fengsn 
-	 * ²éÑ¯×ª·¢daoµÄÏà¹ØĞÅÏ¢
 	 */
 	public PaginationSupport getRewriteInfoList(
 			PaginationSupport paginationSupport, Short contentId) {
@@ -200,8 +196,7 @@ public class DlDaoService implements IDlDaoService {
 	
 	/**
 	 * @author fengsn
-	 * Ëæ±ã¿´¿´ ·µ»Ødlcontent
-	 * °´ÕÕÊ±¼äÅÅĞò ·µ»Ø
+	 * 
 	 * */
 	public PaginationSupport getContentListByTime(
 			PaginationSupport paginationSupport){
@@ -224,7 +219,7 @@ public class DlDaoService implements IDlDaoService {
 	}
 	/**
 	 * @author fengsn 
-	 * return »ñµÃ×îÈÈdao
+	 * return è·å–æœ€çƒ­å¨
 	 */
 	public PaginationSupport getHotDao(PaginationSupport paginationSupport) {
 		Short daoNum = this.getdaoNum();
@@ -250,7 +245,7 @@ public class DlDaoService implements IDlDaoService {
 	}
 
 	/**
-	 * ²éÑ¯hotdaoÖĞµÄdaonum×î´óÖµ
+	 * è·å–æœ€çƒ­å¨å¥çš„æœŸæ•°
 	 */
 	private Short getdaoNum() {
 		String sql = " select (i.daonum) from DlHotdao as i";
@@ -269,14 +264,14 @@ public class DlDaoService implements IDlDaoService {
 	}
 
 	/**
-	 * ¶¥ß¶´¦Àí
+	 * é¡¶å¨
 	 * 
 	 * @param daoId
-	 *            ±»¶¥ß¶ID
+	 *            è¢«é¡¶å¨ß¶ID
 	 * @param user
-	 *            µ±Ç°²Ù×÷ÈË¶ÔÏó
+	 *            å½“å‰ç”¨æˆ·
 	 * @param userIp
-	 *            ²Ù×÷ÈËIP
+	 *            é¡¶å¨äººIP
 	 * @author winston
 	 */
 	public void addUpDao(String daoId, DlUsers user, String userIp)
@@ -290,14 +285,14 @@ public class DlDaoService implements IDlDaoService {
 					Constant.UPDAO_ERRORMESSAGE_ONLYONE.getStrValue());
 			throw moreThanOne;
 		}
-		// ²åÈë¶¥ÀúÊ·
+		//ä¿å­˜é¡¶å¨è®°å½•
 		DlUplog uplog = new DlUplog();
 		uplog.setHotdaoId(Short.valueOf(daoId));
 		uplog.setUpIp(userIp);
 		uplog.setUserId(userId);
 		uplog.setUptime(new Date());
 		dlUplogDao.save(uplog);
-		// ½«ß¶µÄ±»¶¥´ÎÊı¼ÓÒ»
+		//å°†å¨è¢«é¡¶æ•°ç›®åŠ 1
 		DlContent content = dlContentDao.get(uplog.getHotdaoId());
 		content.setUpNum((short) (content.getUpNum() + 1));
 		dlContentDao.saveOrUpdate(content);
@@ -310,7 +305,7 @@ public class DlDaoService implements IDlDaoService {
 	}
 	
 	/**
-	 * »ñµÃ»°ÌâÖĞµÄdao
+	 * è·å–ä¸»é¢˜dao
 	 * */
 	public List<DlContent> getTopicContent(Short topicId){
 		String sql = "From DlContent u where u.topicid=?";

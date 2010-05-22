@@ -81,7 +81,7 @@ public class UserAction extends ActionSupport implements SessionAware, ServletRe
 	
 	/**
 	 * @author fsn
-	 * ÓÃ»§ĞÅÏ¢¸üĞÂĞ£Ñé
+	 * ä¿®æ”¹ä¸ªäººä¿¡æ¯
 	 * */
 	public String update() throws Exception{
 		DlUsers oldUserInfo = (DlUsers) att.get(Constant.SESSION_USER_KEY.getStrValue());
@@ -92,7 +92,7 @@ public class UserAction extends ActionSupport implements SessionAware, ServletRe
 	
 	/**
 	 * @author fsn
-	 * ÓÃ»§ÃÜÂë¸üĞÂ
+	 * ä¿®æ”¹å¯†ç 
 	 * */
 	public String updatePsw() throws Exception{
 		DlUsers oldUserInfo = (DlUsers) att.get(Constant.SESSION_USER_KEY.getStrValue());
@@ -122,12 +122,12 @@ public class UserAction extends ActionSupport implements SessionAware, ServletRe
 	}
 
 	public String resetPassword(){
-		//Èç¹ûÓÃ»§IDºÍÑéÖ¤ÂëÎª¿ÕÔò·µ»ØĞ£Ñé´íÎóÒ³Ãæ
+		//åˆ¤æ–­ç”¨æˆ·å’ŒéªŒè¯ç æ˜¯å¦ä¸ºç©º
 		if( userId == null || authCode == null)
 		{
 			return RESETCHECKFAILUE;
 		}
-		//Ğ£ÑéÑéÖ¤ÂëÊÇ·ñÕıÈ·
+		//å¯¹éªŒè¯ç è¿›è¡Œæ ¡éªŒ
 		boolean flag = userService.checkAuthCode(userId,authCode);
 		if(flag){
 			request.setAttribute("userId", userId);
@@ -188,7 +188,6 @@ public class UserAction extends ActionSupport implements SessionAware, ServletRe
 	}
 	
 	public String memberInfo() throws Exception{
-		//²éÑ¯ºÃÓÑµÄß¶
 		if(paginationSupport == null)
 		{
 			paginationSupport = new PaginationSupport(1, 1);
@@ -201,7 +200,6 @@ public class UserAction extends ActionSupport implements SessionAware, ServletRe
 	}
 	
 	public String myDaoList() throws Exception{
-		//²éÑ¯×Ô¼ºµÄß¶
 		if(paginationSupport == null)
 		{
 			paginationSupport = new PaginationSupport(1, 1);
@@ -213,12 +211,11 @@ public class UserAction extends ActionSupport implements SessionAware, ServletRe
 		return MEMBERINFO;
 	}
 	/**
-	 * ¸öÈËÒ³Ãæ
+	 * ä¸ªäººé¡µé¢
 	 * @return
 	 * @throws Exception
 	 */
 	public String personalPage() throws Exception{
-		//²éÑ¯·ÃÎÊÄ³ÈËµÄ¸öÒ³Ãæ
 		ActionContext context = ActionContext.getContext();   
 	    HttpServletRequest myRequest = (HttpServletRequest) context.get(ServletActionContext.HTTP_REQUEST);   
 	    Map session = context.getSession();   
@@ -274,7 +271,7 @@ public class UserAction extends ActionSupport implements SessionAware, ServletRe
 	}
 	/**
 	 * @ fengsn
-	 * ÓÃ»§µÇÂ¼Ğ£Ñé
+	 * ç™»å½•
 	 * */
 	public String login() throws Exception{
 		DlUsers dlUser = userService.getUserByNameOrEmail(userName);
@@ -283,7 +280,7 @@ public class UserAction extends ActionSupport implements SessionAware, ServletRe
 //		rePaginationSupport.setStartIndex(1);
 //		userService.getFollowerContentListByUser(rePaginationSupport,dlUser.getUserId());
 		if(dlUser==null){
-			request.setAttribute("ErrorInfo", "ÓÃ»§²»´æÔÚ£¬ÇëÖØĞÂÊäÈë!");
+			request.setAttribute("ErrorInfo", "ç”¨æˆ·ä¸å­˜åœ¨!");
 			return LOGINFAILURE;
 		}
 		
@@ -291,10 +288,10 @@ public class UserAction extends ActionSupport implements SessionAware, ServletRe
 		String oldpasswd = dlUser.getPassword();
 		boolean flag = Md5Util.getInstance().checkpassword(password, salt, oldpasswd);
 		if(!flag){
-			request.setAttribute("ErrorInfo", "ÃÜÂë´íÎó£¬ÇëÖØĞÂÊäÈë!");
+			request.setAttribute("ErrorInfo", "å¯†ç é”™è¯¯!");
 			return LOGINFAILURE;
 		}else{
-			//²éÑ¯¸ÃÈËÔ±ËùÓĞµÄ½ÇÉ«
+			//è·å–ç”¨æˆ·è§’è‰²
 			List<DlUserroles> userRolesList = userService.getRolesListByUserId(dlUser.getUserId());
 			dlUser.setUserRolesList(userRolesList);
 			int size = userService.getUserDao(dlUser.getUserId()).size();
