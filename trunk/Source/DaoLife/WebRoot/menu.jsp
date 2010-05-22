@@ -84,13 +84,13 @@
 							<a href="MyPage.action">我的首页</a>
 						</li>
 						<li>
-							<a href="myAttention.jsp">Dao Life</a>
+							<a href="javascript://">Dao Life</a>
 						</li>
 						<li>
-							<a href="daoHot.jsp">随便看看</a>
+							<a href="lookAround.jsp">随便看看</a>
 						</li>
 						<li>
-							<a href="daohot1.html">最叨</a>
+							<a href="daoHot.jsp">最叨</a>
 						</li>
 					</ul>
 				</div>

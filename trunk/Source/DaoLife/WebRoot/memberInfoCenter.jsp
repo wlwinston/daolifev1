@@ -172,10 +172,10 @@
 											</tr>
 											<tr>
 												<td align="center">
-													<a href="woguanzhude.html">我关注</a>
+													<a href="myAttention.jsp">我关注</a>
 												</td>
 												<td align="center">
-													<a href="guanzhuwode.html">关注我</a>
+													<a href="attentionMe.jsp">关注我</a>
 												</td>
 												<td align="center">
 													<a href="javascript:doStatus(2)">叨</a>
