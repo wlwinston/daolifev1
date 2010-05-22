@@ -11,6 +11,9 @@
 		<link href="styles/myhome.css" rel="stylesheet" type="text/css" />
 		<link href="styles/daolife.css" rel="stylesheet" type="text/css" />
 		<link href="styles/chanpin.css" rel="stylesheet" type="text/css" />
+		<script type="text/javascript" src="dwr/engine.js"> </script>
+    	<script type="text/javascript" src="dwr/util.js"> </script> 
+		<script type="text/javascript" src="dwr/interface/DaolifeAjax.js"></script>
 		<script type="text/javascript" src="js/jquery-1.3.2.min.js"></script>
 		<script type="text/javascript" src="js/movebox.js"></script>
 		<script type="text/javascript" src="js/index.js"></script>

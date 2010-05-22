@@ -268,3 +268,37 @@ var msg = {
 		},false);
 	}
 }
+function doDlinfo(){
+	DaolifeAjax.getMessageStatistics(function(rs){
+		var html = [];
+		html.push('<table width="68" border="0" cellspacing="0" cellpadding="0">');
+		if(rs){
+			if(rs.length){
+				for(var i = 0, l = rs.length; i < l; ++i){
+					var str = '';
+					switch(parseInt(rs[i][1])){
+						case 0:
+							str = '<a href="atMe.jsp">有' + rs[i][0] + '条叨@您</a>';
+							break;
+						case 2:
+							str = '<a href="attentionMe.jsp">有' + (parseInt(rs[i][0])-1) + '条关注您</a>';
+							break;
+						default:
+							str = '&nbsp;';
+					}
+					html.push('<tr><td align="center">' + str + '</td></tr>');
+				}
+			}else{
+				html.push('<tr><td align="center">没有新信息</td></tr>');
+			}
+		}else{
+			html.push('<tr><td align="center">没有新信息</td></tr>');
+		}
+		html.push('</table>');
+		$('#dlinfo').get(0).innerHTML = html.join(''); 
+		setTimeout('doDlinfo()',10000);
+	});
+}
+$(function($){
+	doDlinfo();
+})
