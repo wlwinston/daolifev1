@@ -26,7 +26,11 @@
 					cellspacing="4">
 					<tr>
 						<td width="523" height="197" align="left" valign="top">
+<<<<<<< .mine
+							<s:form action="FindPassword.action" method="post" enctype="multipart/form-data" name="regist" id="regist">
+=======
 							<form action="FindPassword.action" method="post"  name="regist" id="regist">
+>>>>>>> .r308
 								<table width="623" border="0" cellspacing="3" cellpadding="0">
 									<tr>
 										<th width="117" height="21" align="right">
