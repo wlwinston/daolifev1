@@ -55,14 +55,14 @@ public class GenericDao<T, ID extends Serializable> extends HibernateDaoSupport
 	}
 
 	/**
-	 * ¸ù¾ÝÊµÀý×´Ì¬£¬Ñ¡Ôñ±£´æ»òÕß¸üÐÂ
+	 * ï¿½ï¿½ï¿½Êµï¿½ï¿½×´Ì¬ï¿½ï¿½Ñ¡ï¿½ñ±£´ï¿½ï¿½ï¿½ß¸ï¿½ï¿½ï¿½
 	 */
 	public void saveOrUpdate(T t) throws DataAccessException {
 		this.getHibernateTemplate().saveOrUpdate(t);
 	}
 
 	/**
-	 * »ñÈ¡ÊµÀý£¬Èç¹û²»´æÔÚÔòÅ×³öÒì³£
+	 * ï¿½ï¿½È¡Êµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×³ï¿½ï¿½ì³£
 	 */
 	public T load(ID id) throws DataAccessException {
 		T load = (T) getHibernateTemplate().load(getEntityClass(), id);
@@ -70,7 +70,7 @@ public class GenericDao<T, ID extends Serializable> extends HibernateDaoSupport
 	}
 
 	/**
-	 * ¸ù¾ÝID»ñÈ¡ÊµÀý
+	 * ï¿½ï¿½ï¿½IDï¿½ï¿½È¡Êµï¿½ï¿½
 	 */
 	public T get(ID id) throws DataAccessException {
 		T load = (T) getHibernateTemplate().get(getEntityClass(), id);
@@ -78,21 +78,21 @@ public class GenericDao<T, ID extends Serializable> extends HibernateDaoSupport
 	}
 
 	/**
-	 * ¼ì²éÊµÀýÊÇ·ñ´æÔÚÓÚ»º´æÖÐ
+	 * ï¿½ï¿½ï¿½Êµï¿½ï¿½ï¿½Ç·ï¿½ï¿½ï¿½ï¿½ï¿½Ú»ï¿½ï¿½ï¿½ï¿½ï¿½
 	 */
 	public boolean contains(T t) throws DataAccessException {
 		return getHibernateTemplate().contains(t);
 	}
 
 	/**
-	 * ¼ÓËø²¢É¾³ýÖ¸¶¨µÄÊµÌå
+	 * ï¿½ï¿½ï¿½ï¿½É¾ï¿½ï¿½Ö¸ï¿½ï¿½ï¿½ï¿½Êµï¿½ï¿½
 	 */
 	public void delete(T t, LockMode lockMode) throws DataAccessException {
 		getHibernateTemplate().delete(t, lockMode);
 	}
 
 	/**
-	 * É¾³ýÖ¸¶¨µÄÊµÌå
+	 * É¾ï¿½ï¿½Ö¸ï¿½ï¿½ï¿½ï¿½Êµï¿½ï¿½
 	 */
 	public void delete(T t) throws DataAccessException {
 		getHibernateTemplate().delete(t);
@@ -104,14 +104,14 @@ public class GenericDao<T, ID extends Serializable> extends HibernateDaoSupport
 
 	/**
 	 * 
-	 * Ê¾Àý£º.find("from bean.User u where u.name=?", "test"); »òÄ£ºý²éÑ¯£º.find("from
+	 * Ê¾ï¿½ï¿½.find("from bean.User u where u.name=?", "test"); ï¿½ï¿½Ä£ï¿½ï¿½ï¿½Ñ¯ï¿½ï¿½.find("from
 	 * bean.User u where u.name like ?", "%test%");
-	 * ·µ»ØnameÊôÐÔÖµÎªtestµÄ¶ÔÏó£¨Ä£ºý²éÑ¯£¬·µ»ØnameÊôÐÔÖµ°üº¬testµÄ¶ÔÏó£©
+	 * ï¿½ï¿½ï¿½ï¿½nameï¿½ï¿½ï¿½ï¿½ÖµÎªtestï¿½Ä¶ï¿½ï¿½ï¿½Ä£ï¿½ï¿½ï¿½Ñ¯ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½nameï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½testï¿½Ä¶ï¿½ï¿½ï¿½
 	 * 
 	 * @param queryString
-	 *            ²éÑ¯Óï¾ä
+	 *            ï¿½ï¿½Ñ¯ï¿½ï¿½ï¿½
 	 * @param value
-	 *            Ìõ¼þ¶ÔÏó
+	 *            ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	 */
 	public List<T> find(String queryString, Object value)
 			throws DataAccessException {
@@ -122,13 +122,13 @@ public class GenericDao<T, ID extends Serializable> extends HibernateDaoSupport
 
 	/**
 	 * 
-	 * Ê¾Àý£ºString hql= "from bean.User u where u.name=? and u.password=?" ;
-	 * .find(hql, new String[]{"test", "123"}); ·µ»ØÓÃ»§ÃûÎªtest²¢ÇÒÃÜÂëÎª123µÄËùÓÐUser¶ÔÏó
+	 * Ê¾ï¿½ï¿½String hql= "from bean.User u where u.name=? and u.password=?" ;
+	 * .find(hql, new String[]{"test", "123"}); ï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½Îªtestï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Îª123ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Userï¿½ï¿½ï¿½ï¿½
 	 * 
 	 * @param queryString
-	 *            ²éÑ¯Óï¾ä
+	 *            ï¿½ï¿½Ñ¯ï¿½ï¿½ï¿½
 	 * @param value
-	 *            Ìõ¼þ¶ÔÏó
+	 *            ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	 */
 	public List<T> find(String queryString, Object[] values)
 			throws DataAccessException {
@@ -139,12 +139,12 @@ public class GenericDao<T, ID extends Serializable> extends HibernateDaoSupport
 
 	/**
 	 * 
-	 * Ê¾Àý£º.find("from bean.User"); ·µ»ØËùÓÐUser¶ÔÏó
+	 * Ê¾ï¿½ï¿½.find("from bean.User"); ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Userï¿½ï¿½ï¿½ï¿½
 	 * 
 	 * @param queryString
-	 *            ²éÑ¯Óï¾ä
+	 *            ï¿½ï¿½Ñ¯ï¿½ï¿½ï¿½
 	 * @param value
-	 *            Ìõ¼þ¶ÔÏó
+	 *            ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	 */
 	public List<T> find(String queryString) throws DataAccessException {
 		return (List<T>) getHibernateTemplate().find(queryString);
@@ -153,40 +153,40 @@ public class GenericDao<T, ID extends Serializable> extends HibernateDaoSupport
 	
 	/**
 	 * 
-	 * Ê¾Àý£º.find("from bean.User"); ·µ»ØËùÓÐUser¶ÔÏó
+	 * Ê¾ï¿½ï¿½.find("from bean.User"); ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Userï¿½ï¿½ï¿½ï¿½
 	 * 
 	 * @param queryString
-	 *            ²éÑ¯Óï¾ä
+	 *            ï¿½ï¿½Ñ¯ï¿½ï¿½ï¿½
 	 * @param value
-	 *            Ìõ¼þ¶ÔÏó
+	 *            ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	 */
 	public List findWithoutT(String queryString) throws DataAccessException {
 		return (List) getHibernateTemplate().find(queryString);
 	}
 
 	/**
-	 * Ë¢ÐÂÊµÀý
+	 * Ë¢ï¿½ï¿½Êµï¿½ï¿½
 	 */
 	public void refresh(T t, LockMode lockMode) throws DataAccessException {
 		getHibernateTemplate().refresh(t, lockMode);
 	}
 
 	/**
-	 * Ë¢ÐÂÊµÀý
+	 * Ë¢ï¿½ï¿½Êµï¿½ï¿½
 	 */
 	public void refresh(T t) throws DataAccessException {
 		getHibernateTemplate().refresh(t);
 	}
 
 	/**
-	 * ±£´æÊµÀý
+	 * ï¿½ï¿½ï¿½ï¿½Êµï¿½ï¿½
 	 */
 	public Serializable save(T t) throws DataAccessException {
 		return getHibernateTemplate().save(t);
 	}
 
 	/**
-	 * ±£´æ»òÐÞ¸ÄËùÓÐÊµÀý
+	 * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Þ¸ï¿½ï¿½ï¿½ï¿½ï¿½Êµï¿½ï¿½
 	 */
 	public void saveOrUpdateAll(Collection<T> entities)
 			throws DataAccessException {
@@ -194,21 +194,21 @@ public class GenericDao<T, ID extends Serializable> extends HibernateDaoSupport
 	}
 
 	/**
-	 * ÐÞ¸ÄÊµÀý²¢¼ÓËø
+	 * ï¿½Þ¸ï¿½Êµï¿½ï¿½ï¿½ï¿½ï¿½
 	 */
 	public void update(T t, LockMode lockMode) throws DataAccessException {
 		getHibernateTemplate().update(t, lockMode);
 	}
 
 	/**
-	 * ÐÞ¸ÄÊµÀý
+	 * ï¿½Þ¸ï¿½Êµï¿½ï¿½
 	 */
 	public void update(T t) throws DataAccessException {
 		getHibernateTemplate().update(t);
 	}
 
 	/**
-	 * ÐÞ¸ÄÊµÀýÊ¹ÓÃsql¸üÐÂ
+	 * ï¿½Þ¸ï¿½Êµï¿½ï¿½Ê¹ï¿½ï¿½sqlï¿½ï¿½ï¿½ï¿½
 	 * @throws SQLException 
 	 * @throws SystemException 
 	 * @throws HeuristicRollbackException 
@@ -234,7 +234,7 @@ public class GenericDao<T, ID extends Serializable> extends HibernateDaoSupport
 	
 
 	/**
-	 * »ñÈ¡È«²¿ÊµÌå
+	 * ï¿½ï¿½È¡È«ï¿½ï¿½Êµï¿½ï¿½
 	 */
 	public List<T> list() throws DataAccessException {
 		return getHibernateTemplate().loadAll(getEntityClass());
@@ -242,7 +242,7 @@ public class GenericDao<T, ID extends Serializable> extends HibernateDaoSupport
 	}
 
 	/**
-	 * Ê¹ÓÃÃüÃûµÄHSQLÓï¾ä¼ìË÷Êý¾Ý
+	 * Ê¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½HSQLï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	 */
 	public List<T> findByNamedQuery(String queryName)
 			throws DataAccessException {
@@ -250,7 +250,7 @@ public class GenericDao<T, ID extends Serializable> extends HibernateDaoSupport
 	}
 
 	/**
-	 * Ê¹ÓÃ´ø²ÎÊýµÄÃüÃûHSQLÓï¾ä¼ìË÷Êý¾Ý
+	 * Ê¹ï¿½Ã´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½HSQLï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	 */
 	public List<T> findByNamedQuery(String queryName, Object value)
 			throws DataAccessException {
@@ -258,7 +258,7 @@ public class GenericDao<T, ID extends Serializable> extends HibernateDaoSupport
 	}
 
 	/**
-	 * Ê¹ÓÃ´ø²ÎÊýµÄÃüÃûHSQLÓï¾ä¼ìË÷Êý¾Ý
+	 * Ê¹ï¿½Ã´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½HSQLï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	 */
 	public List<T> findByNamedQuery(String queryName, Object[] values)
 			throws DataAccessException {
