@@ -21,6 +21,7 @@
         <property name="userService" ref="userService" />
         <property name="dlDaoService" ref="dlDaoService" />
         <property name="followrelationService" ref="followrelationService" />
+        <property name="dlMessagesService" ref="dlMessagesService" />
     </bean>
     <bean id="FollowAction" class="com.innovation.daolife.action.FollowAction"
         scope="prototype">
