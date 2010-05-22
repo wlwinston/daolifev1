@@ -11,6 +11,9 @@ function friendsHot(id,index,name,content,picurl,baseinfo,otherinfo,attention,pe
 }
 friendsHot.prototype = {
 	getHtml : function(){
+		return '<div id="friendshot_' + this.id + '">' + this.getElement() + '</div>';
+	}
+	,getElement : function(){
 		var html = [];
 		html.push('<table width="830" border="0" align="center" cellspacing="2" class="guanzhu1">');
 		html.push('<tr>');
@@ -24,18 +27,26 @@ friendsHot.prototype = {
 		html.push('</td>');
 		html.push('<td width="367" align="left"><a href="PersonPage.action?userId=' + this.id + '">' + this.name + '</a></td>');
 		html.push('<td width="150" rowspan="4">&nbsp;</td>');
-		html.push('<td width="149" rowspan="2" align="center">');
-		html.push('<img src="images/daohot_13.gif" width="61" height="24" />');
-		html.push('</td>');
+		html.push('<td width="149" rowspan="2" align="center"><span id="attention_' + this.id + '">');
+		/*
+		if(this.attention){
+		*/	
+			html.push('<a href="javascript:doUNFollow(' + this.id + ')"><img src="images/daohot_1311.gif" width="61" height="24" /></a>');
+		/*
+		}else{
+			html.push('<a href="javascript:doFollow(' + this.id + ',' + !this.attention + ')"><img src="images/daohot_13.gif" width="61" height="24" /></a>');
+		}
+		*/
+		html.push('<span></td>');
 		html.push('</tr>');
 		html.push('<tr><td align="left">' + this.content + '</td></tr>');
 		html.push('<tr>');
 		html.push('<td align="left">' + this.baseinfo + '</td>');
-		html.push('<td width="149" align="center"><a href="#">取消关注</a></td>');
+		html.push('<td width="149" align="center"><a href="#">&nbsp;</a></td>');
 		html.push('</tr>');
 		html.push('<tr>');
-		html.push('<td height="14"  align="left">' + this.otherinfo + '</td>');
-		html.push('<td width="149" align="center">共' + this.people + '人关注</td>');
+		html.push('<td height="14" align="left">' + this.otherinfo + '</td>');
+		html.push('<td width="149" align="center">共<span id="attentionPeople_' + this.id + '">' + this.people + '</span>人关注</td>');
 		html.push('</tr>');
 		html.push('</table>');
 		return html.join('');
@@ -104,6 +115,19 @@ function doPage(page){
 	myBox.articleBox.currentPage = page;
 	doReload(function(){
 		myBox.articleBox.load();
+	});
+}
+function doUNFollow(id){
+	DaolifeAjax.unFollow(id,function(rs){
+		if(rs){
+			doReload(function(){
+				myBox.articleBox.load();
+			});
+			//myBox.articleBox.getElementById(id).reload();
+			//$('#attention_' + id).get(0).innerHTML ='<a href="javascript:doFollow(' + id + ',' + !valid + ')"><img src="images/daohot_13.gif" width="61" height="24" /></a>';
+		}else{
+			alert('取消关注失败');
+		}
 	});
 }
 function doReload(fn){

@@ -1,68 +1,6 @@
-var Form = {
-	valid : []
-	,isValid : function(){
-		for(var name in Form.valid){
-			if(!Form.valid[name]){
-				return false;
-			}
-		}
-		return true;
-	}
-	,add : function(id, ajax, ftext, ttext){
-		ftext = ftext || '';
-		ttext = ttext || '';
-		Form.valid[id] = false;
-		$('#' + id).blur(function(){
-			ajax($(this).val(), function(result){
-				switch($('#' + id).get(0).type){
-					case 'password':
-					case 'text':
-						Form.text.call(this, id, result, ftext);
-						break;
-				}
-			});
-		});
-		$('#' + id).focus(function(){
-			$('#' + id).css({
-				backgroundColor:'#F4FFD4'
-				,borderColor:'#A5C760'
-			});
-			if($('#' + id + '_info')){
-				$('#' + id + '_info').css({
-					color : '#A5C760' 
-					,fontSize : '13px' 
-				});
-			}
-			$('#' + id + '_info').html(ttext);
-		});
-		if($('#' + id + '_info')){
-			$('#' + id + '_info').html(ttext);
-		};
-	}
-	,text : function(id, result, ftext){
-		if(!result){
-			Form.valid[id] = false;
-			$('#' + id).css({
-				backgroundColor:'#FFCCCC'
-				,borderColor:'#FF0000'
-			})
-			$('#' + id + '_info').html(ftext);
-			$('#' + id + '_info').css({
-				color : '#FF0000'
-				,fontSize : '13px'
-			});
-		}else{
-			Form.valid[id] = true;
-			$('#' + id + '_info').css({
-				color : '#A5C760'
-				,fontSize : '13px' 
-			});
-			$('#' + id + '_info').html('正确');
-		}
-	}
-}
 $(function($){
 	$('#regist').submit(function(){
+		$(this).focus();
 		return Form.isValid();
 	})
 	Form.add('username',function(val,fn){

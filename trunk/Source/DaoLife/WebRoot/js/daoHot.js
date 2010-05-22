@@ -7,6 +7,9 @@ function daoHot(id,index,name,content,picurl){
 }
 daoHot.prototype = {
 	getHtml : function(){
+		return '<div id="daohot_' + this.id + '">' + this.getElement() + '</div>';	
+	}
+	,getElement : function(){
 		var html = [];
 		html.push('<table width="830" border="0" align="center" cellspacing="2"class="guanzhu1">');
 		html.push('<tr>');
