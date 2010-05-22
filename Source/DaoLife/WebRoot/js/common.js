@@ -105,7 +105,7 @@ forward.prototype = {
 	}
 }
 function mask(html,fn,s){
-	if(s == 'undefined'){
+	if(typeof s == 'undefined'){
 		s = true;
 	}
 	$('body').append('<div id="mask-overlay"></div><div id="mask-forward">' + html + '</div>').css({
