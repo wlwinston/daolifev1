@@ -36,6 +36,7 @@
 			<include method="getPesonalUserById" />
 			<include method="checkAuthCode" />
 			<include method="getAtContentDao" />
+			<include method="getMessageStatistics" />
 			<include method="getDlContentById" />
 		</create>
 	</allow>
