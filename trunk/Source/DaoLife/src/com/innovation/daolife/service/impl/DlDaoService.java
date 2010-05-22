@@ -74,7 +74,6 @@ public class DlDaoService implements IDlDaoService {
 	 * @param user
 	 *          发叨人
 	 * @param contextBody
-	 *          叨内容星系
 	 * @author winston
 	 */
 	public DlCustomerDaoEntry addDao(DlUsers user, String contextBody)
@@ -86,12 +85,8 @@ public class DlDaoService implements IDlDaoService {
 	}
 
 	/**
-	 * 保存叨߶
-	 * 
 	 * @param customerDaoDao
-	 *           叨内容
 	 * @param user
-	 *            发叨人
 	 * @throws Exception
 	 * @author winston
 	 */
@@ -102,13 +97,13 @@ public class DlDaoService implements IDlDaoService {
 		//默认被转数量和被顶数量
 		content.setRetwittNum((short) 0);
 		content.setUpNum((short) 0);
-		//叨的状态
 		content.setStatus(Constant.CONTENT_STATUS_INIT.getStrValue());
-		//发叨ID
 		content.setUserId(user.getUserId());
 		// 叨发布形式类型
 		content.setType("网页");
+
 		dlContentDao.save(content);
+
 		// 获取被at人数目
 		List<DlContentat> atList = customerDaoDao.getDlContentatList();
 		String uidString = "WHERE 1<>1 ";
@@ -119,6 +114,7 @@ public class DlDaoService implements IDlDaoService {
 			short atUserID = atContentat.getStatusUid();
 			uidString += " OR user_id = " + atUserID;
 		}
+
 		// 修改用户被@数目
 		uidString = "UPDATE dl_users SET at_week_num = at_week_num + 1,at_month_num = at_month_num + 1,at_sum_num = at_sum_num + 1 "
 				+ uidString;
@@ -134,10 +130,8 @@ public class DlDaoService implements IDlDaoService {
 	}
 
 	/**
-	 * 转叨
 	 * 
 	 * @param user
-	 *            转到人
 	 * @param contextBody
 	 *            转叨内容
 	 * @param orgDaoId
@@ -146,25 +140,29 @@ public class DlDaoService implements IDlDaoService {
 	 */
 	public DlCustomerDaoEntry addRetwitteDao(DlUsers user, String contextBody,
 			Short orgDaoId) throws Exception {
+
 		//发叨工具
 		DlCustomerDaoEntry customerDaoDao = daoContentBodyConvert
 				.covertContent(contextBody);
 		//转到工具类
 		retwitteUtil.retwitte(customerDaoDao, orgDaoId);
+
 		// 保存叨߶
 		this.saveDao(customerDaoDao, user);
 		return customerDaoDao;
 	}
 
 	/**
+	 * @author fengsn ��ѯ@�û���dao����
 	 * @author fengsn 
+
 	 */
 	public PaginationSupport getAtContentListByUser(
 			PaginationSupport paginationSupport, Short userId) {
 		String querysql = " Select c From DlUsers u INNER JOIN u.contentatmes c where  u.userId = "
-				+ userId + "";
+				+ userId + "order by c.posttime  desc";
 		String countsql = " Select count(c.userId) From DlUsers u INNER JOIN u.contentatmes c where  u.userId = "
-				+ userId + "";
+				+ userId + "order by c.posttime desc";
 		// paginationSupport = dlContentatDao.findPageByQuery(querysql,
 		// countsql, paginationSupport.getPageSize(),
 		// paginationSupport.getStartIndex());
@@ -196,7 +194,6 @@ public class DlDaoService implements IDlDaoService {
 	
 	/**
 	 * @author fengsn
-	 * 
 	 * */
 	public PaginationSupport getContentListByTime(
 			PaginationSupport paginationSupport){
@@ -219,7 +216,11 @@ public class DlDaoService implements IDlDaoService {
 	}
 	/**
 	 * @author fengsn 
+<<<<<<< .mine
+	 * return �������dao
+=======
 	 * return 获取最热叨
+>>>>>>> .r286
 	 */
 	public PaginationSupport getHotDao(PaginationSupport paginationSupport) {
 		Short daoNum = this.getdaoNum();
@@ -245,6 +246,7 @@ public class DlDaoService implements IDlDaoService {
 	}
 
 	/**
+	 * ��ѯhotdao�е�daonum���ֵ
 	 * 获取最热叨句的期数
 	 */
 	private Short getdaoNum() {
@@ -263,15 +265,10 @@ public class DlDaoService implements IDlDaoService {
 		return result;
 	}
 
-	/**
-	 * 顶叨
-	 * 
+	/**��߶����
 	 * @param daoId
-	 *            被顶叨߶ID
 	 * @param user
-	 *            当前用户
 	 * @param userIp
-	 *            顶叨人IP
 	 * @author winston
 	 */
 	public void addUpDao(String daoId, DlUsers user, String userIp)
@@ -285,14 +282,18 @@ public class DlDaoService implements IDlDaoService {
 					Constant.UPDAO_ERRORMESSAGE_ONLYONE.getStrValue());
 			throw moreThanOne;
 		}
+
 		//保存顶叨记录
+
 		DlUplog uplog = new DlUplog();
 		uplog.setHotdaoId(Short.valueOf(daoId));
 		uplog.setUpIp(userIp);
 		uplog.setUserId(userId);
 		uplog.setUptime(new Date());
 		dlUplogDao.save(uplog);
+
 		//将叨被顶数目加1
+
 		DlContent content = dlContentDao.get(uplog.getHotdaoId());
 		content.setUpNum((short) (content.getUpNum() + 1));
 		dlContentDao.saveOrUpdate(content);
