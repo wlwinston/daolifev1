@@ -79,6 +79,12 @@
     </property>
 </bean>
 
+<bean id="dlAreaService" class="com.innovation.daolife.service.impl.DlAreaService">
+    <property name="dlAreaDao">
+        <ref bean="dlAreaDao"/>
+    </property>
+</bean>
+
 <bean id="daoContentBodyConvert" class="com.innovation.daolife.service.impl.DaoContentBodyConvertService">
     <property name="dlUsersDao">
         <ref bean="dlUsersDao"/>
