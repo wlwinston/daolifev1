@@ -115,6 +115,7 @@ public class CommonAjax {
 			DlUsers nowuser = (DlUsers) session
 			.getAttribute(Constant.SESSION_USER_KEY.getStrValue());
 			paginationSupport = dlDaoService.getAtContentListByUser(paginationSupport, nowuser.getUserId());
+			dlMessagesService.dealReadState(nowuser.getUserId(),"0");
 		} else {
 			return null;
 		}
@@ -122,6 +123,26 @@ public class CommonAjax {
 
 	}
 
+	/**
+	 * @author fengsn
+	 * 统计新信息提醒
+	 * */
+	public List getMessageStatistics(){
+		WebContext request = WebContextFactory.get();
+
+		HttpSession session = request.getSession(false);
+		if (session != null
+				&& session
+						.getAttribute(Constant.SESSION_USER_KEY.getStrValue()) != null) {
+			DlUsers nowuser = (DlUsers) session
+			.getAttribute(Constant.SESSION_USER_KEY.getStrValue());
+			List result = dlMessagesService.getMessages(nowuser.getUserId());
+			return result;
+		} else {
+			return null;
+		}
+	}
+	
 	
 	/**
 	 * @author fsn ���userId����û���Ϣ
@@ -543,6 +564,7 @@ public class CommonAjax {
 			Short userId = user.getUserId();
 			paginationSupport = userService.getFanListByUser(
 					paginationSupport, userId);
+			dlMessagesService.dealReadState(userId,"2");
 		} else {
 			return null;
 		}
