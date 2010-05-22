@@ -31,6 +31,7 @@ import com.innovation.daolife.model.DlFriend;
 import com.innovation.daolife.model.DlMessages;
 import com.innovation.daolife.model.DlUsers;
 import com.innovation.daolife.model.User;
+import com.innovation.daolife.service.IDlAreaService;
 import com.innovation.daolife.service.IDlDaoService;
 import com.innovation.daolife.service.IDlMessagesService;
 import com.innovation.daolife.service.IFollowrelationService;
@@ -53,6 +54,8 @@ public class CommonAjax {
 	private IDlDaoService dlDaoService;
 	
 	private IDlMessagesService dlMessagesService;
+	
+	private IDlAreaService dlAreaService;
 
 	private IFollowrelationService followrelationService;
 
@@ -167,34 +170,22 @@ public class CommonAjax {
 	
 	/**
 	 * @author fengsn
-	 * 返回 String 数组 存放省级下拉菜单数据
+	 * 返回List 存放省级下拉菜单数据
 	 * */
-	public String[][] getProvinces(){
+	public List getProvinces(){
 		List Province = new ArrayList();
-		
-		String[][] result = new String[Province.size()][2];
-		if(Province.size()>0){
-			
-		}else{
-			
-		}
-		return result;
+		Province = dlAreaService.getAreaInfo("000001");
+		return Province;
 	}
 	
 	/**
 	 * @author fengsn
-	 * 返回 String 数组 存放地区级下拉菜单数据
+	 * 返回 List 存放地区级下拉菜单数据
 	 * */
-	public String[][] getCitys(String Id){
+	public List getCitys(String Id){
 		List City = new ArrayList();
-		
-		String[][] result = new String[City.size()][2];
-		if(City.size()>0){
-			
-		}else{
-			
-		}
-		return result;
+		City = dlAreaService.getAreaInfo(Id);
+		return City;
 	}
 	
 	/**
@@ -236,7 +227,6 @@ public class CommonAjax {
 	 * @author winston
 	 */
 	public PaginationSupport getMyDao(int pages) {
-//		getAtContentDao(pages);
 		if (pages < 0) {
 			pages = 1;
 		}
@@ -649,6 +639,14 @@ public class CommonAjax {
 
 	public void setDlMessagesService(IDlMessagesService dlMessagesService) {
 		this.dlMessagesService = dlMessagesService;
+	}
+
+	public IDlAreaService getDlAreaService() {
+		return dlAreaService;
+	}
+
+	public void setDlAreaService(IDlAreaService dlAreaService) {
+		this.dlAreaService = dlAreaService;
 	}
 
 }
