@@ -256,7 +256,7 @@
 															</table>
 														</td>
 														<td height="32" align="center">
-															<a href="passwrod.html">找回密码</a>
+															<a href="findPassword.jsp">找回密码</a>
 														</td>
 													</tr>
 													<tr>

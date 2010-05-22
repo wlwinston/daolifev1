@@ -45,6 +45,7 @@ public class UserAction extends ActionSupport implements SessionAware, ServletRe
 	private UserSearch userSearch;
 	private IUserService userService;
 	private String userName;
+	private String findPwUserName;
 	private String password;
 	private String newpassword;
 	private Short userId;
@@ -199,7 +200,7 @@ public class UserAction extends ActionSupport implements SessionAware, ServletRe
 	}
 	
 	public String findPassword() throws EmailException {
-		userService.resetPasswordEmail(userName);
+		userService.resetPasswordEmail(findPwUserName);
 		return FINDPASSWORDSUCCESS;
 	}
 	
@@ -401,6 +402,12 @@ public class UserAction extends ActionSupport implements SessionAware, ServletRe
 	}
 	public void setPersonalInfo(DlUsers personalInfo) {
 		this.personalInfo = personalInfo;
+	}
+	public String getFindPwUserName() {
+		return findPwUserName;
+	}
+	public void setFindPwUserName(String findPwUserName) {
+		this.findPwUserName = findPwUserName;
 	}
 
 }

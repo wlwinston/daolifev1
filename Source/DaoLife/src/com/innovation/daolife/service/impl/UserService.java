@@ -423,7 +423,7 @@ public class UserService implements IUserService {
 			this.updateUser(user);
 			DaoLifeEmail daoEmail = new DaoLifeEmail();
 			// ��ַ��ĳɿ�����
-			String authUrl = "http://www.daolife.com/ResetPassword.action?userId="
+			String authUrl = Constant.LINK_WEBSITE_PREFIX.getStrValue()+"/ResetPassword.action?userId="
 					+ user.getUserId() + "&authCode=" + authCode + "";
 			daoEmail.sendFindPasswordEmail(user.getUserName(), authUrl, user
 					.getMailadres());

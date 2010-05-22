@@ -31,7 +31,6 @@
 			<result name="personPage">personalPage.jsp</result>
 			<result name="unLogin" type="redirect">index.action</result>
 			
-			<interceptor-ref name="cookieInterceptor" />
 		</action> 
 		<action name="Regist" class="UserAction" method="regist">
 			<result name="registerSuccess">/success.jsp</result>	

@@ -36,6 +36,7 @@
 											<label>
 												<input id="password" type="password" name="newPassword" />
 												<span id="password_info" class="info"></span>
+												<input id='userId' type="hidden" name="userId" value ="<s:property value="userId"/>" />
 											</label>
 										</td>
 									</tr>
