@@ -36,6 +36,8 @@
 			<include method="getPesonalUserById" />
 			<include method="checkAuthCode" />
 			<include method="getAtContentDao" />
+			<include method="getProvinces" />
+			<include method="getCitys" />
 			<include method="getMessageStatistics" />
 			<include method="getDlContentById" />
 		</create>
