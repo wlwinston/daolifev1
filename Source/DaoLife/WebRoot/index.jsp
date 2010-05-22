@@ -7,6 +7,10 @@
 		<title>叨</title>
 		<link href="styles/body.css" rel="stylesheet" type="text/css" />
 		<link href="styles/index.css" rel="stylesheet" type="text/css" />
+		<link href="styles/daolifemare.css" rel="stylesheet" type="text/css" />
+		<link href="styles/myhome.css" rel="stylesheet" type="text/css" />
+		<link href="styles/daolife.css" rel="stylesheet" type="text/css" />
+		<link href="styles/chanpin.css" rel="stylesheet" type="text/css" />
 		<script type="text/javascript" src="js/jquery-1.3.2.min.js"></script>
 		<script type="text/javascript" src="js/movebox.js"></script>
 		<script type="text/javascript" src="js/index.js"></script>
@@ -207,7 +211,7 @@
 						</div>
 						<!--右边区域-->
 						<div class="reight">
-
+							<s:if test="#session.daoLifeUser==null">
 							<div class="Box">
 								登陆
 							</div>
@@ -272,6 +276,110 @@
 									</table>
 								</form>
 							</div>
+							</s:if>
+							<s:else>
+							<table width="318" height="58" border="0" align="center"
+								cellpadding="0" cellspacing="0" class="xia1">
+								<tr>
+									<td width="120" class="Box1">
+									<s:property value="#session['daoLifeUser'].userNickName"/>
+									</td>
+									<td width="127" align="left" valign="middle">
+										&nbsp;
+									</td>
+									<td align="left" valign="middle">
+										<a href="Logout.action" >退出登陆</a>
+									</td>
+								</tr>
+							</table>
+							<table width="82%" border="0" align="center" cellpadding="0"
+								cellspacing="0" class="yonghu">
+								<tr>
+									<td width="32%" align="center">
+										<a href="touxiang.html"><img src="images/1_10.gif"
+												width="113" height="112" />
+										</a>
+									</td>
+									<td width="68%" align="center" valign="top">
+										<table width="193" height="52" border="0" cellpadding="0"
+											cellspacing="0" class="xia1">
+											<tr>
+												<td width="76" height="33" align="center"
+													class="STYLE4 STYLE7 STYLE5 STYLE6">
+													<a href="woguanzhude.html"><s:property value="#session['daoLifeUser'].followNum"/></a>
+												</td>
+												<td width="76" align="center"
+													class="STYLE4 STYLE7 STYLE5 STYLE6">
+													<a href="guanzhuwode.html"><s:property value="#session['daoLifeUser'].fansNum"/></a>
+												</td>
+												<td width="78" align="center"
+													class="STYLE4 STYLE7 STYLE5 STYLE6">
+													<a href="javascript:doStatus(2)"><s:property value="#session['daoLifeUser'].contentsSize"/></a>
+												</td>
+											</tr>
+											<tr>
+												<td align="center">
+													<a href="woguanzhude.html">我关注</a>
+												</td>
+												<td align="center">
+													<a href="guanzhuwode.html">关注我</a>
+												</td>
+												<td align="center">
+													<a href="javascript:doStatus(2)">叨</a>
+												</td>
+											</tr>
+										</table>
+										<table width="200" height="66" border="0" align="center"
+											cellpadding="0" cellspacing="4">
+											<tr>
+												<td width="51" align="right">
+													简介：
+												</td>
+												<td width="143" align="left">
+													男 北京市 朝阳起 设计师
+												</td>
+											</tr>
+											<tr>
+												<td align="right">
+													博客：
+												</td>
+												<td align="left">
+													the5th.blogbus.com
+												</td>
+											</tr>
+											<tr>
+												<td align="right">
+													关于他：
+												</td>
+												<td align="left">
+													吃个苹果吧青年
+												</td>
+											</tr>
+										</table>
+									</td>
+								</tr>
+							</table>
+							<div class="shezhi">
+								<table width="138" border="0" cellspacing="3" cellpadding="3">
+									<tr>
+										<td width="54">
+											<a href="shezhi.html">我的设置</a>
+										</td>
+										<td width="63">
+											<a href="sixin.html">我的私信</a>
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<a href="zhuanfa.html">我的转发</a>
+										</td>
+										<td>
+											<a href="pinglun.html">我的评论</a>
+										</td>
+									</tr>
+								</table>
+							</div>
+							</s:else>
 							<div class="Box">
 								最热叨友<span><a href="javascript://">查看全部</a></span>
 							</div>
@@ -294,7 +402,7 @@
 							<s:if test="{hotDaoList!=null}">
 							<s:iterator  value="hotDaoList" status="hotDaoList">
 							<div class="daoju1">
-								<a href="touxiang.html">@<s:property value="userName"/></a>
+								<a href="PersonPage.action?userId=<s:property value="userId"/>">@<s:property value="userName"/></a>
 							</div>
 							<div class="daoju2">
 								<s:property value="contentBody" escape="false"/>
