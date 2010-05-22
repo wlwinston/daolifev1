@@ -73,7 +73,9 @@ public class UserAction extends ActionSupport implements SessionAware, ServletRe
 	}
 	
 	public String logout() throws Exception{
-		request.getSession().invalidate();
+		request.getSession().setAttribute(Constant.SESSION_USER_KEY.getStrValue(), null);
+		request.getSession().removeAttribute(Constant.SESSION_USER_KEY.getStrValue());
+		//request.getSession().invalidate();
 		return "clearSuccess";
 	}
 	
