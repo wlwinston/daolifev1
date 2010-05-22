@@ -36,12 +36,12 @@
 							cellspacing="0" class="xia1 guanzhu ">
 							<tr>
 								<td width="12%" height="40" align="center">
-									<a href="daoHot.jsp"><img src="images/daohot1_03.gif"
+									<a href="DaoHot.action"><img src="images/daohot1_03.gif"
 											alt="" width="113" height="22" />
 									</a>
 								</td>
 								<td width="13%" align="center">
-									<a href="friendsHot.jsp"><img src="images/daohot1_05.gif"
+									<a href="FriendsHot.action"><img src="images/daohot1_05.gif"
 											width="79" height="22" />
 									</a>
 								</td>
