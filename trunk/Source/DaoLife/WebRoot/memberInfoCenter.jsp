@@ -224,10 +224,10 @@
 									</tr>
 									<tr>
 										<td>
-											<a href="zhuanfa.html">我的转发</a>
+											<a href="atMe.jsp">@我的</a>
 										</td>
 										<td>
-											<a href="pinglun.html">我的评论</a>
+											&nbsp;
 										</td>
 									</tr>
 								</table>
