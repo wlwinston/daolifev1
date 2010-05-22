@@ -32,11 +32,12 @@ import com.innovation.daolife.model.DlMessages;
 import com.innovation.daolife.model.DlUsers;
 import com.innovation.daolife.model.User;
 import com.innovation.daolife.service.IDlDaoService;
+import com.innovation.daolife.service.IDlMessagesService;
 import com.innovation.daolife.service.IFollowrelationService;
 import com.innovation.daolife.service.IUserService;
 
 /**
- * ´ËÀàÎªµ±ÔÚÒ³ÃæÉÏÓÃdwrµ÷ÓÃ·½·¨Ê±£¬¿ÉÒÔ½«ËùÓÐµÄÕâÑùµÄ·½·¨Ð´Èë´ËÀàÖÐ
+ * ï¿½ï¿½ï¿½ï¿½Îªï¿½ï¿½ï¿½ï¿½Ò³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½dwrï¿½ï¿½ï¿½Ã·ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½ï¿½Ô½ï¿½ï¿½ï¿½ï¿½Ðµï¿½ï¿½ï¿½ï¿½ï¿½Ä·ï¿½ï¿½ï¿½Ð´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
  * 
  * @author Winston
  * 
@@ -50,6 +51,8 @@ public class CommonAjax {
 	private IDlUsersDao dlUsersDao;
 
 	private IDlDaoService dlDaoService;
+	
+	private IDlMessagesService dlMessagesService;
 
 	private IFollowrelationService followrelationService;
 
@@ -60,7 +63,7 @@ public class CommonAjax {
 	}
 
 	/**
-	 * @author fsn ¼ì²éÓÃ»§ÃûÊÇ·ñÎ¨Ò» ·µ»Øtrue Î¨Ò»
+	 * @author fsn ï¿½ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½Ç·ï¿½Î¨Ò» ï¿½ï¿½ï¿½ï¿½true Î¨Ò»
 	 */
 	public boolean checkUserName(String username) {
 		boolean flag = userService.checkUserByName(username);
@@ -68,7 +71,7 @@ public class CommonAjax {
 	}
 
 	/**
-	 * @author fsn ¼ì²éÓÊÏäÊÇ·ñÎ¨Ò» ·µ»Øtrue Î¨Ò»
+	 * @author fsn ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç·ï¿½Î¨Ò» ï¿½ï¿½ï¿½ï¿½true Î¨Ò»
 	 */
 	public boolean checkUserEmail(String email) {
 		boolean flag = userService.checkUserByEmail(email);
@@ -76,7 +79,7 @@ public class CommonAjax {
 	}
 
 	/**
-	 * @author fsn ¼ì²éÓÊÏäÊÇ·ñÎ¨Ò» ·µ»Øtrue Î¨Ò»
+	 * @author fsn ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç·ï¿½Î¨Ò» ï¿½ï¿½ï¿½ï¿½true Î¨Ò»
 	 */
 	public boolean checkUserAddress(String adress) {
 		boolean flag = userService.checkUserByAdress(adress);
@@ -84,7 +87,7 @@ public class CommonAjax {
 	}
 
 	/**
-	 * @author fsn ¼ì²éêÇ³ÆÊÇ·ñÎ¨Ò» ·µ»Øtrue Î¨Ò»
+	 * @author fsn ï¿½ï¿½ï¿½ï¿½Ç³ï¿½ï¿½Ç·ï¿½Î¨Ò» ï¿½ï¿½ï¿½ï¿½true Î¨Ò»
 	 */
 	public boolean checkUserNickName(String check) {
 		boolean flag = userService.checkUserByNickName(check);
@@ -92,7 +95,36 @@ public class CommonAjax {
 	}
 	
 	/**
-	 * @author fsn ¸ù¾ÝuserId»ñµÃÓÃ»§ÐÅÏ¢
+	 * @author fengsn
+	 * return @æˆ‘çš„å†…å®¹
+	 * */
+	public PaginationSupport getAtContentDao(int pages) {
+		if (pages < 0) {
+			pages = 1;
+		}
+		int pageSize = Constant.PAGESIZE_MYDAO.getIntValue();
+		int startIndex = pageSize * (pages - 1);
+		PaginationSupport paginationSupport = new PaginationSupport(pageSize,
+				startIndex);
+		WebContext request = WebContextFactory.get();
+
+		HttpSession session = request.getSession(false);
+		if (session != null
+				&& session
+						.getAttribute(Constant.SESSION_USER_KEY.getStrValue()) != null) {
+			DlUsers nowuser = (DlUsers) session
+			.getAttribute(Constant.SESSION_USER_KEY.getStrValue());
+			paginationSupport = dlDaoService.getAtContentListByUser(paginationSupport, nowuser.getUserId());
+		} else {
+			return null;
+		}
+		return paginationSupport;
+
+	}
+
+	
+	/**
+	 * @author fsn ï¿½ï¿½ï¿½userIdï¿½ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½Ï¢
 	 */
 	public DlUsers getPesonalUserById(Short id) {
 		
@@ -113,10 +145,42 @@ public class CommonAjax {
 	}
 	
 	/**
-	 * »ñÈ¡×ª·¢daoµÄÐÅÏ¢
+	 * @author fengsn
+	 * è¿”å›ž String æ•°ç»„ å­˜æ”¾çœçº§ä¸‹æ‹‰èœå•æ•°æ®
+	 * */
+	public String[][] getProvinces(){
+		List Province = new ArrayList();
+		
+		String[][] result = new String[Province.size()][2];
+		if(Province.size()>0){
+			
+		}else{
+			
+		}
+		return result;
+	}
+	
+	/**
+	 * @author fengsn
+	 * è¿”å›ž String æ•°ç»„ å­˜æ”¾åœ°åŒºçº§ä¸‹æ‹‰èœå•æ•°æ®
+	 * */
+	public String[][] getCitys(String Id){
+		List City = new ArrayList();
+		
+		String[][] result = new String[City.size()][2];
+		if(City.size()>0){
+			
+		}else{
+			
+		}
+		return result;
+	}
+	
+	/**
+	 * ï¿½ï¿½È¡×ªï¿½ï¿½daoï¿½ï¿½ï¿½ï¿½Ï¢
 	 * 
 	 * @param contentId
-	 *            ±»×ª·¢ID
+	 *            ï¿½ï¿½×ªï¿½ï¿½ID
 	 * @author fsn
 	 */
 	public PaginationSupport getRewriteContentDao(int pages,Short contentId) {
@@ -143,14 +207,15 @@ public class CommonAjax {
 	}
 
 	/**
-	 * »ñÈ¡ÎÒµÄß¶
+	 * ï¿½ï¿½È¡ï¿½Òµï¿½ß¶
 	 * 
 	 * @param daoId
-	 *            ±»¶¥ß¶ID
-	 * @return ·µ»Ø´íÎóÐÅÏ¢£¬Èç¹ûÎª¿ÕÔò¶¥ß¶³É¹¦
+	 *            ï¿½ï¿½ï¿½ï¿½ß¶ID
+	 * @return ï¿½ï¿½ï¿½Ø´ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½ï¿½ï¿½Îªï¿½ï¿½ï¿½ï¿½ß¶ï¿½É¹ï¿½
 	 * @author winston
 	 */
 	public PaginationSupport getMyDao(int pages) {
+//		getAtContentDao(pages);
 		if (pages < 0) {
 			pages = 1;
 		}
@@ -177,11 +242,11 @@ public class CommonAjax {
 	}
 
 	/**
-	 * »ñÈ¡×îÈÈdao
+	 * ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½dao
 	 * 
 	 * @param daoId
-	 *            ±»¶¥ß¶ID
-	 * @return ·µ»Ø´íÎóÐÅÏ¢£¬Èç¹ûÎª¿ÕÔò¶¥ß¶³É¹¦
+	 *            ï¿½ï¿½ï¿½ï¿½ß¶ID
+	 * @return ï¿½ï¿½ï¿½Ø´ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½ï¿½ï¿½Îªï¿½ï¿½ï¿½ï¿½ß¶ï¿½É¹ï¿½
 	 * @author winston
 	 */
 	public PaginationSupport getHotDao(int pages) {
@@ -199,11 +264,11 @@ public class CommonAjax {
 	}
 
 	/**
-	 * »ñÈ¡×îÈÈdao
+	 * ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½dao
 	 * 
 	 * @param daoId
-	 *            ±»¶¥ß¶ID
-	 * @return ·µ»Ø´íÎóÐÅÏ¢£¬Èç¹ûÎª¿ÕÔò¶¥ß¶³É¹¦
+	 *            ï¿½ï¿½ï¿½ï¿½ß¶ID
+	 * @return ï¿½ï¿½ï¿½Ø´ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½ï¿½ï¿½Îªï¿½ï¿½ï¿½ï¿½ß¶ï¿½É¹ï¿½
 	 * @author winston
 	 */
 	public PaginationSupport getHotUser(int pages) {
@@ -233,11 +298,11 @@ public class CommonAjax {
 	}
 
 	/**
-	 * »ñÈ¡ÎÒµÄß¶
+	 * ï¿½ï¿½È¡ï¿½Òµï¿½ß¶
 	 * 
 	 * @param daoId
-	 *            ±»¶¥ß¶ID
-	 * @return ·µ»Ø´íÎóÐÅÏ¢£¬Èç¹ûÎª¿ÕÔò¶¥ß¶³É¹¦
+	 *            ï¿½ï¿½ï¿½ï¿½ß¶ID
+	 * @return ï¿½ï¿½ï¿½Ø´ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½ï¿½ï¿½Îªï¿½ï¿½ï¿½ï¿½ß¶ï¿½É¹ï¿½
 	 * @author winston
 	 */
 	public PaginationSupport getPesonalDao(int pages, short userId) {
@@ -265,11 +330,11 @@ public class CommonAjax {
 	}
 
 	/**
-	 * »ñÈ¡ÎÒºÃÓÑµÄß¶
+	 * ï¿½ï¿½È¡ï¿½Òºï¿½ï¿½Ñµï¿½ß¶
 	 * 
 	 * @param daoId
-	 *            ±»¶¥ß¶ID
-	 * @return ·µ»Ø´íÎóÐÅÏ¢£¬Èç¹ûÎª¿ÕÔò¶¥ß¶³É¹¦
+	 *            ï¿½ï¿½ï¿½ï¿½ß¶ID
+	 * @return ï¿½ï¿½ï¿½Ø´ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½ï¿½ï¿½Îªï¿½ï¿½ï¿½ï¿½ß¶ï¿½É¹ï¿½
 	 * @author winston
 	 */
 	public PaginationSupport getAllDao(int pages) {
@@ -299,7 +364,7 @@ public class CommonAjax {
 	}
 	
 	/**
-	 * Ëæ±ã¿´¿´
+	 * ï¿½ï¿½ã¿´ï¿½ï¿½
 	 * @author fsn
 	 */
 	public PaginationSupport getContentsByTime(int pages) {
@@ -315,11 +380,11 @@ public class CommonAjax {
 	}
 
 	/**
-	 * ¶¥ß¶
+	 * ï¿½ï¿½ß¶
 	 * 
 	 * @param daoId
-	 *            ±»¶¥ß¶ID
-	 * @return ·µ»Ø´íÎóÐÅÏ¢£¬Èç¹ûÎª¿ÕÔò¶¥ß¶³É¹¦
+	 *            ï¿½ï¿½ï¿½ï¿½ß¶ID
+	 * @return ï¿½ï¿½ï¿½Ø´ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½ï¿½ï¿½Îªï¿½ï¿½ï¿½ï¿½ß¶ï¿½É¹ï¿½
 	 * @author winston
 	 */
 	public String upDao(String daoId) {
@@ -347,11 +412,11 @@ public class CommonAjax {
 	}
 
 	/**
-	 * ·¢ß¶
+	 * ï¿½ï¿½ß¶
 	 * 
 	 * @param contentBody
-	 *            ß¶ÄÚÈÝ
-	 * @return ß¶µÄÊµÌå¶ÔÏó
+	 *            ß¶ï¿½ï¿½ï¿½ï¿½
+	 * @return ß¶ï¿½ï¿½Êµï¿½ï¿½ï¿½ï¿½ï¿½
 	 * @throws Exception
 	 * @author winston
 	 */
@@ -379,7 +444,7 @@ public class CommonAjax {
 	 * 
 	 * @param contentBody
 	 * @param orgDaoId
-	 * @return ß¶µÄÊµÌå¶ÔÏó
+	 * @return ß¶ï¿½ï¿½Êµï¿½ï¿½ï¿½ï¿½ï¿½
 	 * @author winston
 	 */
 	public DlCustomerDaoEntry addRetwitteDao(String contentBody, Short orgDaoId) {
@@ -403,7 +468,7 @@ public class CommonAjax {
 	}
 
 	/**
-	 * Ìí¼Ó¹Ø×¢
+	 * ï¿½ï¿½Ó¹ï¿½×¢
 	 * 
 	 * @author fsn
 	 */
@@ -430,7 +495,7 @@ public class CommonAjax {
 	
 	/**
 	 * @author fengsn
-	 * ÎÒ¹Ø×¢µÄdaoÓÑ
+	 * ï¿½Ò¹ï¿½×¢ï¿½ï¿½daoï¿½ï¿½
 	 * */
 	public PaginationSupport getMyFollowFriend(int pages){
 		if (pages < 0) {
@@ -458,7 +523,7 @@ public class CommonAjax {
 	
 	/**
 	 * @author fengsn
-	 * ¹Ø×¢ÎÒµÄdaoÓÑ
+	 * ï¿½ï¿½×¢ï¿½Òµï¿½daoï¿½ï¿½
 	 * */
 	public PaginationSupport getMyFanFriend(int pages) {
 		if (pages < 0) {
@@ -554,6 +619,14 @@ public class CommonAjax {
 	public void setFollowrelationService(
 			IFollowrelationService followrelationService) {
 		this.followrelationService = followrelationService;
+	}
+
+	public IDlMessagesService getDlMessagesService() {
+		return dlMessagesService;
+	}
+
+	public void setDlMessagesService(IDlMessagesService dlMessagesService) {
+		this.dlMessagesService = dlMessagesService;
 	}
 
 }
