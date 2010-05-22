@@ -9,6 +9,7 @@
     	<script type="text/javascript" src="dwr/util.js"> </script> 
     	<script type="text/javascript" src="dwr/interface/DaolifeAjax.js"></script>
 		<script type="text/javascript" src="js/jquery-1.3.2.min.js"></script>
+		<script type="text/javascript" src="js/common.js"></script>
 		<script type="text/javascript" src="js/regist.js"></script>
 		<link type="text/css" rel="stylesheet" href="styles/regist.css" />
 		<link href="styles/body.css" rel="stylesheet" type="text/css" />

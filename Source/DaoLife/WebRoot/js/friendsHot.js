@@ -1,4 +1,4 @@
-function friendsHot(id,index,name,content,picurl,baseinfo,otherinfo,attention,people){
+function friendsHot(id,index,name,content,picurl,baseinfo,otherinfo,attention,people,nowuid){
 	this.id = id;
 	this.index = index;
 	this.name = name;
@@ -8,6 +8,7 @@ function friendsHot(id,index,name,content,picurl,baseinfo,otherinfo,attention,pe
 	this.otherinfo = otherinfo;
 	this.attention = attention;
 	this.people = people;
+	this.nowuid = nowuid;
 }
 friendsHot.prototype = {
 	getHtml : function(){
@@ -28,10 +29,12 @@ friendsHot.prototype = {
 		html.push('<td width="367" align="left"><a href="PersonPage.action?userId=' + this.id + '">' + this.name + '</a></td>');
 		html.push('<td width="150" rowspan="4">&nbsp;</td>');
 		html.push('<td width="149" rowspan="2" align="center"><span id="attention_' + this.id + '">');
-		if(this.attention){
-			html.push('<a href="javascript:doFollow(' + this.id + ',' + !this.attention + ')">取消关注</a>');
-		}else{
-			html.push('<a href="javascript:doFollow(' + this.id + ',' + !this.attention + ')"><img src="images/daohot_13.gif" width="61" height="24" /></a>');
+		if(this.nowuid == 0 || this.nowuid != this.id){
+			if(this.attention){
+				html.push('<a href="javascript:doFollow(' + this.id + ',' + !this.attention + ')"><img src="images/daohot_1311.gif" width="61" height="24" /></a>');
+			}else{
+				html.push('<a href="javascript:doFollow(' + this.id + ',' + !this.attention + ')"><img src="images/daohot_13.gif" width="61" height="24" /></a>');
+			}
 		}
 		html.push('<span></td>');
 		html.push('</tr>');
@@ -48,12 +51,8 @@ friendsHot.prototype = {
 		return html.join('');
 	}
 	,reload : function(){
-		this.people++;
-		this.attention = !this.attention;
 		var myself = this;
 		DaolifeAjax.getPesonalUserById(this.id,function(rs){
-			//alert(rs.followFlag + ':' + rs.fansNum);
-			alert(rs.followFlag);
 			myself.attention = rs.followFlag;
 			myself.people = rs.fansNum;
 			$('#friendshot_' + myself.id).get(0).innerHTML = myself.getElement();
@@ -131,6 +130,8 @@ function doFollow(id,valid){
 			if(rs){
 				myBox.articleBox.getElementById(id).reload();
 				//$('#attention_' + id).get(0).innerHTML = '<a href="javascript:doFollow(' + id + ',' + !valid + ')">取消关注</a>';
+			}else{
+				alert('关注失败');
 			}
 		});
 	}else{
@@ -138,6 +139,8 @@ function doFollow(id,valid){
 			if(rs){
 				myBox.articleBox.getElementById(id).reload();
 				//$('#attention_' + id).get(0).innerHTML ='<a href="javascript:doFollow(' + id + ',' + !valid + ')"><img src="images/daohot_13.gif" width="61" height="24" /></a>';
+			}else{
+				alert('取消关注失败');
 			}
 		});
 	}
@@ -149,7 +152,7 @@ function doReload(fn){
 		for(var i = 0, l = rs.items.length; i < l; ++i){
 			var baseinfo = getUserGender(rs.items[i].userGender) + ' | ' + getUserBirthday(rs.items[i].birthday);
 			var otherinfo = getUserAddress(rs.items[i].userAddress);
-			myBox.articleBox.add(new friendsHot(rs.items[i].userId,((rs.currentPage - 1) * rs.pageCount) + (i + 1),rs.items[i].userNickName,rs.items[i].userInfo,'images/myhome_30.gif',baseinfo,otherinfo,rs.items[i].followFlag,rs.items[i].fansNum));
+			myBox.articleBox.add(new friendsHot(rs.items[i].userId,((rs.currentPage - 1) * rs.pageCount) + (i + 1),rs.items[i].userNickName,rs.items[i].userInfo,'images/myhome_30.gif',baseinfo,otherinfo,rs.items[i].followFlag,rs.items[i].fansNum,rs.nowUid));
 		}
 		if(fn){
 			fn();
