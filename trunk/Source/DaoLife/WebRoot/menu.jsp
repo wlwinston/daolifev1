@@ -87,10 +87,10 @@
 							<a href="javascript://">Dao Life</a>
 						</li>
 						<li>
-							<a href="lookAround.jsp">随便看看</a>
+							<a href="LookAround.action">随便看看</a>
 						</li>
 						<li>
-							<a href="daoHot.jsp">最叨</a>
+							<a href="DaoHot.action">最叨</a>
 						</li>
 					</ul>
 				</div>
