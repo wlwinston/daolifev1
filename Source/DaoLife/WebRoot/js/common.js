@@ -104,7 +104,10 @@ forward.prototype = {
 		return this.html.join('');
 	}
 }
-function mask(html,fn){
+function mask(html,fn,s){
+	if(s == 'undefined'){
+		s = true;
+	}
 	$('body').append('<div id="mask-overlay"></div><div id="mask-forward">' + html + '</div>').css({
 		overflow : 'hidden'
 	});
@@ -129,7 +132,9 @@ function mask(html,fn){
 	}).fadeIn(function(){
 		$('#mask-forward').fadeIn()
 	});
-	$('#mask-overlay').click(maskHide);
+	if(s){
+		$('#mask-overlay').click(maskHide);
+	}
 	$('#forward-button').click(fn)
 }
 function maskHide(){
@@ -233,5 +238,33 @@ var Form = {
 			});
 			$('#' + id + '_info').html('正确');
 		}
+	}
+}
+var msg = {
+	alert : function(text,fn){
+		var html = [];
+		html.push('<table style="margin: 100px auto;" width="316" border="0" cellspacing="0" cellpadding="0">');
+        html.push('<tr>');
+        html.push('<td><img src="images/pinglun_13.gif" width="316" height="6" /></td>');
+        html.push('</tr>');
+        html.push('<tr>');
+        html.push('<td height="69" align="left" valign="top" background="images/pinglun_15.gif"><table width="314" border="0" cellspacing="0" cellpadding="0">');
+        html.push('<tr>');
+        html.push('<td width="314" height="40" align="center" valign="middle"><h2 class="STYLE5">' + text + '</h2></td>');
+        html.push('</tr>');
+        html.push('<tr>');
+        html.push('<td height="23" align="center"><input type="image" href="images/myhome_11.gif" src="images/pinglun_18.gif" id="forward-button"></td>');
+        html.push('</tr>');
+        html.push('</table></td>');
+        html.push('</tr>');
+        html.push('<tr>');
+        html.push('<td><img src="images/pinglun_21.gif" width="316" height="5" /></td>');
+        html.push('</tr>');
+       	html.push('</table>');
+       	
+       	mask(html.join(''),function(){
+       		maskHide();
+       		fn();
+		},false);
 	}
 }
