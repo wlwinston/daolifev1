@@ -106,6 +106,22 @@ public class UserAction extends ActionSupport implements SessionAware, ServletRe
 		return "updatePrepareSuccess";
 	}
 	
+	public String attentionMe(){
+		return "attentionMeSuccess";
+	}
+	
+	public String daoHot(){
+		return "daoHotSuccess";
+	}
+	
+	public String friendsHot(){
+		return "friendsHotSuccess";
+	}
+	
+	public String followMe(){
+		return "followMeSuccess";
+	}
+	
 	public String myPage() throws Exception{
 		DlUsers UserInfo = (DlUsers) att.get(Constant.SESSION_USER_KEY.getStrValue());
 		//updateUser = UserInfo;
