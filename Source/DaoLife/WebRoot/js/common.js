@@ -62,7 +62,7 @@ function forward(id,picurl,name,content){
 forward.prototype = {
 	getHtml : function(){
 		this.html = [];
-		this.html.push('<table style="margin: 0 auto;" width="487" border="0" align="center" cellpadding="0" cellspacing="0">');
+		this.html.push('<table style="margin: 100px auto;" width="487" border="0" align="center" cellpadding="0" cellspacing="0">');
   		this.html.push('<tr><td width="487"><img src="images/myhome_34.gif" width="523" height="6" /></td></tr>');
   		this.html.push('<tr>');
     	this.html.push('<td height="164" align="center" valign="top" background="images/myhome_37.gif"><table width="510" height="15" border="0" cellpadding="0" cellspacing="0">');
