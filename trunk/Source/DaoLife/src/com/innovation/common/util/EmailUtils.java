@@ -14,43 +14,43 @@ import org.apache.commons.mail.SimpleEmail;
 import org.apache.log4j.Logger;
 
 /**
- * ·¢ËÍÓÊ¼ş
+ * ï¿½ï¿½ï¿½ï¿½ï¿½Ê¼ï¿½
  * @author winston
  */
 public class EmailUtils {
     private static Logger logger = Logger.getLogger(EmailUtils.class);
-	private String hostName = null;//ÕâÀï±ØĞëÊÇSMTPµØÖ·,ÌîĞ´Ö®Ç°²éÑ¯¸ÃmailÍøµÄsmtp
-	private String userName = null;//ÓÊÏäÃû
-	private String userPass = null;//ÓÊÏäÃÜÂë
-	private String toAd = null;//½ÓÊÕÈËµØÖ·
-	private String toName = null;//½ÓÊÕÈËĞÕÃû
-	private String fromAd = null;//·¢ËÍÈËµØÖ·
-	private String fromName = null;//·¢ËÍÈËĞÕÃû
-	private String subject = null;//ÓÊ¼ş±êÌâ
-	private String msg = null;//ÓÊ¼şÄÚÈİ
-	private String url = null;//¸½¼şÔ¶³ÌµØÖ·
-	private String name = null;//¸½¼şÃû
-	private ArrayList pathArrayList = null;//¶à¸½¼şÃû×é³ÉµÄArrayList
+	private String hostName = null;//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½SMTPï¿½ï¿½Ö·,ï¿½ï¿½Ğ´Ö®Ç°ï¿½ï¿½Ñ¯ï¿½ï¿½mailï¿½ï¿½ï¿½smtp
+	private String userName = null;//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	private String userPass = null;//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	private String toAd = null;//ï¿½ï¿½ï¿½ï¿½ï¿½Ëµï¿½Ö·
+	private String toName = null;//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	private String fromAd = null;//ï¿½ï¿½ï¿½ï¿½ï¿½Ëµï¿½Ö·
+	private String fromName = null;//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	private String subject = null;//ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½
+	private String msg = null;//ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½
+	private String url = null;//ï¿½ï¿½ï¿½ï¿½Ô¶ï¿½Ìµï¿½Ö·
+	private String name = null;//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	private ArrayList pathArrayList = null;//ï¿½à¸½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Éµï¿½ArrayList
 
 	public void sendSimpleEmail() throws EmailException{
 		HtmlEmail email = new HtmlEmail();
-		//ÉèÖÃÓÊ¼şÎÄ×Ö±àÂë
+		//ï¿½ï¿½ï¿½ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½Ö±ï¿½ï¿½ï¿½
 		email.setCharset("GBK");
-		//ÓÊÏäÖ÷Ò³ 
+		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò³ 
 		email.setHostName(hostName);
-		//µÇÂ½ÓÊ¼ş·şÎñÆ÷µÄÓÃ»§ÃûºÍÃÜÂë
+		//ï¿½ï¿½Â½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		email.setAuthentication(userName,userPass);
-		//½ÓÊÕÈË
+		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		email.addTo(toAd,toName);
-		//·¢ËÍÈË
+		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		email.setFrom(fromAd,fromName);
-		//±êÌâ
+		//ï¿½ï¿½ï¿½ï¿½
 		email.setSubject(subject);
-		//ÓÊ¼şÄÚÈİ
+		//ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½
 		email.setHtmlMsg(msg);
-		//·¢ËÍ
+		//ï¿½ï¿½ï¿½ï¿½
 		email.send();
-		logger.info(subject+" ·¢ËÍ³É¹¦");
+		logger.info(subject+"å‘é€æˆåŠŸ");
   }
 	
 	public void sendMultiPartEmail() throws EmailException, UnsupportedEncodingException{
@@ -65,17 +65,17 @@ public class EmailUtils {
 		EmailAttachment attachment = null;
 		Iterator pal = pathArrayList.iterator();
 		while (pal.hasNext()) {
-			String path = (String) pal.next();//»ñÈ¡¸½¼şµØÖ·
+			String path = (String) pal.next();//ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö·
 			attachment = new EmailAttachment();
-			attachment.setPath(path);// ¼ÓÔØ¸½¼şµØÖ·Èç£º"h:/Í¼Æ¬/Ğ¡Æ¨º¢.gif"
+			attachment.setPath(path);// ï¿½ï¿½ï¿½Ø¸ï¿½ï¿½ï¿½ï¿½ï¿½Ö·ï¿½ç£º"h:/Í¼Æ¬/Ğ¡Æ¨ï¿½ï¿½.gif"
 			attachment.setDisposition(EmailAttachment.ATTACHMENT);
-			attachment.setDescription("ÖĞÎÄÃèÊö");//¸½¼şÃèÊö
-	        String[] s = StringUtils.split(path,"/");//½«¸½¼şµØÖ·°´"/",Ä¿µÄÊÇÎªÁË»ñÈ¡ÎÄ¼şÃû
-			attachment.setName(MimeUtility.encodeText(s[s.length-1]));//¸½¼şÃû³ÆÖĞÎÄ´¦Àí,s[s.length-1])ÎªÎÄ¼şÃû
-			email.attach(attachment);//Ìí¼Ó¸½¼ş
+			attachment.setDescription("");//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	        String[] s = StringUtils.split(path,"/");//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö·ï¿½ï¿½"/",Ä¿ï¿½ï¿½ï¿½ï¿½Îªï¿½Ë»ï¿½È¡ï¿½Ä¼ï¿½ï¿½ï¿½
+			attachment.setName(MimeUtility.encodeText(s[s.length-1]));//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä´ï¿½ï¿½ï¿½,s[s.length-1])Îªï¿½Ä¼ï¿½ï¿½ï¿½
+			email.attach(attachment);//ï¿½ï¿½Ó¸ï¿½ï¿½ï¿½
 		}
 		email.send();
-		logger.info(subject+" ·¢ËÍ³É¹¦");
+		logger.info(subject+"å‘é€æˆåŠŸ");
 	}
 	public String getFromAd() {
 		return fromAd;

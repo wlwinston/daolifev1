@@ -26,7 +26,7 @@
 					cellspacing="4">
 					<tr>
 						<td width="523" height="197" align="left" valign="top">
-							<s:form action="/FindPassword.action" method="post" enctype="multipart/form-data" name="regist" id="regist">
+							<form action="FindPassword.action" method="post"  name="regist" id="regist">
 								<table width="623" border="0" cellspacing="3" cellpadding="0">
 									<tr>
 										<th width="117" height="21" align="right">
@@ -34,7 +34,7 @@
 										</th>
 										<td>
 											<label>
-												<input id="username" type="text" name="user.userName" />
+												<input id="username" type="text" name="findPwUserName" />
 												<span id="username_info" class='info'></span>
 											</label>
 										</td>
@@ -66,7 +66,7 @@
 										</td>
 									</tr>
 								</table>
-							</s:form>
+							</form>
 						</td>
 					</tr>
 				</table>

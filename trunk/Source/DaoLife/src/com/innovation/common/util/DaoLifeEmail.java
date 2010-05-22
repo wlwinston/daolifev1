@@ -3,11 +3,11 @@ package com.innovation.common.util;
 import org.apache.commons.mail.EmailException;
 
 public class DaoLifeEmail {
-	private String hostName = "smtp.163.com";//ÕâÀï±ØĞëÊÇSMTPµØÖ·,ÌîĞ´Ö®Ç°²éÑ¯¸ÃmailÍøµÄsmtp
-	private String userName = "wangleimsh@163.com";//ÓÊÏäÃû
-	private String userPass = "WANGLEI";//ÓÊÏäÃÜÂë
-	private String fromAd = "wangleimsh@163.com";//·¢ËÍÈËµØÖ·
-	private String fromName = "Daolife";//·¢ËÍÈËĞÕÃû
+	private String hostName = "smtp.163.com";//è¿™é‡Œå¿…é¡»æ˜¯SMTPåœ°å€,å¡«å†™ä¹‹å‰æŸ¥è¯¢è¯¥mailç½‘çš„smtp
+	private String userName = "wangleimsh@163.com";//é‚®ç®±å
+	private String userPass = "WANGLEI";//é‚®ç®±å¯†ç 
+	private String fromAd = "wangleimsh@163.com";//å‘é€äººåœ°å€
+	private String fromName = "Daolife";//å‘é€äººå§“å
 	
 	public void sendRegistSuccessEmail(String recevierName,String recevierEmail) throws EmailException{
 		EmailUtils emailTools = new EmailUtils();
@@ -16,18 +16,18 @@ public class DaoLifeEmail {
 		emailTools.setHostName(hostName);
 		emailTools.setUserName(userName);
 		emailTools.setUserPass(userPass);
-		emailTools.setSubject("¸ĞĞ»Äú×¢²áDaolife");
+		emailTools.setSubject("æ„Ÿè°¢æ‚¨æ³¨å†ŒDaolife");
 		emailTools.setToAd(recevierEmail);
 		emailTools.setToName(recevierName);
-		emailTools.setMsg(recevierName+",ÄúÒÑ¾­³É¹¦×¢²áDaolife¡£");
+		emailTools.setMsg(recevierName+",æ‚¨å·²ç»æˆåŠŸæ³¨å†ŒDaolifeã€‚");
 		emailTools.sendSimpleEmail();
 	}
 	
 	public  static  void main(String args[]) throws EmailException{
 		DaoLifeEmail daoEmail = new DaoLifeEmail();
-		//daoEmail.sendRegistSuccessEmail("¸ß½¡", "liamgao2009@gmail.com");
+		//daoEmail.sendRegistSuccessEmail("é«˜å¥", "liamgao2009@gmail.com");
 		String authCode = RandomString.getInstance().getRandomString(25);
-		daoEmail.sendFindPasswordEmail("¸ß½¡", "<a href=\"http://www.daolife.com/resetPassword.action?uid=1&authCode="+authCode+"\" >http://www.daolife.com/resetPassword.action?uid=1&authCode="+authCode+"</a>", "liamgao2009@gmail.com");
+		daoEmail.sendFindPasswordEmail("é«˜å¥", "<a href=\"http://www.daolife.com/resetPassword.action?uid=1&authCode="+authCode+"\" >http://www.daolife.com/resetPassword.action?uid=1&authCode="+authCode+"</a>", "liamgao2009@gmail.com");
 	}
 	
 	public void sendFindPasswordEmail(String recevierName,String authUrl,String recevierEmail) throws EmailException{
@@ -37,10 +37,10 @@ public class DaoLifeEmail {
 		emailTools.setHostName(hostName);
 		emailTools.setUserName(userName);
 		emailTools.setUserPass(userPass);
-		emailTools.setSubject("DaolifeÕÒ»ØÃÜÂë");
+		emailTools.setSubject("Daolifeæ‰¾å›å¯†ç ");
 		emailTools.setToAd(recevierEmail);
 		emailTools.setToName(recevierName);
-		emailTools.setMsg(recevierName+",ÄúµÄÕÒ»ØÃÜÂëµØÖ·Îª£º"+authUrl+"¡£");
+		emailTools.setMsg(recevierName+",æ‚¨çš„æ‰¾å›å¯†ç åœ°å€ä¸ºï¼š"+authUrl+"ã€‚");
 		emailTools.sendSimpleEmail();
 	}
 	
@@ -54,10 +54,10 @@ public class DaoLifeEmail {
 		emailTools.setHostName(hostName);
 		emailTools.setUserName(userName);
 		emailTools.setUserPass(userPass);
-		emailTools.setSubject("DaolifeÕÒ»ØÃÜÂë³É¹¦");
+		emailTools.setSubject("Daolifeæ‰¾å›å¯†ç æˆåŠŸ");
 		emailTools.setToAd(recevierEmail);
 		emailTools.setToName(recevierName);
-		emailTools.setMsg(recevierName+",ÄúµÄÃÜÂëÒÑ¾­³É¹¦ÕÒ»Ø£¬ĞÂÃÜÂëÎª£º"+newPassword);
+		emailTools.setMsg(recevierName+",æ‚¨çš„å¯†ç å·²ç»æˆåŠŸæ‰¾å›ï¼Œæ–°å¯†ç ä¸ºï¼š"+newPassword);
 		emailTools.sendSimpleEmail();
 	}
 	

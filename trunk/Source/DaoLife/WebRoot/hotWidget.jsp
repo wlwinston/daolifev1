@@ -23,7 +23,7 @@
 							<s:if test="{hotDaoList!=null}">
 							<s:iterator  value="hotDaoList" status="hotDaoList">
 							<div class="daoju1">
-								<a href="touxiang.html">@<s:property value="userName"/></a>
+								<a href="PersonPage.action?userId=<s:property value="userId"/>">@<s:property value="userName"/></a>
 							</div>
 							<div class="daoju2">
 								<s:property value="contentBody" escape="false"/>
