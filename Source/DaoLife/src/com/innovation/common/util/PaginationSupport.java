@@ -45,6 +45,8 @@ public class  PaginationSupport implements Serializable{
 	 
 	 private int lastIndex;
 	 
+	 private short nowUid ;
+	 
 	 public PaginationSupport(){
 		 
 	 }
@@ -210,6 +212,14 @@ public class  PaginationSupport implements Serializable{
 
 	public void setPageSizeString(String pageSizeString) {
 		setPageSize(Integer.parseInt(pageSizeString));
+	}
+
+	public short getNowUid() {
+		return nowUid;
+	}
+
+	public void setNowUid(short nowUid) {
+		this.nowUid = nowUid;
 	}
 
 

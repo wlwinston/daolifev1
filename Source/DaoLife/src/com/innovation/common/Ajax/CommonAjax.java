@@ -223,9 +223,11 @@ public class CommonAjax {
 					.getAttribute(Constant.SESSION_USER_KEY.getStrValue());
 			// Short userId = user.getUserId();
 			paginationSupport = userService.getHotUser(paginationSupport, user);
+			paginationSupport.setNowUid(user.getUserId());
 		} else {
 			// DlUsers user = new DlUsers();
 			paginationSupport = userService.getHotUser(paginationSupport, null);
+			paginationSupport.setNowUid((short)0);
 		}
 		return paginationSupport;
 	}
