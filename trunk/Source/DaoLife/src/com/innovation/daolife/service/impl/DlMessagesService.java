@@ -35,7 +35,7 @@ public class DlMessagesService implements IDlMessagesService {
 	 * 调用接口 将message里面的未读置为已读
 	 * */
 	public void dealReadState(Short userId,String type){
-		String updateSql = "update dl_messages set isread=1 where  isread=0 and type ='"+type+"' and user_id="+userId+"";
+		String updateSql = "update dl_messages set isread=1 where isread=0 and type ='"+type+"' and user_id="+userId+"";
 		try {
 			dlMessagesDao.update(updateSql);
 		} catch (Exception e) {
