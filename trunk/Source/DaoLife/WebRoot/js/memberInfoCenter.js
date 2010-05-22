@@ -139,7 +139,7 @@ article.prototype = {
 		this.html.push('<td align="right">');
 		this.html.push('<table width="250" border="0" cellspacing="2" cellpadding="2">');
 		this.html.push('<tr>');
-		this.html.push('<td width="78">回复<a href="javascript:doArticle(' + this.id + ')">（' + this.replyAmount + '）</a></td>');
+		this.html.push('<td width="78">回复<a href="javascript:closefunction()">（' + this.replyAmount + '）</a></td>');
 		this.html.push('<td width="75">转发<a href="javascript:doForward(' + this.id + ')">（' + this.forwardAmount + '）</a></td>');
 		if(this.isDingValid){
 			this.html.push('<td width="77">顶他<a href="javascript:doDing(' + this.id + ')">（' + this.dingAmount + '）</a></td>');
@@ -354,6 +354,9 @@ function doDing(id){
 			myBox.articleBox.getElementById(id).reload();
 		}
 	});
+}
+function closefunction(){
+	msg.alert('此功能暂时不开放！');
 }
 $(function($){
 	doReload(function(){
