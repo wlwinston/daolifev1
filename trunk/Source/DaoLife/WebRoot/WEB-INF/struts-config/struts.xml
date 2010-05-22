@@ -163,6 +163,9 @@
 		<action name="DaoHot" class="UserAction" method="daoHot">
 			<result name="daoHotSuccess">/daoHot.jsp</result>	
 		</action>
+		<action name="LookAround" class="UserAction" method="daoHot">
+			<result name="daoHotSuccess">/lookAround.jsp</result>	
+		</action>
 		<action name="FriendsHot" class="UserAction" method="friendsHot">
 			<result name="friendsHotSuccess">/friendsHot.jsp</result>	
 		</action>
