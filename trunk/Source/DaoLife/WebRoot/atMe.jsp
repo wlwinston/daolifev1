@@ -37,7 +37,7 @@
 							<tr>
 								<td width="12%" height="40" align="center">
 									<a href="lookAround.jsp">
-										<img height="23" width="112" src="images/kankan.gif" />
+										<img height="23" width="112" src="images/atme.gif" />
 									</a>
 								</td>
 								<td width="13%" align="center">
