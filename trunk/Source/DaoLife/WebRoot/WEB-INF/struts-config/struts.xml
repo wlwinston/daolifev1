@@ -144,6 +144,31 @@
 			</interceptor-ref> 
 		 	<interceptor-ref name="defaultStack" /> 
 		</action>
+		<action name="AttentionMe" class="UserAction" method="attentionMe">
+			<result name="attentionMeSuccess">/attentionMe.jsp</result>	
+			<result name="forbidden" type="redirect">index.action</result>
+			<interceptor-ref name="auth"> 
+		        <param name="allowedRoles">daolife_user</param> 
+			</interceptor-ref> 
+		 	<interceptor-ref name="defaultStack" /> 
+		</action>
+		<action name="FollowMe" class="UserAction" method="followMe">
+			<result name="followMeSuccess">/myAttention.jsp</result>	
+			<result name="forbidden" type="redirect">index.action</result>
+			<interceptor-ref name="auth"> 
+		        <param name="allowedRoles">daolife_user</param> 
+			</interceptor-ref> 
+		 	<interceptor-ref name="defaultStack" /> 
+		</action>
+		<action name="DaoHot" class="UserAction" method="daoHot">
+			<result name="daoHotSuccess">/daoHot.jsp</result>	
+		</action>
+		<action name="FriendsHot" class="UserAction" method="friendsHot">
+			<result name="friendsHotSuccess">/friendsHot.jsp</result>	
+		</action>
+		<action name="FriendsHot" class="UserAction" method="friendsHot">
+			<result name="friendsHotSuccess">/friendsHot.jsp</result>	
+		</action>
 		<action name="hotWidget" class="WebCommonAction" method="hotWidget">
 			<result name="index">hotWidget.jsp</result>
 			<interceptor-ref name="defaultStack" /> 
