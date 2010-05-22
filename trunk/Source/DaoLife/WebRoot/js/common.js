@@ -281,7 +281,7 @@ function doDlinfo(){
 							str = '<a href="atMe.jsp">有' + rs[i][0] + '条叨@您</a>';
 							break;
 						case 2:
-							str = '<a href="attentionMe.jsp">有' + (parseInt(rs[i][0])-1) + '条关注您</a>';
+							str = '<a href="attentionMe.jsp">有' + rs[i][0] + '条关注您</a>';
 							break;
 						default:
 							str = '&nbsp;';
