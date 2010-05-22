@@ -39,12 +39,12 @@
 							cellspacing="0" class="xia1 guanzhu ">
 							<tr>
 								<td width="12%" height="40" align="center">
-									<a href="myAttention.jsp"><img src="images/1124_03.gif"
+									<a href="FollowMe.action"><img src="images/1124_03.gif"
 											alt="" width="112" height="22" />
 									</a>
 								</td>
 								<td width="13%" align="center">
-									<a href="attentionMe.jsp"><img src="images/1124_05.gif"
+									<a href="AttentionMe.action"><img src="images/1124_05.gif"
 											width="64" height="22" />
 									</a>
 								</td>
