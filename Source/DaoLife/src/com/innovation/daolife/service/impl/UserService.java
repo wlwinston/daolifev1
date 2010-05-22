@@ -134,7 +134,7 @@ public class UserService implements IUserService {
 	
 	/**
 	 * @author fengsn
-	 * ²éÑ¯¹Ø×¢µÄºÃÓÑ
+	 * ï¿½ï¿½Ñ¯ï¿½ï¿½×¢ï¿½Äºï¿½ï¿½ï¿½
 	 * */
 	public PaginationSupport getFollowListByUser(PaginationSupport paginationSupport,Short userId) {
 		String querysql = " Select f From DlUsers u INNER JOIN u.dlFollowers f  where  u.userId = "+userId+" and f.userId<>"+userId+"";
@@ -145,7 +145,7 @@ public class UserService implements IUserService {
 	
 	/**
 	 * @author fengsn
-	 * ²éÑ¯¹Ø×¢ÎÒµÄºÃÓÑ
+	 * ï¿½ï¿½Ñ¯ï¿½ï¿½×¢ï¿½ÒµÄºï¿½ï¿½ï¿½
 	 * */
 	public PaginationSupport getFanListByUser(PaginationSupport paginationSupport,Short userId) {
 		String querysql = " Select f From DlUsers u INNER JOIN u.dlFancers f  where  u.userId = "+userId+" and f.userId<>"+userId+"";
@@ -156,7 +156,7 @@ public class UserService implements IUserService {
 	
 	/**
 	 * @author fengsn
-	 * ²éÑ¯¿Í»§×Ô¼ºµÄdao
+	 * ï¿½ï¿½Ñ¯ï¿½Í»ï¿½ï¿½Ô¼ï¿½ï¿½ï¿½dao
 	 * */
 	public PaginationSupport getContentListByUser(PaginationSupport paginationSupport,Short userId) {
 		String querysql = " Select c From DlContent c INNER JOIN c.dlUsers u where  u.userId = "+userId+"";
@@ -176,7 +176,7 @@ public class UserService implements IUserService {
 	
 	/**
 	 * @author fengsn 
-	 * ²éÑ¯×îÈÈdaoÓÑ
+	 * ï¿½ï¿½Ñ¯ï¿½ï¿½ï¿½ï¿½daoï¿½ï¿½
 	 */
 	public PaginationSupport getHotUser(PaginationSupport paginationSupport,DlUsers user) {
 		//Short daoNum = this.getdaoNum();
@@ -215,7 +215,7 @@ public class UserService implements IUserService {
 	
 	/**
 	 * @author fengsn
-	 * ²éÑ¯ºÃÓÑµÄdao
+	 * ï¿½ï¿½Ñ¯ï¿½ï¿½ï¿½Ñµï¿½dao
 	 * */
 	public PaginationSupport getFollowerContentListByUser(PaginationSupport paginationSupport,Short userId) {
 		String querysql = " Select c From DlContent c INNER JOIN c.dlUsers u  INNER JOIN u.dlFancers f where  f.userId = "+userId+" order by c.posttime desc";
@@ -255,7 +255,7 @@ public class UserService implements IUserService {
 	}
 
 	/**
-	 * @fsn Í¨¹ýname»òÕßemail»ñµÃÓÃ»§ÐÅÏ¢
+	 * @fsn Í¨ï¿½ï¿½nameï¿½ï¿½ï¿½ï¿½emailï¿½ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½Ï¢
 	 */
 	public DlUsers getUserByNameOrEmail(String name) {
 		DlUsers user = null;
@@ -270,7 +270,7 @@ public class UserService implements IUserService {
 	}
 
 	/**
-	 * @fsn ¼ì²éÓÃ»§ÃûµÄÎ¨Ò»ÐÔ
+	 * @fsn ï¿½ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½Î¨Ò»ï¿½ï¿½
 	 */
 	public boolean checkUserByName(String name) {
 		boolean flag = true;
@@ -283,7 +283,7 @@ public class UserService implements IUserService {
 	}
 
 	/**
-	 * @fsn ¼ì²éÓÊÏäµÄÎ¨Ò»ÐÔ
+	 * @fsn ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î¨Ò»ï¿½ï¿½
 	 */
 	public boolean checkUserByEmail(String name) {
 		boolean flag = true;
@@ -296,7 +296,7 @@ public class UserService implements IUserService {
 	}
 	
 	/**
-	 * @fsn ¼ì²éÓÊÏäµÄÎ¨Ò»ÐÔ
+	 * @fsn ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î¨Ò»ï¿½ï¿½
 	 */
 	public boolean checkUserByAdress(String name) {
 		boolean flag = true;
@@ -309,7 +309,7 @@ public class UserService implements IUserService {
 	}
 
 	/**
-	 * @fsn ¼ì²éêÇ³ÆµÄÎ¨Ò»ÐÔ
+	 * @fsn ï¿½ï¿½ï¿½ï¿½Ç³Æµï¿½Î¨Ò»ï¿½ï¿½
 	 */
 	public boolean checkUserByNickName(String name) {
 		boolean flag = true;
@@ -322,7 +322,7 @@ public class UserService implements IUserService {
 	}
 
 	/**
-	 * @fsn ¸öÈË×ÊÁÏÐÞ¸Ä
+	 * @fsn ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Þ¸ï¿½
 	 */
 	public void update(DlUsers newuser, DlUsers olduser) throws Exception {
 		Short userId = olduser.getUserId();
@@ -365,7 +365,7 @@ public class UserService implements IUserService {
 		user.setAtWeekNum((short) 0);
 		user.setFansNum((short) 0);
 		user.setFollowNum((short) 0);
-		user.setUserInfo("Õâ¸öÈËºÜÀÁ,Ê²Ã´¶¼Ã»ÁôÏÂ£¡");
+		user.setUserInfo("");
 		user.setUserHead("default");
 		user.setRecommendInd(Constant.USER_RECOMMENDIND_NO.getStrValue());
 		user.setIsclose(new Byte(Constant.USER_ISCLOSED_NO.getStrValue()));
@@ -383,12 +383,12 @@ public class UserService implements IUserService {
 		user.setUserlock(new Byte(Constant.USER_USERLOCK_NO.getStrValue()));
 		user.setAuthEmail(Constant.USER_AUTHMAIL_NOMAIL.getStrValue());
 		dlUsersDao.save(user);
-		//±£´æÓÃ»§Ä¬ÈÏ½ÇÉ«
+		//ï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½Ä¬ï¿½Ï½ï¿½É«
 		DlUserroles userRoles = new DlUserroles();
 		userRoles.setRolesName(Constant.WEBSITE_ROLES_DEFAULT.getStrValue());
 		userRoles.setUserId(user.getUserId());
 		dlUserrolesDao.save(userRoles);
-		//±£´æ×Ô¼ºÊÇ×Ô¼ºµÄºÃÓÑ
+		//ï¿½ï¿½ï¿½ï¿½ï¿½Ô¼ï¿½ï¿½ï¿½ï¿½Ô¼ï¿½ï¿½Äºï¿½ï¿½ï¿½
 		DlFriend dlFriend = new DlFriend();
 		dlFriend.setFidFans(user.getUserId());
 		dlFriend.setFidFollow(user.getUserId());
@@ -413,7 +413,7 @@ public class UserService implements IUserService {
 	}
 
 	/**
-	 * ·¢ËÍÕÒ»ØÃÜÂëemail
+	 * ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½email
 	 */
 	public void resetPasswordEmail(String userName) throws EmailException {
 		String authCode = RandomString.getInstance().getRandomString(25);
@@ -422,7 +422,7 @@ public class UserService implements IUserService {
 			user.setAuthEmail(authCode);
 			this.updateUser(user);
 			DaoLifeEmail daoEmail = new DaoLifeEmail();
-			// µØÖ·Ðè¸Ä³É¿ÉÅäÖÃ
+			// ï¿½ï¿½Ö·ï¿½ï¿½Ä³É¿ï¿½ï¿½ï¿½ï¿½ï¿½
 			String authUrl = "http://www.daolife.com/ResetPassword.action?userId="
 					+ user.getUserId() + "&authCode=" + authCode + "";
 			daoEmail.sendFindPasswordEmail(user.getUserName(), authUrl, user
@@ -431,7 +431,7 @@ public class UserService implements IUserService {
 	}
 
 	/**
-	 * Ð£ÑéÕÒ»ØÃÜÂëÃÜÔ¿ÊÇ·ñÕýÈ·
+	 * Ð£ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô¿ï¿½Ç·ï¿½ï¿½ï¿½È·
 	 */
 	public boolean checkAuthCode(Short userId, String authCode) {
 		DlUsers user = dlUsersDao.get(userId);
@@ -444,7 +444,7 @@ public class UserService implements IUserService {
 	}
 
 	/**
-	 * ÖØÖÃÃÜÂë
+	 * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	 * 
 	 * @throws UnsupportedEncodingException
 	 * @throws NoSuchAlgorithmException
