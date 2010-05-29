@@ -16,7 +16,6 @@
 		<script type="text/javascript" src="dwr/interface/DaolifeAjax.js"></script>
 		<script type="text/javascript" src="js/jquery-1.3.2.min.js"></script>
 		<script type="text/javascript" src="js/movebox.js"></script>
-		<script type="text/javascript" src="js/index.js"></script>
 		<script type="text/javascript" src="js/common.js"></script>
 	</head>
 	<body>
