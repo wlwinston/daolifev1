@@ -215,12 +215,8 @@ public class DlDaoService implements IDlDaoService {
 		return paginationSupport;
 	}
 	/**
-	 * @author fengsn 
-<<<<<<< .mine
-	 * return �������dao
-=======
+	 * @author fengsn �������dao
 	 * return 获取最热叨
->>>>>>> .r286
 	 */
 	public PaginationSupport getHotDao(PaginationSupport paginationSupport) {
 		Short daoNum = this.getdaoNum();
@@ -264,7 +260,7 @@ public class DlDaoService implements IDlDaoService {
 		}
 		return result;
 	}
-
+	
 	/**��߶����
 	 * @param daoId
 	 * @param user
