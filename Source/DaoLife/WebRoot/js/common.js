@@ -123,7 +123,7 @@ function mask(html,fn,s){
 	}).hide();
 	$('#mask-overlay').css({
 		backgroundColor:'#000'
-		,opacity:0.8
+		,opacity:0.5
 		,width:arrPageSizes[0]
 		,height:arrPageSizes[1]
 		,left:0
@@ -242,6 +242,7 @@ var Form = {
 }
 var msg = {
 	alert : function(text,fn){
+		fn = fn || function(){};
 		var html = [];
 		html.push('<table style="margin: 100px auto;" width="316" border="0" cellspacing="0" cellpadding="0">');
         html.push('<tr>');
@@ -266,6 +267,39 @@ var msg = {
        		maskHide();
        		fn();
 		},false);
+	}
+	,confirm : function(text,fn){
+		var html = [];
+		html.push('<table style="margin: 100px auto;" width="316" border="0" cellspacing="0" cellpadding="0">');
+        html.push('<tr>');
+        html.push('<td><img src="images/pinglun_13.gif" width="316" height="6" /></td>');
+        html.push('</tr>');
+        html.push('<tr>');
+        html.push('<td height="69" align="left" valign="top" background="images/pinglun_15.gif"><table width="314" border="0" cellspacing="0" cellpadding="0">');
+        html.push('<tr>');
+        html.push('<td width="314" height="40" align="center" valign="middle"><h2 class="STYLE5">' + text + '</h2></td>');
+        html.push('</tr>');
+        html.push('<tr>');
+        html.push('<td height="23" align="center">');
+        html.push('<input type="image" href="images/myhome_11.gif" src="images/pinglun_18.gif" id="forward-button">');
+        html.push('&nbsp;&nbsp;');
+        html.push('<input type="image" href="images/myhome_11.gif" src="images/pinglun_18.gif" id="button-no">');
+        html.push('</td>');
+        html.push('</tr>');
+        html.push('</table></td>');
+        html.push('</tr>');
+        html.push('<tr>');
+        html.push('<td><img src="images/pinglun_21.gif" width="316" height="5" /></td>');
+        html.push('</tr>');
+       	html.push('</table>');
+       	
+       	mask(html.join(''),function(){
+       		maskHide();
+       		fn();
+		},false);
+       	$('#button-no').click(function(){
+       		maskHide();
+       	});
 	}
 }
 function doDlinfo(){
