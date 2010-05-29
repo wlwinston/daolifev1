@@ -143,7 +143,7 @@ function doReload(fn){
 			fn();
 		}
 	}
-	DaolifeAjax.getOtherFollowFriend(myBox.articleBox.currentPage,func);
+	DaolifeAjax.getOtherFollowFriend(myBox.articleBox.currentPage,getQueryString('userId'),func);
 }
 $(function($){
 	doReload(function(){

@@ -155,7 +155,7 @@ function doReload(fn){
 			fn();
 		}
 	}
-	DaolifeAjax.getOtherFanFriend(myBox.articleBox.currentPage,func);
+	DaolifeAjax.getOtherFanFriend(myBox.articleBox.currentPage,getQueryString('userId'),func);
 }
 $(function($){
 	doReload(function(){

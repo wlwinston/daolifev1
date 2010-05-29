@@ -405,10 +405,10 @@ personal.prototype = {
 			html.push('<table width="193" height="52" border="0" cellpadding="0" cellspacing="0" class="xia1">');
 			html.push('<tr>');
 			html.push('<td width="76" height="33" align="center" class="STYLE4 STYLE7 STYLE5 STYLE6">');
-			html.push('<a href="pesonalAttention.jsp">' + this.ma + '</a>');
+			html.push('<a href="pesonalAttention.jsp?userId=' + this.pid + '">' + this.ma + '</a>');
 			html.push('</td>');
 			html.push('<td width="76" align="center" class="STYLE4 STYLE7 STYLE5 STYLE6">');
-			html.push('<a href="attentionPesonal.jsp">' + this.am + '</a>');
+			html.push('<a href="attentionPesonal.jsp?userId=' + this.pid + '">' + this.am + '</a>');
 			html.push('</td>');
 			html.push('<td width="78" align="center" class="STYLE4 STYLE7 STYLE5 STYLE6">');
 			html.push('<a href="javascript://">' + this.dao + '</a>');
@@ -416,10 +416,10 @@ personal.prototype = {
 			html.push('</tr>');
 			html.push('<tr>');
 			html.push('<td align="center">');
-			html.push('<a href="pesonalAttention.jsp">我关注</a>');
+			html.push('<a href="pesonalAttention.jsp?userId=' + this.pid + '">我关注</a>');
 			html.push('</td>');
 			html.push('<td align="center">');
-			html.push('<a href="attentionPesonal.jsp">关注我</a>');
+			html.push('<a href="attentionPesonal.jsp?userId=' + this.pid + '">关注我</a>');
 			html.push('</td>');
 			html.push('<td align="center">');
 			html.push('<a href="javascript://">叨</a>');
