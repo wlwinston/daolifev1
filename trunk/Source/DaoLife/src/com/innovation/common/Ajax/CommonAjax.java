@@ -151,7 +151,7 @@ public class CommonAjax {
 	 * @author fsn ���userId����û���Ϣ
 	 */
 	public DlUsers getPesonalUserById(Short id) {
-		
+
 		WebContext request = WebContextFactory.get();
 
 		HttpSession session = request.getSession(false);
@@ -170,23 +170,35 @@ public class CommonAjax {
 	
 	/**
 	 * @author fsn 
-	 * 获得session里面的用户信息 
+	 * 一、返回 session 里面的用户id 二、传入的userId(如果没有 返回session 里面的用户id)  三、用户信息
 	 */
-	public DlUsers getSelfInfo() {
-		
+	public List getUserInfo(Short userId) {
+		List result = new ArrayList();
+		//判断入参id 是否为空
 		WebContext request = WebContextFactory.get();
-
 		HttpSession session = request.getSession(false);
+		Short sessionId ;
 		if (session != null
 				&& session
 						.getAttribute(Constant.SESSION_USER_KEY.getStrValue()) != null) {
 			DlUsers nowuser = (DlUsers) session
 			.getAttribute(Constant.SESSION_USER_KEY.getStrValue());
-			return nowuser;
+			sessionId = nowuser.getUserId();
+			if(userId==null){
+				result.add(sessionId);
+				result.add(sessionId);
+				DlUsers tmp_user = userService.getUsersById(sessionId);
+				result.add(tmp_user);
+			}else{
+				DlUsers tmp_user = userService.getPesonalUserById(userId,nowuser);
+				result.add(sessionId);
+				result.add(userId);
+				result.add(tmp_user);
+			}
 		} else {
 			return null;
 		}
-		
+		return result;
 	}
 	
 	/**
