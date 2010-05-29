@@ -131,6 +131,12 @@
 		 	<interceptor-ref name="defaultStack" /> 
 		</action>
 		
+		<action name="daolifemare" class="WebCommonAction" method="index">
+			<result name="index">daolifemare.jsp</result>
+			 
+		 	<interceptor-ref name="defaultStack" /> 
+		</action>
+		
 		<action name="product" class="WebCommonAction" method="product">
 			<result name="product">productList.jsp</result>
 			 
