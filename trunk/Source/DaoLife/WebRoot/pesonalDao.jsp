@@ -40,87 +40,8 @@
 						</div>
 						<!--右边区域-->
 						<div class="reight">
-							<table width="318" height="58" border="0" align="center"
-								cellpadding="0" cellspacing="0" class="xia1">
-								<tr>
-									<td width="120" class="Box1">
-										<s:property value="personalInfo.userNickName"/>
-									</td>
-									<td width="127" align="left" valign="middle">
-										&nbsp;
-									</td>
-									<td align="left" valign="middle">
-										<a href="#">退出登陆</a>
-									</td>
-								</tr>
-							</table>
-							<table width="82%" border="0" align="center" cellpadding="0"
-								cellspacing="0" class="yonghu">
-								<tr>
-									<td width="32%" align="center">
-										<a href="touxiang.html"><img src="images/1_10.gif"
-												width="113" height="112" />
-										</a>
-									</td>
-									<td width="68%" align="center" valign="top">
-										<table width="193" height="52" border="0" cellpadding="0"
-											cellspacing="0" class="xia1">
-											<tr>
-												<td width="76" height="33" align="center"
-													class="STYLE4 STYLE7 STYLE5 STYLE6">
-													<a href="woguanzhude.html"><s:property value="personalInfo.followNum"/></a>
-												</td>
-												<td width="76" align="center"
-													class="STYLE4 STYLE7 STYLE5 STYLE6">
-													<a href="guanzhuwode.html"><s:property value="personalInfo.fansNum"/></a>
-												</td>
-												<td width="78" align="center"
-													class="STYLE4 STYLE7 STYLE5 STYLE6">
-													<a href="wozaidao.html"><s:property value="personalInfo.contentsSize"/></a>
-												</td>
-											</tr>
-											<tr>
-												<td align="center">
-													<a href="woguanzhude.html">我关注</a>
-												</td>
-												<td align="center">
-													<a href="guanzhuwode.html">关注我</a>
-												</td>
-												<td align="center">
-													<a href="wozaidao.html">叨</a>
-												</td>
-											</tr>
-										</table>
-										<table width="200" height="66" border="0" align="center"
-											cellpadding="0" cellspacing="4">
-											<tr>
-												<td width="51" align="right">
-													简介：
-												</td>
-												<td width="143" align="left">
-													<s:property value="userInfo" />
-												</td>
-											</tr>
-											<tr>
-												<td align="right">
-													博客：
-												</td>
-												<td align="left">
-													the5th.blogbus.com
-												</td>
-											</tr>
-											<tr>
-												<td align="right">
-													关于他：
-												</td>
-												<td align="left">
-													吃个苹果吧青年
-												</td>
-											</tr>
-										</table>
-									</td>
-								</tr>
-							</table>
+							<div id="personal">
+							</div>
 							<s:action name="hotWidget" executeResult="true" />  
 							<div class="Box">
 								我的叨T

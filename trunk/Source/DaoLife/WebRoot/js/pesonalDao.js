@@ -267,7 +267,31 @@ function doForward(id){
 		});
 	}
 }
+function doFollow(id,valid){
+	if(valid){
+		msg.confirm('您确定要关注吗？',function(){
+			DaolifeAjax.follow(id,function(rs){
+				if(rs){
+					doPersonal(getQueryString('userId'));
+				}else{
+					alert('关注失败');
+				}
+			});
+		});
+	}else{
+		msg.confirm('您确定要取消关注吗？',function(){
+			DaolifeAjax.unFollow(id,function(rs){
+				if(rs){
+					doPersonal(getQueryString('userId'));
+				}else{
+					alert('取消关注失败');
+				}
+			});
+		});
+	}
+}
 $(function($){
+	doPersonal(getQueryString('userId'));
 	doReload(function(){
 		myBox.articleBox.load();
 	});
