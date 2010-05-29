@@ -131,6 +131,7 @@
 						</div>
 						<!--右边区域-->
 						<div id="infocenter" class="reight">
+							<div id="">
 							<table width="318" height="58" border="0" align="center"
 								cellpadding="0" cellspacing="0" class="xia1">
 								<tr>
