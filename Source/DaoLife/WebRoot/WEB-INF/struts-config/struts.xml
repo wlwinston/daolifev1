@@ -172,6 +172,24 @@
 			</interceptor-ref> 
 		 	<interceptor-ref name="defaultStack" /> 
 		</action>
+		
+		<action name="AttentionPerson" class="UserAction" method="attentionMe">
+			<result name="attentionMeSuccess">/pesonalAttention.jsp</result>	
+			<result name="forbidden" type="redirect">index.action</result>
+			<interceptor-ref name="auth"> 
+		        <param name="allowedRoles">daolife_user</param> 
+			</interceptor-ref> 
+		 	<interceptor-ref name="defaultStack" /> 
+		</action>
+		<action name="FollowPerson" class="UserAction" method="followMe">
+			<result name="followMeSuccess">/attentionPesonal.jsp</result>	
+			<result name="forbidden" type="redirect">index.action</result>
+			<interceptor-ref name="auth"> 
+		        <param name="allowedRoles">daolife_user</param> 
+			</interceptor-ref> 
+		 	<interceptor-ref name="defaultStack" /> 
+		</action>
+		
 		<action name="DaoHot" class="UserAction" method="daoHot">
 			<result name="daoHotSuccess">/daoHot.jsp</result>	
 		</action>
