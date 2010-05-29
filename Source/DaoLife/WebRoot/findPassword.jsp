@@ -54,7 +54,7 @@
 										<td>
 											<label>
 												<input type="text" size="5" style="width:70px;" height="26" id="yzm" />
-												<img src="servlet/dao.auth" id="picyzm" style="border:0;width:100px;height:17px;margin:0;float:left botton;" />&nbsp;<a href="javascript:reflashpic()">换一张</a>
+												<img src="servlet/dao.auth" id="picyzm" style="border:0;width:100px;margin:0;float:left botton;" />&nbsp;<a href="javascript:reflashpic()">换一张</a>
 												<span id="yzm_info" class="info"></span>
 											</label>
 										</td>
