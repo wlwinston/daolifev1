@@ -594,6 +594,50 @@ public class CommonAjax {
 		return paginationSupport;
 	}
 
+	/**
+	 * @author fengsn
+	 * �huode获得其他用户的关注dao友信息
+	 * */
+	public PaginationSupport getOtherFollowFriend(int pages,Short userId){
+		if (pages < 0) {
+			pages = 1;
+		}
+		int pageSize = Constant.PAGESIZE_MYDAO.getIntValue();
+		int startIndex = pageSize * (pages - 1);
+		PaginationSupport paginationSupport = new PaginationSupport(pageSize,
+				startIndex);
+		if (userId!=null) {
+			paginationSupport = userService.getFollowListByUser(
+					paginationSupport, userId);
+		} else {
+			return null;
+		}
+		return paginationSupport;
+	}
+	
+	/**
+	 * @author fengsn
+	 * ��获得其他用户的dao友列表
+	 * */
+	public PaginationSupport getOtherFanFriend(int pages,Short userId) {
+		if (pages < 0) {
+			pages = 1;
+		}
+		int pageSize = Constant.PAGESIZE_MYDAO.getIntValue();
+		int startIndex = pageSize * (pages - 1);
+		PaginationSupport paginationSupport = new PaginationSupport(pageSize,
+				startIndex);
+		if (userId!=null) {
+			paginationSupport = userService.getFanListByUser(
+					paginationSupport, userId);
+			//dlMessagesService.dealReadState(userId,"2");
+		} else {
+			return null;
+		}
+		return paginationSupport;
+	}
+	
+	
 	public boolean unFollow(Short followId) {
 		DlUsers nowuser = new DlUsers();
 		WebContext request = WebContextFactory.get();
