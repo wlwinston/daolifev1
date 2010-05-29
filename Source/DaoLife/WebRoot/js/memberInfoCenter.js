@@ -359,6 +359,7 @@ function closefunction(){
 	msg.alert('此功能暂时不开放！');
 }
 $(function($){
+	doPersonal(null);
 	function fontsizealert(){
 		var length = 140;
 		var tlength = 39;
