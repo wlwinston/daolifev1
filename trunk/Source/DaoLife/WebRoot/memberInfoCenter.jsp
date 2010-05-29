@@ -44,7 +44,7 @@
 											cellspacing="0">
 											<tr>
 												<td width="644" height="48" align="left" valign="bottom">
-													&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;您还可以输入 <span id='fontlength'>144</span> 个字符
+													&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;您还可以输入 <span id='fontlength'>140</span> 个字符
 												</td>
 											</tr>
 											<tr>
