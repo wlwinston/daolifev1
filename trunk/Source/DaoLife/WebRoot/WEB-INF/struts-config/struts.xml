@@ -44,7 +44,8 @@
 			<result name="list">/list.jsp</result>
 		</action>
 		<action name="Login" class="UserAction" method="login">	
-			<result name="loginSuccess" type="redirect">MyPage.action</result>	
+			<result name="loginSuccess" type="redirect">MyPage.action</result>
+			<result name="loginFailure" type="redirect">index.action</result>		
 			<result name="input">/login.jsp</result>
 		</action>
 		<action name="Logout" class="UserAction" method="logout">	
