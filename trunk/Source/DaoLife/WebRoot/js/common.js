@@ -76,7 +76,7 @@ forward.prototype = {
         this.html.push('<tr>');
         this.html.push('<td height="20" align="left">');
         this.html.push('<table width="432" border="0" cellspacing="2" cellpadding="2">');
-        this.html.push('<tr><td width="300">' + this.content + '</td><td width="70">回复</td><td width="42">删除</td></tr></table></td></tr>');
+        this.html.push('<tr><td width="300">' + this.content + '</td><td width="70">&nbsp;</td><td width="42">&nbsp;</td></tr></table></td></tr>');
         this.html.push('</table></td>');
         this.html.push('</tr>');
         this.html.push('</table>');
@@ -92,7 +92,7 @@ forward.prototype = {
         this.html.push('</tr>');
         this.html.push('<tr>');
         this.html.push('<td width="370" height="22" align="left" valign="top"><label></label></td>');
-        this.html.push('<td width="123"><input id="forward-button" type="image" src="images/1134.gif" href="images/myhome_11.gif" /></td>');
+        this.html.push('<td width="205"><input id="forward-button" type="image" src="images/1134.gif" href="images/myhome_11.gif" />&nbsp;&nbsp;<input type="image" href="images/myhome_11.gif" src="images/pinglun_181.gif" id="button-no"></td>');
         this.html.push('</tr>');
         this.html.push('</table>');
         this.html.push('</form></td>');
@@ -136,6 +136,7 @@ function mask(html,fn,s){
 		$('#mask-overlay').click(maskHide);
 	}
 	$('#forward-button').click(fn)
+	$('#button-no').click(maskHide);
 }
 function maskHide(){
 	$('body').css({
@@ -283,7 +284,7 @@ var msg = {
         html.push('<td height="23" align="center">');
         html.push('<input type="image" href="images/myhome_11.gif" src="images/pinglun_18.gif" id="forward-button">');
         html.push('&nbsp;&nbsp;');
-        html.push('<input type="image" href="images/myhome_11.gif" src="images/pinglun_18.gif" id="button-no">');
+        html.push('<input type="image" href="images/myhome_11.gif" src="images/pinglun_181.gif" id="button-no">');
         html.push('</td>');
         html.push('</tr>');
         html.push('</table></td>');
@@ -332,6 +333,82 @@ function doDlinfo(){
 		$('#dlinfo').get(0).innerHTML = html.join(''); 
 		setTimeout('doDlinfo()',10000);
 	});
+}
+function personal(mid,pid,am,ma,dao){
+	this.mid = mid;
+	this.pid = pid;
+	this.am = am;
+	this.ma = ma;
+	this.dao = dao;
+}
+personal.prototype = {
+	getHtml : function(){
+		var html = [];
+		html.push('<table width="318" height="58" border="0" align="center" cellpadding="0" cellspacing="0" class="xia1">');
+		html.push('<tr><td width="120" class="Box1">the5gg.com</td><td width="127" align="left" valign="middle">&nbsp;</td><td align="left" valign="middle">');
+		html.push('<a href="Logout.action">退出登陆</a>');
+		html.push('</td></tr></table>');
+		html.push('<table width="82%" border="0" align="center" cellpadding="0" cellspacing="0" class="yonghu"><tr>');
+		html.push('<td width="32%" align="center">');
+		html.push('<a href="touxiang.html"><img src="images/1_10.gif" width="113" height="112" /></a>');
+		html.push('</td>');
+		html.push('<td width="68%" align="center" valign="top">');
+		html.push('<table width="193" height="52" border="0" cellpadding="0" cellspacing="0" class="xia1">');
+		html.push('<tr>');
+		html.push('<td width="76" height="33" align="center" class="STYLE4 STYLE7 STYLE5 STYLE6">');
+		html.push('<a href="myAttention.jsp">' + this.ma + '</a>');
+		html.push('</td>');
+		html.push('<td width="76" align="center" class="STYLE4 STYLE7 STYLE5 STYLE6">');
+		html.push('<a href="attentionMe.jsp">' + this.am + '</a>');
+		html.push('</td>');
+		html.push('<td width="78" align="center" class="STYLE4 STYLE7 STYLE5 STYLE6">');
+		html.push('<a href="javascript:doStatus(2)">' + this.dao + '</a>');
+		html.push('</td>');
+		html.push('</tr>');
+		html.push('<tr>');
+		html.push('<td align="center">');
+		html.push('<a href="myAttention.jsp">我关注</a>');
+		html.push('</td>');
+		html.push('<td align="center">');
+		html.push('<a href="attentionMe.jsp">关注我</a>');
+		html.push('</td>');
+		html.push('<td align="center">');
+		html.push('<a href="javascript:doStatus(2)">叨</a>');
+		html.push('</td>');
+		html.push('</tr>');
+		html.push('</table>');
+		html.push('<table width="200" height="66" border="0" align="center" cellpadding="0" cellspacing="4">');
+		html.push('<tr>');
+		html.push('<td width="51" align="right">简介：</td>');
+		html.push('<td width="143" align="left">男 北京市 朝阳起 设计师</td>');
+		html.push('</tr>');
+		html.push('<tr>');
+		html.push('<td align="right">博客：</td>');
+		html.push('<td align="left">the5th.blogbus.com</td>');
+		html.push('</tr>');
+		html.push('<tr>');
+		html.push('<td align="right">关于他：</td>');
+		html.push('<td align="left">吃个苹果吧青年</td>');
+		html.push('</tr>');
+		html.push('</table>');
+		html.push('</td>');
+		html.push('</tr>');
+		html.push('</table>');
+		html.push('<div class="shezhi">');
+		html.push('<table width="138" border="0" cellspacing="3" cellpadding="3">');
+		html.push('<tr>');
+		html.push('<td width="54"><a href="javascript://">我的设置</a></td>');
+		html.push('<td width="63"><a href="javascript://">我的私信</a></td>');
+		html.push('</tr>');
+		html.push('<tr>');
+		html.push('<td>');
+		html.push('<a href="atMe.jsp">﹫我的</a>');
+		html.push('</td>');
+		html.push('<td><a href="javascript://">&nbsp;</a></td>');
+		html.push('</tr>');
+		html.push('</table>');
+		html.push('</div>');
+	}
 }
 $(function($){
 	doDlinfo();
