@@ -187,7 +187,7 @@ public class CommonAjax {
 			if(userId==null){
 				result.add(sessionId);
 				result.add(sessionId);
-				DlUsers tmp_user = userService.getUsersById(sessionId);
+				DlUsers tmp_user = userService.getPesonalUserById(sessionId,nowuser);
 				result.add(tmp_user);
 			}else{
 				DlUsers tmp_user = userService.getPesonalUserById(userId,nowuser);
