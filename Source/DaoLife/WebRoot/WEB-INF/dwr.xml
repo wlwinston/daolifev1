@@ -32,6 +32,8 @@
 			<include method="getContentsByTime" />
 			<include method="getMyFollowFriend" />
 			<include method="getMyFanFriend" />
+			<include method="getOtherFollowFriend" />
+			<include method="getOtherFanFriend" />
 			<include method="getPesonalDao" />
 			<include method="getPesonalUserById" />
 			<include method="checkAuthCode" />
