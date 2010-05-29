@@ -159,8 +159,8 @@ public class UserService implements IUserService {
 	 * ��ѯ�ͻ��Լ���dao
 	 * */
 	public PaginationSupport getContentListByUser(PaginationSupport paginationSupport,Short userId) {
-		String querysql = " Select c From DlContent c INNER JOIN c.dlUsers u where  u.userId = "+userId+"";
-		String countsql =" Select count(c.contentId) From DlContent c INNER JOIN c.dlUsers u where u.userId = "+userId+"";
+		String querysql = " Select c From DlContent c INNER JOIN c.dlUsers u where  u.userId = "+userId+" order by c.posttime desc";
+		String countsql =" Select count(c.contentId) From DlContent c INNER JOIN c.dlUsers u where u.userId = "+userId+" order by c.posttime desc";
 		paginationSupport = dlContentatDao.findPageByQuery(querysql, countsql, paginationSupport.getPageSize(), paginationSupport.getStartIndex());
 		List<DlContent> itemList = paginationSupport.getItems();
 		for(Iterator<DlContent> it = itemList.iterator();it.hasNext();)
