@@ -75,7 +75,7 @@
 					<a href="MyPage.action">我的首页</a>
 				</li>
 				<li>
-					<a href="productList.jsp">Dao Life</a>
+					<a href="product.action">Dao Life</a>
 				</li>
 				<li>
 					<a href="LookAround.action">随便看看</a>
