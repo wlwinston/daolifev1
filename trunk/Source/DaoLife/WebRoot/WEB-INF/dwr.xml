@@ -38,6 +38,7 @@
 			<include method="getAtContentDao" />
 			<include method="getProvinces" />
 			<include method="getCitys" />
+			<include method="getSelfInfo" />
 			<include method="getMessageStatistics" />
 			<include method="getDlContentById" />
 		</create>
