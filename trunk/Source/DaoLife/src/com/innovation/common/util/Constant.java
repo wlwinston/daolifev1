@@ -17,8 +17,8 @@ public enum Constant
 	MESSAGE_ISREAD_NO(0),
 	MESSAGE_ISREAD_YES(1),
 	/*********每页数量********/
-	PAGESIZE_FRIENDDAO(20),
-	PAGESIZE_MYDAO(20),
+	PAGESIZE_FRIENDDAO(10),
+	PAGESIZE_MYDAO(10),
 	
 	/*********网站角色***********/
 	//普通用户
