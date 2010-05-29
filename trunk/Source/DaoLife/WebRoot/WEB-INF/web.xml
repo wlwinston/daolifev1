@@ -84,6 +84,11 @@
     <welcome-file>index.action</welcome-file>
   </welcome-file-list>
   
+  <error-page>  
+	 <error-code>404</error-code>  
+	 <location>/404.jsp</location>  
+  </error-page>  
+	 
   <jsp-config>
 	<taglib>
 		<taglib-uri>http://java.sun.com/jsp/jstl/core</taglib-uri>
