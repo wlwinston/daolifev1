@@ -286,7 +286,7 @@ function doReload(fn){
 }
 function doSubmit(){
 	if($('#articlecontent').val() != null){
-		DaolifeAjax.addDao($('#articlecontent').val(),function(rs){
+		DaolifeAjax.addDao($('#articlecontent').val().substr(0,140),function(rs){
 			if(rs != null){
 				$('#articlecontent').val('');
 				doReload(function(){
@@ -359,8 +359,24 @@ function closefunction(){
 	msg.alert('此功能暂时不开放！');
 }
 $(function($){
+	function fontsizealert(){
+		var length = 140;
+		var tlength = 39;
+		var fl = length - parseInt($('#articlecontent').val().length);
+		if(fl <= 1){
+			$('#articlecontent').val($('#articlecontent').val().substr(0,length));
+			$('#fontlength').get(0).innerHTML = '<span style="color:red;">0(不能作为T恤文字)</span>';
+			return;
+		}
+		if(fl < length - tlength){
+			fl = '<span style="color:red;">' + fl + '(不能作为T恤文字)</span>';
+		}
+		$('#fontlength').get(0).innerHTML = fl;
+	}
 	doReload(function(){
 		myBox.articleBox.load();
 	});
 	$('#articleandreply').get(0).innerHTML = myBox.articleBox.getHtml();	
+	$('#articlecontent').keyup(fontsizealert);
+	fontsizealert();
 });

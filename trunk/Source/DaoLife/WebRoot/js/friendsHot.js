@@ -126,22 +126,26 @@ function doPage(page){
 }
 function doFollow(id,valid){
 	if(valid){
-		DaolifeAjax.follow(id,function(rs){
-			if(rs){
-				myBox.articleBox.getElementById(id).reload();
-				//$('#attention_' + id).get(0).innerHTML = '<a href="javascript:doFollow(' + id + ',' + !valid + ')">取消关注</a>';
-			}else{
-				alert('关注失败');
-			}
+		msg.confirm('您确定要关注吗？',function(){
+			DaolifeAjax.follow(id,function(rs){
+				if(rs){
+					myBox.articleBox.getElementById(id).reload();
+					//$('#attention_' + id).get(0).innerHTML = '<a href="javascript:doFollow(' + id + ',' + !valid + ')">取消关注</a>';
+				}else{
+					alert('关注失败');
+				}
+			});
 		});
 	}else{
-		DaolifeAjax.unFollow(id,function(rs){
-			if(rs){
-				myBox.articleBox.getElementById(id).reload();
-				//$('#attention_' + id).get(0).innerHTML ='<a href="javascript:doFollow(' + id + ',' + !valid + ')"><img src="images/daohot_13.gif" width="61" height="24" /></a>';
-			}else{
-				alert('取消关注失败');
-			}
+		msg.confirm('您确定要取消关注吗？',function(){
+			DaolifeAjax.unFollow(id,function(rs){
+				if(rs){
+					myBox.articleBox.getElementById(id).reload();
+					//$('#attention_' + id).get(0).innerHTML ='<a href="javascript:doFollow(' + id + ',' + !valid + ')"><img src="images/daohot_13.gif" width="61" height="24" /></a>';
+				}else{
+					alert('取消关注失败');
+				}
+			});
 		});
 	}
 }
