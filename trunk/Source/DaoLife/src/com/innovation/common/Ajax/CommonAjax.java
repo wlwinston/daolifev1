@@ -169,6 +169,27 @@ public class CommonAjax {
 	}
 	
 	/**
+	 * @author fsn 
+	 * 获得session里面的用户信息 
+	 */
+	public DlUsers getSelfInfo() {
+		
+		WebContext request = WebContextFactory.get();
+
+		HttpSession session = request.getSession(false);
+		if (session != null
+				&& session
+						.getAttribute(Constant.SESSION_USER_KEY.getStrValue()) != null) {
+			DlUsers nowuser = (DlUsers) session
+			.getAttribute(Constant.SESSION_USER_KEY.getStrValue());
+			return nowuser;
+		} else {
+			return null;
+		}
+		
+	}
+	
+	/**
 	 * @author fengsn
 	 * 返回List 存放省级下拉菜单数据
 	 * */
