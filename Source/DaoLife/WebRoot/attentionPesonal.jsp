@@ -39,12 +39,12 @@
 							cellspacing="0" class="xia1 guanzhu ">
 							<tr>
 								<td width="12%" height="40" align="center">
-									<a href="pesonalAttention.jsp"><img
+									<a href="AttentionPerson.action?userId=<s:property value="#parameters.userId"/>"><img
 											src="images/td_052.gif" alt="" width="66" height="22" />
 									</a>
 								</td>
 								<td width="13%" align="center">
-									<a href="attentionPesonal.jsp"><img
+									<a href="FollowPerson.action?userId=<s:property value="#parameters.userId"/>"><img
 											src="images/td2121.gif" width="112" height="22" />
 									</a>
 								</td>
