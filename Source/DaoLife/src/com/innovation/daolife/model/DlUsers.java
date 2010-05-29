@@ -15,14 +15,14 @@ public class DlUsers implements java.io.Serializable {
 	// Fields
 
 	private Short userId;
-	//ÈËĞÕÃû
+	//å§“åï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	private String userName;
-	//êÇ³Æ
+	//æ˜µç§°ï¿½Ç³ï¿½
 	private String userNickName;
 	private String userUrl;
 	private String password;
 	private String salt;
-	//Í·Ïñ
+	//å¤´åƒÍ·ï¿½ï¿½
 	private String userHead;
 	private String mailadres;
 	private String homeCity;
@@ -55,7 +55,7 @@ public class DlUsers implements java.io.Serializable {
 	private Set contentatmes;
 	private boolean followFlag = false;
 	private int  contentsSize;
-	//ÓÃ»§µÄ½ÇÉ«ÁĞ±í
+	//ç”¨æˆ·çš„è§’è‰²åˆ—è¡¨ï¿½Ã»ï¿½ï¿½Ä½ï¿½É«ï¿½Ğ±ï¿½
 	private List<DlUserroles> userRolesList = null ;
 
 	// Constructors
