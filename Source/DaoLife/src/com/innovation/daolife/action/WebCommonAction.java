@@ -43,12 +43,15 @@ public class WebCommonAction extends ActionSupport implements SessionAware, Serv
     private List productList ;
     private List hotDaoList;
     private List hotUserList;
+    private List productDaoList;
 	
 	private IUserService userService;
 	private IProductService productService;
 	private IDlDaoService daoService;
 	
 	private static String INDEX = "index";
+	private static String PRODUCT = "product";
+	
 	public void setUserService(IUserService userService) {
 		this.userService = userService;
 	}
@@ -64,6 +67,15 @@ public class WebCommonAction extends ActionSupport implements SessionAware, Serv
 		hotDaoList =  paginationSupport.getItems();
 		return INDEX;
 	} 
+	
+	public String product(){
+		PaginationSupport paginationSupport = new PaginationSupport(5,0);
+		paginationSupport =  productService.getHotProduct(paginationSupport);
+		productList = paginationSupport.getItems();
+		productDaoList = productService.getProductDao();
+		return PRODUCT;
+	}
+	
 	public String hotWidget(){
 		PaginationSupport paginationSupport = new PaginationSupport(9,0);
 		paginationSupport =  userService.getHotUser(paginationSupport,null);
@@ -113,6 +125,12 @@ public class WebCommonAction extends ActionSupport implements SessionAware, Serv
 	}
 	public void setProductService(IProductService productService) {
 		this.productService = productService;
+	}
+	public List getProductDaoList() {
+		return productDaoList;
+	}
+	public void setProductDaoList(List productDaoList) {
+		this.productDaoList = productDaoList;
 	}
 	
 }
