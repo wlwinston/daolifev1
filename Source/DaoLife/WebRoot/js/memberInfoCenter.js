@@ -288,9 +288,11 @@ function doSubmit(){
 	if($('#articlecontent').val() != null){
 		DaolifeAjax.addDao($('#articlecontent').val().substr(0,140),function(rs){
 			if(rs != null){
+				$('#fontlength').get(0).innerHTML = 140;
 				$('#articlecontent').val('');
 				doReload(function(){
 					myBox.articleBox.reload();
+					doPersonal(null);
 				});
 			}else{
 				alert('发送信息失败');
@@ -336,11 +338,7 @@ function doForward(id){
 				if(rs){
 					maskHide();
 					myBox.articleBox.getElementById(id).reload();
-					/*
-					doReload(function(){
-						myBox.articleBox.load();
-					});
-					*/
+					doPersonal(null);
 				}
 			})
 		});
@@ -359,6 +357,9 @@ function closefunction(){
 	msg.alert('此功能暂时不开放！');
 }
 $(function($){
+	if(getQueryString('callbackFunc')){
+		eval('(' + getQueryString('callbackFunc') + ')');
+	}
 	doPersonal(null);
 	function fontsizealert(){
 		var length = 140;

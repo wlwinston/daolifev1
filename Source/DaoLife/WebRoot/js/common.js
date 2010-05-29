@@ -346,53 +346,87 @@ function personal(mid,pid,name,am,ma,dao,introduction,blog,about,attention){
 	this.about = about;
 	this.attention = attention;
 }
+function myDao(){
+	if($('#articleandreply').get(0)){
+		doStatus(2);
+	}else{
+		window.location.href="MyPage.action?callbackFunc=doStatus(2)";
+	}
+}
 personal.prototype = {
 	getHtml : function(){
 		var html = [];
 		html.push('<table width="318" height="58" border="0" align="center" cellpadding="0" cellspacing="0" class="xia1">');
-		html.push('<tr><td width="190" class="Box1">' + this.name + '</td>');
-		html.push('<td width="64" align="left" valign="middle">');
+		html.push('<tr><td width="250" class="Box1">' + this.name + '</td>');
+		html.push('<td width="0" align="left" valign="middle">&nbsp;</td>');
+		html.push('<td align="left" valign="middle">');
 		if(this.mid != this.pid){
 			if(this.attention){
-				html.push('<a href="javascript:doFollow(' + this.pid + ',' + !this.attention + ')">取消关注</a></td>');
+				html.push('<a href="javascript:doFollow(' + this.pid + ',' + !this.attention + ')">取消关注</a>');
 			}else{
-				html.push('<a href="javascript:doFollow(' + this.pid + ',' + !this.attention + ')">关注</a></td>');
+				html.push('<a href="javascript:doFollow(' + this.pid + ',' + !this.attention + ')">关注</a>');
 			}
 		}else{
-			html.push('&nbsp;');
+			html.push('<a href="Logout.action">退出登陆</a>');
 		}
-		html.push('<td align="left" valign="middle">');
-		html.push('<a href="Logout.action">退出登陆</a>');
-		html.push('</td></tr></table>');
+		html.push('</td>');
+		html.push('</tr></table>');
 		html.push('<table width="82%" border="0" align="center" cellpadding="0" cellspacing="0" class="yonghu"><tr>');
 		html.push('<td width="32%" align="center">');
 		html.push('<a href="touxiang.html"><img src="images/1_10.gif" width="113" height="112" /></a>');
 		html.push('</td>');
 		html.push('<td width="68%" align="center" valign="top">');
-		html.push('<table width="193" height="52" border="0" cellpadding="0" cellspacing="0" class="xia1">');
-		html.push('<tr>');
-		html.push('<td width="76" height="33" align="center" class="STYLE4 STYLE7 STYLE5 STYLE6">');
-		html.push('<a href="myAttention.jsp">' + this.ma + '</a>');
-		html.push('</td>');
-		html.push('<td width="76" align="center" class="STYLE4 STYLE7 STYLE5 STYLE6">');
-		html.push('<a href="attentionMe.jsp">' + this.am + '</a>');
-		html.push('</td>');
-		html.push('<td width="78" align="center" class="STYLE4 STYLE7 STYLE5 STYLE6">');
-		html.push('<a href="javascript:doStatus(2)">' + this.dao + '</a>');
-		html.push('</td>');
-		html.push('</tr>');
-		html.push('<tr>');
-		html.push('<td align="center">');
-		html.push('<a href="myAttention.jsp">我关注</a>');
-		html.push('</td>');
-		html.push('<td align="center">');
-		html.push('<a href="attentionMe.jsp">关注我</a>');
-		html.push('</td>');
-		html.push('<td align="center">');
-		html.push('<a href="javascript:doStatus(2)">叨</a>');
-		html.push('</td>');
-		html.push('</tr>');
-		html.push('</table>');
+		if(this.mid == this.pid){
+			html.push('<table width="193" height="52" border="0" cellpadding="0" cellspacing="0" class="xia1">');
+			html.push('<tr>');
+			html.push('<td width="76" height="33" align="center" class="STYLE4 STYLE7 STYLE5 STYLE6">');
+			html.push('<a href="myAttention.jsp">' + this.ma + '</a>');
+			html.push('</td>');
+			html.push('<td width="76" align="center" class="STYLE4 STYLE7 STYLE5 STYLE6">');
+			html.push('<a href="attentionMe.jsp">' + this.am + '</a>');
+			html.push('</td>');
+			html.push('<td width="78" align="center" class="STYLE4 STYLE7 STYLE5 STYLE6">');
+			html.push('<a href="javascript:myDao()">' + this.dao + '</a>');
+			html.push('</td>');
+			html.push('</tr>');
+			html.push('<tr>');
+			html.push('<td align="center">');
+			html.push('<a href="myAttention.jsp">我关注</a>');
+			html.push('</td>');
+			html.push('<td align="center">');
+			html.push('<a href="attentionMe.jsp">关注我</a>');
+			html.push('</td>');
+			html.push('<td align="center">');
+			html.push('<a href="javascript:myDao()">叨</a>');
+			html.push('</td>');
+			html.push('</tr>');
+			html.push('</table>');
+		}else{
+			html.push('<table width="193" height="52" border="0" cellpadding="0" cellspacing="0" class="xia1">');
+			html.push('<tr>');
+			html.push('<td width="76" height="33" align="center" class="STYLE4 STYLE7 STYLE5 STYLE6">');
+			html.push('<a href="pesonalAttention.jsp">' + this.ma + '</a>');
+			html.push('</td>');
+			html.push('<td width="76" align="center" class="STYLE4 STYLE7 STYLE5 STYLE6">');
+			html.push('<a href="attentionPesonal.jsp">' + this.am + '</a>');
+			html.push('</td>');
+			html.push('<td width="78" align="center" class="STYLE4 STYLE7 STYLE5 STYLE6">');
+			html.push('<a href="javascript://">' + this.dao + '</a>');
+			html.push('</td>');
+			html.push('</tr>');
+			html.push('<tr>');
+			html.push('<td align="center">');
+			html.push('<a href="pesonalAttention.jsp">我关注</a>');
+			html.push('</td>');
+			html.push('<td align="center">');
+			html.push('<a href="attentionPesonal.jsp">关注我</a>');
+			html.push('</td>');
+			html.push('<td align="center">');
+			html.push('<a href="javascript://">叨</a>');
+			html.push('</td>');
+			html.push('</tr>');
+			html.push('</table>');
+		}
 		html.push('<table width="200" height="66" border="0" align="center" cellpadding="0" cellspacing="4">');
 		html.push('<tr>');
 		html.push('<td width="51" align="right">简介：</td>');
@@ -429,27 +463,87 @@ personal.prototype = {
 		return html.join('');
 	}
 }
+function logon(){}
+logon.prototype = {
+	getHtml : function(){
+		var html = [];
+		html.push('<div class="Box">登陆</div>');
+		html.push('<div class="zhuce">');
+		html.push('<form id="zhuce" name="zhuce" method="post" action="Login.action">');
+		html.push('<table width="266" border="0" cellspacing="5" cellpadding="0">');
+		html.push('<tr>');
+		html.push('<td height="36" background="images/zhuce.gif">');
+		html.push('<label>&nbsp;账号：<input name="userName" type="text" id="zhanghao" size="25" maxlength="45" style="border: 0;" /></label>');
+		html.push('</td>');
+		html.push('</tr>');
+		html.push('<tr>');
+		html.push('<td height="36" background="images/zhuce.gif">&nbsp;密码：<input name="password" type="password" id="zhanghao" size="25" maxlength="45" style="border: 0;" />');
+		html.push('</td>');
+		html.push('</tr>');
+		html.push('<tr>');
+		html.push('<td height="36" align="center">');
+		html.push('<table width="98%" border="0" cellspacing="0" cellpadding="0">');
+		html.push('<tr>');
+		html.push('<td height="32">');
+		html.push('<table width="95%" border="0" cellspacing="0" cellpadding="0">');
+		html.push('<tr>');
+		html.push('<td width="24%" height="28" align="center">');
+		html.push('<label><input type="checkbox" name="checkbox" id="checkbox" /></label>');
+		html.push('</td>');
+		html.push('<td width="76%">记住登陆状态</td>');
+		html.push('</tr>');
+		html.push('</table>');
+		html.push('</td>');
+		html.push('<td height="32" align="center">');
+		html.push('<a href="findPassword.jsp">找回密码</a>');
+		html.push('</td>');
+		html.push('</tr>');
+		html.push('<tr>');
+		html.push('<td height="32">');
+		html.push('<a href="regist.jsp">');
+		html.push('<img src="images/zuce1.gif" width="122" height="32" />');
+		html.push('</a>');
+		html.push('</td>');
+		html.push('<td height="32">');
+		html.push('<a href="javascript://"><input type="image" src="images/denglu.gif" /></a>');
+		html.push('</td>');
+		html.push('</tr>');
+		html.push('</table>');
+		html.push('</td>');
+		html.push('</tr>');
+		html.push('</table>');
+		html.push('</form>');
+		html.push('</div>');
+		return html.join('');
+	}
+}
 function doPersonal(id){
 	id = id || null;
 	DaolifeAjax.getUserInfo(id,function(rs){
-		var i = null;
-		switch(rs[2].userGender){
-			case 1:
-				i += '男';
-				break;
-			case 2:
-				i += '女';
-				break;
+		var html = '';
+		if(rs){
+			var i = '';
+			switch(rs[2].userGender){
+				case 1:
+					i += '男';
+					break;
+				case 2:
+					i += '女';
+					break;
+			}
+			if(rs[2].userAddress){
+				i += ' ' + rs[2].userAddress;
+			}
+			if(i == ''){
+				i = '无';
+			}
+			//var i = getUserGender(rs[2].userGender) + ' | ' + getUserBirthday(rs[2].birthday) + '|' + getUserAddress(rs[2].userAddress);
+			var pp = new personal(rs[0],rs[1],rs[2].userNickName,rs[2].fansNum,rs[2].followNum,rs[2].contentsSize,i,'无',rs[2].userInfo,rs[2].followFlag);
+			html = pp.getHtml();
+		}else{
+			html = (new logon()).getHtml();
 		}
-		if(rs[2].userAddress){
-			i += ' ' + rs[2].userAddress;
-		}
-		if(i == null){
-			i = '无';
-		}
-		//var i = getUserGender(rs[2].userGender) + ' | ' + getUserBirthday(rs[2].birthday) + '|' + getUserAddress(rs[2].userAddress);
-		var pp = new personal(rs[0],rs[1],rs[2].userNickName,rs[2].fansNum,rs[2].followNum,rs[2].contentsSize,i,'无',rs[2].userInfo,rs[2].followFlag);
-		$('#personal').get(0).innerHTML = pp.getHtml();
+		$('#personal').get(0).innerHTML = html;
 	});
 }
 function getQueryString(name){     
