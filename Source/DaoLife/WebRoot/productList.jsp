@@ -121,104 +121,28 @@
 						</div>
 						<div class="chanpin1">
 							<div class="hang">
+							
+							<s:if test="{productDaoList!=null}">
+							<s:iterator  value="productDaoList" status="productDaoList">
 								<div class="chanpinmingcheng">
 									<div>
-										<a href="daolifemare.html"><img src="images/chanpin1.gif"
+										<a href="daolifemare.html"><img src=<s:property value="productPic"/>
 												width="260" height="141" />
 										</a>
 									</div>
 									<div class="chanpinneirong">
-										<a href="daolifemare.html">Dao0005</a>
+										<a href="daolifemare.html">第<s:property value="productDaonum"/>期</a>
 									</div>
 									<div class="chanpinneirong">
-										我听这么牛逼的音乐 还是没有妞儿喜欢我
+										<s:property value="productName"/>
 									</div>
 									<div class="chanpinneirong">
 										<a href="daolifemare.html">查看详情</a>
 									</div>
 								</div>
-								<div class="chanpinmingcheng">
-									<div>
-										<a href="daolifemare.html"><img src="images/chanpin1.gif"
-												width="260" height="141" />
-										</a>
-									</div>
-									<div class="chanpinneirong">
-										<a href="#">Dao0005</a>
-									</div>
-									<div class="chanpinneirong">
-										我听这么牛逼的音乐 还是没有妞儿喜欢我
-									</div>
-									<div class="chanpinneirong">
-										<a href="#">查看详情</a>
-									</div>
-								</div>
-								<div class="chanpinmingcheng">
-									<div>
-										<a href="daolifemare.html"><img src="images/chanpin1.gif"
-												width="260" height="141" />
-										</a>
-									</div>
-									<div class="chanpinneirong">
-										<a href="#">Dao0005</a>
-									</div>
-									<div class="chanpinneirong">
-										我听这么牛逼的音乐 还是没有妞儿喜欢我
-									</div>
-									<div class="chanpinneirong">
-										<a href="#">查看详情</a>
-									</div>
-								</div>
-							</div>
-							<div class="hang">
-								<div class="chanpinmingcheng">
-									<div>
-										<a href="daolifemare.html"><img src="images/chanpin1.gif"
-												width="260" height="141" />
-										</a>
-									</div>
-									<div class="chanpinneirong">
-										<a href="#">Dao0005</a>
-									</div>
-									<div class="chanpinneirong">
-										我听这么牛逼的音乐 还是没有妞儿喜欢我
-									</div>
-									<div class="chanpinneirong">
-										<a href="#">查看详情</a>
-									</div>
-								</div>
-								<div class="chanpinmingcheng">
-									<div>
-										<a href="daolifemare.html"><img src="images/chanpin1.gif"
-												width="260" height="141" />
-										</a>
-									</div>
-									<div class="chanpinneirong">
-										<a href="#">Dao0005</a>
-									</div>
-									<div class="chanpinneirong">
-										我听这么牛逼的音乐 还是没有妞儿喜欢我
-									</div>
-									<div class="chanpinneirong">
-										<a href="#">查看详情</a>
-									</div>
-								</div>
-								<div class="chanpinmingcheng">
-									<div>
-										<a href="daolifemare.html"><img src="images/chanpin1.gif"
-												width="260" height="141" />
-										</a>
-									</div>
-									<div class="chanpinneirong">
-										<a href="#">Dao0005</a>
-									</div>
-									<div class="chanpinneirong">
-										我听这么牛逼的音乐 还是没有妞儿喜欢我
-									</div>
-									<div class="chanpinneirong">
-										<a href="#">查看详情</a>
-									</div>
-								</div>
+							</s:iterator>
+							</s:if>
+							
 							</div>
 						</div>
 					</td>
