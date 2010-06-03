@@ -147,10 +147,12 @@
 	background-color: #eeeeee;
 	height: auto;
 	width: 1002px;
+	min-height:412px;
 	margin-top: 0px;
 	margin-right: auto;
 	margin-bottom: 0px;
 	margin-left: auto;
+	max-height:none;
 }
 .zhuti1 {
 	border-right-width: 1px;
@@ -165,11 +167,12 @@
 	width: 980px;
 	margin-top: 0px;
 	margin-right: auto;
-	margin-bottom: 30px;
+	margin-bottom: 12px;
 	margin-left: auto;
 	height: auto;
 	background-color: #f8f8f8;
 	background-image: url(../images/nrbg.gif);
+	max-height:none;
 }
 .zhuti8 {
 	border-right-width: 1px;
@@ -184,7 +187,7 @@
 	width: 980px;
 	margin-top: 0px;
 	margin-right: auto;
-	margin-bottom: 30px;
+	margin-bottom: 12px;
 	margin-left: auto;
 	height: auto;
 	background-color: #f8f8f8;
@@ -293,15 +296,18 @@
 	margin-left: auto;
 }
 .foot1 {
-	height: 79px;
+	height: 70px;
 	width: 1002px;
 	margin-top: 0px;
 	margin-right: auto;
 	margin-bottom: 0px;
 	margin-left: auto;
+	text-align:center;
+	padding-top:9px;
 }
-
-
+.foot1 > div{
+	margin-top:6px;
+}
 .zhuce {
 	height: 200px;
 	width: 300px;

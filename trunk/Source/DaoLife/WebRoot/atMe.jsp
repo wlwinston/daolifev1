@@ -7,7 +7,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<title>叨--最热叨句</title>
+		<title>叨--@我的</title>
 		<link href="styles/body.css" rel="stylesheet" type="text/css" />
 		<link href="styles/index.css" rel="stylesheet" type="text/css" />
 		<link href="styles/daolife.css" rel="stylesheet" type="text/css" />
@@ -24,7 +24,6 @@
 	</head>
 
 	<body>
-		<!--top头部区域-->
 		<jsp:include page="menu.jsp" flush="true"></jsp:include>
 		<div class="zhuti">
 			<table width="650" height="1108" border="0" cellpadding="0"
@@ -56,13 +55,6 @@
 				</tr>
 			</table>
 		</div>
-
-		<!--foot脚部信息-->
-		<div class="foot">
-			<div class="foot1">
-				foot
-			</div>
-		</div>
-
+		<jsp:include page="foot.jsp" flush="true"></jsp:include>
 	</body>
 </html>

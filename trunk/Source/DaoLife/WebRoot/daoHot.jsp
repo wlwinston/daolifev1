@@ -24,7 +24,6 @@
 	</head>
 
 	<body>
-		<!--top头部区域-->
 		<jsp:include page="menu.jsp" flush="true"></jsp:include>
 		<div class="zhuti">
 			<table width="650" height="1108" border="0" cellpadding="0"
@@ -58,13 +57,6 @@
 				</tr>
 			</table>
 		</div>
-
-		<!--foot脚部信息-->
-		<div class="foot">
-			<div class="foot1">
-				foot
-			</div>
-		</div>
-
+		<jsp:include page="foot.jsp" flush="true"></jsp:include>
 	</body>
 </html>
