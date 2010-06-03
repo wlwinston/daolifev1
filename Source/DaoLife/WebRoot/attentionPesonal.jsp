@@ -7,7 +7,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<title>叨--随便看看</title>
+		<title>叨--关注ta的</title>
 		<link href="styles/body.css" rel="stylesheet" type="text/css" />
 		<link href="styles/index.css" rel="stylesheet" type="text/css" />
 		<link href="styles/daolife.css" rel="stylesheet" type="text/css" />
@@ -22,13 +22,8 @@
 		<script type="text/javascript" src="js/common.js"></script>
 		<script type="text/javascript" src="js/attentionPesonal.js"></script>
 	</head>
-
 	<body>
-		<!--top头部区域-->
 		<jsp:include page="menu.jsp" flush="true"></jsp:include>
-		<!--banner区域-->
-		<!--中间小条-->
-		<!--内容区域-->
 		<div class="zhuti">
 			<table width="650" height="1108" border="0" cellpadding="0"
 				cellspacing="0" class="zhuti3">
@@ -61,13 +56,6 @@
 				</tr>
 			</table>
 		</div>
-
-		<!--foot脚部信息-->
-		<div class="foot">
-			<div class="foot1">
-				foot
-			</div>
-		</div>
-
+		<jsp:include page="foot.jsp" flush="true"></jsp:include>
 	</body>
 </html>

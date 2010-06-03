@@ -91,8 +91,8 @@ forward.prototype = {
         this.html.push('</label></td>');
         this.html.push('</tr>');
         this.html.push('<tr>');
-        this.html.push('<td width="370" height="22" align="left" valign="top"><label></label></td>');
-        this.html.push('<td width="205"><input id="forward-button" type="image" src="images/1134.gif" href="images/myhome_11.gif" />&nbsp;&nbsp;<input type="image" href="images/myhome_11.gif" src="images/pinglun_181.gif" id="button-no"></td>');
+        this.html.push('<td width="365" height="22" align="left" valign="top"><label></label></td>');
+        this.html.push('<td width="220"><input id="forward-button" type="image" src="images/1134.gif" href="images/myhome_11.gif" />&nbsp;&nbsp;<input type="image" href="images/myhome_11.gif" src="images/pinglun_181.gif" id="button-no"></td>');
         this.html.push('</tr>');
         this.html.push('</table>');
         this.html.push('</form></td>');

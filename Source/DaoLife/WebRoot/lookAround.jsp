@@ -7,7 +7,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<title>叨--最热叨句</title>
+		<title>叨--随便看看</title>
 		<link href="styles/body.css" rel="stylesheet" type="text/css" />
 		<link href="styles/index.css" rel="stylesheet" type="text/css" />
 		<link href="styles/daolife.css" rel="stylesheet" type="text/css" />
@@ -22,18 +22,15 @@
 		<script type="text/javascript" src="js/common.js"></script>
 		<script type="text/javascript" src="js/lookAround.js"></script>
 	</head>
-
 	<body>
-		<!--top头部区域-->
 		<jsp:include page="menu.jsp" flush="true"></jsp:include>
 		<div class="zhuti">
 			<table width="650" height="1108" border="0" cellpadding="0"
 				cellspacing="0" class="zhuti3">
 				<tr>
-					<td height="1107" valign="top">
+					<td style="height:auto;max-height:none;" valign="top">
 						<center>
-						<table width="92%" height="43" border="0" cellpadding="0"
-							cellspacing="0" class="xia1 guanzhu ">
+						<table width="92%" border="0" cellpadding="0" cellspacing="0" class="xia1 guanzhu" style="height:auto;max-height:none;">
 							<tr>
 								<td width="12%" height="40" align="center">
 									<a href="lookAround.jsp">
@@ -56,13 +53,6 @@
 				</tr>
 			</table>
 		</div>
-
-		<!--foot脚部信息-->
-		<div class="foot">
-			<div class="foot1">
-				foot
-			</div>
-		</div>
-
+		<jsp:include page="foot.jsp" flush="true"></jsp:include> 
 	</body>
 </html>

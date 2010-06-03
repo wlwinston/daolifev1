@@ -8,7 +8,7 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
 		<meta name="叨" content="叨微博客" />
-		<title><s:property value="#session['daoLifeUser'].userNickName"/>
+		<title>叨--<s:property value="#session['daoLifeUser'].userNickName"/>
 		的首页
 		</title>
 		<script type="text/javascript" src="dwr/engine.js"> </script>
@@ -25,14 +25,10 @@
 		<link href="styles/daolife.css" rel="stylesheet" type="text/css" />
 		<link href="styles/chanpin.css" rel="stylesheet" type="text/css" />
 	</head>
-
 		<body>
-		<!--top头部区域-->
 		<jsp:include page="menu.jsp" flush="true"></jsp:include>
-		<!--banner区域-->
 		<div class="banner">
 			<div class="banner1">
-
 				<table width="1002" height="293" border="0" cellspacing="0"
 					cellpadding="0">
 					<tr>
@@ -96,20 +92,16 @@
 			</div>
 
 		</div>
-		<!--中间小条-->
 		<div class="hengxian">
 			<div class="hengxian1">
 				<img src="images/top_16.gif" />
 			</div>
 		</div>
-
-		<!--内容区域-->
 		<div class="zhuti">
 			<table width="650" height="1022" border="0" cellpadding="0"
 				cellspacing="0" class="zhuti1">
 				<tr>
 					<td height="1021" align="left" valign="top">
-						<!--左边区域-->
 						<div class="zuo">
 							<table width="514" height="51" border="0" align="center"
 								cellpadding="0" cellspacing="0" class="xia1">
@@ -129,7 +121,6 @@
 								<center></center>
 							</div>
 						</div>
-						<!--右边区域-->
 						<div id="infocenter" class="reight">
 							<div id="personal">
 							</div>
@@ -161,21 +152,10 @@
 								</table>
 							</div>
 						</div>
-
-
-
-
 					</td>
 				</tr>
 			</table>
 		</div>
-
-		<!--foot脚部信息-->
-		<div class="foot">
-			<div class="foot1">
-				foot
-			</div>
-		</div>
-
+		<jsp:include page="foot.jsp" flush="true"></jsp:include> 
 	</body>
 </html>

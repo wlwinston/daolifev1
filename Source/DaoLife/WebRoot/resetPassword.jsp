@@ -4,7 +4,7 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf8" />
-		<title>用户注册</title>
+		<title>叨--重设密码</title>
 		<script type="text/javascript" src="dwr/engine.js"> </script>
     	<script type="text/javascript" src="dwr/util.js"> </script> 
     	<script type="text/javascript" src="dwr/interface/DaolifeAjax.js"></script>
@@ -21,71 +21,66 @@
 	<body>
 		<jsp:include page="menu.jsp" flush="true"></jsp:include> 
 		<div class="zhuti">
-			<div class="regist">
-				<table width="539" border="0" align="center" cellpadding="4"
-					cellspacing="4">
-					<tr>
-						<td width="523" height="197" align="left" valign="top">
-							<s:form action="/ResetPasswordSave.action" method="post" enctype="multipart/form-data" name="regist" id="regist">
-								<table width="623" border="0" cellspacing="3" cellpadding="0">
-									<tr>
-										<th width="117" height="21" align="right">
-											<span class="allow">*</span>登陆密码：
-										</th>
-										<td>
-											<label>
-												<input id="password" type="password" name="newPassword" />
-												<span id="password_info" class="info"></span>
-												<input id='userId' type="hidden" name="userId" value ="<s:property value="userId"/>" />
-											</label>
-										</td>
-									</tr>
-									<tr>
-										<th height="21" align="right">
-											<span class="allow">*</span>密码确认：
-										</th>
-										<td>
-											<label>
-												<input id='repassword' type="password" name="newPasswordConfirm" />
-												<span id="repassword_info" class="info"></span>
-											</label>
-										</td>
-									</tr>
-									<tr>
-										<th>&nbsp;</th>
-										<td><hr/></td>
-									</tr>
-									<tr>
-										<th height="21" align="right">
-											<span class="allow">*</span>验证码：
-										</th>
-										<td>
-											<label>
-												<input type="text" size="5" style="width:70px;" height="26" id="yzm" />
-												<img src="servlet/dao.auth" id="picyzm" style="border:0;width:100px;margin:0;float:left botton;" />&nbsp;<a href="javascript:reflashpic()">换一张</a>
-												<span id="yzm_info" class="info"></span>
-											</label>
-										</td>
-									</tr>
-									<tr>
-										<td colpan=3>&nbsp;</td>
-									</tr>
-									<tr>
-										<td height="21" align="center">
-										</td>
-										<td>
-											<input type="image" src="images/resetpassword.gif" />
-										</td>
-									</tr>
-								</table>
-							</s:form>
-						</td>
-					</tr>
-				</table>
-				<center>
-				</center>
-			</div>
-			<div></div>
+			<table width="539" border="0" align="center" cellpadding="4" cellspacing="4" class="zhuti3" style="height:463px;font-size:15px;">
+				<tr>
+					<td width="523" height="197" align="left" valign="top">
+						<s:form action="/ResetPasswordSave.action" method="post" enctype="multipart/form-data" name="regist" id="regist"  >
+							<table width="623" border="0" cellspacing="3" cellpadding="0">
+								<tr>
+									<th width="117" height="21" align="right">
+										<span class="allow">*</span>登陆密码：
+									</th>
+									<td>
+										<label>
+											<input id="password" type="password" name="newPassword" />
+											<span id="password_info" class="info"></span>
+											<input id='userId' type="hidden" name="userId" value ="<s:property value="userId"/>" />
+										</label>
+									</td>
+								</tr>
+								<tr>
+									<th height="21" align="right">
+										<span class="allow">*</span>密码确认：
+									</th>
+									<td>
+										<label>
+											<input id='repassword' type="password" name="newPasswordConfirm" />
+											<span id="repassword_info" class="info"></span>
+										</label>
+									</td>
+								</tr>
+								<tr>
+									<th>&nbsp;</th>
+									<td><hr/></td>
+								</tr>
+								<tr>
+									<th height="21" align="right">
+										<span class="allow">*</span>验证码：
+									</th>
+									<td>
+										<label>
+											<input type="text" size="5" style="width:70px;" height="26" id="yzm" />
+											<img src="servlet/dao.auth" id="picyzm" style="border:0;width:100px;margin:0;float:left botton;" />&nbsp;<a href="javascript:reflashpic()">换一张</a>
+											<span id="yzm_info" class="info"></span>
+										</label>
+									</td>
+								</tr>
+								<tr>
+									<td colpan=3>&nbsp;</td>
+								</tr>
+								<tr>
+									<td height="21" align="center">
+									</td>
+									<td>
+										<input type="image" src="images/resetpassword.gif" />
+									</td>
+								</tr>
+							</table>
+						</s:form>
+					</td>
+				</tr>
+			</table>
 		</div>
+		<jsp:include page="foot.jsp" flush="true"></jsp:include>
 	</body>
 </html>

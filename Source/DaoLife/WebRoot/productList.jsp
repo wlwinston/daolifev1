@@ -4,7 +4,7 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<title>叨</title>
+		<title>叨--产品列表</title>
 		<link href="styles/body.css" rel="stylesheet" type="text/css" />
 		<link href="styles/index.css" rel="stylesheet" type="text/css" />
 		<link href="styles/daolifemare.css" rel="stylesheet" type="text/css" />
@@ -20,7 +20,6 @@
 	</head>
 	<body>
 		<jsp:include page="menu.jsp" flush="true"></jsp:include> 
-		<!--banner区域-->
 		<div class="banner">
 			<div class="banner1">
 				<div id='mbox_content'>
@@ -148,11 +147,6 @@
 				</tr>
 			</table>
 		</div>
-		<div class="foot">
-			<div class="foot1">
-				foot
-			</div>
-		</div>
-
+		<jsp:include page="foot.jsp" flush="true"></jsp:include> 
 	</body>
 </html>

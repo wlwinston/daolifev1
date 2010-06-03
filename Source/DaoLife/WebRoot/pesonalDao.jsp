@@ -8,7 +8,7 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
 		<meta name="叨" content="叨微博客" />
-		<title><s:property value="personalInfo.userNickName"/>的首页</title>
+		<title>叨--<s:property value="personalInfo.userNickName"/>的首页</title>
 		<script type="text/javascript" src="dwr/engine.js"> </script>
     	<script type="text/javascript" src="dwr/util.js"> </script> 
 		<script type="text/javascript" src="dwr/interface/DaolifeAjax.js"></script>
@@ -74,13 +74,6 @@
 				</tr>
 			</table>
 		</div>
-
-		<!--foot脚部信息-->
-		<div class="foot">
-			<div class="foot1">
-				foot
-			</div>
-		</div>
-
+		<jsp:include page="foot.jsp" flush="true"></jsp:include> 
 	</body>
 </html>

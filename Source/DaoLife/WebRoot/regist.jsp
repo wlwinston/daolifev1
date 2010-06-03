@@ -4,7 +4,7 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf8" />
-		<title>用户注册</title>
+		<title>叨--用户注册</title>
 		<script type="text/javascript" src="dwr/engine.js"> </script>
     	<script type="text/javascript" src="dwr/util.js"> </script> 
     	<script type="text/javascript" src="dwr/interface/DaolifeAjax.js"></script>
@@ -21,9 +21,8 @@
 	<body>
 		<jsp:include page="menu.jsp" flush="true"></jsp:include> 
 		<div class="zhuti">
-			<div class="regist">
-				<table width="539" border="0" align="center" cellpadding="4"
-					cellspacing="4">
+			<!--<div class="regist">  -->
+				<table width="539" border="0" align="center" cellpadding="4" cellspacing="4" class="zhuti3" style="height:463px;font-size:15px;">
 					<tr>
 						<td width="523" height="197" align="left" valign="top">
 							<s:form action="/Regist.action" method="post" enctype="multipart/form-data" name="regist" id="regist">
@@ -34,7 +33,7 @@
 										</th>
 										<td>
 											<label>
-												<input id="username" type="text" name="user.userName" />
+												<input id="username" type="text" name="user.userName" value="" />
 												<span id="username_info" class='info'></span>
 											</label>
 										</td>
@@ -45,7 +44,7 @@
 										</th>
 										<td>
 											<label>
-												<input id="password" type="password" name="user.password" />
+												<input id="password" type="password" name="user.password" value="" />
 												<span id="password_info" class="info"></span>
 											</label>
 										</td>
@@ -56,7 +55,7 @@
 										</th>
 										<td>
 											<label>
-												<input id='repassword' type="password" name="repassword" />
+												<input id='repassword' type="password" name="repassword" value="" />
 												<span id="repassword_info" class="info"></span>
 											</label>
 										</td>
@@ -67,7 +66,7 @@
 										</th>
 										<td>
 											<label>
-												<input type="text" name="user.mailadres" id="mail" />
+												<input type="text" name="user.mailadres" id="mail" value="" />
 												<span id="mail_info" class="info"></span>
 											</label>
 										</td>
@@ -78,7 +77,7 @@
 										</th>
 										<td>
 											<label>
-												<input type="text" name="user.userNickName" id="nick" />
+												<input type="text" name="user.userNickName" id="nick" value="" />
 												<span id="nick_info" class="info"></span>
 											</label>
 										</td>
@@ -132,10 +131,8 @@
 						</td>
 					</tr>
 				</table>
-				<center>
-				</center>
-			</div>
-			<div></div>
+			<!--</div>  -->
 		</div>
+		<jsp:include page="foot.jsp" flush="true"></jsp:include>
 	</body>
 </html>
