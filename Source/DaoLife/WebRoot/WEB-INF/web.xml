@@ -14,7 +14,7 @@
 	<!-- Spring -->
 	<context-param>  
 	  <param-name>contextConfigLocation</param-name>  
-	  <param-value>/WEB-INF/spring-config/applicationContext*.xml</param-value>  
+	  <param-value>/WEB-INF/spring-config/applicationContext*.xml,/WEB-INF/WebConfig.xml</param-value>  
 	</context-param>
 	<!-- Log4j -->  
  	<context-param>
