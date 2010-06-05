@@ -210,12 +210,17 @@
 			</interceptor-ref>   
 		 	<interceptor-ref name="defaultStack" /> 
 		</action>
-		
 		<action name="DaoHot" class="UserAction" method="daoHot">
 			<result name="daoHotSuccess">/daoHot.jsp</result>
 			<interceptor-ref name="webCookie"/>
 			<interceptor-ref name="defaultStack" />   	
 		</action>
+		<action name="topicDetail" class="UserAction" method="daoHot">
+			<result name="daoHotSuccess">/topic.jsp</result>
+			<interceptor-ref name="webCookie"/>
+			<interceptor-ref name="defaultStack" />   	
+		</action>
+		
 		<action name="LookAround" class="UserAction" method="daoHot">
 			<result name="daoHotSuccess">/lookAround.jsp</result>
 			<interceptor-ref name="webCookie"/>
