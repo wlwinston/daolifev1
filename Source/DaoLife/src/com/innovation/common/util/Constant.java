@@ -45,11 +45,12 @@ public enum Constant
 	UPDAO_ERRORMESSAGE_EXCEPTION("顶叨出错了"),
 	/*******session个人信息key*************/
 	SESSION_USER_KEY("daoLifeUser"),
-	
 	//网站地址׺
-	LINK_USER_PREFIX("http://www.daolife.com/"),
+	LINK_WEBSITE_PREFIX("http://localhost"),
+	//网站地址׺
+	LINK_USER_PREFIX("http://localhost/"),
 	//网站话题ID׺
-	LINK_TOPIC_PREFIX("http://www.daolife.com/topicDetail.action?topicId="),
+	LINK_TOPIC_PREFIX("http://localhost/topicDetail.action?topicId="),
 	ERROR_RETPASSWORD_NOPASSWORD("您未提交新的密码"),
 	ERROR_RETPASSWORD_PASSWORDCONFIRMERROR("密码和确认密码不匹配"),
 	ERROR_RETPASSWORD_NOIDERROR("您的帐户不存在")
