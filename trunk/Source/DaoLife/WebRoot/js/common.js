@@ -500,12 +500,10 @@ logon.prototype = {
 		html.push('</tr>');
 		html.push('<tr>');
 		html.push('<td height="32">');
-		html.push('<a href="regist.jsp">');
-		html.push('<img src="images/zuce1.gif" width="122" height="32" />');
-		html.push('</a>');
+		html.push('<a href="javascript:doLogin()"><img src="images/denglu.gif" width="122" height="32" /></a>');
 		html.push('</td>');
 		html.push('<td height="32">');
-		html.push('<a href="javascript:doLogin()"><input type="image" src="images/denglu.gif" /></a>');
+		html.push('<a href="regist.jsp"><img src="images/zuce1.gif" width="122" height="32" /></a>');
 		html.push('</td>');
 		html.push('</tr>');
 		html.push('</table>');
