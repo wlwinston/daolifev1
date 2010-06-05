@@ -3,7 +3,9 @@ package com.innovation.common.Ajax;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collection;
 import java.util.Date;
 import java.util.Iterator;
@@ -12,6 +14,8 @@ import java.util.Map;
 import java.util.Set;
 
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.collections.FastHashMap;
@@ -696,7 +700,7 @@ public class CommonAjax {
 		}
 	}
 	
-	public String login(String userName ,String password)
+	public String login(String userName ,String password,boolean ifCookie) throws NoSuchAlgorithmException, UnsupportedEncodingException
 	{
 		String loginInfo = "";
 		DlUsers dlUser = userService.getUserByNameOrEmail(userName);
@@ -722,6 +726,24 @@ public class CommonAjax {
 			int size = userService.getUserDao(dlUser.getUserId()).size();
 			dlUser.setContentsSize(size);
 			session.setAttribute(Constant.SESSION_USER_KEY.getStrValue(), dlUser);
+			//记住登录状态
+			if(ifCookie)
+			{
+				  Cookie   userNameCookie   =   new   Cookie( "daolife_userName", userName);
+				  String authCode = Md5Util.getInstance().EncoderByMd5(userName+oldpasswd,dlUser.getSalt());
+				  Cookie   authCodeCookie   =   new   Cookie( "daolife_authCode", authCode);
+				  Date now = new Date();
+				  String nowDateString  = new SimpleDateFormat("yyyy-MM-dd").format(now.getTime()); 
+				  Cookie   loginTimeCookie   =   new   Cookie( "daolife_loginTime", nowDateString);
+				  HttpServletResponse response = request.getHttpServletResponse();
+				  
+				  userNameCookie.setMaxAge(7*24*60*60);
+				  authCodeCookie.setMaxAge(7*24*60*60);
+				  loginTimeCookie.setMaxAge(7*24*60*60);
+				  response.addCookie(userNameCookie);
+				  response.addCookie(authCodeCookie);
+				  response.addCookie(loginTimeCookie);
+			}
 		}
 		return loginInfo;
 	}
