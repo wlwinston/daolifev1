@@ -44,4 +44,5 @@ public interface IUserService {
 	public PaginationSupport getContentListByUser(PaginationSupport paginationSupport,Short userId);
 	public PaginationSupport getHotUser(PaginationSupport paginationSupport,DlUsers user);
 	public PaginationSupport getFollowerContentListByUser(PaginationSupport paginationSupport,Short userId);
+	public PaginationSupport getFollowProductUser(PaginationSupport paginationSupport,Short Id);
 }

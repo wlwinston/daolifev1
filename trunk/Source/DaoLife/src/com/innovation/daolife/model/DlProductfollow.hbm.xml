@@ -16,5 +16,7 @@
         <property name="productfollowUserid" type="java.lang.Short">
             <column name="productfollow_userid" not-null="true" />
         </property>
+        <many-to-one name="dlUsers" column="productfollow_userid" class="com.innovation.daolife.model.DlUsers"  insert="false" update="false" not-null="true" >
+        </many-to-one>
     </class>
 </hibernate-mapping>

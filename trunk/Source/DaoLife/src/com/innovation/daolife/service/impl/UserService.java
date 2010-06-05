@@ -157,6 +157,17 @@ public class UserService implements IUserService {
 	
 	/**
 	 * @author fengsn
+	 * 关注产品用户user
+	 * */
+	public PaginationSupport getFollowProductUser(PaginationSupport paginationSupport,Short Id) {
+		String querysql = " Select u From DlUsers u INNER JOIN u.dlProductfollow f  where  f.productfollowProductid = "+Id+"";
+		String countsql =" Select count(u.userId) From DlUsers u INNER JOIN u.dlProductfollow f  where  f.productfollowProductid = "+Id+" ";
+		paginationSupport = dlUsersDao.findPageByQuery(querysql, countsql, paginationSupport.getPageSize(), paginationSupport.getStartIndex());
+		return paginationSupport;
+	}
+	
+	/**
+	 * @author fengsn
 	 * ��ѯ�ͻ��Լ���dao
 	 * */
 	public PaginationSupport getContentListByUser(PaginationSupport paginationSupport,Short userId) {

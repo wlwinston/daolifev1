@@ -52,6 +52,7 @@ public class DlUsers implements java.io.Serializable {
 	private Set dlContents;
 	private Set dlFollowers;
 	private Set dlFancers;
+	private Set dlProductfollow;
 	private Set contentatmes;
 	private boolean followFlag = false;
 	private int  contentsSize;
@@ -441,6 +442,16 @@ public class DlUsers implements java.io.Serializable {
 	public void setDlHotdaos(Set dlHotdaos) {
 		this.dlHotdaos = dlHotdaos;
 	}
+
+	public Set getDlProductfollow() {
+		return dlProductfollow;
+	}
+
+	public void setDlProductfollow(Set dlProductfollow) {
+		this.dlProductfollow = dlProductfollow;
+	}
+
+	
 
 	
 
