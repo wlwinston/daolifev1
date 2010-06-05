@@ -43,6 +43,7 @@
 			<include method="getUserInfo" />
 			<include method="getMessageStatistics" />
 			<include method="getDlContentById" />
+			<include method="login" />
 		</create>
 	</allow>
 </dwr>
