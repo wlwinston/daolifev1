@@ -71,6 +71,9 @@
     <property name="dlProductDao">
         <ref bean="dlProductDao"/>
     </property>
+     <property name="dlProductFollowDao">
+        <ref bean="dlProductFollowDao"/>
+    </property>
 </bean>
 
 <bean id="dlMessagesService" class="com.innovation.daolife.service.impl.DlMessagesService">
