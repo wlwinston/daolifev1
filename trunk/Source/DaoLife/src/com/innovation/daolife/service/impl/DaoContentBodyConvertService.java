@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Set;
 
 import com.innovation.common.util.Constant;
+import com.innovation.common.util.WebConfig;
 import com.innovation.daolife.dao.IDlContentDao;
 import com.innovation.daolife.dao.IDlContentatDao;
 import com.innovation.daolife.dao.IDlMessagesDao;
@@ -55,7 +56,7 @@ public class DaoContentBodyConvertService implements IDaoContentBodyConvertServi
 				user = userList.get(i);
 				dlContentat.setStatusUid(user.getUserId());
 				dlContentat.setStatusUname(user.getUserNickName());
-				dlContentat.setStatusType("ÍøÒ³");
+				dlContentat.setStatusType("ï¿½ï¿½Ò³");
 				dlContentat.setStatusId(user.getUserId());
 				dlCustomerDaoEntry.getDlContentatList().add(dlContentat);
 				DlMessages message = new DlMessages();
@@ -90,13 +91,13 @@ public class DaoContentBodyConvertService implements IDaoContentBodyConvertServi
 			for(int i =0 ;i<userList.size();i++)
 			{
 				DlUsers newUser = userList.get(i);
-				String newUserLinkString =  "<a href ='"+Constant.LINK_USER_PREFIX.getStrValue()+newUser.getUserUrl()+"' target='_blank'>@"+newUser.getUserNickName()+" </a>";
+				String newUserLinkString =  "<a href ='"+WebConfig.linkUserPrefix+newUser.getUserId()+"' target='_blank'>@"+newUser.getUserNickName()+" </a>";
 				contextBody = contextBody.replaceAll("@"+newUser.getUserNickName()+" ",newUserLinkString);
 			}
 		}
 		if(topicId != 0 )
 		{
-			String newTopicLinkString =  "<a href ='"+Constant.LINK_TOPIC_PREFIX.getStrValue()+topicId+"' target='_blank'>#"+topicName+" </a>";
+			String newTopicLinkString =  "<a href ='"+WebConfig.linkTopicPrefix+topicId+"' target='_blank'>#"+topicName+" </a>";
 			contextBody = contextBody.replaceAll("#"+topicName+" ",newTopicLinkString);
 		}
 		content.setContentBody(contextBody);
