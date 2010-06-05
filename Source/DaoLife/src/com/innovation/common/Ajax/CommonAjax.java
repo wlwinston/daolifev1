@@ -670,7 +670,7 @@ public class CommonAjax {
 			if(authCode!=null && authCode.trim().length()>0)
 			{
 				String authRand = (String) session.getAttribute("rand");
-				if(authCode.equals(authRand))
+				if(authCode.equalsIgnoreCase(authRand))
 				{
 					return true;
 				}
