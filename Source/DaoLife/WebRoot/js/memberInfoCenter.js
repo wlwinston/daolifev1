@@ -342,6 +342,7 @@ function doForward(id){
 				}
 			})
 		});
+		$('#forward-msg').focus();
 	}
 }
 function doDing(id){
