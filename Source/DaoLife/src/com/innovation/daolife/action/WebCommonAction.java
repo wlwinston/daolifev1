@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -56,6 +57,8 @@ public class WebCommonAction extends ActionSupport implements SessionAware, Serv
 		this.userService = userService;
 	}
 	public String index(){
+		
+		
 		PaginationSupport paginationSupport = new PaginationSupport(5,0);
 		paginationSupport =  productService.getHotProduct(paginationSupport);
 		productList = paginationSupport.getItems();

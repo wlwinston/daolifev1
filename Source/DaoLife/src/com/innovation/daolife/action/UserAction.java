@@ -8,9 +8,12 @@ package com.innovation.daolife.action;
 
 import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -76,7 +79,19 @@ public class UserAction extends ActionSupport implements SessionAware, ServletRe
 	public String logout() throws Exception{
 		request.getSession().setAttribute(Constant.SESSION_USER_KEY.getStrValue(), null);
 		request.getSession().removeAttribute(Constant.SESSION_USER_KEY.getStrValue());
-		//request.getSession().invalidate();
+		//清除cookie
+		Cookie   userNameCookie   =   new   Cookie( "daolife_userName", null);
+		  Cookie   authCodeCookie   =   new   Cookie( "daolife_authCode", null);
+		  Cookie   loginTimeCookie   =   new   Cookie( "daolife_loginTime", null);
+		  userNameCookie.setPath("/");
+		  userNameCookie.setMaxAge(0);
+		  authCodeCookie.setPath("/");
+		  authCodeCookie.setMaxAge(0);
+		  loginTimeCookie.setPath("/");
+		  loginTimeCookie.setMaxAge(0);
+		  response.addCookie(userNameCookie);
+		  response.addCookie(authCodeCookie);
+		  response.addCookie(loginTimeCookie);
 		return "clearSuccess";
 	}
 	
@@ -238,7 +253,10 @@ public class UserAction extends ActionSupport implements SessionAware, ServletRe
 	    Map session = context.getSession();   
 	    if(session.get(Constant.SESSION_USER_KEY.getStrValue()) == null)
 	    {
-	    	return NOLOGIN;
+	    	if(!this.checkCookie(myRequest,session))
+	    	{
+	    		return NOLOGIN;
+	    	}
 	    }
 		DlUsers myUser = (DlUsers) session.get(Constant.SESSION_USER_KEY.getStrValue());
 		
@@ -285,6 +303,51 @@ public class UserAction extends ActionSupport implements SessionAware, ServletRe
 		//sess.getMaxInactiveInterval()
 		
 		return PERSONPAGE;
+	}
+	private boolean checkCookie(HttpServletRequest myRequest, Map session) throws NoSuchAlgorithmException, UnsupportedEncodingException {
+		Cookie   cookies[]=request.getCookies(); 
+		Cookie   sCookie=null; 
+		String   svalue=null; 
+		String   sname=null; 
+		String   userName = null;
+		String   authCode = null;
+		if(cookies != null)
+		{
+			for(int   i=0;i <cookies.length;i++) 
+			{ 
+				sCookie=cookies[i]; 
+				svalue=sCookie.getValue(); 
+				sname=sCookie.getName(); 
+				if(sname.equals("daolife_userName"))
+				{
+					userName = svalue;
+				}
+				if(sname.equals("daolife_authCode"))
+				{
+					authCode = svalue;
+				}
+			}
+			if(userName != null && authCode != null)
+			{
+				DlUsers dlUser = userService.getUserByNameOrEmail(userName);
+				if(dlUser != null){
+					String salt = dlUser.getSalt();
+					String oldpasswd = dlUser.getPassword();
+					String oldAuthCode = Md5Util.getInstance().EncoderByMd5(userName+oldpasswd,salt);
+					if(authCode.equals(oldAuthCode))
+					{
+						List<DlUserroles> userRolesList = userService.getRolesListByUserId(dlUser.getUserId());
+						dlUser.setUserRolesList(userRolesList);
+						int size = userService.getUserDao(dlUser.getUserId()).size();
+						dlUser.setContentsSize(size);
+						session.put(Constant.SESSION_USER_KEY.getStrValue(), dlUser);
+						return true;
+					}
+					
+				}
+			}
+		} 
+		return false;
 	}
 	/**
 	 * @ fengsn
