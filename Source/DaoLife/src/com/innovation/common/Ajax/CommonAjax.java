@@ -706,6 +706,7 @@ public class CommonAjax {
 		DlUsers dlUser = userService.getUserByNameOrEmail(userName);
 		if(dlUser==null){
 			loginInfo =  "您输入用户不存在";
+			return loginInfo;
 		}
 		WebContext request = WebContextFactory.get();
 		HttpSession session = request.getSession(false);
@@ -736,9 +737,11 @@ public class CommonAjax {
 				  String nowDateString  = new SimpleDateFormat("yyyy-MM-dd").format(now.getTime()); 
 				  Cookie   loginTimeCookie   =   new   Cookie( "daolife_loginTime", nowDateString);
 				  HttpServletResponse response = request.getHttpServletResponse();
-				  
+				  userNameCookie.setPath("/");
 				  userNameCookie.setMaxAge(7*24*60*60);
+				  authCodeCookie.setPath("/");
 				  authCodeCookie.setMaxAge(7*24*60*60);
+				  loginTimeCookie.setPath("/");
 				  loginTimeCookie.setMaxAge(7*24*60*60);
 				  response.addCookie(userNameCookie);
 				  response.addCookie(authCodeCookie);
