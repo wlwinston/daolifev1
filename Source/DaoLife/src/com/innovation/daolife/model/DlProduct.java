@@ -1,6 +1,7 @@
 package com.innovation.daolife.model;
 
 import java.util.Date;
+import java.util.Set;
 
 /**
  * DlProduct entity.
@@ -23,6 +24,7 @@ public class DlProduct implements java.io.Serializable {
 	private Short productContentId;
 	private Date productPosttime;
 	private Short productSum;
+	private DlContent dlContent;
 
 	// Constructors
 
@@ -133,6 +135,14 @@ public class DlProduct implements java.io.Serializable {
 
 	public void setProductContentId(Short productContentId) {
 		this.productContentId = productContentId;
+	}
+
+	public DlContent getDlContent() {
+		return dlContent;
+	}
+
+	public void setDlContent(DlContent dlContent) {
+		this.dlContent = dlContent;
 	}
 
 }

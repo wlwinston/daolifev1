@@ -7,5 +7,7 @@ import com.innovation.daolife.model.DlProduct;
 
 public interface IProductService {
 	public PaginationSupport getHotProduct(PaginationSupport paginationSupport);
+	public PaginationSupport getProductById(PaginationSupport paginationSupport,Short id);
+	public void addProductFollow(Short productId,Short userId);
 	public List<DlProduct> getProductDao();
 }

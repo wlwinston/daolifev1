@@ -1,5 +1,7 @@
 package com.innovation.daolife.model;
 
+import java.util.Set;
+
 /**
  * DlProductfollow entity.
  * 
@@ -13,7 +15,8 @@ public class DlProductfollow implements java.io.Serializable {
 	private Short productfollowId;
 	private Short productfollowProductid;
 	private Short productfollowUserid;
-
+	private DlUsers dlUsers;
+	
 	// Constructors
 
 	/** default constructor */
@@ -52,5 +55,15 @@ public class DlProductfollow implements java.io.Serializable {
 	public void setProductfollowUserid(Short productfollowUserid) {
 		this.productfollowUserid = productfollowUserid;
 	}
+
+	public DlUsers getDlUsers() {
+		return dlUsers;
+	}
+
+	public void setDlUsers(DlUsers dlUsers) {
+		this.dlUsers = dlUsers;
+	}
+
+	
 
 }

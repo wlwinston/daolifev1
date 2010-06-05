@@ -22,11 +22,14 @@ import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.interceptor.ServletRequestAware;
 import org.apache.struts2.interceptor.ServletResponseAware;
 import org.apache.struts2.interceptor.SessionAware;
+import org.directwebremoting.WebContext;
+import org.directwebremoting.WebContextFactory;
 
 import com.innovation.common.util.Constant;
 import com.innovation.common.util.Md5Util;
 import com.innovation.common.util.PaginationSupport;
 import com.innovation.daolife.action.search.UserSearch;
+import com.innovation.daolife.model.DlProduct;
 import com.innovation.daolife.model.DlUserroles;
 import com.innovation.daolife.model.DlUsers;
 import com.innovation.daolife.model.User;
@@ -39,9 +42,12 @@ import com.opensymphony.xwork2.ActionSupport;
 public class WebCommonAction extends ActionSupport implements SessionAware, ServletRequestAware, ServletResponseAware{
 
 	private Map att;
+	private Short productId;
     private HttpServletRequest request;
     private HttpServletResponse response;
     private List productList ;
+    private List productfollowUserList ;
+    private DlProduct product;
     private List hotDaoList;
     private List hotUserList;
     private List productDaoList;
@@ -76,6 +82,25 @@ public class WebCommonAction extends ActionSupport implements SessionAware, Serv
 		paginationSupport =  productService.getHotProduct(paginationSupport);
 		productList = paginationSupport.getItems();
 		productDaoList = productService.getProductDao();
+		return PRODUCT;
+	}
+	
+	public String getproduct(){
+		if (att != null
+				&& att
+						.get(Constant.SESSION_USER_KEY.getStrValue()) != null) {
+			DlUsers nowuser = (DlUsers) att
+			.get(Constant.SESSION_USER_KEY.getStrValue());
+			productService.addProductFollow(productId,nowuser.getUserId());
+		}
+		PaginationSupport paginationSupport = new PaginationSupport(5,0);
+		paginationSupport =  productService.getHotProduct(paginationSupport);
+		productList = paginationSupport.getItems();
+		paginationSupport =  productService.getProductById(paginationSupport,productId);
+		product = (DlProduct) paginationSupport.getItems().get(0);
+		paginationSupport = new PaginationSupport(9,0);
+		paginationSupport =  userService.getFollowProductUser(paginationSupport,productId);
+		productfollowUserList = paginationSupport.getItems();
 		return PRODUCT;
 	}
 	
@@ -134,6 +159,25 @@ public class WebCommonAction extends ActionSupport implements SessionAware, Serv
 	}
 	public void setProductDaoList(List productDaoList) {
 		this.productDaoList = productDaoList;
+	}
+	public List getProductfollowUserList() {
+		return productfollowUserList;
+	}
+	public void setProductfollowUserList(List productfollowUserList) {
+		this.productfollowUserList = productfollowUserList;
+	}
+
+	public Short getProductId() {
+		return productId;
+	}
+	public void setProductId(Short productId) {
+		this.productId = productId;
+	}
+	public DlProduct getProduct() {
+		return product;
+	}
+	public void setProduct(DlProduct product) {
+		this.product = product;
 	}
 	
 }

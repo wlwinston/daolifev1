@@ -133,5 +133,11 @@
 		     </key>  
 		   <many-to-many class="com.innovation.daolife.model.DlContent" column="content_id" />
  		</set>
+ 		<set name="dlProductfollow" inverse="true" lazy="false"  cascade="all" >  
+		     <key>  
+		         <column name="productfollow_userid" not-null="true" />  
+		     </key>  
+		     <one-to-many class="com.innovation.daolife.model.DlProductfollow" />  
+ 		</set>
     </class>
 </hibernate-mapping>
