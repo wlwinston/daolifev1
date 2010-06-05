@@ -4,7 +4,7 @@
 <div class="top1">
 	<div class="top2">
 		<div class="logo">
-			<a href="index.html"><img src="images/top_07.gif" width="62"
+			<a href="index.action"><img src="images/top_07.gif" width="62"
 					height="63" /> </a>
 		</div>
 		<div class="tiao">
