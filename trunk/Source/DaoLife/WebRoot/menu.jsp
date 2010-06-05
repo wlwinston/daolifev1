@@ -1,6 +1,11 @@
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@taglib prefix="s" uri="/struts-tags"%>
-
+<%String menuId = request.getParameter("id");
+  if(menuId == null)
+  {
+	  menuId = "0";
+  }
+%>
 <div class="top1">
 	<div class="top2">
 		<div class="logo">
@@ -63,26 +68,70 @@
 				</table>
 			</form>
 		</div>
-
-
+		
 		<!--导航-->
 		<div class="daohang">
+
 			<ul>
+				<%if(menuId.equals("1")) {%>
 				<li style="background-image: url(images/daohang%20%20hover.gif)">
+					
 					<a href="index.action">首页</a>
 				</li>
+				<%}else{ %>
 				<li>
+					
+					<a href="index.action">首页</a>
+				</li>
+				<%} %>
+				<%if(menuId.equals("2")) {%>
+				<li style="background-image: url(images/daohang%20%20hover.gif)">
+					
 					<a href="MyPage.action">我的首页</a>
 				</li>
+				<%}else{ %>
 				<li>
+					
+					<a href="MyPage.action">我的首页</a>
+				</li>
+				<%} %>
+				
+				<%if(menuId.equals("3")) {%>
+				<li style="background-image: url(images/daohang%20%20hover.gif)">
+					
 					<a href="product.action">Dao Life</a>
 				</li>
+				<%}else{ %>
 				<li>
+					
+					<a href="product.action">Dao Life</a>
+				</li>
+				<%} %>
+				
+				<%if(menuId.equals("4")) {%>
+				<li style="background-image: url(images/daohang%20%20hover.gif)">
+					
 					<a href="LookAround.action">随便看看</a>
 				</li>
+				<%}else{ %>
 				<li>
+					
+					<a href="LookAround.action">随便看看</a>
+				</li>
+				<%} %>
+				
+				<%if(menuId.equals("5")) {%>
+				<li style="background-image: url(images/daohang%20%20hover.gif)">
+					
 					<a href="DaoHot.action">最叨</a>
 				</li>
+				<%}else{ %>
+				<li>
+					
+					<a href="DaoHot.action">最叨</a>
+				</li>
+				<%} %>
+				
 			</ul>
 		</div>
 	</div>
