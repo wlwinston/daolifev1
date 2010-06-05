@@ -57,7 +57,7 @@ body {
         <tr>
           <td height="94" align="left" valign="bottom"><table width="74%" border="0">
             <tr>
-              <td height="19" align="center"><a href="index.html"><img src="images/1124_07.gif" width="123" height="34" border="0" /></a></td>
+              <td height="19" align="center"><a href="index.action"><img src="images/1124_07.gif" width="123" height="34" border="0" /></a></td>
               <td align="center"><a href="http://www.taobao.com"><img src="images/1124_09.gif" width="122" height="34" border="0" /></a></td>
             </tr>
           </table></td>
