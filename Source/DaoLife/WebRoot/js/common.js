@@ -87,7 +87,7 @@ forward.prototype = {
         this.html.push('<tr>');
         this.html.push('<td height="62" colspan="2" align="center" valign="top"><label></label>');
         this.html.push('<label>');
-        this.html.push('<textarea id="forward-msg" name="textarea2" cols="45" rows="5" class="tabledao" id="textarea2" style="background-image:url(images/myhome_42.gif);border:0; width:495px; height:53px;overflow : hidden">' + this.content.replace(/<[^>].*?>/g,"") + '</textarea>');
+        this.html.push('<textarea id="forward-msg" name="textarea2" cols="45" rows="5" class="tabledao" id="textarea2" style="background-image:url(images/myhome_42.gif);border:0; width:495px; height:53px;overflow : hidden">转 @' + this.name + ' : ' + this.content.replace(/<[^>].*?>/g,"") + '</textarea>');
         this.html.push('</label></td>');
         this.html.push('</tr>');
         this.html.push('<tr>');
