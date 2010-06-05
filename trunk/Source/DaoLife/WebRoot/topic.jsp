@@ -20,7 +20,7 @@
 		<script type="text/javascript" src="dwr/interface/DaolifeAjax.js"></script>
 		<script type="text/javascript" src="js/jquery-1.3.2.min.js"></script>
 		<script type="text/javascript" src="js/common.js"></script>
-		<script type="text/javascript" src="js/daoHot.js"></script>
+		<script type="text/javascript" src="js/topic.js"></script>
 	</head>
 
 	<body>
@@ -35,7 +35,7 @@
 							cellspacing="0" class="xia1 guanzhu ">
 							<tr>
 								<td width="12%" height="40" align="center">
-									<a href="DaoHot.action"><img src="images/topic.gif"
+									<a href="topicDetail.action"><img src="images/topic.gif"
 											alt="" width="113" height="22" />
 									</a>
 								</td>
