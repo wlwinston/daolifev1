@@ -78,7 +78,7 @@ public class DaoContentBodyConvertService implements IDaoContentBodyConvertServi
 			if(contextAfer.indexOf(" ") > 0)
 			{
 				topicName = contextAfer.substring(0, contextAfer.indexOf(" "));
-				List<DlTopic> topicList = dlTopicDao.find(" From DlTopic WHERE topicBody = '"+topicName+"'");
+				List<DlTopic> topicList = dlTopicDao.find(" From DlTopic WHERE topicBody = '"+topicName+"' and open = 1");
 				if(topicList.size()>0)
 				{
 					topicId = topicList.get(0).getTopicId();
