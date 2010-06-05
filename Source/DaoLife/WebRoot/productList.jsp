@@ -132,7 +132,7 @@
 										<a href="daolifemare.action">第<s:property value="productDaonum"/>期</a>
 									</div>
 									<div class="chanpinneirong">
-										<s:property value="productName"/>
+										<s:property value="productName" escape="false"/>
 									</div>
 									<div class="chanpinneirong">
 										<a href="daolifemare.action">查看详情</a>
