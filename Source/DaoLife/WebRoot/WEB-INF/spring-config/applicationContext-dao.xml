@@ -16,6 +16,7 @@
 <bean id="dlContentatDao" class="com.innovation.daolife.dao.impl.DlContentatDao" parent="genericDao" />
 <bean id="dlHotdaoDao" class="com.innovation.daolife.dao.impl.DlHotdaoDao" parent="genericDao" />
 <bean id="dlProductDao" class="com.innovation.daolife.dao.impl.DlProductDao" parent="genericDao" />
+<bean id="dlProductFollowDao" class="com.innovation.daolife.dao.impl.DlProductFollowDao" parent="genericDao" />
 <bean id="dlUserrolesDao" class="com.innovation.daolife.dao.impl.DlUserrolesDao" parent="genericDao" />
 <bean id="dlUplogDao" class="com.innovation.daolife.dao.impl.DlUplogDao" parent="genericDao" />
 </beans>
