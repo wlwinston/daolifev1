@@ -124,18 +124,18 @@
 							<s:iterator  value="productDaoList" status="productDaoList">
 								<div class="chanpinmingcheng">
 									<div>
-										<a href="daolifemare.action"><img src=<s:property value="productPic"/>
+										<a href="daolifemare.action?productId=<s:property value="productId"/>"><img src=<s:property value="productPic"/>
 												width="260" height="141" />
 										</a>
 									</div>
 									<div class="chanpinneirong">
-										<a href="daolifemare.action">第<s:property value="productDaonum"/>期</a>
+										<a href="daolifemare.action?productId=<s:property value="productId"/>">第<s:property value="productDaonum"/>期</a>
 									</div>
 									<div class="chanpinneirong">
 										<s:property value="productName" escape="false"/>
 									</div>
 									<div class="chanpinneirong">
-										<a href="daolifemare.action">查看详情</a>
+										<a href="daolifemare.action?productId=<s:property value="productId"/>">查看详情</a>
 									</div>
 								</div>
 							</s:iterator>

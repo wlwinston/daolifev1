@@ -142,7 +142,7 @@
                                   <td width="459" align="left"><table width="420" height="21" border="0" cellpadding="0" cellspacing="0">
                                     <tr>
                                       <td width="183" align="left">发布时间：2010年4月10日</td>
-                                      <td width="253" align="left">被@（）次数 被顶（）次 被评论（）次</td>
+                                      <td width="253" align="left">被转发（<s:property value="product.dlContent.retwittNum"/>）次数 被顶（<s:property value="product.dlContent.upNum"/>）次</td>
                                     </tr>
                                   </table></td>
                                 </tr>
@@ -169,7 +169,7 @@
 							</div>
 							<div class="daolist">
 								<s:if test="{hotUserList!=null}">
-								<s:iterator  value="hotUserList" status="hotUserList">
+								<s:iterator  value="productfollowUserList" status="productfollowUserList">
 								<div>
 									<a href="PersonPage.action?userId=<s:property value="userId"/>">
 										<img src="images/touxiang.gif" width="76" height="77" />
