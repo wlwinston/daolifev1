@@ -145,7 +145,7 @@
 											<img src="images/moer.gif" width="14" height="13" />
 										</td>
 										<td width="73%" align="right">
-											<a href="daolife.html">查看全部</a>
+											<a href="product.action">查看全部</a>
 										</td>
 									</tr>
 								</table>
