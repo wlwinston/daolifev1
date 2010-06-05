@@ -114,7 +114,7 @@ function doReload(fn){
 			fn();
 		}
 	}
-	DaolifeAjax.getTopicContent(getQueryString('topicId'),myBox.articleBox.currentPage,func);
+	DaolifeAjax.getTopicContent(myBox.articleBox.currentPage,getQueryString('topicId'),func);
 }
 function doForward(id){
 	var item =myBox.articleBox.getElementById(id);
