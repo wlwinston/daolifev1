@@ -4,8 +4,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>404页面</title>
+<title>注册失败</title>
 
+</script>
 <style type="text/css">
 <!--
 * {margin:0px; padding:0px;}
@@ -40,11 +41,11 @@ body {
 <div class="w">
   <table width="763" border="0">
     <tr>
-      <td width="339"><img src="images/404_04.gif" width="341" height="317" /></td>
+      <td width="341"><img src="images/bazinga.gif" width="341" height="317" /></td>
       <td width="414" align="left" valign="top"><table width="100%" height="297" border="0" cellpadding="0" cellspacing="0">
         <tr>
-          <td height="68"><span class="STYLE1">您输入了错误的链接，或者您所请求的页面不存在。<br />
-            简单的说就是您404了。</span></td>
+          <td height="68"><span class="STYLE1">Bazinga！注册失败了...<br />
+          </span></td>
         </tr>
         <tr>
           <td><img src="images/tiao.gif" width="327" height="1" /></td>
@@ -57,7 +58,7 @@ body {
         <tr>
           <td height="94" align="left" valign="bottom"><table width="74%" border="0">
             <tr>
-              <td height="19" align="center"><a href="product.action"><img src="images/1124_07.gif" width="123" height="34" border="0" /></a></td>
+              <td height="19" align="center"><a href="MyPage.action"><img src="images/mypage.gif" width="123" height="34" border="0" /></a></td>
               <td align="center"><a href="http://daolife.taobao.com"><img src="images/1124_09.gif" width="122" height="34" border="0" /></a></td>
             </tr>
           </table></td>
