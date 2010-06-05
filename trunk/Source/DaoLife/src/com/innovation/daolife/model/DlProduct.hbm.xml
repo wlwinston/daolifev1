@@ -31,6 +31,12 @@
         <property name="productPosttime" type="java.util.Date">
             <column name="product_posttime" length="19" not-null="true" />
         </property>
+         <property name="productFollowsum" type="java.lang.Integer">
+            <column name="product_followsum" not-null="true" />
+        </property>
+         <property name="productContentId" type="java.lang.Short">
+            <column name="product_contentid" not-null="true" />
+        </property>
         <property name="productSum" type="java.lang.Short">
             <column name="product_sum" not-null="true" />
         </property>

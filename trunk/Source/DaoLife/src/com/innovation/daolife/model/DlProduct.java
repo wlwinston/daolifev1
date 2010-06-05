@@ -19,6 +19,8 @@ public class DlProduct implements java.io.Serializable {
 	private String productAuthorurl;
 	private String productPic;
 	private Short productDaonum;
+	private Integer productFollowsum;
+	private Short productContentId;
 	private Date productPosttime;
 	private Short productSum;
 
@@ -115,6 +117,22 @@ public class DlProduct implements java.io.Serializable {
 
 	public void setProductSum(Short productSum) {
 		this.productSum = productSum;
+	}
+
+	public Integer getProductFollowsum() {
+		return productFollowsum;
+	}
+
+	public void setProductFollowsum(Integer productFollowsum) {
+		this.productFollowsum = productFollowsum;
+	}
+
+	public Short getProductContentId() {
+		return productContentId;
+	}
+
+	public void setProductContentId(Short productContentId) {
+		this.productContentId = productContentId;
 	}
 
 }
