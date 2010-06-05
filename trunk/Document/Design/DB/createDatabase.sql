@@ -185,11 +185,26 @@ create table daolife.dl_product
    product_authorurl    varchar(64) not null,
    product_sum          smallint(6) not null default 0,
    product_daonum       smallint(6) NOT NULL,
+   product_followsum    int(10) not null,
+   product_contentid    smallint(10) NOT NULL,
    product_posttime               datetime not null,
    primary key (product_id)
 );
 
 alter table daolife.dl_product comment '产品表';
+
+/*==============================================================*/
+/* Table: dl_productfollow                                            */
+/*==============================================================*/
+create table daolife.dl_productfollow
+(
+   productfollow_id            smallint(6) not null auto_increment,
+   productfollow_productid     smallint(6) NOT NULL,
+   productfollow_userid     smallint(6) NOT NULL,
+   primary key (productfollow_id)
+);
+
+alter table daolife.dl_productfollow comment '产品关注表';
 
 
 /*==============================================================*/
