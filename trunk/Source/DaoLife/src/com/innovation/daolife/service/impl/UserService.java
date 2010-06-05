@@ -358,6 +358,11 @@ public class UserService implements IUserService {
 		dlProductDao.update(updateProductSql);
 	}
 
+	/**
+	 * 注册用户
+	 * @param  用户信息
+	 * @author winston
+	 */
 	public void regist(DlUsers user) throws NoSuchAlgorithmException,
 			UnsupportedEncodingException {
 		user.setAtMonthNum((short) 0);
@@ -383,12 +388,15 @@ public class UserService implements IUserService {
 		user.setUserlock(new Byte(Constant.USER_USERLOCK_NO.getStrValue()));
 		user.setAuthEmail(Constant.USER_AUTHMAIL_NOMAIL.getStrValue());
 		dlUsersDao.save(user);
-		//�����û�Ĭ�Ͻ�ɫ
+		//增加默认网站用户
 		DlUserroles userRoles = new DlUserroles();
 		userRoles.setRolesName(Constant.WEBSITE_ROLES_DEFAULT.getStrValue());
 		userRoles.setUserId(user.getUserId());
 		dlUserrolesDao.save(userRoles);
-		//�����Լ����Լ��ĺ���
+		List<DlUserroles> userRolesList = new ArrayList<DlUserroles>();
+		userRolesList.add(userRoles);
+		user.setUserRolesList(userRolesList);
+		//增加自己为自己的好友，方便大家都在叨时查询出自己的叨句
 		DlFriend dlFriend = new DlFriend();
 		dlFriend.setFidFans(user.getUserId());
 		dlFriend.setFidFollow(user.getUserId());
