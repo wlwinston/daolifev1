@@ -32,6 +32,7 @@ import com.innovation.common.util.DaoLifeEmail;
 import com.innovation.common.util.Md5Util;
 import com.innovation.common.util.PaginationSupport;
 import com.innovation.common.util.RandomString;
+import com.innovation.common.util.WebConfig;
 import com.innovation.daolife.action.search.UserSearch;
 import com.innovation.daolife.dao.IDlContentDao;
 import com.innovation.daolife.dao.IDlContentatDao;
@@ -430,8 +431,8 @@ public class UserService implements IUserService {
 			user.setAuthEmail(authCode);
 			this.updateUser(user);
 			DaoLifeEmail daoEmail = new DaoLifeEmail();
-			// ��ַ��ĳɿ�����
-			String authUrl = Constant.LINK_WEBSITE_PREFIX.getStrValue()+"/ResetPassword.action?userId="
+			//验证
+			String authUrl = WebConfig.linkWebPrefix+"/ResetPassword.action?userId="
 					+ user.getUserId() + "&authCode=" + authCode + "";
 			daoEmail.sendFindPasswordEmail(user.getUserName(), authUrl, user
 					.getMailadres());
