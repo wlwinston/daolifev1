@@ -23,7 +23,7 @@
 		<script type="text/javascript" src="js/lookAround.js"></script>
 	</head>
 	<body>
-		<jsp:include page="menu.jsp" flush="true"></jsp:include>
+		<jsp:include page="menu.jsp?id=4" flush="true"></jsp:include>
 		<div class="zhuti">
 			<table width="650" height="1108" border="0" cellpadding="0"
 				cellspacing="0" class="zhuti3">

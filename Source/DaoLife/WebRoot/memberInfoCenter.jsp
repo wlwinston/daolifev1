@@ -26,7 +26,7 @@
 		<link href="styles/chanpin.css" rel="stylesheet" type="text/css" />
 	</head>
 		<body>
-		<jsp:include page="menu.jsp" flush="true"></jsp:include>
+		<jsp:include page="menu.jsp?id=2" flush="true"></jsp:include>
 		<div class="banner">
 			<div class="banner1">
 				<table width="1002" height="293" border="0" cellspacing="0" cellpadding="0">
