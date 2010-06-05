@@ -19,7 +19,7 @@
 		<script type="text/javascript" src="js/common.js"></script>
 	</head>
 	<body>
-		<jsp:include page="menu.jsp" flush="true"></jsp:include> 
+		<jsp:include page="menu.jsp?id=3" flush="true"></jsp:include> 
 		<div class="banner">
 			<div class="banner1">
 				<div id='mbox_content'>
