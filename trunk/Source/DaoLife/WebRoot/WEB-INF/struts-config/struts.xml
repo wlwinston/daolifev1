@@ -144,9 +144,9 @@
 		 	<interceptor-ref name="defaultStack" /> 
 		</action>
 		
-		<action name="daolifemare" class="WebCommonAction" method="index">
+		<action name="daolifemare" class="WebCommonAction" method="getproduct">
 			<interceptor-ref name="webCookie"/>  
-			<result name="index">daolifemare.jsp</result>
+			<result name="product">daolifemare.jsp</result>
 			 <interceptor-ref name="webCookie"/>  
 		 	<interceptor-ref name="defaultStack" /> 
 		</action>
