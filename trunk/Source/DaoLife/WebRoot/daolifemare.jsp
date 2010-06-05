@@ -165,7 +165,7 @@
                       </div>
 						<div class="reight">
 							<div class="Box">
-								最热叨友<span><a href="javascript://">查看全部</a></span>
+								共有<s:property value="product.productFollowsum"/>位叨友关注这件T恤
 							</div>
 							<div class="daolist">
 								<s:if test="{hotUserList!=null}">
