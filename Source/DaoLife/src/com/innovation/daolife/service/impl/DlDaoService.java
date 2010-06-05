@@ -242,7 +242,7 @@ public class DlDaoService implements IDlDaoService {
 	}
 
 	/**
-	 * ��ѯhotdao�е�daonum���ֵ
+	 * ��@author fengsnֵ
 	 * 获取最热叨句的期数
 	 */
 	private Short getdaoNum() {
@@ -310,6 +310,30 @@ public class DlDaoService implements IDlDaoService {
 		return result;
 	}
 
+	/**
+	 * @author fengsn
+	 * 获得话题相关dao
+	 * */
+	public PaginationSupport getTopicListContent(
+			PaginationSupport paginationSupport,Short topicId){
+		String querysql = " Select c From DlContent c where  c.topicid = "+ topicId + " order by posttime desc";
+		String countsql = " Select count(c.contentId) From DlContent c where  c.topicid = "+ topicId + " order by posttime desc";
+		paginationSupport = dlContentatDao.findPageByQuery(querysql, countsql,
+				paginationSupport.getPageSize(), paginationSupport
+						.getStartIndex());
+		List<DlContent> itemList = paginationSupport.getItems();
+		for(Iterator<DlContent> it = itemList.iterator();it.hasNext();)
+		{
+			DlContent dlContent = it.next();
+			DlUsers user = new DlUsers();
+			BeanUtils.copyProperties(dlContent.getDlUsers(), user);
+			dlContent.setDlUsers(user);
+		}
+		paginationSupport.setItems(itemList);
+
+		return paginationSupport;
+	}
+	
 	public IDaoContentBodyConvertService getDaoContentBodyConvert() {
 		return daoContentBodyConvert;
 	}
