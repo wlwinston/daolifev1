@@ -1,6 +1,8 @@
 package com.innovation.common.Ajax;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
@@ -20,6 +22,7 @@ import org.directwebremoting.WebContextFactory;
 import com.innovation.common.util.Constant;
 import com.innovation.common.util.EmailUtils;
 import com.innovation.common.util.IPUtils;
+import com.innovation.common.util.Md5Util;
 import com.innovation.common.util.PaginationSupport;
 import com.innovation.common.util.ProjectException;
 import com.innovation.daolife.dao.IDlUsersDao;
@@ -29,6 +32,7 @@ import com.innovation.daolife.model.DlContent;
 import com.innovation.daolife.model.DlCustomerDaoEntry;
 import com.innovation.daolife.model.DlFriend;
 import com.innovation.daolife.model.DlMessages;
+import com.innovation.daolife.model.DlUserroles;
 import com.innovation.daolife.model.DlUsers;
 import com.innovation.daolife.model.User;
 import com.innovation.daolife.service.IDlAreaService;
@@ -660,7 +664,12 @@ public class CommonAjax {
 
 	}
 	
-	
+	/**
+	 * 比对验证码
+	 * @param authCode 验证码
+	 * @author winston
+	 * @return
+	 */
 	public boolean checkAuthCode(String authCode)
 	{
 		WebContext request = WebContextFactory.get();
@@ -685,6 +694,36 @@ public class CommonAjax {
 		} else {
 			return false;
 		}
+	}
+	
+	public String login(String userName ,String password)
+	{
+		String loginInfo = "";
+		DlUsers dlUser = userService.getUserByNameOrEmail(userName);
+		if(dlUser==null){
+			loginInfo =  "您输入用户不存在";
+		}
+		WebContext request = WebContextFactory.get();
+		HttpSession session = request.getSession(false);
+		String salt = dlUser.getSalt();
+		String oldpasswd = dlUser.getPassword();
+		boolean flag = false;
+		try {
+			flag = Md5Util.getInstance().checkpassword(password, salt, oldpasswd);
+		} catch (Exception e) {
+			loginInfo = "系统错误!";
+		}
+		if(!flag){
+			loginInfo = "密码错误";
+		}else{
+			//获取用户角色
+			List<DlUserroles> userRolesList = userService.getRolesListByUserId(dlUser.getUserId());
+			dlUser.setUserRolesList(userRolesList);
+			int size = userService.getUserDao(dlUser.getUserId()).size();
+			dlUser.setContentsSize(size);
+			session.setAttribute(Constant.SESSION_USER_KEY.getStrValue(), dlUser);
+		}
+		return loginInfo;
 	}
 	
 	
