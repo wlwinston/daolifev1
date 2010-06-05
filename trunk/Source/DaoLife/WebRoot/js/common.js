@@ -469,15 +469,15 @@ logon.prototype = {
 		var html = [];
 		html.push('<div class="Box">登陆</div>');
 		html.push('<div class="zhuce">');
-		html.push('<form id="zhuce" name="zhuce" method="post" action="Login.action">');
+		html.push('<form id="login" name="zhuce" method="post" action="Login.action"  onsubmit="return false">');
 		html.push('<table width="266" border="0" cellspacing="5" cellpadding="0">');
 		html.push('<tr>');
 		html.push('<td height="36" background="images/zhuce.gif">');
-		html.push('<label>&nbsp;账号：<input name="userName" type="text" id="zhanghao" size="25" maxlength="45" style="border: 0;" /></label>');
+		html.push('<label>&nbsp;账号：<input name="userName" type="text" id="userName" size="25" maxlength="45" style="border: 0;" /></label>');
 		html.push('</td>');
 		html.push('</tr>');
 		html.push('<tr>');
-		html.push('<td height="36" background="images/zhuce.gif">&nbsp;密码：<input name="password" type="password" id="zhanghao" size="25" maxlength="45" style="border: 0;" />');
+		html.push('<td height="36" background="images/zhuce.gif">&nbsp;密码：<input name="password" type="password" id="password" size="25" maxlength="45" style="border: 0;" />');
 		html.push('</td>');
 		html.push('</tr>');
 		html.push('<tr>');
@@ -488,7 +488,7 @@ logon.prototype = {
 		html.push('<table width="95%" border="0" cellspacing="0" cellpadding="0">');
 		html.push('<tr>');
 		html.push('<td width="24%" height="28" align="center">');
-		html.push('<label><input type="checkbox" name="checkbox" id="checkbox" /></label>');
+		html.push('<label><input type="checkbox" name="checkbox" id="memory" /></label>');
 		html.push('</td>');
 		html.push('<td width="76%">记住登陆状态</td>');
 		html.push('</tr>');
@@ -505,7 +505,7 @@ logon.prototype = {
 		html.push('</a>');
 		html.push('</td>');
 		html.push('<td height="32">');
-		html.push('<a href="javascript://"><input type="image" src="images/denglu.gif" /></a>');
+		html.push('<a href="javascript:doLogin()"><input type="image" src="images/denglu.gif" /></a>');
 		html.push('</td>');
 		html.push('</tr>');
 		html.push('</table>');
@@ -544,7 +544,24 @@ function doPersonal(id){
 			html = (new logon()).getHtml();
 		}
 		$('#personal').get(0).innerHTML = html;
+		
 	});
+}
+function doLogin(){
+	if($('#userName').val() && $('#password').val()){
+		mask('<img src="images/loading.gif" /><p style="color:#fff;">正在登陆...</p>',function(){},false);
+		DaolifeAjax.login($('#userName').val(),$('#password').val(),$('#memory').get(0).checked,function(rs){
+			if(rs){
+				$('#mask-forward').get(0).innerHTML = '<p style="color:#fff;">登陆失败!原因：' + rs +'&nbsp;&nbsp;<a href="javascript:maskHide()" style="color:#fff;">[关闭]</a></p>';
+			}else{
+				doPersonal();
+				$('#mask-forward').get(0).innerHTML = '<p style="color:#fff;">登陆成功！五秒钟后跳转到我的首页...</p>';
+				setTimeout(function(){
+					window.location.href = 'MyPage.action';
+				},5000);
+			}
+		});
+	}
 }
 function getQueryString(name){     
 	var reg = new   RegExp("(^|&)" + name + "=([^&]*)(&|$)");     

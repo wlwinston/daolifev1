@@ -29,8 +29,7 @@
 		<jsp:include page="menu.jsp" flush="true"></jsp:include>
 		<div class="banner">
 			<div class="banner1">
-				<table width="1002" height="293" border="0" cellspacing="0"
-					cellpadding="0">
+				<table width="1002" height="293" border="0" cellspacing="0" cellpadding="0">
 					<tr>
 						<td height="203" align="left" valign="top">
 							<table width="947" border="0" cellspacing="0" cellpadding="0">
