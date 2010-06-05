@@ -645,6 +645,28 @@ public class CommonAjax {
 		return paginationSupport;
 	}
 	
+	/**
+	 * @author fengsn
+	 * ��获得话题相关的dao内容
+	 * */
+	public PaginationSupport getTopicContent(int pages,Short topicId) {
+		if (pages < 0) {
+			pages = 1;
+		}
+		int pageSize = Constant.PAGESIZE_MYDAO.getIntValue();
+		int startIndex = pageSize * (pages - 1);
+		PaginationSupport paginationSupport = new PaginationSupport(pageSize,
+				startIndex);
+		if (topicId!=null) {
+			paginationSupport = dlDaoService.getTopicListContent(
+					paginationSupport, topicId);
+			//dlMessagesService.dealReadState(userId,"2");
+		} else {
+			return null;
+		}
+		return paginationSupport;
+	}
+	
 	
 	public boolean unFollow(Short followId) {
 		DlUsers nowuser = new DlUsers();
