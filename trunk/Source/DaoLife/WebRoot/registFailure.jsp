@@ -6,7 +6,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>注册失败</title>
 
-</script>
 <style type="text/css">
 <!--
 * {margin:0px; padding:0px;}
