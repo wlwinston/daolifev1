@@ -25,11 +25,13 @@
 		 <action name="UnderConstruction" class="UserAction" method="personalPage">
 			<result name="noPerson">/404.jsp</result>	
 			<result name="personPage">pesonalDao.jsp</result>
+			<result name="myPage" type="redirect">MyPage.action</result>
 			<result name="unLogin" type="redirect">index.action</result>
 			
 		</action> 
 		<action name="Regist" class="UserAction" method="regist">
-			<result name="registerSuccess">/success.jsp</result>	
+			<result name="registerSuccess">/registSuccess.jsp</result>
+			<result name="registerFailure">/registFailure.jsp</result>	
 			<result name="input">/regist.jsp</result>
 		</action>
 		<action name="UpdatePsw" class="UserAction" method="updatePsw">
