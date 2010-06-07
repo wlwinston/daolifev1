@@ -4,7 +4,8 @@
 
    <!-- 静态变量 -->
 	<bean id="webConfig" class="com.innovation.common.util.WebConfig" lazy-init="false">
-		<property name="linkWebPrefix" value="http://localhost:8087/daolife" />
+		<property name="cookieDomain" value=".gotoip4.com" />
+		<property name="linkWebPrefix" value="http://www.winston.com" />
 		<property name="linkUserPrefix" value="PersonPage.action?userId=" />
 		<property name="linkTopicPrefix" value="topicDetail.action?topicId=" />
 	</bean>
