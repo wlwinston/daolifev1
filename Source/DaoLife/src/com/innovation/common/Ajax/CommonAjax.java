@@ -29,6 +29,7 @@ import com.innovation.common.util.IPUtils;
 import com.innovation.common.util.Md5Util;
 import com.innovation.common.util.PaginationSupport;
 import com.innovation.common.util.ProjectException;
+import com.innovation.common.util.WebConfig;
 import com.innovation.daolife.dao.IDlUsersDao;
 import com.innovation.daolife.dao.impl.DlFriendDao;
 import com.innovation.daolife.dao.impl.DlMessagesDao;
@@ -760,14 +761,18 @@ public class CommonAjax {
 				  Cookie   loginTimeCookie   =   new   Cookie( "daolife_loginTime", nowDateString);
 				  HttpServletResponse response = request.getHttpServletResponse();
 				  userNameCookie.setPath("/");
+				  userNameCookie.setDomain(WebConfig.cookieDomain);
 				  userNameCookie.setMaxAge(7*24*60*60);
 				  authCodeCookie.setPath("/");
+				  authCodeCookie.setDomain(WebConfig.cookieDomain);
 				  authCodeCookie.setMaxAge(7*24*60*60);
 				  loginTimeCookie.setPath("/");
+				  loginTimeCookie.setDomain(WebConfig.cookieDomain);
 				  loginTimeCookie.setMaxAge(7*24*60*60);
 				  response.addCookie(userNameCookie);
 				  response.addCookie(authCodeCookie);
 				  response.addCookie(loginTimeCookie);
+				  logger.info(userName+"'s Cookie Save Success!");
 			}
 		}
 		return loginInfo;
