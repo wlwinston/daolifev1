@@ -56,7 +56,7 @@ public class DaoContentBodyConvertService implements IDaoContentBodyConvertServi
 				user = userList.get(i);
 				dlContentat.setStatusUid(user.getUserId());
 				dlContentat.setStatusUname(user.getUserNickName());
-				dlContentat.setStatusType("��ҳ");
+				dlContentat.setStatusType("网页");
 				dlContentat.setStatusId(user.getUserId());
 				dlCustomerDaoEntry.getDlContentatList().add(dlContentat);
 				DlMessages message = new DlMessages();
