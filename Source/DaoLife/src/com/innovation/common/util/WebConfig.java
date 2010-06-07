@@ -1,6 +1,8 @@
 package com.innovation.common.util;
 
 public class WebConfig {
+	//cookie domain
+	public static String cookieDomain = "";
 	//网站地址
 	public static String linkWebPrefix="";
 	//网站地址
@@ -24,6 +26,12 @@ public class WebConfig {
 	}
 	public  void setLinkTopicPrefix(String linkTopicPrefix) {
 		WebConfig.linkTopicPrefix = linkTopicPrefix;
+	}
+	public  String getCookieDomain() {
+		return cookieDomain;
+	}
+	public  void setCookieDomain(String cookieDomain) {
+		WebConfig.cookieDomain = cookieDomain;
 	}
 	
 	
