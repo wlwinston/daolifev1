@@ -27,6 +27,7 @@ import org.apache.struts2.interceptor.SessionAware;
 import com.innovation.common.util.Constant;
 import com.innovation.common.util.Md5Util;
 import com.innovation.common.util.PaginationSupport;
+import com.innovation.common.util.WebConfig;
 import com.innovation.daolife.action.search.UserSearch;
 import com.innovation.daolife.model.DlUserroles;
 import com.innovation.daolife.model.DlUsers;
@@ -37,6 +38,7 @@ import com.opensymphony.xwork2.ActionSupport;
 
 public class UserAction extends ActionSupport implements SessionAware, ServletRequestAware, ServletResponseAware{
 	private static String REGISTERSUCCESS = "registerSuccess";
+	private static String REGISTERFAILURE="registerFailure";
 	private static String USERLIST = "list";
 	private Map att;
     private HttpServletRequest request;
@@ -71,8 +73,13 @@ public class UserAction extends ActionSupport implements SessionAware, ServletRe
 		this.userService = userService;
 	}
 	public String regist() throws Exception{
+		try{
 		userService.regist(user);
 		att.put(Constant.SESSION_USER_KEY.getStrValue(), user);
+		}
+		catch(Exception e){
+			return REGISTERFAILURE;
+		}
 		return REGISTERSUCCESS;
 	}
 	
@@ -84,9 +91,12 @@ public class UserAction extends ActionSupport implements SessionAware, ServletRe
 		  Cookie   authCodeCookie   =   new   Cookie( "daolife_authCode", null);
 		  Cookie   loginTimeCookie   =   new   Cookie( "daolife_loginTime", null);
 		  userNameCookie.setPath("/");
+		  userNameCookie.setDomain(WebConfig.cookieDomain);
 		  userNameCookie.setMaxAge(0);
 		  authCodeCookie.setPath("/");
+		  authCodeCookie.setDomain(WebConfig.cookieDomain);
 		  authCodeCookie.setMaxAge(0);
+		  loginTimeCookie.setDomain(WebConfig.cookieDomain);
 		  loginTimeCookie.setPath("/");
 		  loginTimeCookie.setMaxAge(0);
 		  response.addCookie(userNameCookie);
