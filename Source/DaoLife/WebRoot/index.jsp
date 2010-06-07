@@ -120,7 +120,7 @@
 							</div>
 							<div class="guanggao">
 								<a href="chanpinmoer.html"><center>
-										<img src="images/a15.jpg" alt="" />
+										<img src="images/mtv.gif" alt="" />
 									</center>
 								</a>
 							</div>
