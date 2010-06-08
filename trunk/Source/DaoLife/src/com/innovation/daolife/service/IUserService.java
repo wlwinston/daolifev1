@@ -45,4 +45,6 @@ public interface IUserService {
 	public PaginationSupport getHotUser(PaginationSupport paginationSupport,DlUsers user);
 	public PaginationSupport getFollowerContentListByUser(PaginationSupport paginationSupport,Short userId);
 	public PaginationSupport getFollowProductUser(PaginationSupport paginationSupport,Short Id);
+	public PaginationSupport getOtherFanListByUser(PaginationSupport paginationSupport,Short userId,Short sessionId) ;
+	public PaginationSupport getOtherFollowListByUser(PaginationSupport paginationSupport,Short userId,Short sessionId) ;
 }
