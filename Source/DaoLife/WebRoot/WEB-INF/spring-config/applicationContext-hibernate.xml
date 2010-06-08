@@ -31,6 +31,12 @@
     <property name="password">
         <value>${datasource.password}</value>
     </property>
+    <property name="preferredTestQuery">  
+  		<value>${datasource.validationQuery}</value>  
+    </property>
+    <property name="testConnectionOnCheckout"> 
+  		<value>${datasource.testOnBorrow}</value> 
+    </property>
     <property name="acquireIncrement">
         <value>${c3p0.acquireIncrement}</value>
     </property>
