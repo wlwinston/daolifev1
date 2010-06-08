@@ -339,7 +339,8 @@ public class UserAction extends ActionSupport implements SessionAware, ServletRe
 			}
 			if(userName != null && authCode != null)
 			{
-				DlUsers dlUser = userService.getUserByNameOrEmail(userName);
+				Short uid = Short.valueOf(userName);
+				DlUsers dlUser = userService.getUsersById(uid);
 				if(dlUser != null){
 					String salt = dlUser.getSalt();
 					String oldpasswd = dlUser.getPassword();

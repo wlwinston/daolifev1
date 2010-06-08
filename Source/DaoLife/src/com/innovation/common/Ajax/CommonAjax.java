@@ -763,8 +763,9 @@ public class CommonAjax {
 			//记住登录状态
 			if(ifCookie)
 			{
-				  Cookie   userNameCookie   =   new   Cookie( "daolife_userName", userName);
-				  String authCode = Md5Util.getInstance().EncoderByMd5(userName+oldpasswd,dlUser.getSalt());
+				  String uidStr = String.valueOf(dlUser.getUserId());
+				  Cookie   userNameCookie   =   new   Cookie( "daolife_userName",uidStr );
+				  String authCode = Md5Util.getInstance().EncoderByMd5(uidStr+oldpasswd,dlUser.getSalt());
 				  Cookie   authCodeCookie   =   new   Cookie( "daolife_authCode", authCode);
 				  Date now = new Date();
 				  String nowDateString  = new SimpleDateFormat("yyyy-MM-dd").format(now.getTime()); 
