@@ -135,7 +135,7 @@ public class UserService implements IUserService {
 	
 	/**
 	 * @author fengsn
-	 * ��ѯ��ע�ĺ���
+	 * ��获得关注我的用户���
 	 * */
 	public PaginationSupport getFollowListByUser(PaginationSupport paginationSupport,Short userId) {
 		String querysql = " Select f From DlUsers u INNER JOIN u.dlFollowers f  where  u.userId = "+userId+" and f.userId<>"+userId+"";
@@ -146,12 +146,64 @@ public class UserService implements IUserService {
 	
 	/**
 	 * @author fengsn
-	 * ��ѯ��ע�ҵĺ���
+	 * 获得我的dao友
 	 * */
 	public PaginationSupport getFanListByUser(PaginationSupport paginationSupport,Short userId) {
 		String querysql = " Select f From DlUsers u INNER JOIN u.dlFancers f  where  u.userId = "+userId+" and f.userId<>"+userId+"";
 		String countsql =" Select count(f.userId) From DlUsers u INNER JOIN u.dlFancers f  where  u.userId = "+userId+" and f.userId<>"+userId+"";
 		paginationSupport = dlUsersDao.findPageByQuery(querysql, countsql, paginationSupport.getPageSize(), paginationSupport.getStartIndex());
+		List<DlUsers> itemList = paginationSupport.getItems();
+		for(Iterator<DlUsers> it = itemList.iterator();it.hasNext();)
+		{
+			DlUsers dlUsers = it.next();
+			if(checkRela(dlUsers.getUserId(),userId)){
+				dlUsers.setFollowFlag(true);
+			}else{
+				dlUsers.setFollowFlag(false);
+			}
+		}
+		return paginationSupport;
+	}
+	
+	/**
+	 * @author fengsn
+	 * ��获得关注ta的用户���
+	 * */
+	public PaginationSupport getOtherFollowListByUser(PaginationSupport paginationSupport,Short userId,Short sessionId) {
+		String querysql = " Select f From DlUsers u INNER JOIN u.dlFollowers f  where  u.userId = "+userId+" and f.userId<>"+userId+"";
+		String countsql =" Select count(f.userId) From DlUsers u INNER JOIN u.dlFancers f  where  u.userId = "+userId+" and f.userId<>"+userId+"";
+		paginationSupport = dlUsersDao.findPageByQuery(querysql, countsql, paginationSupport.getPageSize(), paginationSupport.getStartIndex());
+		List<DlUsers> itemList = paginationSupport.getItems();
+		for(Iterator<DlUsers> it = itemList.iterator();it.hasNext();)
+		{
+			DlUsers dlUsers = it.next();
+			if(checkRela(dlUsers.getUserId(),sessionId)){
+				dlUsers.setFollowFlag(true);
+			}else{
+				dlUsers.setFollowFlag(false);
+			}
+		}
+		return paginationSupport;
+	}
+	
+	/**
+	 * @author fengsn
+	 * 获得ta的dao友
+	 * */
+	public PaginationSupport getOtherFanListByUser(PaginationSupport paginationSupport,Short userId,Short sessionId) {
+		String querysql = " Select f From DlUsers u INNER JOIN u.dlFancers f  where  u.userId = "+userId+" and f.userId<>"+userId+"";
+		String countsql =" Select count(f.userId) From DlUsers u INNER JOIN u.dlFancers f  where  u.userId = "+userId+" and f.userId<>"+userId+"";
+		paginationSupport = dlUsersDao.findPageByQuery(querysql, countsql, paginationSupport.getPageSize(), paginationSupport.getStartIndex());
+		List<DlUsers> itemList = paginationSupport.getItems();
+		for(Iterator<DlUsers> it = itemList.iterator();it.hasNext();)
+		{
+			DlUsers dlUsers = it.next();
+			if(checkRela(dlUsers.getUserId(),sessionId)){
+				dlUsers.setFollowFlag(true);
+			}else{
+				dlUsers.setFollowFlag(false);
+			}
+		}
 		return paginationSupport;
 	}
 	
