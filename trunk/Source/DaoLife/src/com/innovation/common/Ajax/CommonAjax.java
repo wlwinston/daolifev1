@@ -615,9 +615,14 @@ public class CommonAjax {
 		int startIndex = pageSize * (pages - 1);
 		PaginationSupport paginationSupport = new PaginationSupport(pageSize,
 				startIndex);
-		if (userId!=null) {
-			paginationSupport = userService.getFollowListByUser(
-					paginationSupport, userId);
+		WebContext request = WebContextFactory.get();
+		HttpSession session = request.getSession(false);
+		if (userId!=null&&session != null
+				&& session
+				.getAttribute(Constant.SESSION_USER_KEY.getStrValue()) != null) {
+			DlUsers user = (DlUsers) session.getAttribute(Constant.SESSION_USER_KEY.getStrValue());
+			paginationSupport = userService.getOtherFollowListByUser(
+					paginationSupport, userId,user.getUserId());
 		} else {
 			return null;
 		}
@@ -636,9 +641,14 @@ public class CommonAjax {
 		int startIndex = pageSize * (pages - 1);
 		PaginationSupport paginationSupport = new PaginationSupport(pageSize,
 				startIndex);
-		if (userId!=null) {
-			paginationSupport = userService.getFanListByUser(
-					paginationSupport, userId);
+		WebContext request = WebContextFactory.get();
+		HttpSession session = request.getSession(false);
+		if (userId!=null&&session != null
+				&& session
+				.getAttribute(Constant.SESSION_USER_KEY.getStrValue()) != null) {
+			DlUsers user = (DlUsers) session.getAttribute(Constant.SESSION_USER_KEY.getStrValue());
+			paginationSupport = userService.getOtherFanListByUser(
+					paginationSupport, userId,user.getUserId());
 			//dlMessagesService.dealReadState(userId,"2");
 		} else {
 			return null;
