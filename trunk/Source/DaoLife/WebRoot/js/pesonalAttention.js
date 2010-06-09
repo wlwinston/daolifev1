@@ -8,6 +8,7 @@ function friendsHot(id,index,name,content,picurl,baseinfo,otherinfo,attention,pe
 	this.otherinfo = otherinfo || '';
 	this.attention = attention || false;
 	this.people = people || 0;
+	this.nowuid = nowuid;
 }
 friendsHot.prototype = {
 	getHtml : function(){
@@ -150,7 +151,7 @@ function doReload(fn){
 		for(var i = 0, l = rs.items.length; i < l; ++i){
 			var baseinfo = getUserGender(rs.items[i].userGender) + ' | ' + getUserBirthday(rs.items[i].birthday);
 			var otherinfo = getUserAddress(rs.items[i].userAddress);
-			myBox.articleBox.add(new friendsHot(rs.items[i].userId,((rs.currentPage - 1) * rs.pageCount) + (i + 1),rs.items[i].userNickName,rs.items[i].userInfo,'images/myhome_30.gif',baseinfo,otherinfo,rs.items[i].followFlag,rs.items[i].fansNum,rs.nowuid));
+			myBox.articleBox.add(new friendsHot(rs.items[i].userId,((rs.currentPage - 1) * rs.pageCount) + (i + 1),rs.items[i].userNickName,rs.items[i].userInfo,'images/myhome_30.gif',baseinfo,otherinfo,rs.items[i].followFlag,rs.items[i].fansNum,rs.nowUid));
 		}
 		if(fn){
 			fn();
