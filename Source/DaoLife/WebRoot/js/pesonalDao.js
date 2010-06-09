@@ -268,8 +268,9 @@ function doForward(id){
 	}
 }
 function doFollow(id,valid){
+	$('#followflag').get(0).innerHTML = '<img src="images/floading.gif" />';
 	if(valid){
-		msg.confirm('您确定要关注吗？',function(){
+		//msg.confirm('您确定要关注吗？',function(){
 			DaolifeAjax.follow(id,function(rs){
 				if(rs){
 					doPersonal(getQueryString('userId'));
@@ -277,9 +278,9 @@ function doFollow(id,valid){
 					alert('关注失败');
 				}
 			});
-		});
+		//});
 	}else{
-		msg.confirm('您确定要取消关注吗？',function(){
+		//msg.confirm('您确定要取消关注吗？',function(){
 			DaolifeAjax.unFollow(id,function(rs){
 				if(rs){
 					doPersonal(getQueryString('userId'));
@@ -287,7 +288,7 @@ function doFollow(id,valid){
 					alert('取消关注失败');
 				}
 			});
-		});
+		//});
 	}
 }
 $(function($){

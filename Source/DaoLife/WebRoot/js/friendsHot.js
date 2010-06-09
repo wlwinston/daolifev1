@@ -35,6 +35,8 @@ friendsHot.prototype = {
 			}else{
 				html.push('<a href="javascript:doFollow(' + this.id + ',' + !this.attention + ')"><img src="images/daohot_13.gif" width="61" height="24" /></a>');
 			}
+		}else if(this.nowuid == this.id){
+			html.push('<a href="MyPage.action">这是你自己</a>');
 		}
 		html.push('<span></td>');
 		html.push('</tr>');
@@ -125,8 +127,9 @@ function doPage(page){
 	});
 }
 function doFollow(id,valid){
+	$('#attention_' + id).get(0).innerHTML = '<img src="images/floading.gif" />';
 	if(valid){
-		msg.confirm('您确定要关注吗？',function(){
+		//msg.confirm('您确定要关注吗？',function(){
 			DaolifeAjax.follow(id,function(rs){
 				if(rs){
 					myBox.articleBox.getElementById(id).reload();
@@ -135,9 +138,9 @@ function doFollow(id,valid){
 					alert('关注失败');
 				}
 			});
-		});
+		//});
 	}else{
-		msg.confirm('您确定要取消关注吗？',function(){
+		//msg.confirm('您确定要取消关注吗？',function(){
 			DaolifeAjax.unFollow(id,function(rs){
 				if(rs){
 					myBox.articleBox.getElementById(id).reload();
@@ -146,7 +149,7 @@ function doFollow(id,valid){
 					alert('取消关注失败');
 				}
 			});
-		});
+		//});
 	}
 }
 function doReload(fn){

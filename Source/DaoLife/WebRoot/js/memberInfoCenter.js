@@ -175,6 +175,54 @@ article.prototype = {
 		return this.picurl;
 	}
 }
+function forword(id){
+	this.id = id;
+}
+forword.prototype = {
+	getHtml : function(){
+		this.html = [];
+		this.html.push('<table id="replybox_' + this.id+ '" width="487" border="0" cellspacing="0" cellpadding="0" style="display:none;">');
+		this.html.push('<tr><td width="487"><img src="images/myhome_34.gif" width="523" height="6" /></td></tr>');
+		this.html.push('<tr>');
+		this.html.push('<td align="center" valign="top" background="images/myhome_37.gif">');
+		this.html.push('<table width="510" height="15" border="0" cellpadding="0" cellspacing="0">');
+		this.html.push('<tr>');
+		this.html.push('<td width="255">  转发  </td>');
+		this.html.push('</tr>');
+		this.html.push('</table>');
+		this.html.push('<table width="510" border="0" cellspacing="0" cellpadding="0">');
+		this.html.push('<tr>');
+		this.html.push('<td height="74" colspan="2" align="center" valign="top">');
+		this.html.push('<form action="" method="post" enctype="multipart/form-data" name="hueifu" id="hueifu">');
+		this.html.push('<table width="493" border="0" cellspacing="4" cellpadding="0">');
+		this.html.push('<tr>');
+		this.html.push('<td height="79" colspan="2" align="center" valign="top">');
+		this.html.push('<label>');
+		this.html.push('<textarea name="textarea" cols="45" rows="5" class="tabledao" id="textarea" style="background-image: url(images/myhome_42.gif); border: 0; width: 495px; height: 53px;"></textarea>');
+		this.html.push('</label>');
+		this.html.push('</td>');
+		this.html.push('</tr>');
+		this.html.push('<tr>');
+		this.html.push('<td width="370" height="22" align="left" valign="top">');
+		this.html.push('</td>');
+		this.html.push('<td width="123"><img src="images/myhome_46.gif" width="88" height="22" /></td>');
+		this.html.push('</tr>');
+		this.html.push('</table>');
+		this.html.push('</form>');
+		this.html.push('</td>');
+		this.html.push('</tr>');
+		this.html.push('</table>');
+		this.html.push('</td>');
+		this.html.push('</tr>');
+		this.html.push('<tr>');
+		this.html.push('<td>');
+		this.html.push('<img src="images/myhome_45.gif" width="523" height="7" />');
+		this.html.push('</td>');
+		this.html.push('</tr>');
+		this.html.push('</table>');
+		return this.html.join('');
+	}
+}
 //发布的集合
 function articleBox(){
 	this.element = [];
@@ -291,7 +339,9 @@ function doSubmit(){
 				$('#fontlength').get(0).innerHTML = 140;
 				$('#articlecontent').val('');
 				doReload(function(){
-					myBox.articleBox.reload();
+					if(myBox.status !=1){
+						myBox.articleBox.reload();
+					}
 					doPersonal(null);
 				});
 			}else{
@@ -338,7 +388,12 @@ function doForward(id){
 				if(rs){
 					maskHide();
 					myBox.articleBox.getElementById(id).reload();
-					doPersonal(null);
+					doReload(function(){
+						if(myBox.status !=1){
+							myBox.articleBox.reload();
+						}
+						doPersonal(null);
+					});
 				}
 			})
 		});
