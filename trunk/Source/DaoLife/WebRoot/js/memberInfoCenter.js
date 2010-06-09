@@ -140,7 +140,7 @@ article.prototype = {
 		this.html.push('<table width="250" border="0" cellspacing="2" cellpadding="2">');
 		this.html.push('<tr>');
 		this.html.push('<td width="78">回复<a href="javascript:closefunction()">（' + this.replyAmount + '）</a></td>');
-		this.html.push('<td width="75">转发<a href="javascript:doForward(' + this.id + ')">（' + this.forwardAmount + '）</a></td>');
+		this.html.push('<td width="75">转发<a href="javascript:doForwardBox(' + this.id + ')">（' + this.forwardAmount + '）</a></td>');
 		if(this.isDingValid){
 			this.html.push('<td width="77">顶他<a href="javascript:doDing(' + this.id + ')">（' + this.dingAmount + '）</a></td>');
 		}else{
@@ -175,19 +175,20 @@ article.prototype = {
 		return this.picurl;
 	}
 }
-function forword(id){
+function forwardBox(id){
 	this.id = id;
 }
-forword.prototype = {
+forwardBox.prototype = {
 	getHtml : function(){
+		var item =myBox.articleBox.getElementById(this.id);
 		this.html = [];
-		this.html.push('<table id="replybox_' + this.id+ '" width="487" border="0" cellspacing="0" cellpadding="0" style="display:none;">');
+		this.html.push('<table id="forwardbox_' + this.id + '" width="487" border="0" cellspacing="0" cellpadding="0" style="display:none;">');
 		this.html.push('<tr><td width="487"><img src="images/myhome_34.gif" width="523" height="6" /></td></tr>');
 		this.html.push('<tr>');
 		this.html.push('<td align="center" valign="top" background="images/myhome_37.gif">');
 		this.html.push('<table width="510" height="15" border="0" cellpadding="0" cellspacing="0">');
 		this.html.push('<tr>');
-		this.html.push('<td width="255">  转发  </td>');
+		this.html.push('<td width="255">&nbsp;</td>');
 		this.html.push('</tr>');
 		this.html.push('</table>');
 		this.html.push('<table width="510" border="0" cellspacing="0" cellpadding="0">');
@@ -196,16 +197,16 @@ forword.prototype = {
 		this.html.push('<form action="" method="post" enctype="multipart/form-data" name="hueifu" id="hueifu">');
 		this.html.push('<table width="493" border="0" cellspacing="4" cellpadding="0">');
 		this.html.push('<tr>');
-		this.html.push('<td height="79" colspan="2" align="center" valign="top">');
+		this.html.push('<td height="62" colspan="2" align="center" valign="top">');
 		this.html.push('<label>');
-		this.html.push('<textarea name="textarea" cols="45" rows="5" class="tabledao" id="textarea" style="background-image: url(images/myhome_42.gif); border: 0; width: 495px; height: 53px;"></textarea>');
+		this.html.push('<textarea name="textarea" cols="45" rows="5" class="tabledao" style="background-image: url(images/myhome_42.gif); border: 0; width: 495px; height: 53px;" id="forwardmsg_' + this.id + '">转 @' + item.name + ' : ' + item.content.replace(/<[^>].*?>/g,"") + '</textarea>');
 		this.html.push('</label>');
 		this.html.push('</td>');
 		this.html.push('</tr>');
 		this.html.push('<tr>');
 		this.html.push('<td width="370" height="22" align="left" valign="top">');
 		this.html.push('</td>');
-		this.html.push('<td width="123"><img src="images/myhome_46.gif" width="88" height="22" /></td>');
+		this.html.push('<td width="90" align="center" id="forwardbutton_' + this.id + '"><a href="javascript:doForward(' + this.id + ')"><img src="images/myhome_46.gif" width="88" height="22" /></a></td>');
 		this.html.push('</tr>');
 		this.html.push('</table>');
 		this.html.push('</form>');
@@ -379,6 +380,43 @@ function doStatus(id){
 		myBox.articleBox.load();
 	});
 }
+function doForwardBox(id){
+	if($('#forwardbox_' + id).html()){
+		$('#forwardbox_' + id).fadeOut(800,function(){
+			$(this).remove();
+		}); 
+	}else{
+		var fb = new forwardBox(id);
+		$('#article_' + id).after(fb.getHtml());
+		$('#forwardbox_' +id).fadeIn(1100);
+	}
+}
+function doForward(id){
+	//var item =myBox.articleBox.getElementById(id);
+	//if(item){
+		//var rf = new forward(item.id,item.picurl,item.name,item.content);
+		//mask(rf.getHtml(),function(){
+			if($('#forwardmsg_' + id).val()){
+				$('#forwardbutton_' + id).get(0).innerHTML = '<img src="images/floading.gif" />';
+				DaolifeAjax.addRetwitteDao($('#forwardmsg_' + id).val(),id,function(rs){
+					if(rs){
+						//maskHide();
+						myBox.articleBox.getElementById(id).reload();
+						doForwardBox(id);
+						doReload(function(){
+							if(myBox.status !=1){
+								myBox.articleBox.reload();
+							}
+							doPersonal(null);
+						});
+					}
+				});
+			}
+		//});
+		$('#forward-msg').focus();
+	//}
+}
+/*
 function doForward(id){
 	var item =myBox.articleBox.getElementById(id);
 	if(item){
@@ -400,6 +438,7 @@ function doForward(id){
 		$('#forward-msg').focus();
 	}
 }
+*/
 function doDing(id){
 	DaolifeAjax.upDao(id,function(rs){
 		if(rs){
