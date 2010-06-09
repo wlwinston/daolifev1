@@ -141,6 +141,16 @@ public class UserService implements IUserService {
 		String querysql = " Select f From DlUsers u INNER JOIN u.dlFollowers f  where  u.userId = "+userId+" and f.userId<>"+userId+"";
 		String countsql =" Select count(f.userId) From DlUsers u INNER JOIN u.dlFancers f  where  u.userId = "+userId+" and f.userId<>"+userId+"";
 		paginationSupport = dlUsersDao.findPageByQuery(querysql, countsql, paginationSupport.getPageSize(), paginationSupport.getStartIndex());
+		List<DlUsers> itemList = paginationSupport.getItems();
+		for(Iterator<DlUsers> it = itemList.iterator();it.hasNext();)
+		{
+			DlUsers dlUsers = it.next();
+			if(checkRela(dlUsers.getUserId(),userId)){
+				dlUsers.setFollowFlag(true);
+			}else{
+				dlUsers.setFollowFlag(false);
+			}
+		}
 		return paginationSupport;
 	}
 	
