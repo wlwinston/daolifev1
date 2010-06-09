@@ -534,11 +534,15 @@ public class CommonAjax {
 						.getAttribute(Constant.SESSION_USER_KEY.getStrValue()) != null) {
 			nowuser = (DlUsers) session.getAttribute(Constant.SESSION_USER_KEY
 					.getStrValue());
+			if(nowuser.getUserId()==followId){
 			DlFriend friend = new DlFriend();
 			friend.setFidFollow(followId);
 			friend.setFidFans(nowuser.getUserId());
 			followrelationService.addFollow(friend);
 			return true;
+			}else{
+				return false;
+			}
 		} else {
 			return false;
 		}
@@ -689,12 +693,15 @@ public class CommonAjax {
 			nowuser = (DlUsers) session.getAttribute(Constant.SESSION_USER_KEY
 					.getStrValue());
 			// String followId = request
+			if(nowuser.getUserId()==followId){
 			DlFriend friend = new DlFriend();
 			friend.setFidFollow(followId);
 			friend.setFidFans(nowuser.getUserId());
 			followrelationService.deleteFollow(friend);
-
 			return true;
+			}else{
+				return false;
+			}
 		} else {
 			return false;
 		}
