@@ -119,7 +119,7 @@
 								MTV和我们一起玩儿了你的态度去哪儿了？
 							</div>
 							<div class="guanggao">
-								<a href="chanpinmoer.html"><center>
+								<a href="product.action"><center>
 										<img src="images/mtv.gif" alt="" />
 									</center>
 								</a>
