@@ -359,7 +359,7 @@ personal.prototype = {
 		html.push('<table width="318" height="58" border="0" align="center" cellpadding="0" cellspacing="0" class="xia1">');
 		html.push('<tr><td width="250" class="Box1">' + this.name + '</td>');
 		html.push('<td width="0" align="left" valign="middle">&nbsp;</td>');
-		html.push('<td align="left" valign="middle">');
+		html.push('<td align="left" valign="middle" id="followflag">');
 		if(this.mid != this.pid){
 			if(this.attention){
 				html.push('<a href="javascript:doFollow(' + this.pid + ',' + !this.attention + ')">取消关注</a>');

@@ -118,6 +118,7 @@ function doPage(page){
 	});
 }
 function doUNFollow(id){
+	$('#attention_' + id).get(0).innerHTML = '<img src="images/floading.gif" />';
 	DaolifeAjax.unFollow(id,function(rs){
 		if(rs){
 			doReload(function(){
