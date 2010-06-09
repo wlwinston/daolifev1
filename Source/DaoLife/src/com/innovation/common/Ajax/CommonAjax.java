@@ -611,7 +611,8 @@ public class CommonAjax {
 	 * @author fengsn
 	 * �huode获得其他用户的关注dao友信息
 	 * */
-	public PaginationSupport getOtherFollowFriend(int pages,Short userId){
+	public List getOtherFollowFriend(int pages,Short userId){
+		List result = new ArrayList();
 		if (pages < 0) {
 			pages = 1;
 		}
@@ -627,17 +628,20 @@ public class CommonAjax {
 			DlUsers user = (DlUsers) session.getAttribute(Constant.SESSION_USER_KEY.getStrValue());
 			paginationSupport = userService.getOtherFollowListByUser(
 					paginationSupport, userId,user.getUserId());
+			result.add(user.getUserId());
+			result.add(paginationSupport);
 		} else {
 			return null;
 		}
-		return paginationSupport;
+		return result;
 	}
 	
 	/**
 	 * @author fengsn
 	 * ��获得其他用户的dao友列表
 	 * */
-	public PaginationSupport getOtherFanFriend(int pages,Short userId) {
+	public List getOtherFanFriend(int pages,Short userId) {
+		List result = new ArrayList();
 		if (pages < 0) {
 			pages = 1;
 		}
@@ -654,10 +658,12 @@ public class CommonAjax {
 			paginationSupport = userService.getOtherFanListByUser(
 					paginationSupport, userId,user.getUserId());
 			//dlMessagesService.dealReadState(userId,"2");
+			result.add(user.getUserId());
+			result.add(paginationSupport);
 		} else {
 			return null;
 		}
-		return paginationSupport;
+		return result;
 	}
 	
 	/**
