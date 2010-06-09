@@ -134,7 +134,7 @@ article.prototype = {
 		this.html.push('<td width="465" align="left" valign="top">');
 		this.html.push('<table width="432" height="78" border="0" cellpadding="0" cellspacing="0">');
 		this.html.push('<tr><td width="432"><a href="PersonPage.action?userId=' + this.uid + '">' + this.name + '</a></td></tr>');
-		this.html.push('<tr><td>' + this.content + '</td></tr>');
+		this.html.push('<tr><td style="word-wrap:break-word;width:432px;">' + this.content + '</td></tr>');
 		this.html.push('<tr>');
 		this.html.push('<td align="right">');
 		this.html.push('<table width="250" border="0" cellspacing="2" cellpadding="2">');
@@ -340,8 +340,10 @@ function doSubmit(){
 				$('#fontlength').get(0).innerHTML = 140;
 				$('#articlecontent').val('');
 				doReload(function(){
-					if(myBox.status !=1){
+					if(myBox.articleBox.currentPage == 1){
 						myBox.articleBox.reload();
+					}else{
+						myBox.articleBox.load();
 					}
 					doPersonal(null);
 				});
@@ -404,8 +406,10 @@ function doForward(id){
 						myBox.articleBox.getElementById(id).reload();
 						doReload(function(){
 							doForwardBox(id);
-							if(myBox.status !=1){
+							if(myBox.articleBox.currentPage == 1){
 								myBox.articleBox.reload();
+							}else{
+								myBox.articleBox.load();
 							}
 							doPersonal(null);
 						});
