@@ -11,7 +11,7 @@
    <generator class="assigned"/>
   </id>
   <property generated="never" lazy="false" name="productName" type="java.lang.String">
-   <column length="300" name="product_name" not-null="true"/>
+   <column length="1000" name="product_name" not-null="true"/>
   </property>
   <property generated="never" lazy="false" name="productUrl" type="java.lang.String">
    <column length="200" name="product_url" not-null="true"/>
