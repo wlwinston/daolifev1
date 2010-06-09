@@ -19,7 +19,7 @@
             <column name="user_name" length="64" not-null="true" />
         </property>
         <property name="contentBody" type="java.lang.String">
-            <column name="content_body" length="300" not-null="true" />
+            <column name="content_body" length="1000" not-null="true" />
         </property>
         <property name="retwittNum" type="java.lang.Short">
             <column name="retwitt_num" not-null="true" />
