@@ -402,8 +402,8 @@ function doForward(id){
 					if(rs){
 						//maskHide();
 						myBox.articleBox.getElementById(id).reload();
-						doForwardBox(id);
 						doReload(function(){
+							doForwardBox(id);
 							if(myBox.status !=1){
 								myBox.articleBox.reload();
 							}
