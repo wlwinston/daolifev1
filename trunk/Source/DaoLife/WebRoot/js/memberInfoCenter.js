@@ -199,7 +199,7 @@ forwardBox.prototype = {
 		this.html.push('<tr>');
 		this.html.push('<td height="62" colspan="2" align="center" valign="top">');
 		this.html.push('<label>');
-		this.html.push('<textarea name="textarea" cols="45" rows="5" class="tabledao" style="background-image: url(images/myhome_42.gif); border: 0; width: 495px; height: 53px;" id="forwardmsg_' + this.id + '">转 @' + item.name + ' : ' + item.content.replace(/<[^>].*?>/g,"") + '</textarea>');
+		this.html.push('<textarea name="textarea" cols="45" rows="5" class="tabledao" style="background-image: url(images/myhome_42.gif); border: 0; width: 495px; height: 53px; resize: none; " id="forwardmsg_' + this.id + '">转 @' + item.name + ' : ' + item.content.replace(/<[^>].*?>/g,"") + '</textarea>');
 		this.html.push('</label>');
 		this.html.push('</td>');
 		this.html.push('</tr>');
