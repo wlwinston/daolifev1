@@ -236,6 +236,7 @@ articleBox.prototype = {
 var myBox = function(){}
 myBox.articleBox = new articleBox();
 function doPage(page){
+	goTop();
 	myBox.articleBox.currentPage = page;
 	doReload(function(){
 		myBox.articleBox.load();
