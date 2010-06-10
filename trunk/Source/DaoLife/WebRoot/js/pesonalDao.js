@@ -292,7 +292,7 @@ function doFollow(id,valid){
 	}
 }
 $(function($){
-	doPersonal(getQueryString('userId'));
+	doPersonal($('#getUserId').val());
 	doReload(function(){
 		myBox.articleBox.load();
 	});
