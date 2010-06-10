@@ -139,12 +139,12 @@ article.prototype = {
 		this.html.push('<td align="right">');
 		this.html.push('<table width="250" border="0" cellspacing="2" cellpadding="2">');
 		this.html.push('<tr>');
-		this.html.push('<td width="78">回复<a href="javascript:closefunction()">（' + this.replyAmount + '）</a></td>');
-		this.html.push('<td width="75">转发<a href="javascript:doForwardBox(' + this.id + ')">（' + this.forwardAmount + '）</a></td>');
+		this.html.push('<td width="78"><a href="javascript:closefunction()">回复（' + this.replyAmount + '）</a></td>');
+		this.html.push('<td width="75"><a href="javascript:doForwardBox(' + this.id + ')">转发（' + this.forwardAmount + '）</a></td>');
 		if(this.isDingValid){
-			this.html.push('<td width="77">顶他<a href="javascript:doDing(' + this.id + ')">（' + this.dingAmount + '）</a></td>');
+			this.html.push('<td width="77"><a href="javascript:doDing(' + this.id + ')">顶他（' + this.dingAmount + '）</a></td>');
 		}else{
-			this.html.push('<td width="77">顶他<a href="javascript://">（' + this.dingAmount + '）</a></td>');
+			this.html.push('<td width="77"><a href="javascript://">顶他（' + this.dingAmount + '）</a></td>');
 		}
 		this.html.push('</tr>');
 		this.html.push('</table>');
