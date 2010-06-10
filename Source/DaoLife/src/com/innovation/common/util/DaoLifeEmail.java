@@ -27,7 +27,7 @@ public class DaoLifeEmail {
 		DaoLifeEmail daoEmail = new DaoLifeEmail();
 		//daoEmail.sendRegistSuccessEmail("高健", "liamgao2009@gmail.com");
 		String authCode = RandomString.getInstance().getRandomString(25);
-		daoEmail.sendFindPasswordEmail("高健", "<a href=\"http://www.daolife.com/resetPassword.action?uid=1&authCode="+authCode+"\" >http://www.daolife.com/resetPassword.action?uid=1&authCode="+authCode+"</a>", "liamgao2009@gmail.com");
+		daoEmail.sendFindPasswordEmail("高健", "<a href=\""+WebConfig.linkWebPrefix+"/resetPassword.action?uid=1&authCode="+authCode+"\" >http://www.daolife.com/resetPassword.action?uid=1&authCode="+authCode+"</a>", "liamgao2009@gmail.com");
 	}
 	
 	public void sendFindPasswordEmail(String recevierName,String authUrl,String recevierEmail) throws EmailException{
