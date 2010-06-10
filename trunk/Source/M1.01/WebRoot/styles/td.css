@@ -1,0 +1,25 @@
+@charset "utf-8";
+/* CSS Document */
+
+.daohot1 {
+	height: 1100px;
+	width: 850px;
+	margin-top: 5px;
+	margin-right: auto;
+	margin-bottom: 0px;
+	margin-left: auto;
+	min-height:500px;
+	max-height:none;
+	height:auto;
+}.guanzhu {
+	margin-bottom: 10px;
+	margin-left: 10px;
+	margin-top: 12px;
+}
+.guanzhu1 {
+	border-bottom-width: 1px;
+	border-bottom-style: dashed;
+	border-bottom-color: #999999;
+	margin-top: 5px;
+	margin-bottom: 10px;
+}
