@@ -279,7 +279,7 @@ public class DlDaoService implements IDlDaoService {
 			throws Exception {
 		short userId = user.getUserId();
 		String hql = " From DlUplog Where userId = ? And hotdaoId = ? ";
-		Object[] sqlVlaue = { userId, daoId };
+		Object[] sqlVlaue = { userId, Short.valueOf(daoId) };
 		List<DlUplog> uplogList = dlUplogDao.find(hql, sqlVlaue);
 		if (uplogList != null && uplogList.size() > 0) {
 			ProjectException moreThanOne = new ProjectException(
