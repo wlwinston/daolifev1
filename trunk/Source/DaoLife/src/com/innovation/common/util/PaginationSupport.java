@@ -222,6 +222,12 @@ public class  PaginationSupport implements Serializable{
 		this.nowUid = nowUid;
 	}
 
+	public String toString()
+	{
+		String equalString = "";
+		equalString = String.valueOf(pageSize)+"and"+String.valueOf(startIndex);
+		return equalString;
+	}
 
 	}
 

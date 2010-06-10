@@ -1,115 +1,204 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN" "http://www.springframework.org/dtd/spring-beans-2.0.dtd">
 <beans>
-<bean id="userService" class="com.innovation.daolife.service.impl.UserService">
-    <property name="dlUsersDao">
-        <ref bean="dlUsersDao"/>
+
+<bean id="userService" class="org.springframework.aop.framework.ProxyFactoryBean">
+	 <property name = "target" > 
+		 <bean class = "com.innovation.daolife.service.impl.UserService">
+		    <property name="dlUsersDao">
+		        <ref bean="dlUsersDao"/>
+		    </property>
+		    <property name="dlUserrolesDao">
+		        <ref bean="dlUserrolesDao"/>
+		    </property>
+		    <property name="dlContentDao">
+		        <ref bean="dlContentDao"/>
+		    </property>
+		     <property name="dlContentatDao">
+		        <ref bean="dlContentatDao"/>
+		    </property>
+		     <property name="dlHotdaoDao">
+		        <ref bean="dlHotdaoDao"/>
+		    </property>
+		    <property name="dlProductDao">
+		        <ref bean="dlProductDao"/>
+		    </property>
+		    <property name="dlFriendDao">
+		        <ref bean="dlFriendDao"/>
+		    </property>
+		    <property name="daoLifeEmail"><ref bean="daoLifeEmail"/></property>
+	    </bean>
     </property>
-    <property name="dlUserrolesDao">
-        <ref bean="dlUserrolesDao"/>
-    </property>
-    <property name="dlContentDao">
-        <ref bean="dlContentDao"/>
-    </property>
-     <property name="dlContentatDao">
-        <ref bean="dlContentatDao"/>
-    </property>
-     <property name="dlHotdaoDao">
-        <ref bean="dlHotdaoDao"/>
-    </property>
-    <property name="dlProductDao">
-        <ref bean="dlProductDao"/>
-    </property>
-    <property name="dlFriendDao">
-        <ref bean="dlFriendDao"/>
-    </property>
+     <property name="interceptorNames">   
+        <list>   
+          <value>methodCachePointCut</value>   
+          <value>methodCachePointCutAdvice</value>   
+        </list>   
+      </property> 
 </bean>
 
-<bean id="followrelationService" class="com.innovation.daolife.service.impl.FollowrelationService" >
- 	<property name="dlFriendDao">
-        <ref bean="dlFriendDao"/>
+<bean id="followrelationService" class="org.springframework.aop.framework.ProxyFactoryBean" >
+ 	<property name = "target" > 
+		 <bean class = "com.innovation.daolife.service.impl.FollowrelationService">
+		 	<property name="dlFriendDao">
+		        <ref bean="dlFriendDao"/>
+		    </property>
+		    <property name="dlMessagesDao">
+		        <ref bean="dlMessagesDao"/>
+		    </property>
+		    <property name="dlUsersDao">
+		        <ref bean="dlUsersDao"/>
+		    </property>
+    	</bean>
     </property>
-    <property name="dlMessagesDao">
-        <ref bean="dlMessagesDao"/>
-    </property>
-    <property name="dlUsersDao">
-        <ref bean="dlUsersDao"/>
-    </property>
+     <property name="interceptorNames">   
+        <list>   
+          <value>methodCachePointCut</value>   
+          <value>methodCachePointCutAdvice</value>   
+        </list>   
+      </property> 
 </bean>
 
-<bean id="dlDaoService" class="com.innovation.daolife.service.impl.DlDaoService">
-    <property name="dlUsersDao">
-        <ref bean="dlUsersDao"/>
-    </property>
-    <property name="daoContentBodyConvert">
-        <ref bean="daoContentBodyConvert"/>
-    </property>
-    <property name="retwitteUtil">
-        <ref bean="retwitteUtil"/>
-    </property>
-    <property name="dlContentDao">
-        <ref bean="dlContentDao"/>
-    </property>
-     <property name="dlUplogDao">
-        <ref bean="dlUplogDao"/>
-    </property>
-    <property name="dlContentatDao">
-        <ref bean="dlContentatDao"/>
-    </property>
-     <property name="dlTopicDao">
-        <ref bean="dlTopicDao"/>
-    </property>
-    <property name="dlHotdaoDao">
-        <ref bean="dlHotdaoDao"/>
-    </property>
-    <property name="dlMessagesDao">
-        <ref bean="dlMessagesDao"/>
-    </property>
+<bean id="dlDaoService" class="org.springframework.aop.framework.ProxyFactoryBean">
+    <property name = "target" > 
+		 <bean class = "com.innovation.daolife.service.impl.DlDaoService">
+		    <property name="dlUsersDao">
+		        <ref bean="dlUsersDao"/>
+		    </property>
+		    <property name="daoContentBodyConvert">
+		        <ref bean="daoContentBodyConvert"/>
+		    </property>
+		    <property name="retwitteUtil">
+		        <ref bean="retwitteUtil"/>
+		    </property>
+		    <property name="dlContentDao">
+		        <ref bean="dlContentDao"/>
+		    </property>
+		    <property name="dlContenttopicDao">
+		        <ref bean="dlContenttopicDao"/>
+		    </property>
+		     <property name="dlUplogDao">
+		        <ref bean="dlUplogDao"/>
+		    </property>
+		    <property name="dlContentatDao">
+		        <ref bean="dlContentatDao"/>
+		    </property>
+		     <property name="dlTopicDao">
+		        <ref bean="dlTopicDao"/>
+		    </property>
+		    <property name="dlHotdaoDao">
+		        <ref bean="dlHotdaoDao"/>
+		    </property>
+		    <property name="dlMessagesDao">
+		        <ref bean="dlMessagesDao"/>
+		    </property>
+		 </bean>
+	</property>
+     <property name="interceptorNames">   
+        <list>   
+          <value>methodCachePointCut</value>   
+          <value>methodCachePointCutAdvice</value>   
+        </list>   
+      </property> 
 </bean>
 
-<bean id="productService" class="com.innovation.daolife.service.impl.ProductService">
-    <property name="dlProductDao">
-        <ref bean="dlProductDao"/>
-    </property>
-     <property name="dlProductFollowDao">
-        <ref bean="dlProductFollowDao"/>
-    </property>
+<bean id="productService" class="org.springframework.aop.framework.ProxyFactoryBean">
+    <property name = "target" > 
+		 <bean class = "com.innovation.daolife.service.impl.ProductService">
+		    <property name="dlProductDao">
+		        <ref bean="dlProductDao"/>
+		    </property>
+		     <property name="dlProductFollowDao">
+		        <ref bean="dlProductFollowDao"/>
+		    </property>
+		  </bean>
+	 </property>
+     <property name="interceptorNames">   
+        <list>   
+          <value>methodCachePointCut</value>   
+          <value>methodCachePointCutAdvice</value>   
+        </list>   
+      </property> 
 </bean>
 
-<bean id="dlMessagesService" class="com.innovation.daolife.service.impl.DlMessagesService">
-    <property name="dlMessagesDao">
-        <ref bean="dlMessagesDao"/>
+<bean id="dlMessagesService" class="org.springframework.aop.framework.ProxyFactoryBean">
+    <property name = "target" > 
+		 <bean class="com.innovation.daolife.service.impl.DlMessagesService">
+		    <property name="dlMessagesDao">
+		        <ref bean="dlMessagesDao"/>
+		    </property>
+    	</bean>
     </property>
+     <property name="interceptorNames">   
+        <list>   
+          <value>methodCachePointCut</value>   
+          <value>methodCachePointCutAdvice</value>   
+        </list>   
+      </property> 
 </bean>
 
-<bean id="dlAreaService" class="com.innovation.daolife.service.impl.DlAreaService">
-    <property name="dlAreaDao">
-        <ref bean="dlAreaDao"/>
+<bean id="dlAreaService" class="org.springframework.aop.framework.ProxyFactoryBean">
+    <property name = "target" > 
+		 <bean class="com.innovation.daolife.service.impl.DlAreaService">
+		    <property name="dlAreaDao">
+		        <ref bean="dlAreaDao"/>
+		    </property>
+		  </bean>
     </property>
+     <property name="interceptorNames">   
+        <list>   
+          <value>methodCachePointCut</value>   
+          <value>methodCachePointCutAdvice</value>   
+        </list>   
+      </property> 
 </bean>
 
-<bean id="daoContentBodyConvert" class="com.innovation.daolife.service.impl.DaoContentBodyConvertService">
-    <property name="dlUsersDao">
-        <ref bean="dlUsersDao"/>
-    </property>
-    <property name="dlContentDao">
-        <ref bean="dlContentDao"/>
-    </property>
-     <property name="dlContentatDao">
-        <ref bean="dlContentatDao"/>
-    </property>
-    <property name="dlTopicDao">
-        <ref bean="dlTopicDao"/>
-    </property>
+<bean id="daoContentBodyConvert" class="org.springframework.aop.framework.ProxyFactoryBean">
+    <property name = "target" > 
+		 <bean  class="com.innovation.daolife.service.impl.DaoContentBodyConvertService">
+		    <property name="dlUsersDao">
+		        <ref bean="dlUsersDao"/>
+		    </property>
+		    <property name="dlContentDao">
+		        <ref bean="dlContentDao"/>
+		    </property>
+		     <property name="dlContentatDao">
+		        <ref bean="dlContentatDao"/>
+		    </property>
+		    <property name="dlTopicDao">
+		        <ref bean="dlTopicDao"/>
+		    </property>
+    	  </bean>
+     </property>
+     <property name="interceptorNames">   
+        <list>   
+          <value>methodCachePointCut</value>   
+          <value>methodCachePointCutAdvice</value>   
+        </list>   
+      </property> 
 </bean>
 
-<bean id="retwitteUtil" class="com.innovation.daolife.service.impl.RetwitteUtilService">
-   <property name="dlContentDao">
-        <ref bean="dlContentDao"/>
-    </property>
-    <property name="dlHotdaoDao">
-        <ref bean="dlHotdaoDao"/>
-    </property>
+<bean id="retwitteUtil"  class="org.springframework.aop.framework.ProxyFactoryBean">
+    <property name = "target" > 
+		 <bean class="com.innovation.daolife.service.impl.RetwitteUtilService">
+		   <property name="dlContentDao">
+		        <ref bean="dlContentDao"/>
+		    </property>
+		    <property name="dlHotdaoDao">
+		        <ref bean="dlHotdaoDao"/>
+		    </property>
+    	  </bean>
+   	</property>
+    <property name="interceptorNames">   
+        <list>   
+          <value>methodCachePointCut</value>   
+          <value>methodCachePointCutAdvice</value>   
+        </list>   
+    </property> 
 </bean>
+
+
+
+
 
 </beans>

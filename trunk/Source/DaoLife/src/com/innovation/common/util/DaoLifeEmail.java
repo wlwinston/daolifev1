@@ -3,11 +3,11 @@ package com.innovation.common.util;
 import org.apache.commons.mail.EmailException;
 
 public class DaoLifeEmail {
-	private String hostName = "smtp.163.com";//这里必须是SMTP地址,填写之前查询该mail网的smtp
-	private String userName = "wangleimsh@163.com";//邮箱名
-	private String userPass = "WANGLEI";//邮箱密码
-	private String fromAd = "wangleimsh@163.com";//发送人地址
-	private String fromName = "Daolife";//发送人姓名
+	private String hostName = "";//这里必须是SMTP地址,填写之前查询该mail网的smtp
+	private String userName = "";//邮箱名
+	private String userPass = "";//邮箱密码
+	private String fromAd = "";//发送人地址
+	private String fromName = "";//发送人姓名
 	
 	public void sendRegistSuccessEmail(String recevierName,String recevierEmail) throws EmailException{
 		EmailUtils emailTools = new EmailUtils();
@@ -59,6 +59,46 @@ public class DaoLifeEmail {
 		emailTools.setToName(recevierName);
 		emailTools.setMsg(recevierName+",您的密码已经成功找回，新密码为："+newPassword);
 		emailTools.sendSimpleEmail();
+	}
+
+	public String getHostName() {
+		return hostName;
+	}
+
+	public void setHostName(String hostName) {
+		this.hostName = hostName;
+	}
+
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
+	public String getUserPass() {
+		return userPass;
+	}
+
+	public void setUserPass(String userPass) {
+		this.userPass = userPass;
+	}
+
+	public String getFromAd() {
+		return fromAd;
+	}
+
+	public void setFromAd(String fromAd) {
+		this.fromAd = fromAd;
+	}
+
+	public String getFromName() {
+		return fromName;
+	}
+
+	public void setFromName(String fromName) {
+		this.fromName = fromName;
 	}
 	
 	

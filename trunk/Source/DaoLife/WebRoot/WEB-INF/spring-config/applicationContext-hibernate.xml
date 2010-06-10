@@ -5,7 +5,7 @@
     class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
     <property name="locations">
         <list>
-            <!--  <value>WEB-INF/mail.properties</value>-->
+            <value>WEB-INF/mail.properties</value>
             <value>WEB-INF/jdbc.properties</value>
             <!--  <value>WEB-INF/oscache.properties</value>-->
         </list>
@@ -31,14 +31,23 @@
     <property name="password">
         <value>${datasource.password}</value>
     </property>
-    <property name="preferredTestQuery">  
-  		<value>${datasource.validationQuery}</value>  
+    <property name="automaticTestTable">  
+  		<value>${c3p0.automaticTestTable}</value>  
     </property>
-    <property name="testConnectionOnCheckout"> 
-  		<value>${datasource.testOnBorrow}</value> 
+    <property name="testConnectionOnCheckin">  
+  		<value>${datasource.testOnBorrow}</value>  
+    </property>
+     <property name="testConnectionOnCheckout">
+        <value>${datasource.testOnReturn}</value>
     </property>
     <property name="acquireIncrement">
         <value>${c3p0.acquireIncrement}</value>
+    </property>
+    <property name="acquireRetryAttempts">
+        <value>${c3p0.acquireRetryAttempts}</value>
+    </property>
+    <property name="acquireRetryDelay">
+        <value>${c3p0.acquireRetryDelay}</value>
     </property>
     <property name="initialPoolSize">
         <value>${c3p0.initialPoolSize}</value>
@@ -126,6 +135,7 @@
            	<value>dlMessagesService</value>
             <value>dlAreaService</value>
            	<value>daoContentBodyConvert</value>
+           	<value>retwitteUtil</value>
         </list>
         <!-- 其它需要自动创建事务代理的bean -->
     </property>

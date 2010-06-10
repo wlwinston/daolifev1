@@ -14,45 +14,53 @@ import org.apache.commons.mail.SimpleEmail;
 import org.apache.log4j.Logger;
 
 /**
- * �����ʼ�
+ * 邮件发送工具类
  * @author winston
  */
 public class EmailUtils {
     private static Logger logger = Logger.getLogger(EmailUtils.class);
-	private String hostName = null;//���������SMTP��ַ,��д֮ǰ��ѯ��mail���smtp
-	private String userName = null;//������
-	private String userPass = null;//��������
-	private String toAd = null;//�����˵�ַ
-	private String toName = null;//����������
-	private String fromAd = null;//�����˵�ַ
-	private String fromName = null;//����������
-	private String subject = null;//�ʼ�����
-	private String msg = null;//�ʼ�����
-	private String url = null;//����Զ�̵�ַ
-	private String name = null;//������
-	private ArrayList pathArrayList = null;//�฽������ɵ�ArrayList
+	private String hostName = null;//SMTP服务器
+	private String userName = null;//用户名
+	private String userPass = null;//密码
+	private String toAd = null;//收信的地址
+	private String toName = null;//收信人名称
+	private String fromAd = null;//发信人地址
+	private String fromName = null;//发信人名称
+	private String subject = null;//主题
+	private String msg = null;//邮件内容
+	private String url = null;//
+	private String name = null;//
+	private ArrayList pathArrayList = null;//附件ArrayList
 
+	/**
+	 * 发送简单邮件
+	 * @throws EmailException
+	 */
 	public void sendSimpleEmail() throws EmailException{
 		HtmlEmail email = new HtmlEmail();
-		//�����ʼ����ֱ���
+		//设置邮件字符集
 		email.setCharset("GBK");
-		//������ҳ 
+		//设置SMTP服务器 
 		email.setHostName(hostName);
-		//��½�ʼ���������û��������
+		//设置用户名和密码
 		email.setAuthentication(userName,userPass);
-		//������
+		//设置收信人信息
 		email.addTo(toAd,toName);
-		//������
+		//设置发信人信息
 		email.setFrom(fromAd,fromName);
-		//����
+		//设置主题
 		email.setSubject(subject);
-		//�ʼ�����
+		//设置邮件内容
 		email.setHtmlMsg(msg);
-		//����
+		//发送邮件
 		email.send();
 		logger.info(subject+"发送成功");
   }
-	
+	/**
+	 * 发送带附件邮件
+	 * @throws EmailException
+	 * @throws UnsupportedEncodingException
+	 */
 	public void sendMultiPartEmail() throws EmailException, UnsupportedEncodingException{
 		MultiPartEmail email = new MultiPartEmail();
 		email.setCharset("GBK");
@@ -65,14 +73,14 @@ public class EmailUtils {
 		EmailAttachment attachment = null;
 		Iterator pal = pathArrayList.iterator();
 		while (pal.hasNext()) {
-			String path = (String) pal.next();//��ȡ������ַ
+			String path = (String) pal.next();
 			attachment = new EmailAttachment();
-			attachment.setPath(path);// ���ظ�����ַ�磺"h:/ͼƬ/Сƨ��.gif"
+			attachment.setPath(path);
 			attachment.setDisposition(EmailAttachment.ATTACHMENT);
-			attachment.setDescription("");//��������
-	        String[] s = StringUtils.split(path,"/");//��������ַ��"/",Ŀ����Ϊ�˻�ȡ�ļ���
-			attachment.setName(MimeUtility.encodeText(s[s.length-1]));//����������Ĵ���,s[s.length-1])Ϊ�ļ���
-			email.attach(attachment);//��Ӹ���
+			attachment.setDescription("");
+	        String[] s = StringUtils.split(path,"/");
+			attachment.setName(MimeUtility.encodeText(s[s.length-1]));
+			email.attach(attachment);
 		}
 		email.send();
 		logger.info(subject+"发送成功");

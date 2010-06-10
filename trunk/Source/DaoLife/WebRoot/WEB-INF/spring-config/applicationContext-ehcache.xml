@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN" "http://www.springframework.org/dtd/spring-beans-2.0.dtd">
+<beans>
+ 	<!-- 引用ehCache的配置 -->   
+    <bean id="defaultCacheManager" class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean">   
+      <property name="configLocation">   
+        <value>/WEB-INF/ehcache.xml</value>   
+      </property>   
+    </bean>   
+       
+    <!-- 定义ehCache的工厂，并设置所使用的Cache name -->   
+    <bean id="ehCache" class="org.springframework.cache.ehcache.EhCacheFactoryBean">   
+      <property name="cacheManager">   
+        <ref local="defaultCacheManager"/>   
+      </property>   
+      <property name="cacheName">   
+          <value>DAOLIFE_CACHE</value>   
+      </property>   
+    </bean>   
+  
+    <!-- find/create cache拦截器 -->   
+    <bean id="methodCacheInterceptor" class="com.innovation.common.cache.MethodCacheInterceptor">   
+      <property name="cache">   
+        <ref local="ehCache" />   
+      </property>   
+    </bean>   
+    <!-- flush cache拦截器 -->   
+    <bean id="methodCacheAfterAdvice" class="com.innovation.common.cache.MethodCacheAfterAdvice">   
+      <property name="cache">   
+        <ref local="ehCache" />   
+      </property>   
+    </bean>   
+       
+    <bean id="methodCachePointCut" class="org.springframework.aop.support.RegexpMethodPointcutAdvisor">   
+      <property name="advice">   
+        <ref local="methodCacheInterceptor"/>   
+      </property>   
+      <property name="patterns">   
+        <list>   
+            <value>.*find.*</value>   
+            <value>.*get.*</value>   
+        </list>   
+      </property>   
+    </bean>   
+    <bean id="methodCachePointCutAdvice" class="org.springframework.aop.support.RegexpMethodPointcutAdvisor">   
+      <property name="advice">   
+        <ref local="methodCacheAfterAdvice"/>   
+      </property>   
+      <property name="patterns">   
+        <list>   
+          <value>.*add.*</value>
+          <value>.*create.*</value>   
+          <value>.*update.*</value>   
+          <value>.*delete.*</value>   
+          <value>.*deal.*</value> 
+        </list>   
+      </property>   
+    </bean>   
+   
+</beans>

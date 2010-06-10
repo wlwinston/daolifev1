@@ -35,6 +35,7 @@ import com.innovation.common.util.RandomString;
 import com.innovation.daolife.action.search.UserSearch;
 import com.innovation.daolife.dao.IDlContentDao;
 import com.innovation.daolife.dao.IDlContentatDao;
+import com.innovation.daolife.dao.IDlContenttopicDao;
 import com.innovation.daolife.dao.IDlHotdaoDao;
 import com.innovation.daolife.dao.IDlMessagesDao;
 import com.innovation.daolife.dao.IDlTopicDao;
@@ -45,6 +46,7 @@ import com.innovation.daolife.dao.IUserDao;
 import com.innovation.daolife.dao.impl.DlHotdaoDao;
 import com.innovation.daolife.model.DlContent;
 import com.innovation.daolife.model.DlContentat;
+import com.innovation.daolife.model.DlContenttopic;
 import com.innovation.daolife.model.DlCustomerDaoEntry;
 import com.innovation.daolife.model.DlHotdao;
 import com.innovation.daolife.model.DlMessages;
@@ -62,6 +64,7 @@ public class DlDaoService implements IDlDaoService {
 	private IDlUsersDao dlUsersDao;
 	private IDlContentDao dlContentDao;
 	private IDlContentatDao dlContentatDao;
+	private IDlContenttopicDao dlContenttopicDao;
 	private IDlTopicDao dlTopicDao;
 	private IDlMessagesDao dlMessagesDao;
 	private IDaoContentBodyConvertService daoContentBodyConvert;
@@ -114,7 +117,12 @@ public class DlDaoService implements IDlDaoService {
 			short atUserID = atContentat.getStatusUid();
 			uidString += " OR user_id = " + atUserID;
 		}
-
+		List<DlContenttopic> topicList = customerDaoDao.getDlContenttopicList();
+		for (int i = 0; i < topicList.size(); i++) {
+			DlContenttopic dlContenttopic = topicList.get(i);
+			dlContenttopic.setContentId(content.getContentId());
+			dlContenttopicDao.save(dlContenttopic);
+		}
 		// 修改用户被@数目
 		uidString = "UPDATE dl_users SET at_week_num = at_week_num + 1,at_month_num = at_month_num + 1,at_sum_num = at_sum_num + 1 "
 				+ uidString;
@@ -316,8 +324,10 @@ public class DlDaoService implements IDlDaoService {
 	 * */
 	public PaginationSupport getTopicListContent(
 			PaginationSupport paginationSupport,Short topicId){
-		String querysql = " Select c From DlContent c where  c.topicid = "+ topicId + " order by posttime desc";
-		String countsql = " Select count(c.contentId) From DlContent c where  c.topicid = "+ topicId + " order by posttime desc";
+		String querysql = " Select c From DlTopic t INNER JOIN t.topicContent c where  t.topicId = "
+			+ topicId + "order by c.posttime  desc";
+		String countsql = " Select count(c.contentId) From DlTopic t INNER JOIN t.topicContent c where  t.topicId = "
+			+ topicId + "order by c.posttime desc";
 		paginationSupport = dlContentatDao.findPageByQuery(querysql, countsql,
 				paginationSupport.getPageSize(), paginationSupport
 						.getStartIndex());
@@ -413,6 +423,14 @@ public class DlDaoService implements IDlDaoService {
 		BeanUtils.copyProperties(content.getDlUsers(), user);
 		content.setDlUsers(user);
 		return content;
+	}
+
+	public IDlContenttopicDao getDlContenttopicDao() {
+		return dlContenttopicDao;
+	}
+
+	public void setDlContenttopicDao(IDlContenttopicDao dlContenttopicDao) {
+		this.dlContenttopicDao = dlContenttopicDao;
 	}
 
 }
