@@ -1,5 +1,7 @@
 package com.innovation.daolife.model;
 
+import java.util.Set;
+
 /**
  * DlTopic entity.
  * 
@@ -13,6 +15,7 @@ public class DlTopic implements java.io.Serializable {
 	private Short topicId;
 	private String topicBody;
 	private Short open;
+	private Set topicContent;
 
 	// Constructors
 
@@ -51,6 +54,14 @@ public class DlTopic implements java.io.Serializable {
 
 	public void setOpen(Short open) {
 		this.open = open;
+	}
+
+	public Set getTopicContent() {
+		return topicContent;
+	}
+
+	public void setTopicContent(Set topicContent) {
+		this.topicContent = topicContent;
 	}
 
 }

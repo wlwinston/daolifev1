@@ -8,7 +8,7 @@
     <class name="com.innovation.daolife.model.DlTopic" table="dl_topic" catalog="daolife">
         <id name="topicId" type="java.lang.Short">
             <column name="topic_id" />
-            <generator class="assigned" />
+            <generator class="identity" />
         </id>
         <property name="topicBody" type="java.lang.String">
             <column name="topic_body" length="20" not-null="true" />
@@ -16,5 +16,11 @@
         <property name="open" type="java.lang.Short">
             <column name="open" not-null="true" />
         </property>
+        <set name="topicContent" table="dl_contenttopic" inverse="true" lazy="false"  cascade="all">  
+		     <key>  
+		         <column name="topic_id" not-null="true" />  
+		     </key>  
+		   <many-to-many class="com.innovation.daolife.model.DlContent" column="content_id" />
+ 		</set>
     </class>
 </hibernate-mapping>

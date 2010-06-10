@@ -72,6 +72,8 @@ public class UserService implements IUserService {
 	private IDlUserrolesDao dlUserrolesDao;
 	
 	private IDlFriendDao dlFriendDao;
+	
+	private DaoLifeEmail daoLifeEmail;
 
 	public User getUserById(String id) {
 		User user = null;
@@ -503,11 +505,10 @@ public class UserService implements IUserService {
 		if (user != null) {
 			user.setAuthEmail(authCode);
 			this.updateUser(user);
-			DaoLifeEmail daoEmail = new DaoLifeEmail();
 			//验证
 			String authUrl = WebConfig.linkWebPrefix+"/ResetPassword.action?userId="
 					+ user.getUserId() + "&authCode=" + authCode + "";
-			daoEmail.sendFindPasswordEmail(user.getUserName(), authUrl, user
+			daoLifeEmail.sendFindPasswordEmail(user.getUserName(), authUrl, user
 					.getMailadres());
 		}
 	}
@@ -544,8 +545,7 @@ public class UserService implements IUserService {
 			user.setSalt(salt);
 			user.setAuthEmail(RandomString.getInstance().getRandomString(25));
 			this.updateUser(user);
-			DaoLifeEmail daoEmail = new DaoLifeEmail();
-			daoEmail.sendSetPasswordSuccessEmail(user.getUserName(),
+			daoLifeEmail.sendSetPasswordSuccessEmail(user.getUserName(),
 					newPassword, user.getMailadres());
 
 		}
@@ -615,6 +615,14 @@ public class UserService implements IUserService {
 			user = userList.iterator().next();
 		}
 		return user;
+	}
+
+	public DaoLifeEmail getDaoLifeEmail() {
+		return daoLifeEmail;
+	}
+
+	public void setDaoLifeEmail(DaoLifeEmail daoLifeEmail) {
+		this.daoLifeEmail = daoLifeEmail;
 	}
 
 }

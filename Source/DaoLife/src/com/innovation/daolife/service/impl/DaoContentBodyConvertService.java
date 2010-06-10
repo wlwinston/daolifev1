@@ -1,9 +1,13 @@
 package com.innovation.daolife.service.impl;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
+
+import org.apache.commons.collections.FastHashMap;
+import org.apache.log4j.Logger;
 
 import com.innovation.common.util.Constant;
 import com.innovation.common.util.WebConfig;
@@ -15,6 +19,7 @@ import com.innovation.daolife.dao.IDlUsersDao;
 import com.innovation.daolife.model.DlActivity;
 import com.innovation.daolife.model.DlContent;
 import com.innovation.daolife.model.DlContentat;
+import com.innovation.daolife.model.DlContenttopic;
 import com.innovation.daolife.model.DlCustomerDaoEntry;
 import com.innovation.daolife.model.DlMessages;
 import com.innovation.daolife.model.DlTopic;
@@ -22,6 +27,7 @@ import com.innovation.daolife.model.DlUsers;
 import com.innovation.daolife.service.IDaoContentBodyConvertService;
 
 public class DaoContentBodyConvertService implements IDaoContentBodyConvertService{
+	private static Logger logger = Logger.getLogger(DaoContentBodyConvertService.class);
 	private IDlUsersDao dlUsersDao;
 	private IDlContentDao dlContentDao;
 	private IDlContentatDao dlContentatDao;
@@ -69,23 +75,67 @@ public class DaoContentBodyConvertService implements IDaoContentBodyConvertServi
 			}
 			
 		}
+		
+		
 		DlContent  content = new DlContent();
 		String topicName = "";
 		Short topicId = 0;
-		if( contextBody.indexOf("#") >= 0)
+		String[] contextAfterSharp = contextBody.split("#");
+		
+		List<DlTopic> topicList = null;
+		int contextAfterSharpLength = contextAfterSharp.length;
+		if(contextBody.lastIndexOf("#") == contextBody.length()-1)
 		{
-			String contextAfer = contextBody.substring(contextBody.indexOf("#")+1);
-			if(contextAfer.indexOf(" ") > 0)
+			contextAfterSharpLength++;
+		}
+		FastHashMap topicMap = new FastHashMap();
+		List<String> topicNameList = new ArrayList<String>();
+		if(contextAfterSharpLength > 1 ){
+			int topicLength = (int)((contextAfterSharpLength-1)/2);
+			String topicSql = " From DlTopic Where 1 <> 1 ";
+			for(int i = 0; i<topicLength; i++)
 			{
-				topicName = contextAfer.substring(0, contextAfer.indexOf(" "));
-				List<DlTopic> topicList = dlTopicDao.find(" From DlTopic WHERE topicBody = '"+topicName+"' and open = 1");
-				if(topicList.size()>0)
+				topicName = contextAfterSharp[2*i+1];
+				logger.info("topicName ===="+topicName);
+				topicSql += " or topicBody = '"+topicName+"'";
+				topicNameList.add(contextAfterSharp[2*i+1]);
+			}
+			topicList = dlTopicDao.find(topicSql);
+			for(Iterator<DlTopic> it = topicList.iterator();it.hasNext();)
+			{
+				DlTopic topic = it.next();
+				topicMap.put(topic.getTopicBody(), topic);
+			}
+			for(int i = 0 ;i<topicNameList.size();i++)
+			{
+				String topicNameStr = topicNameList.get(i);
+				if(topicMap.get(topicNameStr) != null)
 				{
-					topicId = topicList.get(0).getTopicId();
+					DlTopic topic = (DlTopic)(topicMap.get(topicNameStr));
+					if(topic.getOpen() == 1 )
+					{
+						DlContenttopic dlContenttopic = new DlContenttopic();
+						dlContenttopic.setTopicId(topic.getTopicId());
+						dlCustomerDaoEntry.getDlContenttopicList().add(dlContenttopic);
+						String newTopicLinkString =  "<a href ='"+WebConfig.linkTopicPrefix+topic.getTopicId()+"' target='_blank'>#"+topicNameStr+"#</a>";
+						contextBody = contextBody.replaceAll("#"+topicNameStr+"#",newTopicLinkString);
+					}
+				}
+				else{
+					DlTopic dlTopic = new DlTopic();
+					dlTopic.setOpen((short)1);
+					dlTopic.setTopicBody(topicNameStr);
+					dlTopicDao.saveOrUpdate(dlTopic);
+					DlContenttopic dlContenttopic = new DlContenttopic();
+					dlContenttopic.setTopicId(dlTopic.getTopicId());
+					dlCustomerDaoEntry.getDlContenttopicList().add(dlContenttopic);
+					String newTopicLinkString =  "<a href ='"+WebConfig.linkTopicPrefix+dlTopic.getTopicId()+"' target='_blank'>#"+topicNameStr+"#</a>";
+					contextBody = contextBody.replaceAll("#"+topicNameStr+"#",newTopicLinkString);
 					
 				}
 			}
 		}
+		
 		content.setTopicid(topicId);
 		if( userList != null && userList.size() >0){
 			for(int i =0 ;i<userList.size();i++)
@@ -95,16 +145,10 @@ public class DaoContentBodyConvertService implements IDaoContentBodyConvertServi
 				contextBody = contextBody.replaceAll("@"+newUser.getUserNickName()+" ",newUserLinkString);
 			}
 		}
-		if(topicId != 0 )
-		{
-			String newTopicLinkString =  "<a href ='"+WebConfig.linkTopicPrefix+topicId+"' target='_blank'>#"+topicName+" </a>";
-			contextBody = contextBody.replaceAll("#"+topicName+" ",newTopicLinkString);
-		}
+		
 		content.setContentBody(contextBody);
 		dlCustomerDaoEntry.setDlContent(content);
-		
-		
-		
+
 		
 		return dlCustomerDaoEntry;
 	}

@@ -16,22 +16,23 @@ public class DlContent implements java.io.Serializable {
 	private Short contentId;
 	private Short userId;
 	private Short topicid;
-	//ß¶ÄÚÈÝ
+	//ß¶ï¿½ï¿½ï¿½ï¿½
 	private String contentBody;
-	//ß¶Ìá½»Ê±¼ä
+	//ß¶ï¿½á½»Ê±ï¿½ï¿½
 	private Date posttime;
-	//Ô­ÓÐID
+	//Ô­ï¿½ï¿½ID
 	private Short originId;
 	private String originAllid;
-	//×ª·¢Êý
+	//×ªï¿½ï¿½ï¿½ï¿½
 	private Short retwittNum;
-	//¶¥Êý
+	//ï¿½ï¿½ï¿½ï¿½
 	private Short upNum;
 	private String status;
 	private String type;
-	//·¢ß¶ÈËÐÅÏ¢
+	//ï¿½ï¿½ß¶ï¿½ï¿½ï¿½ï¿½Ï¢
 	private DlUsers dlUsers;
 	private Set atUsers;
+	private Set contentTopic;
 
 	// Constructors
 
@@ -173,6 +174,14 @@ public class DlContent implements java.io.Serializable {
 
 	public void setAtUsers(Set atUsers) {
 		this.atUsers = atUsers;
+	}
+
+	public Set getContentTopic() {
+		return contentTopic;
+	}
+
+	public void setContentTopic(Set contentTopic) {
+		this.contentTopic = contentTopic;
 	}
 
 }
