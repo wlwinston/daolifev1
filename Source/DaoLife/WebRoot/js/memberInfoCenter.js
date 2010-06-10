@@ -305,6 +305,7 @@ var myBox = function(){}
 myBox.status = 1;
 myBox.articleBox = new articleBox();
 function doPage(page){
+	goTop();
 	myBox.articleBox.currentPage = page;
 	doReload(function(){
 		myBox.articleBox.load();
@@ -348,7 +349,7 @@ function doSubmit(){
 					doPersonal(null);
 				});
 			}else{
-				alert('发送信息失败');
+				msg.alert('发送信息失败，请重试！');
 			}
 		});
 	}
@@ -446,7 +447,7 @@ function doForward(id){
 function doDing(id){
 	DaolifeAjax.upDao(id,function(rs){
 		if(rs){
-			alert(rs);
+			msg.alert(rs);
 		}else{
 			myBox.articleBox.getElementById(id).reload();
 		}

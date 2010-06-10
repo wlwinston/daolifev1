@@ -113,6 +113,7 @@ friendsHotBox.prototype = {
 var myBox = function(){}
 myBox.articleBox = new friendsHotBox();
 function doPage(page){
+	goTop();
 	myBox.articleBox.currentPage = page;
 	doReload(function(){
 		myBox.articleBox.load();
