@@ -506,8 +506,8 @@ public class UserService implements IUserService {
 			user.setAuthEmail(authCode);
 			this.updateUser(user);
 			//验证
-			String authUrl = WebConfig.linkWebPrefix+"/ResetPassword.action?userId="
-					+ user.getUserId() + "&authCode=" + authCode + "";
+			String authUrl = "<a href=\""+WebConfig.linkWebPrefix+"/ResetPassword.action?userId="+ user.getUserId() +"&authCode="+authCode+"\" >"+WebConfig.linkWebPrefix+"/ResetPassword.action?userId="
+					+ user.getUserId() + "&authCode=" + authCode + "</a>";
 			daoLifeEmail.sendFindPasswordEmail(user.getUserName(), authUrl, user
 					.getMailadres());
 		}

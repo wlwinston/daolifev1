@@ -42,17 +42,17 @@ public class WebCookieInterceptor extends AbstractInterceptor {
 		String   sname=null; 
 		String   userName = null;
 		String   authCode = null;
-		logger.info("Cookie loading start!");
+		//logger.info("Cookie loading start!");
 		if(cookies != null)
 		{
-			logger.info(cookies.length+"================cookies.length");
+			//logger.info(cookies.length+"================cookies.length");
 			for(int   i=0;i <cookies.length;i++) 
 			{ 
 				sCookie=cookies[i]; 
 				svalue=sCookie.getValue(); 
 				sname=sCookie.getName(); 
-				logger.info(svalue+"================svalue");
-				logger.info(sname+"================sname");
+				//logger.info(svalue+"================svalue");
+				//logger.info(sname+"================sname");
 				if(sname.equals("daolife_userName"))
 				{
 					userName = svalue;
@@ -65,7 +65,7 @@ public class WebCookieInterceptor extends AbstractInterceptor {
 			DlUsers user = (DlUsers) session.get(Constant.SESSION_USER_KEY.getStrValue()); 
 			if(userName != null && authCode != null && user == null )
 			{
-				logger.info(userName+"'s Cookie load Success!");
+				//logger.info(userName+"'s Cookie load Success!");
 				Short uid = Short.valueOf(userName);
 				DlUsers dlUser = userService.getUsersById(uid);
 				if(dlUser != null){
@@ -83,7 +83,7 @@ public class WebCookieInterceptor extends AbstractInterceptor {
 					
 				}
 			}
-			logger.info("Cookie loading end!");
+			//logger.info("Cookie loading end!");
 		} 
 		      return actionInvocation.invoke(); 
 	}

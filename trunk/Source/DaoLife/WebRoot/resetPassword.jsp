@@ -24,7 +24,7 @@
 			<table width="539" border="0" align="center" cellpadding="4" cellspacing="4" class="zhuti3" style="height:463px;font-size:15px;">
 				<tr>
 					<td width="523" height="197" align="left" valign="top">
-						<s:form action="/ResetPasswordSave.action" method="post" enctype="multipart/form-data" name="regist" id="regist"  >
+						<s:form action="ResetPasswordSave.action" method="post" enctype="multipart/form-data" name="regist" id="regist"  >
 							<table width="623" border="0" cellspacing="3" cellpadding="0">
 								<tr>
 									<th width="117" height="21" align="right">
