@@ -119,33 +119,37 @@ function article(id,name,content,picurl,replyAmount,forwardAmount,dingAmount){
 	this.forwardAmount = forwardAmount;
 	this.dingAmount = dingAmount;
 	this.html = [];
+	this.time = '2010-06-11 17:50';
+}
+function doMouseover(id){
+	$('#article_' + id).css('background','#F5F5F5');
+}
+function doMouseout(id){
+	$('#article_' + id).css('background','#F8F8F8');
 }
 article.prototype = {
 	getHtml : function(){
-		this.html = [];
-		this.html.push('<table id="article_' + this.id + '" width="540" border="0" cellspacing="4" cellpadding="4">');
-		this.html.push('<tr>');
-		this.html.push('<td width="47" height="44"><img src="' + this.picurl + '" width="78" height="77" /></td>');
-		this.html.push('<td width="465" align="left" valign="top">');
-		this.html.push('<table width="432" height="78" border="0" cellpadding="0" cellspacing="0">');
-		this.html.push('<tr><td width="432">' + this.name + '</td></tr>');
-		this.html.push('<tr><td>' + this.content + '</td></tr>');
-		this.html.push('<tr>');
-		this.html.push('<td align="right">');
-		this.html.push('<table width="250" border="0" cellspacing="2" cellpadding="2">');
-		this.html.push('<tr>');
-		this.html.push('<td width="78">回复<a href="javascript:doArticle(' + this.id + ')">（' + this.replyAmount + '）</a></td>');
-		this.html.push('<td width="75">转发<a href="javascript:doForward(' + this.id + ',\'' + this.picurl + '\',\'' + this.name + '\',\'' + this.content + '\')">（' + this.forwardAmount + '）</a></td>');
-		this.html.push('<td width="77">顶他<a href="#">（' + this.dingAmount + '）</a></td>');
-		this.html.push('</tr>');
-		this.html.push('</table>');
-		this.html.push('</td>');
-		this.html.push('</tr>');
-		this.html.push('</table>');
-		this.html.push('</td>');
-		this.html.push('</tr>');
-		this.html.push('</table>');
-		return this.html.join('');
+		return '<div id="article_' + this.id + '" style="width:540px;border-bottom:1px #D8D8D8 dashed;font-size:13px;height:auto;max-height:none;min-height:100px;overflow:hidden" onmouseover="doMouseover(' + this.id + ')" onmouseout="doMouseout(' + this.id + ')">' + this.getElement() + '</div>'
+	}
+	,getElement : function(){
+		var html = [];
+		html.push('<div style="width:530px;margin:10px 5px;height:auto;max-height:none;min-height:80px;overflow:hidden;text-align:left;">');
+		html.push('<div style="width:80px;height:80px;float:left;padding:0px;border:1px #D8D8D8;"><a href="PersonPage.action?userId=' + this.uid + '"><img src="images/myhome_30.gif" width="80" height="80" /></a></div>');
+		html.push('<div style="width:440px;float:right;padding-top:3px;line-height:19px;min-height:60px;">');
+		html.push('<a href="PersonPage.action?userId=' + this.uid + '">' + this.name + '</a> ：' + this.content);
+		html.push('</div>');
+		html.push('<div style="width:440px;float:right;font-size:12px;">' + this.time + '<span style="float:right"><a href="javascript:doForwardBox(' + this.id + ')">转发（' + this.forwardAmount + '）</a> | <a href="javascript:doDing(' + this.id + ')">顶它（' + this.dingAmount + '）</a></span></div>')
+		html.push('</div>');
+		return html.join('');
+	}
+	,reload : function(){
+		//this.isDingValid = false;
+		var myself = this;
+		DaolifeAjax.getDlContentById(this.id,function(rs){
+			myself.forwardAmount = rs.retwittNum;
+			myself.dingAmount = rs.upNum; 
+			$('#article_' + myself.id).get(0).innerHTML = myself.getElement();
+		});
 	}
 	,getId : function(){
 		return this.id;
@@ -208,13 +212,12 @@ articleBox.prototype = {
 	}
 	,getpagebar : function(){
 		var html = [];
-		html.push('<div class="yem1"><ul>');
 		if(this.pageCount > 1){
-			for(var i = 0, l = this.pageCount; i < l; ++i){
-				html.push('<li><a href="javascript:doPage(' + (i+1) + ')">' + (i + 1) + '</a></li>');
-			}
+			html.push('<div style="margin:10px 0;height:37px;color:#666666;border:1px #D8D8D8 solid;text-align:center;position: relative;overflow: hidden;">');
+			html.push('<div style="width:440px;padding-top:10px;height:27px;font-size:14px;float:left;" id="pagemore"><a href="javascript:doPage()">更多</a></div>');
+			html.push('<div style="width:120px;padding-top:11px;height:26px;float:left;border-left:1px #D8D8D8 solid;"><a href="javascript:goTop()">回到顶部</a></div>');
+			html.push('</div>')
 		}
-		html.push('</ul></div>')
 		return html.join('');
 	}
 	,initpage : function(){
@@ -233,17 +236,76 @@ articleBox.prototype = {
 		$('#articlebox').hide().fadeIn(1100);
 	}
 }
+function forwardBox(id){
+	this.id = id;
+}
+forwardBox.prototype = {
+	getHtml : function(){
+		var item =myBox.articleBox.getElementById(this.id);
+		this.html = [];
+		this.html.push('<table id="forwardbox_' + this.id + '" width="487" border="0" cellspacing="0" cellpadding="0" style="display:none;margin-bottom:10px;">');
+		this.html.push('<tr><td width="487"><img src="images/myhome_34.gif" width="523" height="6" /></td></tr>');
+		this.html.push('<tr>');
+		this.html.push('<td align="center" valign="top" background="images/myhome_37.gif">');
+		this.html.push('<table width="510" height="15" border="0" cellpadding="0" cellspacing="0">');
+		this.html.push('<tr>');
+		this.html.push('<td width="255">&nbsp;</td>');
+		this.html.push('</tr>');
+		this.html.push('</table>');
+		this.html.push('<table width="510" border="0" cellspacing="0" cellpadding="0">');
+		this.html.push('<tr>');
+		this.html.push('<td height="74" colspan="2" align="center" valign="top">');
+		this.html.push('<form action="" method="post" enctype="multipart/form-data" name="hueifu" id="hueifu">');
+		this.html.push('<table width="493" border="0" cellspacing="4" cellpadding="0">');
+		this.html.push('<tr>');
+		this.html.push('<td height="62" colspan="2" align="center" valign="top">');
+		this.html.push('<label>');
+		this.html.push('<textarea name="textarea" cols="45" rows="5" class="tabledao" style="background-image: url(images/myhome_42.gif); border: 0; width: 495px; height: 53px; resize: none; " id="forwardmsg_' + this.id + '">转 @' + item.name + ' : ' + item.content.replace(/<[^>].*?>/g,"") + '</textarea>');
+		this.html.push('</label>');
+		this.html.push('</td>');
+		this.html.push('</tr>');
+		this.html.push('<tr>');
+		this.html.push('<td width="370" height="22" align="left" valign="top">');
+		this.html.push('</td>');
+		this.html.push('<td width="90" align="center" id="forwardbutton_' + this.id + '"><a href="javascript:doForward(' + this.id + ')"><img src="images/myhome_46.gif" width="88" height="22" /></a></td>');
+		this.html.push('</tr>');
+		this.html.push('</table>');
+		this.html.push('</form>');
+		this.html.push('</td>');
+		this.html.push('</tr>');
+		this.html.push('</table>');
+		this.html.push('</td>');
+		this.html.push('</tr>');
+		this.html.push('<tr>');
+		this.html.push('<td>');
+		this.html.push('<img src="images/myhome_45.gif" width="523" height="7" />');
+		this.html.push('</td>');
+		this.html.push('</tr>');
+		this.html.push('</table>');
+		return this.html.join('');
+	}
+}
 var myBox = function(){}
 myBox.articleBox = new articleBox();
-function doPage(page){
-	goTop();
-	myBox.articleBox.currentPage = page;
+function doPage(){
+	$('#pagemore').get(0).innerHTML = '<img src="images/floading.gif">';
+	++myBox.articleBox.currentPage;
 	doReload(function(){
 		myBox.articleBox.load();
 	});
 }
+function doForwardBox(id){
+	if($('#forwardbox_' + id).html()){
+		$('#forwardbox_' + id).fadeOut(800,function(){
+			$(this).remove();
+		}); 
+	}else{
+		var fb = new forwardBox(id);
+		$('#article_' + id).get(0).innerHTML += fb.getHtml();
+		$('#forwardbox_' +id).fadeIn(1100);
+	}
+}
 function doReload(fn){
-	myBox.articleBox.clean();
 	var func = function(rs){
 		myBox.articleBox.setpage(rs.totalCount,rs.pageCount,rs.currentPage);
 		for(var i = 0, l = rs.items.length; i < l; ++i){
@@ -256,40 +318,35 @@ function doReload(fn){
 	DaolifeAjax.getPesonalDao(myBox.articleBox.currentPage,$('#getUserId').val(),func);
 }
 function doForward(id){
-	var item =myBox.articleBox.getElementById(id);
-	if(item){
-		var rf = new forward(item.id,item.picurl,item.name,item.content);
-		mask(rf.getHtml(),function(){
-			DaolifeAjax.addRetwitteDao($('#forward-msg').val(),id,function(rs){
-				if(rs){
-					maskHide();
-				}
-			})
+	if($('#forwardmsg_' + id).val()){
+		$('#forwardbutton_' + id).get(0).innerHTML = '<img src="images/floading.gif" />';
+		DaolifeAjax.addRetwitteDao($('#forwardmsg_' + id).val(),id,function(rs){
+			if(rs){
+				myBox.articleBox.getElementById(id).reload();
+				doPersonal(null);
+			}
 		});
 	}
+	$('#forward-msg').focus();
 }
 function doFollow(id,valid){
 	$('#followflag').get(0).innerHTML = '<img src="images/floading.gif" />';
 	if(valid){
-		//msg.confirm('您确定要关注吗？',function(){
-			DaolifeAjax.follow(id,function(rs){
-				if(rs){
-					doPersonal(getQueryString('userId'));
-				}else{
-					alert('关注失败');
-				}
-			});
-		//});
+		DaolifeAjax.follow(id,function(rs){
+			if(rs){
+				doPersonal(getQueryString('userId'));
+			}else{
+				msg.alert('关注失败');
+			}
+		});
 	}else{
-		//msg.confirm('您确定要取消关注吗？',function(){
-			DaolifeAjax.unFollow(id,function(rs){
-				if(rs){
-					doPersonal(getQueryString('userId'));
-				}else{
-					alert('取消关注失败');
-				}
-			});
-		//});
+		DaolifeAjax.unFollow(id,function(rs){
+			if(rs){
+				doPersonal(getQueryString('userId'));
+			}else{
+				msg.alert('取消关注失败');
+			}
+		});
 	}
 }
 $(function($){
