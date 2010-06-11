@@ -122,6 +122,7 @@
 						</div>
 						<div id="infocenter" class="reight">
 							<div id="personal">
+								<dir style="padding-top:30px;text-align:center;"><img src="images/ploading.gif"></dir>
 							</div>
 							<s:action name="hotWidget" executeResult="true" />  
 							<div class="Box">

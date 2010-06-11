@@ -547,13 +547,15 @@ function doPersonal(id){
 }
 function doLogin(){
 	if($('#userName').val() && $('#password').val()){
-		mask('<img src="images/loading.gif" /><p style="color:#fff;">正在登陆...</p>',function(){},false);
-		DaolifeAjax.login($('#userName').val(),$('#password').val(),$('#memory').get(0).checked,function(rs){
+		var userName = $('#userName').val();
+		var password = $('#password').val();
+		var checked = $('#memory').get(0).checked;
+		$('#personal').get(0).innerHTML = '<dir style="padding-top:30px;text-align:center;color:#666666;"><img src="images/ploading.gif"><p>正在登陆...</p></dir>';
+		DaolifeAjax.login(userName,password,checked,function(rs){
 			if(rs){
-				$('#mask-forward').get(0).innerHTML = '<p style="color:#fff;">登陆失败!原因：' + rs +'&nbsp;&nbsp;<a href="javascript:maskHide()" style="color:#fff;">[关闭]</a></p>';
+				$('#personal').get(0).innerHTML = '<dir style="padding-top:30px;text-align:center;color:#666666;"><h1><b>Bazinga</b></h1><p>登陆失败！原因：' + rs + '</p><p><a href="javascript:doPersonal()">重新登陆</a></p></dir>';
 			}else{
-				doPersonal();
-				$('#mask-forward').get(0).innerHTML = '<p style="color:#fff;">登陆成功！五秒钟后跳转到我的首页...</p>';
+				$('#personal').get(0).innerHTML = '<dir style="padding-top:30px;text-align:center;color:#666666;"><h1><b>Bingo</b></h1><p>登陆成功！五秒后跳转到我的首页...</p><p><a href="MyPage.action">我的首页</a></p></dir>';
 				setTimeout(function(){
 					window.location.href = 'MyPage.action';
 				},5000);

@@ -209,6 +209,7 @@
 						<!--右边区域-->
 						<div class="reight">
 							<div id="personal">
+								<dir style="padding-top:30px;text-align:center;"><img src="images/ploading.gif"></dir>
 							</div>
 							<div class="Box">
 								最热叨友<span><a href="javascript://">查看全部</a></span>
