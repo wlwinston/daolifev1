@@ -121,40 +121,28 @@ function article(id,uid,name,content,picurl,replyAmount,forwardAmount,dingAmount
 	this.dingAmount = dingAmount;
 	this.html = [];
 	this.isDingValid = true;
+	this.time = '2010-06-11 17:50';
+}
+function doMouseover(id){
+	$('#article_' + id).css('background','#F5F5F5');
+}
+function doMouseout(id){
+	$('#article_' + id).css('background','#F8F8F8');
 }
 article.prototype = {
 	getHtml : function(){
-		return '<div id="article_' + this.id + '">' + this.getElement() + '</div>'
+		return '<div id="article_' + this.id + '" style="width:540px;border-bottom:1px #D8D8D8 dashed;font-size:13px;height:auto;max-height:none;min-height:100px;overflow:hidden" onmouseover="doMouseover(' + this.id + ')" onmouseout="doMouseout(' + this.id + ')">' + this.getElement() + '</div>'
 	}
 	,getElement : function(){
-		this.html = [];
-		this.html.push('<table width="540" border="0" cellspacing="4" cellpadding="4">');
-		this.html.push('<tr>');
-		this.html.push('<td width="47" height="44"><a href="PersonPage.action?userId=' + this.uid + '"><img src="' + this.picurl + '" width="78" height="77" /></a></td>');
-		this.html.push('<td width="465" align="left" valign="top">');
-		this.html.push('<table width="432" height="78" border="0" cellpadding="0" cellspacing="0">');
-		this.html.push('<tr><td width="432"><a href="PersonPage.action?userId=' + this.uid + '">' + this.name + '</a></td></tr>');
-		this.html.push('<tr><td style="word-wrap:break-word;width:432px;">' + this.content + '</td></tr>');
-		this.html.push('<tr>');
-		this.html.push('<td align="right">');
-		this.html.push('<table width="250" border="0" cellspacing="2" cellpadding="2">');
-		this.html.push('<tr>');
-		this.html.push('<td width="78"><a href="javascript:closefunction()">回复（' + this.replyAmount + '）</a></td>');
-		this.html.push('<td width="75"><a href="javascript:doForwardBox(' + this.id + ')">转发（' + this.forwardAmount + '）</a></td>');
-		if(this.isDingValid){
-			this.html.push('<td width="77"><a href="javascript:doDing(' + this.id + ')">顶他（' + this.dingAmount + '）</a></td>');
-		}else{
-			this.html.push('<td width="77"><a href="javascript://">顶他（' + this.dingAmount + '）</a></td>');
-		}
-		this.html.push('</tr>');
-		this.html.push('</table>');
-		this.html.push('</td>');
-		this.html.push('</tr>');
-		this.html.push('</table>');
-		this.html.push('</td>');
-		this.html.push('</tr>');
-		this.html.push('</table>');
-		return this.html.join('');
+		var html = [];
+		html.push('<div style="width:530px;margin:10px 5px;height:auto;max-height:none;min-height:80px;overflow:hidden;text-align:left;">');
+		html.push('<div style="width:80px;height:80px;float:left;padding:0px;border:1px #D8D8D8;"><a href="PersonPage.action?userId=' + this.uid + '"><img src="images/myhome_30.gif" width="80" height="80" /></a></div>');
+		html.push('<div style="width:440px;float:right;padding-top:3px;line-height:19px;min-height:60px;">');
+		html.push('<a href="PersonPage.action?userId=' + this.uid + '">' + this.name + '</a> ：' + this.content);
+		html.push('</div>');
+		html.push('<div style="width:440px;float:right;font-size:12px;">' + this.time + '<span style="float:right"><a href="javascript:doForwardBox(' + this.id + ')">转发（' + this.forwardAmount + '）</a> | <a href="javascript:doDing(' + this.id + ')">顶它（' + this.dingAmount + '）</a></span></div>')
+		html.push('</div>');
+		return html.join('');
 	}
 	,reload : function(){
 		//this.isDingValid = false;
@@ -182,7 +170,7 @@ forwardBox.prototype = {
 	getHtml : function(){
 		var item =myBox.articleBox.getElementById(this.id);
 		this.html = [];
-		this.html.push('<table id="forwardbox_' + this.id + '" width="487" border="0" cellspacing="0" cellpadding="0" style="display:none;">');
+		this.html.push('<table id="forwardbox_' + this.id + '" width="487" border="0" cellspacing="0" cellpadding="0" style="display:none;margin-bottom:10px;">');
 		this.html.push('<tr><td width="487"><img src="images/myhome_34.gif" width="523" height="6" /></td></tr>');
 		this.html.push('<tr>');
 		this.html.push('<td align="center" valign="top" background="images/myhome_37.gif">');
@@ -286,7 +274,7 @@ articleBox.prototype = {
 		html.push('</ul></center></div>')
 		*/
 		if(this.pageCount > 1){
-			html.push('<div style="margin-bottom:10px;height:37px;color:#666666;border:1px #D8D8D8 solid;text-align:center;position: relative;overflow: hidden;">');
+			html.push('<div style="margin:10px 0;height:37px;color:#666666;border:1px #D8D8D8 solid;text-align:center;position: relative;overflow: hidden;">');
 			html.push('<div style="width:440px;padding-top:10px;height:27px;font-size:14px;float:left;" id="pagemore"><a href="javascript:doPage()">更多</a></div>');
 			html.push('<div style="width:120px;padding-top:11px;height:26px;float:left;border-left:1px #D8D8D8 solid;"><a href="javascript:goTop()">回到顶部</a></div>');
 			html.push('</div>')
@@ -398,7 +386,7 @@ function doForwardBox(id){
 		}); 
 	}else{
 		var fb = new forwardBox(id);
-		$('#article_' + id).after(fb.getHtml());
+		$('#article_' + id).get(0).innerHTML += fb.getHtml();
 		$('#forwardbox_' +id).fadeIn(1100);
 	}
 }

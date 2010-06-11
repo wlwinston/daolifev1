@@ -102,7 +102,7 @@
 				<tr>
 					<td height="1021" align="left" valign="top">
 						<div class="zuo">
-							<table width="514" height="51" border="0" align="center"
+							<table width="555" height="51" border="0" align="center"
 								cellpadding="0" cellspacing="0" class="xia1">
 								<tr>
 									<td width="112" height="50" align="center" valign="middle">
