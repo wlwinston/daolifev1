@@ -276,6 +276,7 @@ articleBox.prototype = {
 	}
 	,getpagebar : function(){
 		var html = [];
+		/*
 		html.push('<div class="yem1"><center><ul>');
 		if(this.pageCount > 1){
 			for(var i = 0, l = this.pageCount; i < l; ++i){
@@ -283,6 +284,13 @@ articleBox.prototype = {
 			}
 		}
 		html.push('</ul></center></div>')
+		*/
+		if(this.pageCount > 1){
+			html.push('<div style="margin-bottom:10px;height:37px;color:#666666;border:1px #D8D8D8 solid;text-align:center;position: relative;overflow: hidden;">');
+			html.push('<div style="width:440px;padding-top:10px;height:27px;font-size:14px;float:left;" id="pagemore"><a href="javascript:doPage()">更多</a></div>');
+			html.push('<div style="width:120px;padding-top:11px;height:26px;float:left;border-left:1px #D8D8D8 solid;"><a href="javascript:goTop()">回到顶部</a></div>');
+			html.push('</div>')
+		}
 		return html.join('');
 	}
 	,initpage : function(){
@@ -304,15 +312,15 @@ articleBox.prototype = {
 var myBox = function(){}
 myBox.status = 1;
 myBox.articleBox = new articleBox();
-function doPage(page){
-	goTop();
-	myBox.articleBox.currentPage = page;
+function doPage(){
+	$('#pagemore').get(0).innerHTML = '<img src="images/floading.gif">';
+	++myBox.articleBox.currentPage;
 	doReload(function(){
 		myBox.articleBox.load();
 	});
 }
 function doReload(fn){
-	myBox.articleBox.clean();
+	//myBox.articleBox.clean();
 	var func = function(rs){
 		myBox.articleBox.setpage(rs.totalCount,rs.pageCount,rs.currentPage);
 		for(var i = 0, l = rs.items.length; i < l; ++i){

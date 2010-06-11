@@ -194,10 +194,13 @@
 }
 .zuo {
 	float: left;
-	height: auto;
+	height: 100%;
 	width: 570px;
 	padding-top: 10px;
-	padding-left: 15px;
+	padding-left: 10px;
+	min-height:500px;
+	max-height:none;
+	height:auto;
 }
 .Box  {
 	font-weight: bold;
@@ -391,4 +394,8 @@
 	width : 110px;
 	float : left;
 	text-align : center;
+}
+#personal{
+	width : 380px;
+	height : 269px;
 }
