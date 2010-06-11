@@ -264,15 +264,6 @@ articleBox.prototype = {
 	}
 	,getpagebar : function(){
 		var html = [];
-		/*
-		html.push('<div class="yem1"><center><ul>');
-		if(this.pageCount > 1){
-			for(var i = 0, l = this.pageCount; i < l; ++i){
-				html.push('<li><a href="javascript:doPage(' + (i+1) + ')">' + (i + 1) + '</a></li>');
-			}
-		}
-		html.push('</ul></center></div>')
-		*/
 		if(this.pageCount > 1){
 			html.push('<div style="margin:10px 0;height:37px;color:#666666;border:1px #D8D8D8 solid;text-align:center;position: relative;overflow: hidden;">');
 			html.push('<div style="width:440px;padding-top:10px;height:27px;font-size:14px;float:left;" id="pagemore"><a href="javascript:doPage()">更多</a></div>');
