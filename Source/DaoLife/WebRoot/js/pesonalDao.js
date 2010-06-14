@@ -110,7 +110,7 @@ function doArticle(id){
 	}
 }
 //发布的单条数据
-function article(id,name,content,picurl,replyAmount,forwardAmount,dingAmount){
+function article(id,name,content,picurl,replyAmount,forwardAmount,dingAmount,time){
 	this.id = id;
 	this.name = name;
 	this.content = content;
@@ -119,7 +119,7 @@ function article(id,name,content,picurl,replyAmount,forwardAmount,dingAmount){
 	this.forwardAmount = forwardAmount;
 	this.dingAmount = dingAmount;
 	this.html = [];
-	this.time = '2010-06-11 17:50';
+	this.time = time;
 }
 function doMouseover(id){
 	$('#article_' + id).css('background','#F5F5F5');
@@ -332,7 +332,7 @@ function doReload(fn){
 	var func = function(rs){
 		myBox.articleBox.setpage(rs.totalCount,rs.pageCount,rs.currentPage);
 		for(var i = 0, l = rs.items.length; i < l; ++i){
-			myBox.articleBox.add(new article(rs.items[i].contentId,rs.items[i].dlUsers.userNickName,rs.items[i].contentBody,'images/myhome_30.gif',0,rs.items[i].retwittNum,rs.items[i].upNum));
+			myBox.articleBox.add(new article(rs.items[i].contentId,rs.items[i].dlUsers.userNickName,rs.items[i].contentBody,'images/myhome_30.gif',0,rs.items[i].retwittNum,rs.items[i].upNum,getTime(rs.items[i].posttime)));
 		}
 		if(fn){
 			fn();

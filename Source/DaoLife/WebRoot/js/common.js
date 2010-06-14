@@ -604,6 +604,19 @@ function goTop(acceleration, time) {
 		window.setTimeout(invokeFunction, time);
 	}
 }    
+function getTime(time){
+	var time = new Date(time);
+	var year = time.getFullYear();
+	var month = (time.getMonth() + 1);
+	var day = time.getDate();
+	var hours = time.getHours();
+	var seconds = time.getSeconds();
+	
+	var date = new Date();
+	var str = '';
+	str = year + '年' + month + '月' + day + '日';
+	return  str + ' ' + hours + ':' + seconds;
+}
 $(function($){
 	doDlinfo();
 })
