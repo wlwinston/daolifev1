@@ -102,6 +102,18 @@ public class CommonAjax {
 	 * @author fsn ����ǳ��Ƿ�Ψһ ����true Ψһ
 	 */
 	public boolean checkUserNickName(String check) {
+		WebContext request = WebContextFactory.get();
+
+		HttpSession session = request.getSession(false);
+		if (session != null
+				&& session
+						.getAttribute(Constant.SESSION_USER_KEY.getStrValue()) != null) {
+			DlUsers nowuser = (DlUsers) session
+			.getAttribute(Constant.SESSION_USER_KEY.getStrValue());
+			if(nowuser.getUserNickName().equals(check)){
+				return true;
+			}
+		}
 		boolean flag = userService.checkUserByNickName(check);
 		return flag;
 	}
