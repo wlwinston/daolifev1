@@ -9,6 +9,7 @@ package com.innovation.daolife.action;
 import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -57,7 +58,11 @@ public class UserAction extends ActionSupport implements SessionAware, ServletRe
 	private String password;
 	private String newpassword;
 	private Short userId;
-	private List areaInfo;
+	private List areaInfo = new ArrayList();
+	private String province;
+	private String city;
+	private List provinceList = new ArrayList();
+	private List cityList = new ArrayList();
 	private String authCode;
 	private String newPassword;
 	private String newPasswordConfirm;
@@ -126,20 +131,20 @@ public class UserAction extends ActionSupport implements SessionAware, ServletRe
 		String cityId = oldUserInfo.getHomeCity();
 		
 		if(cityId!=null&&!cityId.equals("")){
-			DlArea province = dlAreaService.getProvinceByCity(cityId);
-			areaInfo.add(province.getAreaId());
-			areaInfo.add(cityId);
-			List Province = dlAreaService.getAreaInfo("000001");
-			areaInfo.add(Province);
-			List City = dlAreaService.getAreaInfo(province.getAreaId());
-			areaInfo.add(City);
+			DlArea tmp_province = dlAreaService.getProvinceByCity(cityId);
+			province=tmp_province.getAreaId();
+			city=cityId;
+			provinceList = dlAreaService.getDlAreaListInfo("000001");
+//			provinceList.add(Province);
+			cityList = dlAreaService.getDlAreaListInfo(tmp_province.getAreaId());
+//			cityList.add(City);
 		}else{
-			areaInfo.add("000002");//默认北京市
-			areaInfo.add("000010");//默认海淀区
-			List Province = dlAreaService.getAreaInfo("000001");
-			areaInfo.add(Province);
-			List City = dlAreaService.getAreaInfo("000002");
-			areaInfo.add(City);
+			province="000002";//默认北京市
+			city="000010";//默认海淀区
+			provinceList = dlAreaService.getDlAreaListInfo("000001");
+//			provinceList.add(Province);
+			cityList = dlAreaService.getDlAreaListInfo("000002");
+//			cityList.add(City);
 		}
 		return "initUpdateSuccess";
 	}
@@ -522,6 +527,30 @@ public class UserAction extends ActionSupport implements SessionAware, ServletRe
 	}
 	public void setDlAreaService(IDlAreaService dlAreaService) {
 		this.dlAreaService = dlAreaService;
+	}
+	public List getProvinceList() {
+		return provinceList;
+	}
+	public void setProvinceList(List provinceList) {
+		this.provinceList = provinceList;
+	}
+	public List getCityList() {
+		return cityList;
+	}
+	public void setCityList(List cityList) {
+		this.cityList = cityList;
+	}
+	public String getProvince() {
+		return province;
+	}
+	public void setProvince(String province) {
+		this.province = province;
+	}
+	public String getCity() {
+		return city;
+	}
+	public void setCity(String city) {
+		this.city = city;
 	}
 
 }
