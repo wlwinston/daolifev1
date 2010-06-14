@@ -409,6 +409,7 @@ public class CommonAjax {
 			Short userId = user.getUserId();
 			paginationSupport = userService.getFollowerContentListByUser(
 					paginationSupport, userId);
+			paginationSupport.setNowUid(userId);
 		} else {
 			return null;
 		}
@@ -739,6 +740,15 @@ public class CommonAjax {
 		} else {
 			return false;
 		}
+	}
+	
+	/**
+	 * 
+	 * */
+	public boolean deleteDao(Short id){
+		boolean flag = true;
+		
+		return flag;
 	}
 	
 	public String login(String userName ,String password,boolean ifCookie) throws NoSuchAlgorithmException, UnsupportedEncodingException
