@@ -61,6 +61,8 @@ public class UserAction extends ActionSupport implements SessionAware, ServletRe
 	private List areaInfo = new ArrayList();
 	private String province;
 	private String city;
+	private String province_select;
+	private String city_select;
 	private List provinceList = new ArrayList();
 	private List cityList = new ArrayList();
 	private String authCode;
@@ -120,6 +122,7 @@ public class UserAction extends ActionSupport implements SessionAware, ServletRe
 	 * */
 	public String update() throws Exception{
 		DlUsers oldUserInfo = (DlUsers) att.get(Constant.SESSION_USER_KEY.getStrValue());
+		updateUser.setHomeCity(city);
 		userService.update(updateUser,oldUserInfo);
 		att.put("user", updateUser);
 		return "updateSuccess";
@@ -127,16 +130,16 @@ public class UserAction extends ActionSupport implements SessionAware, ServletRe
 	
 	public String initUpdate() throws Exception{
 		DlUsers oldUserInfo = (DlUsers) att.get(Constant.SESSION_USER_KEY.getStrValue());
-		updateUser = oldUserInfo;
-		String cityId = oldUserInfo.getHomeCity();
+		updateUser = userService.getUsersById(oldUserInfo.getUserId());
+		String cityId = updateUser.getHomeCity();
 		
 		if(cityId!=null&&!cityId.equals("")){
 			DlArea tmp_province = dlAreaService.getProvinceByCity(cityId);
-			province=tmp_province.getAreaId();
+			province=tmp_province.getParentId();
 			city=cityId;
 			provinceList = dlAreaService.getDlAreaListInfo("000001");
 //			provinceList.add(Province);
-			cityList = dlAreaService.getDlAreaListInfo(tmp_province.getAreaId());
+			cityList = dlAreaService.getDlAreaListInfo(province);
 //			cityList.add(City);
 		}else{
 			province="000002";//默认北京市
@@ -551,6 +554,18 @@ public class UserAction extends ActionSupport implements SessionAware, ServletRe
 	}
 	public void setCity(String city) {
 		this.city = city;
+	}
+	public String getProvince_select() {
+		return province_select;
+	}
+	public void setProvince_select(String province_select) {
+		this.province_select = province_select;
+	}
+	public String getCity_select() {
+		return city_select;
+	}
+	public void setCity_select(String city_select) {
+		this.city_select = city_select;
 	}
 
 }

@@ -56,6 +56,7 @@ public class DlUsers implements java.io.Serializable {
 	private Set contentatmes;
 	private boolean followFlag = false;
 	private int  contentsSize;
+	private String cityName;
 	//用户的角色列表�û��Ľ�ɫ�б�
 	private List<DlUserroles> userRolesList = null ;
 
@@ -449,6 +450,14 @@ public class DlUsers implements java.io.Serializable {
 
 	public void setDlProductfollow(Set dlProductfollow) {
 		this.dlProductfollow = dlProductfollow;
+	}
+
+	public String getCityName() {
+		return cityName;
+	}
+
+	public void setCityName(String cityName) {
+		this.cityName = cityName;
 	}
 
 	
