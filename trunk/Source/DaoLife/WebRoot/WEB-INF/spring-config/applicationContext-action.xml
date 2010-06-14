@@ -13,6 +13,7 @@
     <bean id="UserAction" class="com.innovation.daolife.action.UserAction"
         scope="prototype">
         <property name="userService" ref="userService" />
+        <property name="dlAreaService" ref="dlAreaService" />
     </bean>
     <bean id="DaoAction" class="com.innovation.daolife.action.DaoAction"
         scope="prototype">
