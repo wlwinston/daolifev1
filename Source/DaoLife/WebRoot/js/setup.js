@@ -1,5 +1,5 @@
 $(function($){
-	$('#regist').submit(function(){
+	$('#update').submit(function(){
 		$(this).focus();
 		return Form.isValid();
 	})
@@ -31,9 +31,10 @@ $(function($){
 		}
 	},'昵称格式不正确或已经存在','请输入昵称');
 	Form.add('yzm',DaolifeAjax.checkAuthCode,'验证码不正确','请输入验证码');
+	$('#province_select').val($('#province').val());
+	$('#city_select').val($('#city').val());
+	$('#nick').focus();
 });
 function reflashpic(){
 	$('#picyzm').attr('src','servlet/dao.auth?time='+Math.random());
-	$('#province_select').val($('#province').val());
-	$('#city_select').val($('#city').val());
 }
