@@ -48,13 +48,14 @@
 										</th>
 										<td>
 											<label>
-											 <select id="province">
+											 <select id="province_select">
 											 	<s:if test="{provinceList!=null}">
 											 	<s:iterator  value="provinceList" status="provinceList">
 											 		<option value="<s:property value="areaId" />"><s:property value="areaName" /></option>
 											 	</s:iterator>
 											 </s:if>
 											 </select>
+											 <s:hidden id="province" name="province"></s:hidden>
 										</td>
 									</tr>
 									<tr>
@@ -63,13 +64,14 @@
 										</th>
 										<td>
 											<label>
-											 <select id="region">
+											 <select id="city_select">
 											 <s:if test="{cityList!=null}">
 											 	<s:iterator  value="cityList" status="cityList">
 											 		<option value="<s:property value="areaId" />"><s:property value="areaName" /></option>
 											 	</s:iterator>
 											 </s:if>
 											 </select>
+											 <s:hidden id="city" name="city"></s:hidden>
 											</label>
 										</td>
 									</tr>
@@ -79,8 +81,8 @@
 										</th>
 										<td>
 											<label>
-												<input type="radio" value="1" name="updateUser.userGender" />男&nbsp;<input type="radio" value="0" name="updateUser.userGender" />女
-											</label>
+												<input type="radio" value="1" name="updateUser.userGender" checked="checked" />男</label><label>&nbsp;<input type="radio" value="0" name="updateUser.userGender" />女</label>
+											
 										</td>
 									</tr>
 									<tr>

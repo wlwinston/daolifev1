@@ -9,7 +9,7 @@ $(function($){
 			for(var i = 0, l = rs.length; i < l; ++i){
 				html.push('<option value="' + rs[i][0] + '">' + rs[i][1] + '</option>');  
 			}
-			$('#region').html(html.join(''));
+			$('#city_select').html(html.join(''));
 		})
 	});
 	Form.add('nick',function(val,fn){
@@ -29,4 +29,6 @@ $(function($){
 });
 function reflashpic(){
 	$('#picyzm').attr('src','servlet/dao.auth?time='+Math.random());
+	$('#province').val($('#province_select').val());
+	$('#city').val($('#city_select').val());
 }
