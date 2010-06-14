@@ -110,7 +110,7 @@ function doArticle(id){
 	}
 }
 //发布的单条数据
-function article(id,uid,name,content,picurl,replyAmount,forwardAmount,dingAmount){
+function article(id,uid,name,content,picurl,replyAmount,forwardAmount,dingAmount,time,nowuid){
 	this.id = id;
 	this.uid = uid;
 	this.name = name;
@@ -121,7 +121,8 @@ function article(id,uid,name,content,picurl,replyAmount,forwardAmount,dingAmount
 	this.dingAmount = dingAmount;
 	this.html = [];
 	this.isDingValid = true;
-	this.time = '2010-06-11 17:50';
+	this.time = time;
+	this.nowuid =nowuid;
 }
 function doMouseover(id){
 	$('#article_' + id).css('background','#F5F5F5');
@@ -140,7 +141,14 @@ article.prototype = {
 		html.push('<div style="width:440px;float:right;padding-top:3px;line-height:19px;min-height:60px;">');
 		html.push('<a href="PersonPage.action?userId=' + this.uid + '">' + this.name + '</a> ：' + this.content);
 		html.push('</div>');
-		html.push('<div style="width:440px;float:right;font-size:12px;">' + this.time + '<span style="float:right"><a href="javascript:doForwardBox(' + this.id + ')">转发（' + this.forwardAmount + '）</a> | <a href="javascript:doDing(' + this.id + ')">顶它（' + this.dingAmount + '）</a></span></div>')
+		html.push('<div style="width:440px;float:right;font-size:12px;">' + this.time + '<span style="float:right">');
+		html.push('<a href="javascript:doForwardBox(' + this.id + ')">转发（' + this.forwardAmount + '）</a>');
+		html.push(' | ');
+		if(this.uid != this.nowuid){
+			html.push('<a href="javascript:doDing(' + this.id + ')">顶它（' + this.dingAmount + '）</a></span></div>');
+		}else{
+			html.push('<a href="javascript:doDelete(' + this.id + ')">删除</a></span></div>');
+		}
 		html.push('</div>');
 		return html.join('');
 	}
@@ -320,12 +328,23 @@ function doPage(page){
 		myBox.articleBox.load();
 	});
 }
+function doDelete(id){
+	msg.confirm('您确定要删除吗？',function(){
+		DaolifeAjax.deleteDao(id,function(rs){
+			if(rs){
+				doReload(function(){
+					myBox.articleBox.load();
+				});
+			}
+		});
+	})
+}
 function doReload(fn){
 	myBox.articleBox.clean();
 	var func = function(rs){
 		myBox.articleBox.setpage(rs.totalCount,rs.pageCount,rs.currentPage);
 		for(var i = 0, l = rs.items.length; i < l; ++i){
-			myBox.articleBox.add(new article(rs.items[i].contentId,rs.items[i].dlUsers.userId,rs.items[i].dlUsers.userNickName,rs.items[i].contentBody,'images/myhome_30.gif',0,rs.items[i].retwittNum,rs.items[i].upNum));
+			myBox.articleBox.add(new article(rs.items[i].contentId,rs.items[i].dlUsers.userId,rs.items[i].dlUsers.userNickName,rs.items[i].contentBody,'images/myhome_30.gif',0,rs.items[i].retwittNum,rs.items[i].upNum,rs.items[i].posttime,rs.nowUid));
 		}
 		if(fn){
 			fn();
