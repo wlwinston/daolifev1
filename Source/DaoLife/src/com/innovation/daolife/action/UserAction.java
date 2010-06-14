@@ -29,9 +29,11 @@ import com.innovation.common.util.Md5Util;
 import com.innovation.common.util.PaginationSupport;
 import com.innovation.common.util.WebConfig;
 import com.innovation.daolife.action.search.UserSearch;
+import com.innovation.daolife.model.DlArea;
 import com.innovation.daolife.model.DlUserroles;
 import com.innovation.daolife.model.DlUsers;
 import com.innovation.daolife.model.User;
+import com.innovation.daolife.service.IDlAreaService;
 import com.innovation.daolife.service.IUserService;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
@@ -49,11 +51,13 @@ public class UserAction extends ActionSupport implements SessionAware, ServletRe
 	private PaginationSupport paginationSupport ;
 	private UserSearch userSearch;
 	private IUserService userService;
+	private IDlAreaService dlAreaService;
 	private String userName;
 	private String findPwUserName;
 	private String password;
 	private String newpassword;
 	private Short userId;
+	private List areaInfo;
 	private String authCode;
 	private String newPassword;
 	private String newPasswordConfirm;
@@ -114,6 +118,30 @@ public class UserAction extends ActionSupport implements SessionAware, ServletRe
 		userService.update(updateUser,oldUserInfo);
 		att.put("user", updateUser);
 		return "updateSuccess";
+	}
+	
+	public String initUpdate() throws Exception{
+		DlUsers oldUserInfo = (DlUsers) att.get(Constant.SESSION_USER_KEY.getStrValue());
+		updateUser = oldUserInfo;
+		String cityId = oldUserInfo.getHomeCity();
+		
+		if(cityId!=null&&!cityId.equals("")){
+			DlArea province = dlAreaService.getProvinceByCity(cityId);
+			areaInfo.add(province.getAreaId());
+			areaInfo.add(cityId);
+			List Province = dlAreaService.getAreaInfo("000001");
+			areaInfo.add(Province);
+			List City = dlAreaService.getAreaInfo(province.getAreaId());
+			areaInfo.add(City);
+		}else{
+			areaInfo.add("000002");//默认北京市
+			areaInfo.add("000010");//默认海淀区
+			List Province = dlAreaService.getAreaInfo("000001");
+			areaInfo.add(Province);
+			List City = dlAreaService.getAreaInfo("000002");
+			areaInfo.add(City);
+		}
+		return "initUpdateSuccess";
 	}
 	
 	/**
@@ -482,6 +510,18 @@ public class UserAction extends ActionSupport implements SessionAware, ServletRe
 	}
 	public void setFindPwUserName(String findPwUserName) {
 		this.findPwUserName = findPwUserName;
+	}
+	public List getAreaInfo() {
+		return areaInfo;
+	}
+	public void setAreaInfo(List areaInfo) {
+		this.areaInfo = areaInfo;
+	}
+	public IDlAreaService getDlAreaService() {
+		return dlAreaService;
+	}
+	public void setDlAreaService(IDlAreaService dlAreaService) {
+		this.dlAreaService = dlAreaService;
 	}
 
 }
