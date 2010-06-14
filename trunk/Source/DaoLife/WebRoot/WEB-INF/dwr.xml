@@ -46,6 +46,7 @@
 			<include method="getMessageStatistics" />
 			<include method="getDlContentById" />
 			<include method="getTopicContent" />
+			<include method="deleteDao" />
 			<include method="login" />
 		</create>
 	</allow>
