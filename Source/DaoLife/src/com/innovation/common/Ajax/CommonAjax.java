@@ -288,6 +288,7 @@ public class CommonAjax {
 			Short userId = user.getUserId();
 			paginationSupport = userService.getContentListByUser(
 					paginationSupport, userId);
+			paginationSupport.setNowUid(user.getUserId());
 		} else {
 			return null;
 		}
@@ -375,6 +376,7 @@ public class CommonAjax {
 		if (user != null) {
 			paginationSupport = userService.getContentListByUser(
 					paginationSupport, userId);
+			paginationSupport.setNowUid(user.getUserId());
 		} else {
 			return null;
 		}
@@ -431,6 +433,16 @@ public class CommonAjax {
 		PaginationSupport paginationSupport = new PaginationSupport(pageSize,
 				startIndex);
 		paginationSupport = dlDaoService.getContentListByTime(paginationSupport);
+		WebContext request = WebContextFactory.get();
+
+		HttpSession session = request.getSession(false);
+		if (session != null
+				&& session
+						.getAttribute(Constant.SESSION_USER_KEY.getStrValue()) != null) {
+			DlUsers user = (DlUsers) session
+					.getAttribute(Constant.SESSION_USER_KEY.getStrValue());
+			paginationSupport.setNowUid(user.getUserId());
+			}
 		return paginationSupport;
 	}
 
