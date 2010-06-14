@@ -34,6 +34,7 @@ import com.innovation.common.util.PaginationSupport;
 import com.innovation.common.util.RandomString;
 import com.innovation.common.util.WebConfig;
 import com.innovation.daolife.action.search.UserSearch;
+import com.innovation.daolife.dao.IDlAreaDao;
 import com.innovation.daolife.dao.IDlContentDao;
 import com.innovation.daolife.dao.IDlContentatDao;
 import com.innovation.daolife.dao.IDlFriendDao;
@@ -46,6 +47,7 @@ import com.innovation.daolife.dao.IUserDao;
 import com.innovation.daolife.dao.impl.DlHotdaoDao;
 import com.innovation.daolife.dao.impl.DlProductDao;
 import com.innovation.daolife.dao.impl.UserDao;
+import com.innovation.daolife.model.DlArea;
 import com.innovation.daolife.model.DlContent;
 import com.innovation.daolife.model.DlContentat;
 import com.innovation.daolife.model.DlFriend;
@@ -66,6 +68,8 @@ public class UserService implements IUserService {
 	private IDlContentDao dlContentDao;
 
 	private IDlHotdaoDao dlHotdaoDao;
+	
+	private IDlAreaDao dlAreaDao;
 
 	private IDlProductDao dlProductDao;
 	
@@ -119,6 +123,7 @@ public class UserService implements IUserService {
 		if(checkRela(id,fanId)){
 			user.setFollowFlag(true);
 		}
+		user.setCityName(getCityName(user));
 		return user;
 	}
 	
@@ -152,6 +157,7 @@ public class UserService implements IUserService {
 			}else{
 				dlUsers.setFollowFlag(false);
 			}
+			dlUsers.setCityName(getCityName(dlUsers));
 		}
 		return paginationSupport;
 	}
@@ -173,6 +179,7 @@ public class UserService implements IUserService {
 			}else{
 				dlUsers.setFollowFlag(false);
 			}
+			dlUsers.setCityName(getCityName(dlUsers));
 		}
 		return paginationSupport;
 	}
@@ -194,6 +201,7 @@ public class UserService implements IUserService {
 			}else{
 				dlUsers.setFollowFlag(false);
 			}
+			dlUsers.setCityName(getCityName(dlUsers));
 		}
 		return paginationSupport;
 	}
@@ -215,6 +223,7 @@ public class UserService implements IUserService {
 			}else{
 				dlUsers.setFollowFlag(false);
 			}
+			dlUsers.setCityName(getCityName(dlUsers));
 		}
 		return paginationSupport;
 	}
@@ -271,6 +280,7 @@ public class UserService implements IUserService {
 				if(checkRela(followId,fanId)){
 					dlUsers.setFollowFlag(true);
 				}
+				dlUsers.setCityName(getCityName(dlUsers));
 				//dlUsers.setFollowFlag(true);
 			}
 			paginationSupport.setItems(itemList);
@@ -287,6 +297,17 @@ public class UserService implements IUserService {
 			result = true;
 		}
 		return result;
+	}
+	
+	//城市名称
+	private String getCityName(DlUsers user){
+		String sql = " From DlArea u where u.areaId=?";
+		List<DlArea> areaList =dlAreaDao.find(sql, user.getHomeCity());
+		if(areaList.size()>0){
+			return areaList.get(0).getAreaName();
+		}else{
+			return "保密";
+		}
 	}
 	
 	/**
@@ -623,6 +644,14 @@ public class UserService implements IUserService {
 
 	public void setDaoLifeEmail(DaoLifeEmail daoLifeEmail) {
 		this.daoLifeEmail = daoLifeEmail;
+	}
+
+	public IDlAreaDao getDlAreaDao() {
+		return dlAreaDao;
+	}
+
+	public void setDlAreaDao(IDlAreaDao dlAreaDao) {
+		this.dlAreaDao = dlAreaDao;
 	}
 
 }
