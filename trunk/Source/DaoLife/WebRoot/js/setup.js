@@ -3,7 +3,7 @@ $(function($){
 		$(this).focus();
 		return Form.isValid();
 	})
-	$('#province').change(function(){
+	$('#province_select').change(function(){
 		DaolifeAjax.getCitys($(this).val(),function(rs){
 			var html = [];
 			for(var i = 0, l = rs.length; i < l; ++i){
