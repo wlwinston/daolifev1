@@ -17,7 +17,14 @@ public class DlAreaService implements IDlAreaService {
 		return areaList;
 	}
 	
+	public List getDlAreaListInfo(String parentId){
+		String sql = " From DlArea u where u.parentId=?";
+		List<DlArea> areaList = dlAreaDao.find(sql, parentId);
+		return areaList;
+	}
+	
 	public DlArea getProvinceByCity(String cityId){
+		
 		String sql = " From DlArea u where u.areaId=?";
 		List<DlArea> areaList = dlAreaDao.find(sql, cityId);
 		if(areaList.size()>0){
