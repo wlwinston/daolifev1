@@ -243,6 +243,16 @@
 			<interceptor-ref name="webCookie"/>  
 			<interceptor-ref name="defaultStack" /> 
 		</action>
+		
+		<action name="InitUpdate" class="UserAction" method="initUpdate">
+			<result name="initUpdateSuccess">/setup.jsp</result>	
+			<interceptor-ref name="webCookie"/> 
+			<interceptor-ref name="auth"> 
+		        <param name="allowedRoles">daolife_user</param> 
+			</interceptor-ref> 
+		 	<interceptor-ref name="defaultStack" /> 
+		</action>
+		
     </package> 
 
 </struts>
