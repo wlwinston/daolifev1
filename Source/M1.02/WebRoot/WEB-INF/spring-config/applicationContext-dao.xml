@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN" "http://www.springframework.org/dtd/spring-beans-2.0.dtd">
+<beans>
+<!-- 根DAO -->
+<bean id="genericDao" class="com.innovation.common.dao.GenericDao">
+    <property name="sessionFactory">
+        <ref bean="sessionFactory" />
+    </property>
+</bean>
+<bean id="dlUsersDao" class="com.innovation.daolife.dao.impl.DlUsersDao" parent="genericDao" />
+<bean id="dlContentDao" class="com.innovation.daolife.dao.impl.DlContentDao" parent="genericDao" />
+<bean id="dlMessagesDao" class="com.innovation.daolife.dao.impl.DlMessagesDao" parent="genericDao" />
+<bean id="dlAreaDao" class="com.innovation.daolife.dao.impl.DlAreaDao" parent="genericDao" />
+<bean id="dlFriendDao" class="com.innovation.daolife.dao.impl.DlFriendDao" parent="genericDao" />
+<bean id="dlTopicDao" class="com.innovation.daolife.dao.impl.DlTopicDao" parent="genericDao" />
+<bean id="dlContentatDao" class="com.innovation.daolife.dao.impl.DlContentatDao" parent="genericDao" />
+<bean id="dlContenttopicDao" class="com.innovation.daolife.dao.impl.DlContenttopicDao" parent="genericDao" />
+<bean id="dlHotdaoDao" class="com.innovation.daolife.dao.impl.DlHotdaoDao" parent="genericDao" />
+<bean id="dlProductDao" class="com.innovation.daolife.dao.impl.DlProductDao" parent="genericDao" />
+<bean id="dlProductFollowDao" class="com.innovation.daolife.dao.impl.DlProductFollowDao" parent="genericDao" />
+<bean id="dlUserrolesDao" class="com.innovation.daolife.dao.impl.DlUserrolesDao" parent="genericDao" />
+<bean id="dlUplogDao" class="com.innovation.daolife.dao.impl.DlUplogDao" parent="genericDao" />
+
+<bean id="daoLifeEmail" class="com.innovation.common.util.DaoLifeEmail">
+   <property name="hostName" value="${mail.hostName}"/>
+   <property name="userName" value="${mail.userName}"/>
+   <property name="userPass" value="${mail.userPass}"/>
+   <property name="fromAd" value="${mail.fromAd}"/>
+   <property name="fromName" value="${mail.fromName}"/>
+</bean>
+
+</beans>
