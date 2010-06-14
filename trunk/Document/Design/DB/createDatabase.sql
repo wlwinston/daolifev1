@@ -23,7 +23,7 @@ create table daolife.dl_hotdao
    hotdao_id            smallint(10) not null auto_increment,
    daonum               smallint(6) not null,
    user_name            varchar(64) not null default '0',
-   content_body         varchar(300) not null,
+   content_body         varchar(1000) not null,
    retwitt_num          smallint(10) not null default 0,
    posttime             int(10) not null,
    up_sum               smallint(10) not null,
@@ -49,6 +49,20 @@ create table daolife.dl_topic
 );
 
 alter table daolife.dl_topic comment '话题表';
+
+
+/*==============================================================*/
+/* Table: dl_contentTopic                                          */
+/*==============================================================*/
+create table daolife.dl_contenttopic
+(
+   contenttopic_id         smallint(10) not null auto_increment,
+   content_id           smallint(10) not null,
+   topic_id             smallint(6) not null,
+   primary key (contenttopic_id)
+);
+
+alter table daolife.dl_contentat comment 'topic关联信息表';
 
 
 
@@ -156,7 +170,7 @@ create table daolife.dl_content
    content_id           smallint(10) not null auto_increment,
    user_id              smallint(10) not null,
    topicid              smallint(6) not null default 0,
-   content_body         varchar(300) not null,
+   content_body         varchar(1000) not null,
    posttime             datetime not null,
    origin_id            smallint(10) ,
    origin_allid         varchar(400) ,
@@ -178,7 +192,7 @@ alter table daolife.dl_content comment '叨内容表';
 create table daolife.dl_product
 (
    product_id           smallint(6) not null auto_increment,
-   product_name         varchar(300) not null,
+   product_name         varchar(1000) not null,
    product_url          varchar(200) not null,
    product_pic          varchar(200) NOT NULL,
    product_author       varchar(64) not null,
