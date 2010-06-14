@@ -262,6 +262,7 @@ articleBox.prototype = {
 			$('#article_' + this.element[0].id).hide().fadeIn(1100);
 		}
 	}
+	/*
 	,getpagebar : function(){
 		var html = [];
 		if(this.pageCount > 1){
@@ -270,6 +271,18 @@ articleBox.prototype = {
 			html.push('<div style="width:120px;padding-top:11px;height:26px;float:left;border-left:1px #D8D8D8 solid;"><a href="javascript:goTop()">回到顶部</a></div>');
 			html.push('</div>')
 		}
+		return html.join('');
+	}
+	*/
+	,getpagebar : function(){
+		var html = [];
+		html.push('<div class="yem1"><center><ul>');
+		if(this.pageCount > 1){
+			for(var i = 0, l = this.pageCount; i < l; ++i){
+				html.push('<li><a href="javascript:doPage(' + (i+1) + ')">' + (i + 1) + '</a></li>');
+			}
+		}
+		html.push('</ul></center></div>')
 		return html.join('');
 	}
 	,initpage : function(){
@@ -291,6 +304,7 @@ articleBox.prototype = {
 var myBox = function(){}
 myBox.status = 1;
 myBox.articleBox = new articleBox();
+/*
 function doPage(){
 	$('#pagemore').get(0).innerHTML = '<img src="images/floading.gif">';
 	++myBox.articleBox.currentPage;
@@ -298,8 +312,16 @@ function doPage(){
 		myBox.articleBox.load();
 	});
 }
+*/
+function doPage(page){
+	goTop();
+	myBox.articleBox.currentPage = page;
+	doReload(function(){
+		myBox.articleBox.load();
+	});
+}
 function doReload(fn){
-	//myBox.articleBox.clean();
+	myBox.articleBox.clean();
 	var func = function(rs){
 		myBox.articleBox.setpage(rs.totalCount,rs.pageCount,rs.currentPage);
 		for(var i = 0, l = rs.items.length; i < l; ++i){
@@ -452,13 +474,14 @@ $(function($){
 		var length = 140;
 		var tlength = 39;
 		var fl = length - parseInt($('#articlecontent').val().length);
+		fl = '<span style="font-size:16px;font-weight:bold;">' + fl + '</span>';
 		if(fl <= 1){
 			$('#articlecontent').val($('#articlecontent').val().substr(0,length));
-			$('#fontlength').get(0).innerHTML = '<span style="color:red;">0(不能作为T恤文字)</span>';
+			$('#fontlength').get(0).innerHTML = '<span style="color:red;font-size:18px;font-weight:bold;">0(不能作为T恤文字)</span>';
 			return;
 		}
 		if(fl < length - tlength){
-			fl = '<span style="color:red;">' + fl + '(不能作为T恤文字)</span>';
+			fl = '<span style="color:red;font-size:18px;font-weight:bold;">' + fl + '(不能作为T恤文字)</span>';
 		}
 		$('#fontlength').get(0).innerHTML = fl;
 	}

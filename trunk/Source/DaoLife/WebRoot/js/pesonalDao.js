@@ -210,6 +210,7 @@ articleBox.prototype = {
 			$('#article_' + this.element[0].id).hide().fadeIn(1100);
 		}
 	}
+	/*
 	,getpagebar : function(){
 		var html = [];
 		if(this.pageCount > 1){
@@ -218,6 +219,18 @@ articleBox.prototype = {
 			html.push('<div style="width:120px;padding-top:11px;height:26px;float:left;border-left:1px #D8D8D8 solid;"><a href="javascript:goTop()">回到顶部</a></div>');
 			html.push('</div>')
 		}
+		return html.join('');
+	}
+	*/
+	,getpagebar : function(){
+		var html = [];
+		html.push('<div class="yem1"><center><ul>');
+		if(this.pageCount > 1){
+			for(var i = 0, l = this.pageCount; i < l; ++i){
+				html.push('<li><a href="javascript:doPage(' + (i+1) + ')">' + (i + 1) + '</a></li>');
+			}
+		}
+		html.push('</ul></center></div>')
 		return html.join('');
 	}
 	,initpage : function(){
@@ -287,9 +300,18 @@ forwardBox.prototype = {
 }
 var myBox = function(){}
 myBox.articleBox = new articleBox();
+/*
 function doPage(){
 	$('#pagemore').get(0).innerHTML = '<img src="images/floading.gif">';
 	++myBox.articleBox.currentPage;
+	doReload(function(){
+		myBox.articleBox.load();
+	});
+}
+*/
+function doPage(page){
+	goTop();
+	myBox.articleBox.currentPage = page;
 	doReload(function(){
 		myBox.articleBox.load();
 	});
@@ -306,6 +328,7 @@ function doForwardBox(id){
 	}
 }
 function doReload(fn){
+	myBox.articleBox.clean();
 	var func = function(rs){
 		myBox.articleBox.setpage(rs.totalCount,rs.pageCount,rs.currentPage);
 		for(var i = 0, l = rs.items.length; i < l; ++i){
