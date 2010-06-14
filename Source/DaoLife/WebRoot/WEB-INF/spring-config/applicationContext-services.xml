@@ -26,6 +26,9 @@
 		    <property name="dlFriendDao">
 		        <ref bean="dlFriendDao"/>
 		    </property>
+		    <property name="dlAreaDao">
+		        <ref bean="dlAreaDao"/>
+		    </property>
 		    <property name="daoLifeEmail"><ref bean="daoLifeEmail"/></property>
 	    </bean>
     </property>
