@@ -4,18 +4,13 @@ $(function($){
 		return Form.isValid();
 	})
 	$('#province').change(function(){
-		var html = [];
-		switch($(this).val()){
-			case '1':
-				html.push('<option>海淀区</option>');
-				html.push('<option>朝阳区</option>');
-				break;
-			case '2':
-				html.push('<option>淮海路</option>');
-				html.push('<option>南京路</option>');
-				break;
-		}
-		$('#region').html(html.join(''));
+		DaolifeAjax.getCitys($(this).val(),function(rs){
+			var html = [];
+			for(var i = 0, l = rs.length; i < l; ++i){
+				html.push('<option value="' + rs[i][0] + '">' + rs[i][1] + '</option>');  
+			}
+			$('#region').html(html.join(''));
+		})
 	});
 	Form.add('nick',function(val,fn){
 		if(val != null && val != ''){
