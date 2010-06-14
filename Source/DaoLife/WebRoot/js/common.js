@@ -179,9 +179,11 @@ function getUserAddress(adr){
 	return '城市：' + str;
 }
 var Form = {
-	valid : []
+	valid : {}
 	,isValid : function(){
-		for(var name in Form.valid){
+		for(var name in this.valid){
+			$('#' + name).focus();
+			$('#' + name).blur();
 			if(!Form.valid[name]){
 				return false;
 			}
