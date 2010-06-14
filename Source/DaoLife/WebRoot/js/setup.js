@@ -34,6 +34,6 @@ $(function($){
 });
 function reflashpic(){
 	$('#picyzm').attr('src','servlet/dao.auth?time='+Math.random());
-	$('#province').val($('#province_select').val());
-	$('#city').val($('#city_select').val());
+	$('#province_select').val($('#province').val());
+	$('#city_select').val($('#city').val());
 }
