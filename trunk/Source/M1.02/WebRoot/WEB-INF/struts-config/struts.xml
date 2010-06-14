@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+   <include file ="struts-default.xml" /> 
+   <package name="daoLife" extends="struts-default" >
+   		<!-- 权限拦截器 -->
+   		<interceptors> 
+   		 	<interceptor name ="auth" class ="com.innovation.common.web.control.AuthorizationInterceptor"/>
+            <interceptor name ="webCookie" class ="WebCookieInterceptor"/>
+             <interceptor name="cookieInterceptor" class="org.apache.struts2.interceptor.CookieInterceptor"></interceptor>
+            
+		</interceptors>
+		<default-action-ref name="UnderConstruction"></default-action-ref>
+		<global-results>
+			<!-- 下面定义的结果对所有的Action都有效 -->
+		    <result name="exception">/error.jsp</result>
+		</global-results>
+		<global-exception-mappings>
+			<!-- 指Action抛出Exception异常时，转入名为exception的结果。 -->
+			<exception-mapping exception="java.lang.Exception" result="exception"/>
+		</global-exception-mappings>
+		 <action name="UnderConstruction" class="UserAction" method="personalPage">
+			<result name="noPerson">/404.jsp</result>	
+			<result name="personPage">pesonalDao.jsp</result>
+			<result name="myPage" type="redirect">MyPage.action</result>
+			<result name="unLogin" type="redirect">index.action</result>
+			
+		</action> 
+		<action name="Regist" class="UserAction" method="regist">
+			<result name="registerSuccess">/registSuccess.jsp</result>
+			<result name="registerFailure">/registFailure.jsp</result>	
+			<result name="input">/regist.jsp</result>
+		</action>
+		<action name="UpdatePsw" class="UserAction" method="updatePsw">
+			<result name="registerSuccess">/success.jsp</result>	
+			<result name="input">/regist.jsp</result>
+			<interceptor-ref name="webCookie"/>
+			<interceptor-ref name="defaultStack" />  
+		</action>
+		<action name="Userlist" class="UserAction" method="userList">
+			<result name="list">/list.jsp</result>
+			<interceptor-ref name="webCookie"/> 
+			<interceptor-ref name="defaultStack" /> 
+		</action>
+		<action name="Login" class="UserAction" method="login">	
+			<result name="loginSuccess" type="redirect">MyPage.action</result>
+			<result name="loginFailure" type="redirect">index.action</result>		
+			<result name="input">/login.jsp</result>
+			<interceptor-ref name="webCookie"/> 
+			<interceptor-ref name="defaultStack" /> 
+		</action>
+		<action name="Logout" class="UserAction" method="logout">	
+			<result name="clearSuccess" type="redirect">index.action</result>
+			<interceptor-ref name="webCookie"/> 
+			<interceptor-ref name="defaultStack" /> 	
+		</action>
+		<action name="Update" class="UserAction" method="update">
+			<result name="updateSuccess">/success.jsp</result>	
+			<result name="input">/login.jsp</result>
+			<result name="forbidden">forbidden.jsp</result> 
+			<interceptor-ref name="webCookie"/> 
+			<interceptor-ref name="auth"> 
+		        <param name="allowedRoles">daolife_user</param> 
+			</interceptor-ref> 
+		 	<interceptor-ref name="defaultStack" /> 
+		</action>
+		<action name="Follow" class="FollowAction" method="follow">
+			<result name="followSuccess">/success.jsp</result>	
+			<result name="input">/login.jsp</result>
+			<result name="forbidden">forbidden.jsp</result>
+			<interceptor-ref name="webCookie"/>
+			<interceptor-ref name="auth"> 
+		        <param name="allowedRoles">daolife_user</param> 
+			</interceptor-ref> 
+		 	<interceptor-ref name="defaultStack" /> 
+		</action>
+		<action name="UnFollow" class="FollowAction" method="unFollow">
+			<result name="followSuccess">/success.jsp</result>	
+			<result name="input">/login.jsp</result>
+			<result name="forbidden">forbidden.jsp</result>
+			<interceptor-ref name="webCookie"/>
+			<interceptor-ref name="auth"> 
+		        <param name="allowedRoles">daolife_user</param> 
+			</interceptor-ref>
+		 	<interceptor-ref name="defaultStack" /> 
+		</action>
+		<action name="UpdatePrepare" class="UserAction" method="updatePrepare">
+			<result name="updatePrepareSuccess">/modify.jsp</result>	
+			<result name="input">/login.jsp</result>
+			<result name="forbidden">forbidden.jsp</result>
+			<interceptor-ref name="webCookie"/> 
+			<interceptor-ref name="auth"> 
+		        <param name="allowedRoles">daolife_user</param> 
+			</interceptor-ref> 
+		 	<interceptor-ref name="defaultStack" /> 
+		</action>
+		<action name="FindPassword" class="UserAction" method="findPassword">
+			<result name="findPasswordSuccess">/success.jsp</result>	
+			<result name="input">/login.jsp</result>
+		</action>
+		<action name="ResetPassword" class="UserAction" method="resetPassword">
+			<result name="resetCheckSuccess">/resetPassword.jsp</result>
+			<result name="resetCheckFailue">/success.jsp</result>	
+			<result name="input">/login.jsp</result>
+		</action>
+		<action name="ResetPasswordSave" class="UserAction" method="resetPasswordSave">
+			<result name="setNewPasswordSuccess">/success.jsp</result>	
+			<result name="setNewPasswordFailue">/success.jsp</result>	
+			<result name="input">/login.jsp</result>
+		</action>
+		<action name="PostDao" class="DaoAction" method="post">
+			<result name="daoPostSuccess">/success.jsp</result>	
+			<result name="input">/regist.jsp</result>
+			<result name="forbidden">forbidden.jsp</result>
+			<interceptor-ref name="webCookie"/>
+			<interceptor-ref name="auth"> 
+		        <param name="allowedRoles">daolife_user</param> 
+			</interceptor-ref>
+		 	<interceptor-ref name="defaultStack" /> 
+		</action>
+		<action name="RetwitteDao" class="DaoAction" method="retwitte">
+			<result name="daoRetwitteSuccess">/success.jsp</result>	
+			<result name="input">/regist.jsp</result>
+			<result name="forbidden">forbidden.jsp</result>
+			<interceptor-ref name="webCookie"/>
+			<interceptor-ref name="auth"> 
+		        <param name="allowedRoles">daolife_user</param> 
+			</interceptor-ref>  
+		 	<interceptor-ref name="defaultStack" /> 
+		</action>
+		<action name="PersonPage" class="UserAction" method="personalPage">
+			<result name="noPerson">/404.jsp</result>	
+			<result name="personPage">pesonalDao.jsp</result>
+			<result name="myPage" type="redirect">MyPage.action</result>
+			<result name="unLogin" type="redirect">index.action</result>
+			<interceptor-ref name="webCookie"/>  
+		 	<interceptor-ref name="defaultStack" /> 
+		</action>
+		<action name="index" class="WebCommonAction" method="index">
+			<interceptor-ref name="webCookie"/>  
+			<result name="index">index.jsp</result>
+			 <interceptor-ref name="webCookie"/>  
+		 	<interceptor-ref name="defaultStack" /> 
+		</action>
+		
+		<action name="daolifemare" class="WebCommonAction" method="getproduct">
+			<interceptor-ref name="webCookie"/>  
+			<result name="product">daolifemare.jsp</result>
+			 <interceptor-ref name="webCookie"/>  
+		 	<interceptor-ref name="defaultStack" /> 
+		</action>
+		
+		<action name="product" class="WebCommonAction" method="product">
+			<interceptor-ref name="webCookie"/>  
+			<result name="product">productList.jsp</result>
+			 <interceptor-ref name="webCookie"/>  
+		 	<interceptor-ref name="defaultStack" /> 
+		</action>
+		
+		<action name="" class="WebCommonAction" method="index">
+			<interceptor-ref name="webCookie"/>  
+			<result name="index">index.jsp</result>
+			 <interceptor-ref name="webCookie"/>  
+		 	<interceptor-ref name="defaultStack" /> 
+		</action>
+		<action name="MyPage" class="UserAction" method="myPage">
+			<result name="myPageSuccess">/memberInfoCenter.jsp</result>	
+			<result name="forbidden" type="redirect">index.action</result>
+			<interceptor-ref name="webCookie"/>
+			<interceptor-ref name="auth"> 
+		        <param name="allowedRoles">daolife_user</param> 
+			</interceptor-ref>  
+		 	<interceptor-ref name="defaultStack" /> 
+		</action>
+		<action name="AttentionMe" class="UserAction" method="attentionMe">
+			<result name="attentionMeSuccess">/attentionMe.jsp</result>	
+			<result name="forbidden" type="redirect">index.action</result>
+			<interceptor-ref name="webCookie"/> 
+			<interceptor-ref name="auth"> 
+		        <param name="allowedRoles">daolife_user</param> 
+			</interceptor-ref>  
+		 	<interceptor-ref name="defaultStack" /> 
+		</action>
+		<action name="FollowMe" class="UserAction" method="followMe">
+			<result name="followMeSuccess">/myAttention.jsp</result>	
+			<result name="forbidden" type="redirect">index.action</result>
+			<interceptor-ref name="webCookie"/>
+			<interceptor-ref name="auth"> 
+		        <param name="allowedRoles">daolife_user</param> 
+			</interceptor-ref>  
+		 	<interceptor-ref name="defaultStack" /> 
+		</action>
+		
+		<action name="AttentionPerson" class="UserAction" method="attentionMe">
+			<result name="attentionMeSuccess">/pesonalAttention.jsp</result>	
+			<result name="forbidden" type="redirect">index.action</result>
+			<interceptor-ref name="webCookie"/>
+			<interceptor-ref name="auth"> 
+		        <param name="allowedRoles">daolife_user</param> 
+			</interceptor-ref>   
+		 	<interceptor-ref name="defaultStack" /> 
+		</action>
+		<action name="FollowPerson" class="UserAction" method="followMe">
+			<result name="followMeSuccess">/attentionPesonal.jsp</result>	
+			<result name="forbidden" type="redirect">index.action</result>
+			<interceptor-ref name="webCookie"/>
+			<interceptor-ref name="auth"> 
+		        <param name="allowedRoles">daolife_user</param> 
+			</interceptor-ref>   
+		 	<interceptor-ref name="defaultStack" /> 
+		</action>
+		<action name="DaoHot" class="UserAction" method="daoHot">
+			<result name="daoHotSuccess">/daoHot.jsp</result>
+			<interceptor-ref name="webCookie"/>
+			<interceptor-ref name="defaultStack" />   	
+		</action>
+		<action name="topicDetail" class="UserAction" method="daoHot">
+			<result name="daoHotSuccess">/topic.jsp</result>
+			<interceptor-ref name="webCookie"/>
+			<interceptor-ref name="defaultStack" />   	
+		</action>
+		
+		<action name="LookAround" class="UserAction" method="daoHot">
+			<result name="daoHotSuccess">/lookAround.jsp</result>
+			<interceptor-ref name="webCookie"/>
+			<interceptor-ref name="defaultStack" />   	
+		</action>
+		<action name="FriendsHot" class="UserAction" method="friendsHot">
+			<result name="friendsHotSuccess">/friendsHot.jsp</result>
+			<interceptor-ref name="webCookie"/>
+			<interceptor-ref name="defaultStack" />   	
+		</action>
+		<action name="FriendsHot" class="UserAction" method="friendsHot">
+			<result name="friendsHotSuccess">/friendsHot.jsp</result>
+			<interceptor-ref name="webCookie"/>
+			<interceptor-ref name="defaultStack" />   	
+		</action>
+		<action name="hotWidget" class="WebCommonAction" method="hotWidget">
+			<result name="index">hotWidget.jsp</result>
+			<interceptor-ref name="webCookie"/>  
+			<interceptor-ref name="defaultStack" /> 
+		</action>
+		
+		<action name="InitUpdate" class="UserAction" method="initUpdate">
+			<result name="initUpdateSuccess">/setup.jsp</result>	
+			<interceptor-ref name="webCookie"/> 
+			<interceptor-ref name="auth"> 
+		        <param name="allowedRoles">daolife_user</param> 
+			</interceptor-ref> 
+		 	<interceptor-ref name="defaultStack" /> 
+		</action>
+		
+    </package> 
+
+</struts>
