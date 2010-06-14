@@ -10,8 +10,13 @@ $(function($){
 				html.push('<option value="' + rs[i][0] + '">' + rs[i][1] + '</option>');  
 			}
 			$('#city_select').html(html.join(''));
-		})
+		});
+		$('#province').val($('#province_select').val());
 	});
+	$('#city_select').change(function(){
+		$('#city').val($('#city_select').val());
+	})
+	
 	Form.add('nick',function(val,fn){
 		if(val != null && val != ''){
 			DaolifeAjax.checkUserNickName(val,function(rs){
