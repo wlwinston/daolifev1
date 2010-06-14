@@ -448,7 +448,7 @@ personal.prototype = {
 			html.push('<div class="shezhi">');
 			html.push('<table width="138" border="0" cellspacing="3" cellpadding="3">');
 			html.push('<tr>');
-			html.push('<td width="54"><a href="javascript://">我的设置</a></td>');
+			html.push('<td width="54"><a href="InitUpdate.action">我的设置</a></td>');
 			html.push('<td width="63"><a href="javascript://">我的私信</a></td>');
 			html.push('</tr>');
 			html.push('<tr>');
