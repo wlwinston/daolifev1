@@ -9,6 +9,7 @@ import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
@@ -43,6 +44,7 @@ import com.innovation.daolife.dao.IDlUplogDao;
 import com.innovation.daolife.dao.IDlUsersDao;
 import com.innovation.daolife.dao.IFollowrelationDao;
 import com.innovation.daolife.dao.IUserDao;
+import com.innovation.daolife.dao.impl.DlContentDao;
 import com.innovation.daolife.dao.impl.DlHotdaoDao;
 import com.innovation.daolife.model.DlContent;
 import com.innovation.daolife.model.DlContentat;
@@ -86,6 +88,28 @@ public class DlDaoService implements IDlDaoService {
 		this.saveDao(customerDaoDao, user);
 		return customerDaoDao;
 	}
+	/**
+	 * @author fengsn
+	 * 删除一条dao
+	 * @param user发叨人 id dao的id
+	 * */
+	public boolean deleteDao(DlUsers user,Short id){
+		boolean flag = true;
+		//删除dao句数据库记录
+		DlContent contentDao = dlContentDao.get(id);
+		contentDao.setStatus("1");
+		dlContentDao.update(contentDao);
+		String sql = " From DlContentat u where u.contentId=?";
+		List<DlContentat> contentatList = dlContentatDao.find(sql, id);
+		if(contentatList.size()>0){
+			for(int i=0;i<contentatList.size();i++){
+				DlContentat temp = contentatList.get(i);
+				dlContentatDao.delete(temp);
+			}
+		}
+		return flag;
+	}
+	
 
 	/**
 	 * @param customerDaoDao
@@ -161,14 +185,12 @@ public class DlDaoService implements IDlDaoService {
 	}
 
 	/**
-	 * @author fengsn ��ѯ@�û���dao����
 	 * @author fengsn 
-
 	 */
 	public PaginationSupport getAtContentListByUser(
 			PaginationSupport paginationSupport, Short userId) {
 		String querysql = " Select c From DlUsers u INNER JOIN u.contentatmes c where  u.userId = "
-				+ userId + "order by c.posttime  desc";
+				+ userId + "order by c.posttime desc";
 		String countsql = " Select count(c.userId) From DlUsers u INNER JOIN u.contentatmes c where  u.userId = "
 				+ userId + "order by c.posttime desc";
 		// paginationSupport = dlContentatDao.findPageByQuery(querysql,
@@ -205,8 +227,8 @@ public class DlDaoService implements IDlDaoService {
 	 * */
 	public PaginationSupport getContentListByTime(
 			PaginationSupport paginationSupport){
-		String querysql = " Select c From DlContent c order by posttime desc";
-		String countsql = " Select count(c.contentId) From DlContent c order by posttime desc";
+		String querysql = " Select c From DlContent c where c.status='0' order by posttime desc";
+		String countsql = " Select count(c.contentId) From DlContent c where c.status='0'order by posttime desc";
 		paginationSupport = dlContentatDao.findPageByQuery(querysql, countsql,
 				paginationSupport.getPageSize(), paginationSupport
 						.getStartIndex());
@@ -325,9 +347,9 @@ public class DlDaoService implements IDlDaoService {
 	public PaginationSupport getTopicListContent(
 			PaginationSupport paginationSupport,Short topicId){
 		String querysql = " Select c From DlTopic t INNER JOIN t.topicContent c where  t.topicId = "
-			+ topicId + "order by c.posttime  desc";
+			+ topicId + " and c.status='0' order by c.posttime  desc";
 		String countsql = " Select count(c.contentId) From DlTopic t INNER JOIN t.topicContent c where  t.topicId = "
-			+ topicId + "order by c.posttime desc";
+			+ topicId + " and c.status='0' order by c.posttime desc";
 		paginationSupport = dlContentatDao.findPageByQuery(querysql, countsql,
 				paginationSupport.getPageSize(), paginationSupport
 						.getStartIndex());
@@ -344,6 +366,29 @@ public class DlDaoService implements IDlDaoService {
 		return paginationSupport;
 	}
 	
+	/******************************查询返回List*******************************/
+//	public List getMyAndFriendsDao(int size){
+//		String sql = " select top "+size+" * from DlContent order by c.posttime  desc";
+//		List<Short> daoList = dlContentDao.findWithoutT(sql);
+//		return daoList
+//	}
+//	
+//	public List getMoreDaos(int size,Short daoId){
+//		String sql = " select top "+size+" * from DlContent where contentId<"+daoId+" order by c.posttime  desc";
+//		List<Short> daoList = dlContentDao.findWithoutT(sql);
+//		return daoList
+//	}
+//	
+//	public List getNewDaos(Short daoId){
+//		String sql = " select * from DlContent where contentId>="+daoId+" order by c.posttime  desc";
+//		List<Short> daoList = dlContentDao.findWithoutT(sql);
+//		return daoList
+//	}
+//	
+//	private boolean checkIsProduct(Short daoId){
+//		
+//	}
+	/************************************************************************/
 	public IDaoContentBodyConvertService getDaoContentBodyConvert() {
 		return daoContentBodyConvert;
 	}

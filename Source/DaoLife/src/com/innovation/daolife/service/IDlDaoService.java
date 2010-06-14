@@ -49,5 +49,7 @@ public interface IDlDaoService {
 	 * ��ѯת��dao�������Ϣ
 	 */
 	public PaginationSupport getRewriteInfoList(PaginationSupport paginationSupport, Short contentId);
+	
+	public boolean deleteDao(DlUsers user,Short id);
 
 }

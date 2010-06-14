@@ -91,7 +91,7 @@ public class UserService implements IUserService {
 			user = dlUsersDao.get(id);
 			if(user != null)
 			{
-				String sql = " From DlContent u where u.userId=?";
+				String sql = " From DlContent u where u.userId=? and u.status='0'";
 				List<DlContent> contentList = dlContentDao.find(sql, id);
 				user.setContentsSize(contentList.size());
 			}
@@ -108,7 +108,7 @@ public class UserService implements IUserService {
 			user = dlUsersDao.get(id);
 			if(user != null)
 			{
-				String sql = " From DlContent u where u.userId=?";
+				String sql = " From DlContent u where u.userId=? and u.status='0'";
 				List<DlContent> contentList = dlContentDao.find(sql, id);
 				user.setContentsSize(contentList.size());
 			}
@@ -235,8 +235,8 @@ public class UserService implements IUserService {
 	 * ��ѯ�ͻ��Լ���dao
 	 * */
 	public PaginationSupport getContentListByUser(PaginationSupport paginationSupport,Short userId) {
-		String querysql = " Select c From DlContent c INNER JOIN c.dlUsers u where  u.userId = "+userId+" order by c.posttime desc";
-		String countsql =" Select count(c.contentId) From DlContent c INNER JOIN c.dlUsers u where u.userId = "+userId+" order by c.posttime desc";
+		String querysql = " Select c From DlContent c INNER JOIN c.dlUsers u where  u.userId = "+userId+"  and c.status='0' order by c.posttime desc";
+		String countsql =" Select count(c.contentId) From DlContent c INNER JOIN c.dlUsers u where u.userId = "+userId+" and c.status='0' order by c.posttime desc";
 		paginationSupport = dlContentatDao.findPageByQuery(querysql, countsql, paginationSupport.getPageSize(), paginationSupport.getStartIndex());
 		List<DlContent> itemList = paginationSupport.getItems();
 		for(Iterator<DlContent> it = itemList.iterator();it.hasNext();)
@@ -294,8 +294,8 @@ public class UserService implements IUserService {
 	 * ��ѯ���ѵ�dao
 	 * */
 	public PaginationSupport getFollowerContentListByUser(PaginationSupport paginationSupport,Short userId) {
-		String querysql = " Select c From DlContent c INNER JOIN c.dlUsers u  INNER JOIN u.dlFancers f where  f.userId = "+userId+" order by c.posttime desc";
-		String countsql =" Select count(c.contentId) From DlContent c INNER JOIN c.dlUsers u INNER JOIN u.dlFancers f where  f.userId = "+userId+" order by c.posttime desc";
+		String querysql = " Select c From DlContent c INNER JOIN c.dlUsers u  INNER JOIN u.dlFancers f where  f.userId = "+userId+" and c.status='0' order by c.posttime desc";
+		String countsql =" Select count(c.contentId) From DlContent c INNER JOIN c.dlUsers u INNER JOIN u.dlFancers f where  f.userId = "+userId+" and c.status='0' order by c.posttime desc";
 		paginationSupport = dlContentatDao.findPageByQuery(querysql, countsql, paginationSupport.getPageSize(), paginationSupport.getStartIndex());
 		List<DlContent> itemList = paginationSupport.getItems();
 		for(Iterator<DlContent> it = itemList.iterator();it.hasNext();)
