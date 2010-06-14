@@ -152,7 +152,7 @@ function doReload(fn){
 		for(var i = 0, l = rs.items.length; i < l; ++i){
 			var baseinfo = getUserGender(rs.items[i].userGender) + ' | ' + getUserBirthday(rs.items[i].birthday);
 			var otherinfo = getUserAddress(rs.items[i].userAddress);
-			myBox.articleBox.add(new friendsHot(rs.items[i].userId,((rs.currentPage - 1) * rs.pageCount) + (i + 1),rs.items[i].userNickName,rs.items[i].userInfo,'images/myhome_30.gif',baseinfo,otherinfo,rs.items[i].followFlag,rs.items[i].fansNum,rs.nowUid));
+			myBox.articleBox.add(new friendsHot(rs.items[i].userId,((rs.currentPage - 1) * rs.pageSize) + (i + 1),rs.items[i].userNickName,rs.items[i].userInfo,'images/myhome_30.gif',baseinfo,otherinfo,rs.items[i].followFlag,rs.items[i].fansNum,rs.nowUid));
 		}
 		if(fn){
 			fn();
