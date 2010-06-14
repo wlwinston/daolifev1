@@ -122,6 +122,10 @@
 										</td>
 									</tr>
 									<tr>
+										<th>&nbsp;</th>
+										<td><hr/></td>
+									</tr>
+									<tr>
 										<th height="21" align="right">
 											<span class="allow">*</span>验证码：
 										</th>
