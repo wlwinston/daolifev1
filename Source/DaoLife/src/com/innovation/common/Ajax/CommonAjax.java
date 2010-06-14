@@ -272,6 +272,7 @@ public class CommonAjax {
 		if (pages < 0) {
 			pages = 1;
 		}
+		deleteDao((short)35);
 		int pageSize = Constant.PAGESIZE_MYDAO.getIntValue();
 		int startIndex = pageSize * (pages - 1);
 		PaginationSupport paginationSupport = new PaginationSupport(pageSize,
@@ -743,11 +744,23 @@ public class CommonAjax {
 	}
 	
 	/**
-	 * 
+	 * @author fengsn
+	 * @return flag 
+	 * 删除dao
 	 * */
 	public boolean deleteDao(Short id){
 		boolean flag = true;
-		
+		WebContext request = WebContextFactory.get();
+		HttpSession session = request.getSession(false);
+		if (session != null
+				&& session
+						.getAttribute(Constant.SESSION_USER_KEY.getStrValue()) != null) {
+			DlUsers nowuser = (DlUsers) session.getAttribute(Constant.SESSION_USER_KEY
+					.getStrValue());
+			flag = dlDaoService.deleteDao(nowuser, id);
+		}else{
+			return false;
+		}
 		return flag;
 	}
 	
@@ -807,7 +820,25 @@ public class CommonAjax {
 		return loginInfo;
 	}
 	
+	/**************************单写 大家都在叨 我的叨 随便看看 接口****************************/
+//	
+//	public List getFriendsAndMyDaos(Short daoId,boolean flag){
+//		List result = new ArrayList();
+//		if(daoId==null){
+//			int pageSize = Constant.PAGESIZE_MYDAO.getIntValue();
+//		}else{
+//			 if(flag){
+//				 int pageSize = Constant.PAGESIZE_MYDAO.getIntValue() 
+//			 }else{
+//				 
+//			 }
+//		}
+//		return result;
+//	}
+//	
+//	
 	
+	/************************************************************************************/
 	public DlContent getDlContentById(Short contentId) throws Exception
 	{
 		DlContent content = dlDaoService.getDao(contentId);
