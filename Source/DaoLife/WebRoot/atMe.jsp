@@ -35,7 +35,7 @@
 							cellspacing="0" class="xia1 guanzhu ">
 							<tr>
 								<td width="12%" height="40" align="center">
-									<a href="lookAround.jsp">
+									<a href="javascript://">
 										<img height="23" width="112" src="images/atme.gif" />
 									</a>
 								</td>

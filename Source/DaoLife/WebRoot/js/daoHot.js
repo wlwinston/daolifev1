@@ -109,7 +109,7 @@ function doReload(fn){
 	var func = function(rs){
 		myBox.articleBox.setpage(rs.totalCount,rs.pageCount,rs.currentPage);
 		for(var i = 0, l = rs.items.length; i < l; ++i){
-			myBox.articleBox.add(new daoHot(rs.items[i].contentId,rs.items[i].userId,((rs.currentPage - 1) * rs.pageCount) + (i + 1),rs.items[i].dlUsers.userNickName,rs.items[i].contentBody,'images/myhome_30.gif'));
+			myBox.articleBox.add(new daoHot(rs.items[i].contentId,rs.items[i].userId,((rs.currentPage - 1) * rs.pageSize) + (i + 1),rs.items[i].dlUsers.userNickName,rs.items[i].contentBody,'images/myhome_30.gif'));
 		}
 		if(fn){
 			fn();
