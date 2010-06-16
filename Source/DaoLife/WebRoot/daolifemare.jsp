@@ -76,7 +76,7 @@
 						                </table></td>
 						              </tr>
 						            </table></td>
-						            <td width="42%" align="center"><img src="images/T11.png" width="223" height="247" /></td>
+						            <td width="42%" align="center"><img src="<s:property value="productTshirtPic" />" width="223" height="247" /></td>
 						          </tr>
 						        </table></td>
 						        <td width="52">&nbsp;</td>
@@ -119,9 +119,9 @@
                         <table width="495" height="45" border="0" align="center" cellpadding="0" cellspacing="0" class="xia1">
                           <tr>
                             <td width="120" class="Box1">第<s:property value="product.productDaonum"/>期</td>
-                            <td width="127" align="left" valign="middle"><a href="touxiang.html"><img src="images/chanpin_03.gif" width="123" height="31" /></a></td>
-                            <td width="125" align="left" valign="middle"><a href="daolife.html"><img src="images/chanpin_05.gif" width="123" height="31" /></a></td>
-                            <td width="123" align="left" valign="middle"><a href="http://www.taobao.com"><img src="images/chanpin_07.gif" width="123" height="31" /></a></td>
+                            <td width="127" align="left" valign="middle"><a href="<s:property value="product.productAuthorurl" />"><img src="images/chanpin_03.gif" width="123" height="31" /></a></td>
+                            <td width="125" align="left" valign="middle"><a href="product.action"><img src="images/chanpin_05.gif" width="123" height="31" /></a></td>
+                            <td width="123" align="left" valign="middle"><a href="<s:property value="product.productUrl" />"><img src="images/chanpin_07.gif" width="123" height="31" /></a></td>
                           </tr>
                         </table>
                         <table width="541" height="536" border="0" cellpadding="0" cellspacing="0" class="tabledao">
