@@ -3,6 +3,8 @@ package com.innovation.daolife.service.impl;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.BeanUtils;
+
 import com.innovation.common.util.PaginationSupport;
 import com.innovation.daolife.dao.IDlProductDao;
 import com.innovation.daolife.dao.IDlProductFollowDao;
@@ -57,14 +59,12 @@ public class ProductService implements IProductService {
 	/**
 	 * @author fengsn ���Ʒ
 	 */
-	public PaginationSupport getProductById(PaginationSupport paginationSupport,Short id) {
-		//Short daoNum = this.getdaoNum();
-		String querysql = " Select c From DlProduct c where productId ="+id+" order by product_id desc ";
-		String countsql = " Select count(c.productId) From DlProduct c  where productId ="+id+" order by product_id desc";
-		paginationSupport = dlProductDao.findPageByQuery(querysql, countsql,
-				paginationSupport.getPageSize(), paginationSupport
-						.getStartIndex());
-		return paginationSupport;
+	public DlProduct getProductById(Short id) {
+		DlProduct product = dlProductDao.get(id);
+		DlContent dlContent = new DlContent();
+		BeanUtils.copyProperties(product.getDlContent(), dlContent);
+		product.setDlContent(dlContent);
+		return product;
 	}
 
 	/**

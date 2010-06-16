@@ -29,6 +29,7 @@ import com.innovation.common.util.Constant;
 import com.innovation.common.util.Md5Util;
 import com.innovation.common.util.PaginationSupport;
 import com.innovation.daolife.action.search.UserSearch;
+import com.innovation.daolife.model.DlContent;
 import com.innovation.daolife.model.DlProduct;
 import com.innovation.daolife.model.DlUserroles;
 import com.innovation.daolife.model.DlUsers;
@@ -96,9 +97,9 @@ public class WebCommonAction extends ActionSupport implements SessionAware, Serv
 		PaginationSupport paginationSupport = new PaginationSupport(5,0);
 		paginationSupport =  productService.getHotProduct(paginationSupport);
 		productList = paginationSupport.getItems();
-		paginationSupport =  productService.getProductById(paginationSupport,productId);
-		product = (DlProduct) paginationSupport.getItems().get(0);
+		product = productService.getProductById(productId);
 		paginationSupport = new PaginationSupport(9,0);
+		
 		paginationSupport =  userService.getFollowProductUser(paginationSupport,productId);
 		productfollowUserList = paginationSupport.getItems();
 		return PRODUCT;
