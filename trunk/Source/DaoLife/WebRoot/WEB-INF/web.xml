@@ -59,8 +59,16 @@
         <servlet-name>RandomImageServlet</servlet-name>
         <url-pattern>*.auth</url-pattern>
   </servlet-mapping>
-  
-  <!-- Struts 2.0 -->
+  <!-- Image File Manager 
+  <filter>
+        <filter-name>fileManager</filter-name>
+        <filter-class>com.innovation.servlet.ImageUploadFilter</filter-class>
+   </filter>
+   <filter-mapping>
+        <filter-name>fileManager</filter-name>
+        <url-pattern>/index.php</url-pattern>
+    </filter-mapping>-->
+    <!-- Struts 2.0 -->
     <filter>
         <filter-name>struts2</filter-name>
         <filter-class>org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter</filter-class>
@@ -78,7 +86,6 @@
         <filter-name>struts2</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
-  
     
   <welcome-file-list>
     <welcome-file>index.action</welcome-file>

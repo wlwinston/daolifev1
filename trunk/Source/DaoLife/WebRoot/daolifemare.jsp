@@ -118,7 +118,7 @@
                       <div class="zuo">
                         <table width="495" height="45" border="0" align="center" cellpadding="0" cellspacing="0" class="xia1">
                           <tr>
-                            <td width="120" class="Box1">Dao060921</td>
+                            <td width="120" class="Box1">第<s:property value="product.productDaonum"/>期</td>
                             <td width="127" align="left" valign="middle"><a href="touxiang.html"><img src="images/chanpin_03.gif" width="123" height="31" /></a></td>
                             <td width="125" align="left" valign="middle"><a href="daolife.html"><img src="images/chanpin_05.gif" width="123" height="31" /></a></td>
                             <td width="123" align="left" valign="middle"><a href="http://www.taobao.com"><img src="images/chanpin_07.gif" width="123" height="31" /></a></td>
@@ -126,7 +126,7 @@
                         </table>
                         <table width="541" height="536" border="0" cellpadding="0" cellspacing="0" class="tabledao">
                           <tr>
-                            <td height="63" align="center"><img src="images/chanpin_13.gif" width="426" height="421" /></td>
+                            <td height="63" align="center"><img src="<s:property value="product.productTshirtPic" />" width="426" height="421" /></td>
                           </tr>
                         </table>
                         <table width="573" border="0" cellspacing="0" cellpadding="0">
@@ -141,21 +141,22 @@
                                   <td width="76" height="44" align="left">&nbsp;</td>
                                   <td width="459" align="left"><table width="420" height="21" border="0" cellpadding="0" cellspacing="0">
                                     <tr>
-                                      <td width="183" align="left">发布时间：2010年4月10日</td>
+                                      <td width="183" align="left">发布时间：<s:date name="product.dlContent.posttime" format="yyyy年M月d日"/></td>
                                       <td width="253" align="left">被转发（<s:property value="product.dlContent.retwittNum"/>）次数 被顶（<s:property value="product.dlContent.upNum"/>）次</td>
                                     </tr>
                                   </table></td>
                                 </tr>
                                 <tr>
                                   <td height="50" align="left">&nbsp;</td>
-                                  <td align="left"><span class="text1">MTV跟我们一起玩儿了，当然，他们掏钱了，所以最后我们会送你们免费的T恤。<br />
-参与方式是在你的对话框里输入“＃MTV＃＋你为可口可乐设计的广告语”，别忘了提交，我们私下提醒你，越无聊越好。<br />
-活动时间为 2010年1月10日－2010年1月17日<br />
-活动结束，等着你的快递。</span></td>
+                                  <td align="left"><span class="text1">想把你说的话印在Tee上么？那就快来www.daolife.com注册吧。每第一百名有效注册（邮箱真实有效，至少发一条叨，转发别人一次。）的用户将得到daolife送出的免费Tee，邮费我们也付啦。如果你说的话受欢迎，我们将会把你说的话印在Tee上。作为作者的你，将会免费得到这件当期Tee，并且，这件Tee每卖出一件，我们将付给你一元钱。
+								还等什么， 快来www.daolife.com注册吧。<br>
+								活动时间：2010-06-15 — 2010-07-31<br>
+								我们会邮件通知您中奖情况，请保持邮箱通畅。<br>
+								友情提醒：世界杯虽好，可别冷淡了可人的她。<br></span></td>
                                 </tr>
                                 <tr>
                                   <td height="50" align="left">&nbsp;</td>
-                                  <td align="left"><a href="http://www.taobao.com"><img src="images/chanpin_07.gif" width="123" height="31" /></a></td>
+                                  <td align="left"><a href="<s:property value="product.productUrl"/>"><img src="images/chanpin_07.gif" width="123" height="31" /></a></td>
                                 </tr>
                               </table>
                               <p class="text1">&nbsp;</p>

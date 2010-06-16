@@ -25,6 +25,9 @@
   <property generated="never" lazy="false" name="productPic" type="java.lang.String">
    <column length="200" name="product_pic" not-null="true"/>
   </property>
+  <property generated="never" lazy="false" name="productTshirtPic" type="java.lang.String">
+   <column length="200" name="product_tshirtPic" not-null="true"/>
+  </property>
   <property generated="never" lazy="false" name="productDaonum" type="java.lang.Short">
    <column name="product_daonum" not-null="true"/>
   </property>
@@ -40,7 +43,6 @@
   <property generated="never" lazy="false" name="productSum" type="java.lang.Short">
    <column name="product_sum" not-null="true"/>
   </property>
-  <one-to-one class="com.innovation.daolife.model.DlContent" name="dlContent" cascade="all"/>
-  
+  <many-to-one class="com.innovation.daolife.model.DlContent" name="dlContent"  column="product_contentid" insert="false" update="false" not-null="true" ></many-to-one>
  </class>
 </hibernate-mapping>

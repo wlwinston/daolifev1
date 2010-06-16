@@ -19,6 +19,7 @@ public class DlProduct implements java.io.Serializable {
 	private String productAuthor;
 	private String productAuthorurl;
 	private String productPic;
+	private String productTshirtPic;
 	private Short productDaonum;
 	private Integer productFollowsum;
 	private Short productContentId;
@@ -35,13 +36,14 @@ public class DlProduct implements java.io.Serializable {
 	/** full constructor */
 	public DlProduct(Short productId, String productName, String productUrl,
 			String productAuthor, String productAuthorurl, String productPic,
-			Short productDaonum, Date productPosttime, Short productSum) {
+			String productTshirtPic,Short productDaonum, Date productPosttime, Short productSum) {
 		this.productId = productId;
 		this.productName = productName;
 		this.productUrl = productUrl;
 		this.productAuthor = productAuthor;
 		this.productAuthorurl = productAuthorurl;
 		this.productPic = productPic;
+		this.productTshirtPic = productTshirtPic;
 		this.productDaonum = productDaonum;
 		this.productPosttime = productPosttime;
 		this.productSum = productSum;
@@ -143,6 +145,14 @@ public class DlProduct implements java.io.Serializable {
 
 	public void setDlContent(DlContent dlContent) {
 		this.dlContent = dlContent;
+	}
+
+	public String getProductTshirtPic() {
+		return productTshirtPic;
+	}
+
+	public void setProductTshirtPic(String productTshirtPic) {
+		this.productTshirtPic = productTshirtPic;
 	}
 
 }
