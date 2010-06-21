@@ -117,7 +117,7 @@
 								cellpadding="0" cellspacing="0" class="xia1">
 								<tr>
 									<td width="120" class="Box1">
-										Dao060921
+										Daolife Tee
 									</td>
 									<td width="127" align="left" valign="middle">
 										<a href="touxiang.html"><img src="images/chanpin_03.gif"

@@ -115,7 +115,7 @@
 				<tr>
 					<td height="282" align="left" valign="top">
 						<div class="Box2">
-							dao001---------009
+							Daolife Tee
 						</div>
 						<div class="chanpin1">
 							<div class="hang">
