@@ -159,6 +159,7 @@
                 <prop key="load*">PROPAGATION_REQUIRED,readOnly</prop>
                 <prop key="change*">PROPAGATION_REQUIRED</prop>
                 <prop key="reset*">PROPAGATION_REQUIRED</prop>
+                <prop key="covert*">PROPAGATION_REQUIRED</prop>
                 <prop key="*">PROPAGATION_REQUIRED,readOnly</prop>
         </props>
     </property>
@@ -182,8 +183,10 @@
     </property>
     <property name="interceptorNames">
         <list>
-            <value>transactionInterceptor</value>
             <!-- 可增加其它的interceptor -->
+            <value>methodCachePointCut</value>   
+          	<value>transactionInterceptor</value>
+          	<value>methodCachePointCutAdvice</value> 
         </list>
     </property>
 </bean>

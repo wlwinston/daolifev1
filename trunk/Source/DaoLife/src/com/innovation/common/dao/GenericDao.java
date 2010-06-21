@@ -229,10 +229,12 @@ public class GenericDao<T, ID extends Serializable> extends HibernateDaoSupport
 					.prepareStatement(sqlString);
 		stmt.executeUpdate();
 		tx.commit();
+		conn.close();
+		session.close();
+		
 	}
 	
 	
-
 	/**
 	 * ��ȡȫ��ʵ��
 	 */

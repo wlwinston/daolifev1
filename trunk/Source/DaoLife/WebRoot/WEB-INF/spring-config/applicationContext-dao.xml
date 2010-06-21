@@ -27,6 +27,8 @@
    <property name="userPass" value="${mail.userPass}"/>
    <property name="fromAd" value="${mail.fromAd}"/>
    <property name="fromName" value="${mail.fromName}"/>
+   <property name="hostPort" value="${mail.hostPort}"/>
+   <property name="tlsFlag" value="${mail.tlsFlag}"/>
 </bean>
 
 </beans>

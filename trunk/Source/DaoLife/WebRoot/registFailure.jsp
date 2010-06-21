@@ -50,9 +50,7 @@ body {
           <td><img src="images/tiao.gif" width="327" height="1" /></td>
         </tr>
         <tr>
-          <td height="131"><span class="text12">下面趁乱说点儿有关这件Tee的事儿。<br />
-            这件Tee真的有，是我们网站技术部门的工作服。本意是用来羞辱，可他们视为激励。他们搞IT的趣味都很奇怪。<br />
-            对了，如果你想要，你也可以买。前提是你也觉得穿着一件404的Tee对于一个IT工作者来说是一种疯狂的激励。</span><br /></td>
+          <td height="131"><br /></td>
         </tr>
         <tr>
           <td height="94" align="left" valign="bottom"><table width="74%" border="0">

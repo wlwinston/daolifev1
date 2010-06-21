@@ -48,7 +48,7 @@ public class MethodCacheInterceptor implements MethodInterceptor, InitializingBe
 			cache.put(element);
 		}
 		else{
-			logger.debug("Loading cache........!");
+			logger.info("Loading cache........!");
 		}
 		return element.getValue();
 	}

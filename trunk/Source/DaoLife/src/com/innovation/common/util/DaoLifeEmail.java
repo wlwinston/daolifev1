@@ -8,6 +8,8 @@ public class DaoLifeEmail {
 	private String userPass = "";//邮箱密码
 	private String fromAd = "";//发送人地址
 	private String fromName = "";//发送人姓名
+	private int hostPort ;
+	private boolean tlsFlag ;
 	
 	public void sendRegistSuccessEmail(String recevierName,String recevierEmail) throws EmailException{
 		EmailUtils emailTools = new EmailUtils();
@@ -16,6 +18,8 @@ public class DaoLifeEmail {
 		emailTools.setHostName(hostName);
 		emailTools.setUserName(userName);
 		emailTools.setUserPass(userPass);
+		emailTools.setHostPort(hostPort);
+		emailTools.setTlsFlag(tlsFlag);
 		emailTools.setSubject("感谢您注册Daolife");
 		emailTools.setToAd(recevierEmail);
 		emailTools.setToName(recevierName);
@@ -37,6 +41,8 @@ public class DaoLifeEmail {
 		emailTools.setHostName(hostName);
 		emailTools.setUserName(userName);
 		emailTools.setUserPass(userPass);
+		emailTools.setHostPort(hostPort);
+		emailTools.setTlsFlag(tlsFlag);
 		emailTools.setSubject("Daolife找回密码");
 		emailTools.setToAd(recevierEmail);
 		emailTools.setToName(recevierName);
@@ -54,6 +60,8 @@ public class DaoLifeEmail {
 		emailTools.setHostName(hostName);
 		emailTools.setUserName(userName);
 		emailTools.setUserPass(userPass);
+		emailTools.setHostPort(hostPort);
+		emailTools.setTlsFlag(tlsFlag);
 		emailTools.setSubject("Daolife找回密码成功");
 		emailTools.setToAd(recevierEmail);
 		emailTools.setToName(recevierName);
@@ -99,6 +107,22 @@ public class DaoLifeEmail {
 
 	public void setFromName(String fromName) {
 		this.fromName = fromName;
+	}
+
+	public int getHostPort() {
+		return hostPort;
+	}
+
+	public void setHostPort(int hostPort) {
+		this.hostPort = hostPort;
+	}
+
+	public boolean isTlsFlag() {
+		return tlsFlag;
+	}
+
+	public void setTlsFlag(boolean tlsFlag) {
+		this.tlsFlag = tlsFlag;
 	}
 	
 	

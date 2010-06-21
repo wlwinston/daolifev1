@@ -20,7 +20,9 @@ import org.apache.log4j.Logger;
 public class EmailUtils {
     private static Logger logger = Logger.getLogger(EmailUtils.class);
 	private String hostName = null;//SMTP服务器
+	private int hostPort ;//SMTP服务器端口
 	private String userName = null;//用户名
+	private boolean tlsFlag = false;//
 	private String userPass = null;//密码
 	private String toAd = null;//收信的地址
 	private String toName = null;//收信人名称
@@ -31,6 +33,7 @@ public class EmailUtils {
 	private String url = null;//
 	private String name = null;//
 	private ArrayList pathArrayList = null;//附件ArrayList
+	
 
 	/**
 	 * 发送简单邮件
@@ -42,6 +45,7 @@ public class EmailUtils {
 		email.setCharset("GBK");
 		//设置SMTP服务器 
 		email.setHostName(hostName);
+		email.setSmtpPort(hostPort);
 		//设置用户名和密码
 		email.setAuthentication(userName,userPass);
 		//设置收信人信息
@@ -52,6 +56,7 @@ public class EmailUtils {
 		email.setSubject(subject);
 		//设置邮件内容
 		email.setHtmlMsg(msg);
+		email.setTLS(tlsFlag);
 		//发送邮件
 		email.send();
 		logger.info(subject+"发送成功");
@@ -156,6 +161,18 @@ public class EmailUtils {
 	}
 	public void setPathArrayList(ArrayList pathArrayList) {
 		this.pathArrayList = pathArrayList;
+	}
+	public int getHostPort() {
+		return hostPort;
+	}
+	public void setHostPort(int hostPort) {
+		this.hostPort = hostPort;
+	}
+	public boolean isTlsFlag() {
+		return tlsFlag;
+	}
+	public void setTlsFlag(boolean tlsFlag) {
+		this.tlsFlag = tlsFlag;
 	}
 }
 
