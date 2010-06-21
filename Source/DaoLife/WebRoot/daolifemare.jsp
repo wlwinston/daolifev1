@@ -69,7 +69,7 @@
 						                <td height="65" colspan="3" align="center" valign="bottom"><table width="45%" border="0" cellspacing="5" cellpadding="0">
 						                  <tr>
 						                    <td height="32"><a href="<s:property value="productAuthorurl" />"><img src="images/1124_13.gif" width="122" height="32" border="0" /></a></td>
-						                    <td><a href="<s:property value="productUrl" />"><img src="images/1124_15.gif" width="122" height="32" border="0" /></a></td>
+						                    <td><a href="<s:property value="productUrl" />" target="_blank"><img src="images/1124_15.gif" width="122" height="32" border="0" /></a></td>
 						                    <td><a href="product.action"><img src="images/1124_17.gif" width="123" height="32" border="0" /></a></td>
 						                  </tr>
 						                  
@@ -121,7 +121,7 @@
                             <td width="120" class="Box1">第<s:property value="product.productDaonum"/>期</td>
                             <td width="127" align="left" valign="middle"><a href="<s:property value="product.productAuthorurl" />"><img src="images/chanpin_03.gif" width="123" height="31" /></a></td>
                             <td width="125" align="left" valign="middle"><a href="product.action"><img src="images/chanpin_05.gif" width="123" height="31" /></a></td>
-                            <td width="123" align="left" valign="middle"><a href="<s:property value="product.productUrl" />"><img src="images/chanpin_07.gif" width="123" height="31" /></a></td>
+                            <td width="123" align="left" valign="middle"><a href="<s:property value="product.productUrl" />" target="_blank"><img src="images/chanpin_07.gif" width="123" height="31" /></a></td>
                           </tr>
                         </table>
                         <table width="541" height="536" border="0" cellpadding="0" cellspacing="0" class="tabledao">
@@ -156,7 +156,7 @@
                                 </tr>
                                 <tr>
                                   <td height="50" align="left">&nbsp;</td>
-                                  <td align="left"><a href="<s:property value="product.productUrl"/>"><img src="images/chanpin_07.gif" width="123" height="31" /></a></td>
+                                  <td align="left"><a href="<s:property value="product.productUrl"/>" target="_blank"><img src="images/chanpin_07.gif" width="123" height="31" /></a></td>
                                 </tr>
                               </table>
                               <p class="text1">&nbsp;</p>

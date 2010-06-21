@@ -66,7 +66,7 @@
 						                <td height="65" colspan="3" align="center" valign="bottom"><table width="45%" border="0" cellspacing="5" cellpadding="0">
 						                  <tr>
 						                    <td height="32"><a href="<s:property value="productAuthorurl" />"><img src="images/1124_13.gif" width="122" height="32" border="0" /></a></td>
-						                    <td><a href="<s:property value="productUrl" />"><img src="images/1124_15.gif" width="122" height="32" border="0" /></a></td>
+						                    <td><a href="<s:property value="productUrl" />" target="_blank"><img src="images/1124_15.gif" width="122" height="32" border="0" /></a></td>
 						                    <td><a href="product.action"><img src="images/1124_17.gif" width="123" height="32" border="0" /></a></td>
 						                  </tr>
 						                  
@@ -120,10 +120,10 @@
 									</center>
 								</a>
 							</div>
+							
 							<span class="text"><br />
-								想把你说的话印在Tee上么？那就快来www.daolife.com注册吧。每第一百名有效注册（邮箱真实有效，至少发一条叨，转发别人一次。）的用户将得到daolife送出的免费Tee，邮费我们也付啦。如果你说的话受欢迎，我们将会把你说的话印在Tee上。作为作者的你，将会免费得到这件当期Tee，并且，这件Tee每卖出一件，我们将付给你一元钱。
-								还等什么， 快来www.daolife.com注册吧。<br>
-								活动时间：2010-06-15 — 2010-07-31<br>
+								想把你说的话印在Tee上么？那就快来www.daolife.com注册吧。每第一百名有效注册(邮箱真实有效，至少发一条叨，转发别人一次。)的用户将得到daolife送出的免费Tee，邮费我们也付啦。如果你说的话受欢迎，我们将会把你说的话印在Tee上。作为作者的你，将会免费得到这件当期Tee，并且，这件Tee每卖出一件，我们将付给你一元钱。还等什么,快来www.daolife.com注册吧。<br>
+								活动时间：2010-06-15—2010-07-31<br>
 								我们会邮件通知您中奖情况，请保持邮箱通畅。<br>
 								友情提醒：世界杯虽好，可别冷淡了可人的她。<br>
 								<table width="97%" border="0" cellspacing="0" cellpadding="0">
@@ -136,9 +136,9 @@
 										</td>
 									</tr>
 								</table> </span>
-
+                         
 							<div class="Box">
-								MTV和我们一起玩儿了你的态度去哪儿了？
+								有关你怎么玩的一些废话
 							</div>
 
 

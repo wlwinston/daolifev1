@@ -613,11 +613,11 @@ function getTime(time){
 	var day = time.getDate();
 	var hours = time.getHours();
 	var seconds = time.getSeconds();
-	
+	var minutes = time.getMinutes();
 	var date = new Date();
 	var str = '';
 	str = year + '年' + month + '月' + day + '日';
-	return  str + ' ' + hours + ':' + seconds;
+	return  str + ' ' + hours + ':' + minutes;
 }
 $(function($){
 	doDlinfo();

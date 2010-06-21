@@ -406,7 +406,7 @@ public class CommonAjax {
 	 * @author winston
 	 */
 	public PaginationSupport getAllDao(int pages) {
-		if (pages < 0) {
+		if (pages <= 0) {
 			pages = 1;
 		}
 		int pageSize = Constant.PAGESIZE_MYDAO.getIntValue();

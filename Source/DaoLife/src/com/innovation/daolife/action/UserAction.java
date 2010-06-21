@@ -427,6 +427,17 @@ public class UserAction extends ActionSupport implements SessionAware, ServletRe
 			return LOGINSUCCESS;
 		}
 	}
+	
+	/**
+	 * @ fengsn
+	 * 登录
+	 * */
+	public String uploadImage() throws Exception{
+		
+			System.out.println("====================进来了=========================");
+			return LOGINFAILURE;
+		
+	}
 
 	
 	public void setSession(Map att) {

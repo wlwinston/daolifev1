@@ -69,7 +69,7 @@
 						                <td height="65" colspan="3" align="center" valign="bottom"><table width="45%" border="0" cellspacing="5" cellpadding="0">
 						                  <tr>
 						                    <td height="32"><a href="<s:property value="productAuthorurl" />"><img src="images/1124_13.gif" width="122" height="32" border="0" /></a></td>
-						                    <td><a href="<s:property value="productUrl" />"><img src="images/1124_15.gif" width="122" height="32" border="0" /></a></td>
+						                    <td><a href="<s:property value="productUrl" />" target="_blank"><img src="images/1124_15.gif" width="122" height="32" border="0" /></a></td>
 						                    <td><a href="product.action"><img src="images/1124_17.gif" width="123" height="32" border="0" /></a></td>
 						                  </tr>
 						                  
