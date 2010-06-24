@@ -202,6 +202,7 @@ create table daolife.dl_product
    product_followsum    int(10) not null,
    product_contentid    smallint(10) NOT NULL,
    product_posttime               datetime not null,
+   product_tshirtPic    varchar(200) not null,
    primary key (product_id)
 );
 
