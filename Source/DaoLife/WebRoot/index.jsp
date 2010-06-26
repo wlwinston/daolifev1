@@ -125,7 +125,7 @@
 								</a>
 							</div>
 							
-							<span class="text"><br />
+							<span class="text" style="line-height:17px;"><br />
 								想把你说的话印在Tee上么？那就快来www.daolife.com注册吧。每第一百名有效注册(邮箱真实有效，至少发一条叨，转发别人一次。)的用户将得到daolife送出的免费Tee，邮费我们也付啦。如果你说的话受欢迎，我们将会把你说的话印在Tee上。作为作者的你，将会免费得到这件当期Tee，并且，这件Tee每卖出一件，我们将付给你一元钱。还等什么,快来www.daolife.com注册吧。<br>
 								活动时间：2010-06-15—2010-07-31<br>
 								我们会邮件通知您中奖情况，请保持邮箱通畅。<br>
@@ -170,7 +170,7 @@
 									<div class="dao1">
 										<div>
 											<h3>
-												<a href="text.html">如何获得T恤和收入</a>
+												<a href="javascript://">如何获得T恤和收入</a>
 											</h3>
 										</div>
 										<div class="dao2">
@@ -187,7 +187,7 @@
 									<div class="dao1">
 										<div>
 											<h3>
-												<a href="text.html">关于你发的叨</a>
+												<a href="javascript://">关于你发的叨</a>
 											</h3>
 										</div>
 										<div class="dao2">
@@ -202,7 +202,7 @@
 									<div class="dao1">
 										<div>
 											<h3>
-												<a href="text.html">有关叨团队</a>
+												<a href="javascript://">有关叨团队</a>
 											</h3>
 										</div>
 										<div class="dao2">
