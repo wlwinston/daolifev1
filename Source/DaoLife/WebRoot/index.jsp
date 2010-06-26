@@ -34,12 +34,16 @@
 						        <td width="53" height="299" align="center" valign="middle">&nbsp;</td>
 						        <td width="897" align="left" valign="top"><table width="100%" border="0" cellspacing="0" cellpadding="0">
 						          <tr>
-						            <td width="90%" height="298" align="right" valign="top"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+						            <td width="58%" height="298" align="right" valign="top"><table width="100%" border="0" cellspacing="0" cellpadding="0">
 						              <tr>
-						                <td height="85" colspan="3" align="left" valign="bottom"><table height="21" border="0" cellpadding="0" cellspacing="0">
+						                <td height="85" colspan="3" align="left" valign="bottom"><table width="100%" height="21" border="0" cellpadding="0" cellspacing="0">
 						                  <tr>
-						                    <td width="71">&nbsp;</td>
-						                    <td width="500" align="left" valign="bottom"><div class="Box">想把你说的话印在T恤上？快开始叨吧！</div></td>
+						                    <td width="43">&nbsp;</td>
+						                    <td width="284" align="left" valign="bottom"><table width="87%" border="0" cellspacing="0" cellpadding="0">
+						                      <tr>
+						                        <td align="left"><div class="STYLE1" style="border-bottom: 1px #d8d8d8 solid;font-size:19px;font-weight:bold;padding-bottom:8px;width:368px;text-align:center;">想把你说的话印在T恤上？快开始叨吧！</div></td>
+						                      </tr>
+						                    </table></td>
 						                  </tr>
 						                </table></td>
 						              </tr>
