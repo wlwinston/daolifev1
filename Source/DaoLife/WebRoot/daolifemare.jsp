@@ -76,7 +76,7 @@
 						                </table></td>
 						              </tr>
 						            </table></td>
-						            <td width="42%" align="center"><img src="<s:property value="productTshirtPic" />" width="223" height="247" /></td>
+						            <td width="42%" align="center"><img src="<s:property value="productTshirtPic" />" width="223" height="220"  /></td>
 						          </tr>
 						        </table></td>
 						        <td width="52">&nbsp;</td>
@@ -121,7 +121,7 @@
                         </table>
                         <table width="541" height="536" border="0" cellpadding="0" cellspacing="0" class="tabledao">
                           <tr>
-                            <td height="63" align="center"><img src="<s:property value="product.productTshirtPic" />" width="426" height="421" /></td>
+                            <td height="63" align="center"><img src="<s:property value="product.productTshirtPic" />" /></td>
                           </tr>
                         </table>
                         <table width="573" border="0" cellspacing="0" cellpadding="0">

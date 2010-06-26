@@ -7,18 +7,11 @@ package com.innovation.daolife.service.impl;
 
 import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Set;
-
-import javax.servlet.http.HttpSession;
-import javax.transaction.Transaction;
-
 import org.apache.commons.mail.EmailException;
 import org.apache.log4j.Logger;
 import org.directwebremoting.WebContext;
@@ -28,7 +21,6 @@ import org.hibernate.SessionFactory;
 import org.hibernate.criterion.DetachedCriteria;
 import org.springframework.beans.BeanUtils;
 
-import com.innovation.common.Ajax.CommonAjax;
 import com.innovation.common.util.Constant;
 import com.innovation.common.util.DaoLifeEmail;
 import com.innovation.common.util.Md5Util;
@@ -63,8 +55,9 @@ import com.innovation.daolife.service.IUserService;
 
 public class UserService implements IUserService {
 	
-	private static Logger logger = Logger.getLogger(UserService.class);
 
+	private static Logger logger = Logger.getLogger(UserService.class);
+	
 	private IDlUsersDao dlUsersDao;
 
 	private IDlContentatDao dlContentatDao;
@@ -179,6 +172,7 @@ public class UserService implements IUserService {
 	    	}
 	    }
 	    paginationSupport.setItems(itemList);
+		
 		
 		return paginationSupport;
 	}

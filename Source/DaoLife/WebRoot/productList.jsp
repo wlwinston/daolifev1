@@ -76,7 +76,7 @@
 						                </table></td>
 						              </tr>
 						            </table></td>
-						            <td width="42%" align="center"><img src="<s:property value="productTshirtPic" />" width="223" height="247" /></td>
+						            <td width="42%" align="center"><img src="<s:property value="productTshirtPic" />" width="223" height="220"  /></td>
 						          </tr>
 						        </table></td>
 						        <td width="52">&nbsp;</td>

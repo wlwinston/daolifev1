@@ -51,6 +51,10 @@ public class DaoContentBodyConvertService implements IDaoContentBodyConvertServi
 					String atName = contextAfterAt[i].substring(0, contextAfterAt[i].indexOf(" "));
 					atSql += " or userNickName = '"+atName+"'";
 				}
+				else{
+					String atName = contextAfterAt[i];
+					atSql += " or userNickName = '"+atName+"'";
+				}
 				//System.out.println(atName);
 			}
 			
@@ -141,8 +145,8 @@ public class DaoContentBodyConvertService implements IDaoContentBodyConvertServi
 			for(int i =0 ;i<userList.size();i++)
 			{
 				DlUsers newUser = userList.get(i);
-				String newUserLinkString =  "<a href ='"+WebConfig.linkUserPrefix+newUser.getUserId()+"' target='_blank'>@"+newUser.getUserNickName()+" </a>";
-				contextBody = contextBody.replaceAll("@"+newUser.getUserNickName()+" ",newUserLinkString);
+				String newUserLinkString =  "<a href ='"+WebConfig.linkUserPrefix+newUser.getUserId()+"' target='_blank'>@"+newUser.getUserNickName()+"</a>";
+				contextBody = contextBody.replaceAll("@"+newUser.getUserNickName()+"",newUserLinkString);
 			}
 		}
 		
