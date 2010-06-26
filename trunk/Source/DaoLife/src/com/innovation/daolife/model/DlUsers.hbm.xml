@@ -112,14 +112,14 @@
 		     </key>  
 		     <one-to-many class="com.innovation.daolife.model.DlHotdao" />  
  		</set>
- 		<set name="dlFollowers" table="dl_friend" inverse="true" lazy="false"  cascade="all">  
+ 		<set name="dlFollowers" table="dl_friend" inverse="true" lazy="false"  cascade="all" order-by="fri_id desc">  
 		     <key>  
 		         <column name="fid_fans" not-null="true" />  
 		     </key>  
 		   <many-to-many class="com.innovation.daolife.model.DlUsers" column="fid_follow" />
  		</set>
 
- 		<set name="dlFancers" table="dl_friend" inverse="true" lazy="false"  cascade="all">  
+ 		<set name="dlFancers" table="dl_friend" inverse="true" lazy="false"  cascade="all" order-by="fri_id desc">  
 
  		     <key>  
 		         <column name="fid_follow" not-null="true" />  
