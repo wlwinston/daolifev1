@@ -106,11 +106,6 @@
 				<img src="images/top_16.gif" />
 			</div>
 		</div>
-		<div class="zhuti">
-			<table width="650" height="1022" border="0" cellpadding="0"
-				cellspacing="0" class="zhuti1">
-				<tr>
-					<td height="1021" align="left" valign="top">
 <div class="zhuti">
 				  <table width="650" height="1022" border="0" cellpadding="0" cellspacing="0" class="zhuti1">
                     <tr>
