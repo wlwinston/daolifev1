@@ -20,6 +20,7 @@ import javax.servlet.http.HttpSession;
 import javax.transaction.Transaction;
 
 import org.apache.commons.mail.EmailException;
+import org.apache.log4j.Logger;
 import org.directwebremoting.WebContext;
 import org.directwebremoting.WebContextFactory;
 import org.hibernate.Session;
@@ -27,6 +28,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.criterion.DetachedCriteria;
 import org.springframework.beans.BeanUtils;
 
+import com.innovation.common.Ajax.CommonAjax;
 import com.innovation.common.util.Constant;
 import com.innovation.common.util.DaoLifeEmail;
 import com.innovation.common.util.Md5Util;
@@ -60,6 +62,8 @@ import com.innovation.daolife.model.User;
 import com.innovation.daolife.service.IUserService;
 
 public class UserService implements IUserService {
+	
+	private static Logger logger = Logger.getLogger(UserService.class);
 
 	private IDlUsersDao dlUsersDao;
 
@@ -145,20 +149,37 @@ public class UserService implements IUserService {
 	 * ��获得关注我的用户���
 	 * */
 	public PaginationSupport getFollowListByUser(PaginationSupport paginationSupport,Short userId) {
-		String querysql = " Select f From DlUsers u INNER JOIN u.dlFollowers f  where  u.userId = "+userId+" and f.userId<>"+userId+"";
-		String countsql =" Select count(f.userId) From DlUsers u INNER JOIN u.dlFancers f  where  u.userId = "+userId+" and f.userId<>"+userId+"";
-		paginationSupport = dlUsersDao.findPageByQuery(querysql, countsql, paginationSupport.getPageSize(), paginationSupport.getStartIndex());
-		List<DlUsers> itemList = paginationSupport.getItems();
-		for(Iterator<DlUsers> it = itemList.iterator();it.hasNext();)
-		{
-			DlUsers dlUsers = it.next();
-			if(checkRela(dlUsers.getUserId(),userId)){
-				dlUsers.setFollowFlag(true);
-			}else{
-				dlUsers.setFollowFlag(false);
-			}
-			dlUsers.setCityName(getCityName(dlUsers));
-		}
+		
+		DlUsers user = dlUsersDao.get(userId);
+		List<DlUsers> itemList = new ArrayList();
+		int start = 0;
+		int pagesize = paginationSupport.getPageSize();
+		int startIndex = paginationSupport.getStartIndex();
+		int tmp_Strat = pagesize*startIndex+1;
+		int tmp_End = pagesize*(startIndex+1);
+	    for(Iterator<DlUsers> it = user.getDlFollowers().iterator();it.hasNext(); )
+	    {
+	    	DlUsers newUser = it.next();
+	    	Short newUId = newUser.getUserId();
+	    	start+=1;
+	    	if(start<=tmp_End&&start>=tmp_Strat&&newUId!=userId){
+	    		if(checkRela(newUId,userId)){
+	    			newUser.setFollowFlag(true);
+				}else{
+					newUser.setFollowFlag(false);
+				}
+	    		newUser.setCityName(getCityName(newUser));
+	    		itemList.add(newUser);
+	    	}else if(newUId==userId){
+	    		start = start-1;
+	    	}else if(start>tmp_End){
+	    		break;
+	    	}else if(start<tmp_Strat){
+	    		continue;
+	    	}
+	    }
+	    paginationSupport.setItems(itemList);
+		
 		return paginationSupport;
 	}
 	
@@ -167,20 +188,37 @@ public class UserService implements IUserService {
 	 * 获得我的dao友
 	 * */
 	public PaginationSupport getFanListByUser(PaginationSupport paginationSupport,Short userId) {
-		String querysql = " Select f From DlUsers u INNER JOIN u.dlFancers f  where  u.userId = "+userId+" and f.userId<>"+userId+"";
-		String countsql =" Select count(f.userId) From DlUsers u INNER JOIN u.dlFancers f  where  u.userId = "+userId+" and f.userId<>"+userId+"";
-		paginationSupport = dlUsersDao.findPageByQuery(querysql, countsql, paginationSupport.getPageSize(), paginationSupport.getStartIndex());
-		List<DlUsers> itemList = paginationSupport.getItems();
-		for(Iterator<DlUsers> it = itemList.iterator();it.hasNext();)
-		{
-			DlUsers dlUsers = it.next();
-			if(checkRela(dlUsers.getUserId(),userId)){
-				dlUsers.setFollowFlag(true);
-			}else{
-				dlUsers.setFollowFlag(false);
-			}
-			dlUsers.setCityName(getCityName(dlUsers));
-		}
+		
+		DlUsers user = dlUsersDao.get(userId);
+		List<DlUsers> itemList = new ArrayList();
+		int start = 0;
+		int pagesize = paginationSupport.getPageSize();
+		int startIndex = paginationSupport.getStartIndex();
+		int tmp_Strat = pagesize*startIndex+1;
+		int tmp_End = pagesize*(startIndex+1);
+	    for(Iterator<DlUsers> it = user.getDlFancers().iterator();it.hasNext(); )
+	    {
+	    	DlUsers newUser = it.next();
+	    	Short newUId = newUser.getUserId();
+	    	start+=1;
+	    	if(start<=tmp_End&&start>=tmp_Strat&&newUId!=userId){
+	    		if(checkRela(newUId,userId)){
+	    			newUser.setFollowFlag(true);
+				}else{
+					newUser.setFollowFlag(false);
+				}
+	    		newUser.setCityName(getCityName(newUser));
+	    		itemList.add(newUser);
+	    	}else if(newUId==userId){
+	    		start = start-1;
+	    	}else if(start>tmp_End){
+	    		break;
+	    	}else if(start<tmp_Strat){
+	    		continue;
+	    	}
+	    }
+	    paginationSupport.setItems(itemList);
+
 		return paginationSupport;
 	}
 	
@@ -189,20 +227,37 @@ public class UserService implements IUserService {
 	 * ��获得关注ta的用户���
 	 * */
 	public PaginationSupport getOtherFollowListByUser(PaginationSupport paginationSupport,Short userId,Short sessionId) {
-		String querysql = " Select f From DlUsers u INNER JOIN u.dlFollowers f  where  u.userId = "+userId+" and f.userId<>"+userId+"";
-		String countsql =" Select count(f.userId) From DlUsers u INNER JOIN u.dlFancers f  where  u.userId = "+userId+" and f.userId<>"+userId+"";
-		paginationSupport = dlUsersDao.findPageByQuery(querysql, countsql, paginationSupport.getPageSize(), paginationSupport.getStartIndex());
-		List<DlUsers> itemList = paginationSupport.getItems();
-		for(Iterator<DlUsers> it = itemList.iterator();it.hasNext();)
-		{
-			DlUsers dlUsers = it.next();
-			if(checkRela(dlUsers.getUserId(),sessionId)){
-				dlUsers.setFollowFlag(true);
-			}else{
-				dlUsers.setFollowFlag(false);
-			}
-			dlUsers.setCityName(getCityName(dlUsers));
-		}
+		
+		DlUsers user = dlUsersDao.get(userId);
+		List<DlUsers> itemList = new ArrayList();
+		int start = 0;
+		int pagesize = paginationSupport.getPageSize();
+		int startIndex = paginationSupport.getStartIndex();
+		int tmp_Strat = pagesize*startIndex+1;
+		int tmp_End = pagesize*(startIndex+1);
+	    for(Iterator<DlUsers> it = user.getDlFollowers().iterator();it.hasNext(); )
+	    {
+	    	DlUsers newUser = it.next();
+	    	Short newUId = newUser.getUserId();
+	    	start+=1;
+	    	if(start<=tmp_End&&start>=tmp_Strat&&newUId!=userId){
+	    		if(checkRela(newUId,sessionId)){
+	    			newUser.setFollowFlag(true);
+				}else{
+					newUser.setFollowFlag(false);
+				}
+	    		newUser.setCityName(getCityName(newUser));
+	    		itemList.add(newUser);
+	    	}else if(newUId==userId){
+	    		start = start-1;
+	    	}else if(start>tmp_End){
+	    		break;
+	    	}else if(start<tmp_Strat){
+	    		continue;
+	    	}
+	    }
+	    paginationSupport.setItems(itemList);
+	    
 		return paginationSupport;
 	}
 	
@@ -211,20 +266,36 @@ public class UserService implements IUserService {
 	 * 获得ta的dao友
 	 * */
 	public PaginationSupport getOtherFanListByUser(PaginationSupport paginationSupport,Short userId,Short sessionId) {
-		String querysql = " Select f From DlUsers u INNER JOIN u.dlFancers f  where  u.userId = "+userId+" and f.userId<>"+userId+"";
-		String countsql =" Select count(f.userId) From DlUsers u INNER JOIN u.dlFancers f  where  u.userId = "+userId+" and f.userId<>"+userId+"";
-		paginationSupport = dlUsersDao.findPageByQuery(querysql, countsql, paginationSupport.getPageSize(), paginationSupport.getStartIndex());
-		List<DlUsers> itemList = paginationSupport.getItems();
-		for(Iterator<DlUsers> it = itemList.iterator();it.hasNext();)
-		{
-			DlUsers dlUsers = it.next();
-			if(checkRela(dlUsers.getUserId(),sessionId)){
-				dlUsers.setFollowFlag(true);
-			}else{
-				dlUsers.setFollowFlag(false);
-			}
-			dlUsers.setCityName(getCityName(dlUsers));
-		}
+		DlUsers user = dlUsersDao.get(userId);
+		List<DlUsers> itemList = new ArrayList();
+		int start = 0;
+		int pagesize = paginationSupport.getPageSize();
+		int startIndex = paginationSupport.getStartIndex();
+		int tmp_Strat = pagesize*startIndex+1;
+		int tmp_End = pagesize*(startIndex+1);
+	    for(Iterator<DlUsers> it = user.getDlFancers().iterator();it.hasNext(); )
+	    {
+	    	DlUsers newUser = it.next();
+	    	Short newUId = newUser.getUserId();
+	    	start+=1;
+	    	if(start<=tmp_End&&start>=tmp_Strat&&newUId!=userId){
+	    		if(checkRela(newUId,sessionId)){
+	    			newUser.setFollowFlag(true);
+				}else{
+					newUser.setFollowFlag(false);
+				}
+	    		newUser.setCityName(getCityName(newUser));
+	    		itemList.add(newUser);
+	    	}else if(newUId==userId){
+	    		start = start-1;
+	    	}else if(start>tmp_End){
+	    		break;
+	    	}else if(start<tmp_Strat){
+	    		continue;
+	    	}
+	    }
+	    paginationSupport.setItems(itemList);
+	    
 		return paginationSupport;
 	}
 	
