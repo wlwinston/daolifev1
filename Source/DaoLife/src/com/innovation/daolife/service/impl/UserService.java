@@ -148,8 +148,8 @@ public class UserService implements IUserService {
 		int start = 0;
 		int pagesize = paginationSupport.getPageSize();
 		int startIndex = paginationSupport.getStartIndex();
-		int tmp_Strat = pagesize*startIndex+1;
-		int tmp_End = pagesize*(startIndex+1);
+		int tmp_Strat = startIndex+1;
+		int tmp_End = pagesize+startIndex;
 		int totalSize = user.getDlFollowers().size()-1;
 	    for(Iterator<DlUsers> it = user.getDlFollowers().iterator();it.hasNext(); )
 	    {
@@ -189,9 +189,9 @@ public class UserService implements IUserService {
 		int start = 0;
 		int pagesize = paginationSupport.getPageSize();
 		int startIndex = paginationSupport.getStartIndex();
-		int tmp_Strat = pagesize*startIndex+1;
-		int tmp_End = pagesize*(startIndex+1);
-		int totalSize = user.getDlFollowers().size()-1;
+		int tmp_Strat = startIndex+1;
+		int tmp_End = pagesize+startIndex;
+		int totalSize = user.getDlFancers().size()-1;
 	    for(Iterator<DlUsers> it = user.getDlFancers().iterator();it.hasNext(); )
 	    {
 	    	DlUsers newUser = it.next();
@@ -229,8 +229,8 @@ public class UserService implements IUserService {
 		int start = 0;
 		int pagesize = paginationSupport.getPageSize();
 		int startIndex = paginationSupport.getStartIndex();
-		int tmp_Strat = pagesize*startIndex+1;
-		int tmp_End = pagesize*(startIndex+1);
+		int tmp_Strat = startIndex+1;
+		int tmp_End = pagesize+startIndex;
 		int totalSize = user.getDlFollowers().size()-1;
 	    for(Iterator<DlUsers> it = user.getDlFollowers().iterator();it.hasNext(); )
 	    {
@@ -268,9 +268,9 @@ public class UserService implements IUserService {
 		int start = 0;
 		int pagesize = paginationSupport.getPageSize();
 		int startIndex = paginationSupport.getStartIndex();
-		int tmp_Strat = pagesize*startIndex+1;
-		int tmp_End = pagesize*(startIndex+1);
-		int totalSize = user.getDlFollowers().size()-1;
+		int tmp_Strat = startIndex+1;
+		int tmp_End = pagesize+startIndex;
+		int totalSize = user.getDlFancers().size()-1;
 	    for(Iterator<DlUsers> it = user.getDlFancers().iterator();it.hasNext(); )
 	    {
 	    	DlUsers newUser = it.next();
