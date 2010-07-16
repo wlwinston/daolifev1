@@ -109,6 +109,9 @@
 		    <property name="dlTopicDao">
 		        <ref bean="dlTopicDao"/>
 		    </property>
+		     <property name="dlCommentDao">
+		        <ref bean="dlCommentDao"/>
+		    </property>
 </bean>
 
 <bean id="retwitteUtil" class="com.innovation.daolife.service.impl.RetwitteUtilService">
@@ -120,7 +123,20 @@
 		    </property>
 </bean>
 
-
+<bean id="dlCommentService"  class = "com.innovation.daolife.service.impl.DlCommentService">
+		    <property name="daoContentBodyConvert">
+		        <ref bean="daoContentBodyConvert"/>
+		    </property>
+		    <property name="dlCommentDao">
+		        <ref bean="dlCommentDao"/>
+		    </property>
+		     <property name="dlTopicDao">
+		        <ref bean="dlTopicDao"/>
+		    </property>
+		    <property name="dlMessagesDao">
+		        <ref bean="dlMessagesDao"/>
+		    </property>
+</bean>
 
 
 
