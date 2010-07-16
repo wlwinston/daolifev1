@@ -48,6 +48,11 @@
 			<include method="getDlContentById" />
 			<include method="getTopicContent" />
 			<include method="deleteDao" />
+			<include method="addComment" /><!--新增回复  -->
+			<include method="deleteComment" /><!--删除回复  -->
+			<include method="getDaoReply" /><!--获得某条叨的回复  -->
+			<include method="getMyReply" /><!--获得我的回复  -->
+			<include method="getReplyMe" /><!--获得回复我的  -->
 			<include method="login" />
 		</create>
 	</allow>
