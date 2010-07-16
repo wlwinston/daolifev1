@@ -24,6 +24,7 @@
         scope="prototype">
         <property name="userService" ref="userService" />
         <property name="dlDaoService" ref="dlDaoService" />
+        <property name="dlCommentService" ref="dlCommentService" />
         <property name="followrelationService" ref="followrelationService" />
         <property name="dlMessagesService" ref="dlMessagesService" />
         <property name="dlAreaService" ref="dlAreaService" />

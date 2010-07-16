@@ -176,6 +176,7 @@
             <value>productService</value>
            	<value>dlMessagesService</value>
             <value>dlAreaService</value>
+            <value>dlCommentService</value>
            	<value>daoContentBodyConvert</value>
            	<value>retwitteUtil</value>
         </list>
