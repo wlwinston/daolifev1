@@ -14,6 +14,7 @@ public enum Constant
 	USER_RECOMMENDIND_NO("0"),
 	USER_RECOMMENDIND_YES("1"),
 	CONTENT_STATUS_INIT("0"),
+	COMMENT_STATUS_INIT("0"),
 	MESSAGE_ISREAD_NO(0),
 	MESSAGE_ISREAD_YES(1),
 	/*********每页数量********/
@@ -30,12 +31,17 @@ public enum Constant
 	MESSAGE_TYPE_MAIL("1"),
 	//被人关注
 	MESSAGE_TYPE_FOLLOW("2"),
+	//有人回复自己的叨
+	MESSAGE_TYPE_COMMENT("3"),
 	/*********消息*********/
 	//被人@消息
 	MESSAGE_MESSAGEBODY_ATMESSAGE("您被人@了"),
 	
 	//被人关注
 	MESSAGE_MESSAGEBODY_ATTENTION("您被人关注了"),
+	
+	//被人回复
+	MESSAGE_MESSAGEBODY_COMMENT("您的叨被人回复了"),
 	/*********UP叨消息*********/
 	//未登录
 	UPDAO_ERRORMESSAGE_NOUSER("您还未登录，请您先登录"),
