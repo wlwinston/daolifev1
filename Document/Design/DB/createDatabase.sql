@@ -1,6 +1,24 @@
 
 
 /*==============================================================*/
+/* Table: dl_comment                                             */
+/*==============================================================*/
+create table daolife.dl_comment
+(
+   comment_id          smallint(6) not null auto_increment,
+   content_id          smallint(6) not null,
+   comment_body        varchar(1000) not null,
+   rela_commentid      smallint(6),
+   rela_userid         smallint(6) not null,
+   user_id             smallint(6) not null,
+   status              varchar(1) not null default '0',
+   posttime            datetime not null,
+   primary key (comment_id)
+);
+
+alter table daolife.dl_comment comment '»Ø¸´±í';
+
+/*==============================================================*/
 /* Table: dl_friend                                             */
 /*==============================================================*/
 create table daolife.dl_friend
