@@ -15,6 +15,7 @@ public class DlCustomerDaoEntry implements java.io.Serializable {
 	private List<DlContentat> dlContentatList = new ArrayList<DlContentat>();
 	private List<DlContenttopic> dlContenttopicList = new ArrayList<DlContenttopic>();
 	private List<DlMessages> dlMessageList = new ArrayList<DlMessages>();
+	private DlComment dlComment = new DlComment();
 	
 	public DlContent getDlContent() {
 		return dlContent;
@@ -39,6 +40,12 @@ public class DlCustomerDaoEntry implements java.io.Serializable {
 	}
 	public void setDlContenttopicList(List<DlContenttopic> dlContenttopicList) {
 		this.dlContenttopicList = dlContenttopicList;
+	}
+	public DlComment getDlComment() {
+		return dlComment;
+	}
+	public void setDlComment(DlComment dlComment) {
+		this.dlComment = dlComment;
 	}
 	
 	

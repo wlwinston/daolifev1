@@ -33,6 +33,7 @@ public class DlContent implements java.io.Serializable {
 	private DlUsers dlUsers;
 	private Set atUsers;
 	private Set contentTopic;
+	private Set dlComments;
 
 	// Constructors
 
@@ -182,6 +183,14 @@ public class DlContent implements java.io.Serializable {
 
 	public void setContentTopic(Set contentTopic) {
 		this.contentTopic = contentTopic;
+	}
+
+	public Set getDlComments() {
+		return dlComments;
+	}
+
+	public void setDlComments(Set dlComments) {
+		this.dlComments = dlComments;
 	}
 
 }
