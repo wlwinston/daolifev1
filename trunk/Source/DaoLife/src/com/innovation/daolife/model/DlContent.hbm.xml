@@ -53,6 +53,13 @@
 		         <column name="content_id" not-null="true" />  
 		     </key>  
 		   <many-to-many class="com.innovation.daolife.model.DlTopic" column="topic_id" />
+		   
+ 		</set>
+ 		<set name="dlComments" inverse="true" lazy="false"  cascade="all" >  
+		     <key>  
+		         <column name="comment_id" not-null="true" />  
+		     </key>  
+		     <one-to-many class="com.innovation.daolife.model.DlComment" />  
  		</set>
     </class>
 </hibernate-mapping>
