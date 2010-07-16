@@ -41,6 +41,7 @@ import com.innovation.daolife.model.DlUserroles;
 import com.innovation.daolife.model.DlUsers;
 import com.innovation.daolife.model.User;
 import com.innovation.daolife.service.IDlAreaService;
+import com.innovation.daolife.service.IDlCommentService;
 import com.innovation.daolife.service.IDlDaoService;
 import com.innovation.daolife.service.IDlMessagesService;
 import com.innovation.daolife.service.IFollowrelationService;
@@ -61,6 +62,8 @@ public class CommonAjax {
 	private IDlUsersDao dlUsersDao;
 
 	private IDlDaoService dlDaoService;
+	
+	private IDlCommentService dlCommentService;
 	
 	private IDlMessagesService dlMessagesService;
 	
@@ -322,10 +325,9 @@ public class CommonAjax {
 		}
 		int pageSize = Constant.PAGESIZE_MYDAO.getIntValue();
 		int startIndex = pageSize * (pages - 1);
+		
 		PaginationSupport paginationSupport = new PaginationSupport(pageSize,
 				startIndex);
-		// WebContext request = WebContextFactory.get();
-		// HttpSession session = request.getSession(false);
 		paginationSupport = dlDaoService.getHotDao(paginationSupport);
 		return paginationSupport;
 	}
@@ -844,30 +846,140 @@ public class CommonAjax {
 		return loginInfo;
 	}
 	
-	/**************************单写 大家都在叨 我的叨 随便看看 接口****************************/
-//	
-//	public List getFriendsAndMyDaos(Short daoId,boolean flag){
-//		List result = new ArrayList();
-//		if(daoId==null){
-//			int pageSize = Constant.PAGESIZE_MYDAO.getIntValue();
-//		}else{
-//			 if(flag){
-//				 int pageSize = Constant.PAGESIZE_MYDAO.getIntValue() 
-//			 }else{
-//				 
-//			 }
-//		}
-//		return result;
-//	}
-//	
-//	
+	/**
+	 * @param contentBody
+	 *       新增回复 评论߶����
+	 * @return ߶��ʵ�����
+	 * @throws Exception
+	 * @author fengsn	
+	 */
+	public DlCustomerDaoEntry addComment(Short contentId,String contentBody,Short replyId) throws Exception {
+		WebContext request = WebContextFactory.get();
+		DlCustomerDaoEntry customerDao = null;
+		HttpSession session = request.getSession(false);
+		if (session != null
+				&& session
+						.getAttribute(Constant.SESSION_USER_KEY.getStrValue()) != null) {
+			DlUsers user = (DlUsers) session
+					.getAttribute(Constant.SESSION_USER_KEY.getStrValue());
+			try {
+				customerDao = dlCommentService.addComment(user, contentBody, contentId, replyId);
+			} catch (Exception e) {
+				logger.info(e.getStackTrace());
+				customerDao = null;
+			}
+		}
+		return customerDao;
+	}
 	
-	/************************************************************************************/
+	/**
+	 * @author fengsn
+	 * @return flag 
+	 * 删除回复 评论
+	 * */
+	public boolean deleteComment(Short id){
+		boolean flag = true;
+		WebContext request = WebContextFactory.get();
+		HttpSession session = request.getSession(false);
+		if (session != null
+				&& session
+						.getAttribute(Constant.SESSION_USER_KEY.getStrValue()) != null) {
+			DlUsers nowuser = (DlUsers) session.getAttribute(Constant.SESSION_USER_KEY
+					.getStrValue());
+			flag = dlCommentService.deleteDao(id);
+		}else{
+			return false;
+		}
+		return flag;
+	}
+	
+	/**
+	 * @author fengsn
+	 * @return 分页对象
+	 * ��获得某一条叨的回复列表
+	 * */
+	public PaginationSupport getDaoReply(int pages,Short contentId) {
+		if (pages < 0) {
+			pages = 1;
+		}
+		int pageSize = Constant.PAGESIZE_MYDAO.getIntValue();
+		int startIndex = pageSize * (pages - 1);
+		PaginationSupport paginationSupport = new PaginationSupport(pageSize,
+				startIndex);
+		WebContext request = WebContextFactory.get();
+		HttpSession session = request.getSession(false);
+		if (session != null
+				&& session
+				.getAttribute(Constant.SESSION_USER_KEY.getStrValue()) != null) {
+			DlUsers user = (DlUsers) session.getAttribute(Constant.SESSION_USER_KEY.getStrValue());
+			paginationSupport = dlCommentService.getCommentListByContentId(paginationSupport, contentId);
+			paginationSupport.setNowUid(user.getUserId());
+		} else {
+			return null;
+		}
+		return paginationSupport;
+	}
+	
+	/**
+	 * 查询我的回复
+	 * @author fengsn
+	 * */
+	public PaginationSupport getMyReply(int pages){
+		if (pages < 0) {
+			pages = 1;
+		}
+		int pageSize = Constant.PAGESIZE_MYDAO.getIntValue();
+		int startIndex = pageSize * (pages - 1);
+		PaginationSupport paginationSupport = new PaginationSupport(pageSize,
+				startIndex);
+		WebContext request = WebContextFactory.get();
+		HttpSession session = request.getSession(false);
+		if (session != null
+				&& session
+				.getAttribute(Constant.SESSION_USER_KEY.getStrValue()) != null) {
+			DlUsers user = (DlUsers) session.getAttribute(Constant.SESSION_USER_KEY.getStrValue());
+			paginationSupport = dlCommentService.getMyCommentList(paginationSupport, user.getUserId());
+			paginationSupport.setNowUid(user.getUserId());
+		}else {
+			return null;
+		}
+		return paginationSupport;
+	}
+	
+	/**
+	 * 查询回复我的
+	 * @author fengsn
+	 * */
+	public PaginationSupport getReplyMe(int pages){
+		if (pages < 0) {
+			pages = 1;
+		}
+		int pageSize = Constant.PAGESIZE_MYDAO.getIntValue();
+		int startIndex = pageSize * (pages - 1);
+		PaginationSupport paginationSupport = new PaginationSupport(pageSize,
+				startIndex);
+		WebContext request = WebContextFactory.get();
+		HttpSession session = request.getSession(false);
+		if (session != null
+				&& session
+				.getAttribute(Constant.SESSION_USER_KEY.getStrValue()) != null) {
+			DlUsers user = (DlUsers) session.getAttribute(Constant.SESSION_USER_KEY.getStrValue());
+			paginationSupport = dlCommentService.getCommentMeList(paginationSupport, user.getUserId());
+			paginationSupport.setNowUid(user.getUserId());
+			dlMessagesService.dealReadState(user.getUserId(),"2");
+		}else {
+			return null;
+		}
+		return paginationSupport;
+	}
+	
+	
 	public DlContent getDlContentById(Short contentId) throws Exception
 	{
 		DlContent content = dlDaoService.getDao(contentId);
 		return content;
 	}
+	
 	public IDlDaoService getDlDaoService() {
 		return dlDaoService;
 	}
@@ -899,6 +1011,14 @@ public class CommonAjax {
 
 	public void setDlAreaService(IDlAreaService dlAreaService) {
 		this.dlAreaService = dlAreaService;
+	}
+
+	public IDlCommentService getDlCommentService() {
+		return dlCommentService;
+	}
+
+	public void setDlCommentService(IDlCommentService dlCommentService) {
+		this.dlCommentService = dlCommentService;
 	}
 
 }
