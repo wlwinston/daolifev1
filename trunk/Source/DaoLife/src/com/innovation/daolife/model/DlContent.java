@@ -27,6 +27,7 @@ public class DlContent implements java.io.Serializable {
 	private Short retwittNum;
 	//����
 	private Short upNum;
+	private Short replyNum;
 	private String status;
 	private String type;
 	//��߶����Ϣ
@@ -191,6 +192,14 @@ public class DlContent implements java.io.Serializable {
 
 	public void setDlComments(Set dlComments) {
 		this.dlComments = dlComments;
+	}
+
+	public Short getReplyNum() {
+		return replyNum;
+	}
+
+	public void setReplyNum(Short replyNum) {
+		this.replyNum = replyNum;
 	}
 
 }

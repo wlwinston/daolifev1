@@ -886,7 +886,7 @@ public class CommonAjax {
 						.getAttribute(Constant.SESSION_USER_KEY.getStrValue()) != null) {
 			DlUsers nowuser = (DlUsers) session.getAttribute(Constant.SESSION_USER_KEY
 					.getStrValue());
-			flag = dlCommentService.deleteDao(id);
+			flag = dlCommentService.deleteComment(id);
 		}else{
 			return false;
 		}

@@ -192,16 +192,6 @@ public class DaoContentBodyConvertService implements IDaoContentBodyConvertServi
 			userList = dlUsersDao.find(atSql);
 		}
 		
-		//在message表中添加提示信息
-		DlContent dlContent = dlContentDao.get(contentId);
-		DlMessages message = new DlMessages();
-		message.setIsread((short) Constant.MESSAGE_ISREAD_NO.getIntValue());
-		message.setMessageBody(Constant.MESSAGE_MESSAGEBODY_COMMENT
-				.getStrValue());
-		message.setType(Constant.MESSAGE_TYPE_COMMENT.getStrValue());
-		message.setMTime(new Date());
-		message.setUserId(dlContent.getUserId());
-		dlCustomerDaoEntry.getDlMessageList().add(message);
 		
 		//处理#***# 为活动
 		DlComment  dlComment = new DlComment();
@@ -272,6 +262,7 @@ public class DaoContentBodyConvertService implements IDaoContentBodyConvertServi
 		
 		dlComment.setCommentBody(contextBody);
 		dlComment.setContentId(contentId);
+		DlContent dlContent = dlContentDao.get(contentId);
 		//处理reply 如果直接回复的dao replyUid存放叨的userId
 		if(relaId==null){
 			dlComment.setRelaUserid(dlContent.getUserId());
@@ -281,7 +272,19 @@ public class DaoContentBodyConvertService implements IDaoContentBodyConvertServi
 			dlComment.setRelaUserid(comment.getUserId());
 		}
 		dlCustomerDaoEntry.setDlComment(dlComment);
+		//在message表中添加提示信息
 		
+		DlMessages message = new DlMessages();
+		message.setIsread((short) Constant.MESSAGE_ISREAD_NO.getIntValue());
+		message.setMessageBody(Constant.MESSAGE_MESSAGEBODY_COMMENT
+				.getStrValue());
+		message.setType(Constant.MESSAGE_TYPE_COMMENT.getStrValue());
+		message.setMTime(new Date());
+		message.setUserId(dlComment.getRelaUserid());
+		dlCustomerDaoEntry.getDlMessageList().add(message);
+		//给DAO增加评论数
+		dlContent.setReplyNum((short)(dlContent.getReplyNum()+1));
+		dlContentDao.save(dlContent);
 		return dlCustomerDaoEntry;
 	}
 	

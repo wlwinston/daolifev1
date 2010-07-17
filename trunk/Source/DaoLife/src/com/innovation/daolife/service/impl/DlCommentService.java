@@ -6,6 +6,7 @@ import java.util.List;
 import com.innovation.common.util.Constant;
 import com.innovation.common.util.PaginationSupport;
 import com.innovation.daolife.dao.IDlCommentDao;
+import com.innovation.daolife.dao.IDlContentDao;
 import com.innovation.daolife.dao.IDlMessagesDao;
 import com.innovation.daolife.dao.IDlTopicDao;
 import com.innovation.daolife.model.DlComment;
@@ -22,6 +23,7 @@ public class DlCommentService implements IDlCommentService {
 	
 	private IDlTopicDao dlTopicDao;
 	private IDlCommentDao dlCommentDao;
+	private IDlContentDao dlContentDao;
 	private IDlMessagesDao dlMessagesDao;
 	private IDaoContentBodyConvertService daoContentBodyConvert;
 	
@@ -65,10 +67,13 @@ public class DlCommentService implements IDlCommentService {
 	}
 	
 	/**删除评论 回复 */
-	public boolean deleteDao(Short id){
+	public boolean deleteComment(Short id){
 		DlComment  dlComment = dlCommentDao.get(id);
 		dlComment.setStatus("1");
 		dlCommentDao.update(dlComment);
+		DlContent content = dlContentDao.get(dlComment.getContentId());
+		content.setReplyNum((short)(content.getReplyNum()- 1));
+		dlContentDao.save(content);
 		return true;
 	}
 	
