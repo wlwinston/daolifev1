@@ -136,8 +136,17 @@
 		    <property name="dlMessagesDao">
 		        <ref bean="dlMessagesDao"/>
 		    </property>
+		     <property name="dlContentDao">
+		        <ref bean="dlContentDao"/>
+		    </property>
 </bean>
 
+<bean id="indexCreateUtil" class="com.innovation.common.index.IndexCreateUtil">
+		   <property name="dlContentDao">
+		        <ref bean="dlContentDao"/>
+		    </property>
+		   
+</bean>
 
 
 </beans>

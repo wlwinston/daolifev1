@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ehcache> 
-	<diskStore path = "user.home"/>
+	<diskStore path = "java.io.tmpdir"/>
 	<cache name = "DAOLIFE_CACHE" 
 		maxElementsInMemory = "300" 
 		eternal = "false" 
