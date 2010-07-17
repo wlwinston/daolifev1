@@ -377,7 +377,7 @@ personal.prototype = {
 		html.push('</tr></table>');
 		html.push('<table width="82%" border="0" align="center" cellpadding="0" cellspacing="0" class="yonghu"><tr>');
 		html.push('<td width="32%" align="center">');
-		html.push('<a href="touxiang.html"><img src="images/1_10.gif" width="113" height="112" /></a>');
+		html.push('<a href="javascript://"><img src="images/1_10.gif" width="113" height="112" /></a>');
 		html.push('</td>');
 		html.push('<td width="68%" align="center" valign="top">');
 		if(this.mid == this.pid){
