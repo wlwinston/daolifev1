@@ -1,7 +1,8 @@
 //回复单条数据
-function reply(id,toid,name,content,time,picurl){
+function reply(id,toid,uid,name,content,time,picurl){
 	this.id = id;
 	this.toid = toid;
+	this.uid = uid;
 	this.name = name;
 	this.content = content;
 	this.time = time;
@@ -10,37 +11,29 @@ function reply(id,toid,name,content,time,picurl){
 reply.prototype = {
 	getHtml : function(){
 		var html = [];
-		html.push('<table id="reply_' + this.id + '" width="510" border="0" cellspacing="0" cellpadding="2">');
-		html.push('<tr>');
-		html.push('<td width="45" height="50" align="left" valign="top"><a href="PersonPage.action?userId=' + this.id + '"><img src="' + this.picurl + '" width="38" height="38" /></a></td>');
-		html.push('<td width="457" align="left" valign="top">');
-		html.push('<table width="432" height="46" border="0" cellpadding="0" cellspacing="0">');
-		html.push('<tr>');
-		html.push('<td width="432" height="26"><a href="PersonPage.action?userId=' + this.id + '">' + this.name + '</a></td>');
-		html.push('</tr>');
-		html.push('<tr>');
-		html.push('<td height="20" align="left">');
-		html.push('<table width="432" border="0" cellspacing="2" cellpadding="2">');
-		html.push('<tr>');
-		html.push('<td width="300">' + this.content + '</td>');
-		html.push('<td width="70">回复</td><td width="42">删除</td>');
-		html.push('</tr>');
-		html.push('</table>');
-		html.push('</td>');
-		html.push('</tr>');
-		html.push('</table>');
-		html.push('</td>');
-		html.push('</tr>');
-		html.push('</table>');
+		html.push('<div style="text-align:left;width:495px;margin:10px auto;min-height:38px;height:auto;max-height:none;overflow:hidden;">');
+		html.push('<div style="width:38px;height:38px;float:left;"><img src="images/myhome_39.gif" /></div>');
+		html.push('<div style="width:452px;float:right;height:auto;max-height:none;overflow:hidden;">');
+		html.push('<div style="min-height:22px;height:auto;max-height:none;line-height:19px;margin-top:1px;"><a href="PersonPage.action?userId=' + this.uid + '">' + this.name + '</a> ：' + this.content + '</div>');
+		html.push('<div style="font-size:12px;">' + this.time + '<span style="float:right;"><a href="javascript:rereply(' + this.id + ',' + this.toid + ')">回复</a> <!--| <a href="javascript://">删除</a>--></span></div>')
+		html.push('</div>');
+		html.push('</div>');
 		return html.join('');
 	}
 }
+function rereply(id,toid){
+	myBox.replyBox[toid].reply = myBox.replyBox[toid].getElementById(id);
+	$('#replymsg_' + toid).val('回复@' + myBox.replyBox[toid].getElementById(id).name + ' ：').focus();
+}	
 //回复集合		
 function replyBox(id){
 	this.id = id;
 	this.element = [];
 	this._element = [];
-	this.replyid = null;
+	this.reply = null;
+	this.totalCount = 1;
+	this.pageCount = 1;
+	this.currentPage = 1;
 }
 replyBox.prototype = {
 	getHtml : function(){
@@ -49,15 +42,14 @@ replyBox.prototype = {
 		html.push('<tr><td width="487"><img src="images/myhome_34.gif" width="523" height="6" /></td></tr>');
 		html.push('<tr>');
 		html.push('<td align="center" valign="top" background="images/myhome_37.gif">');
+		/*
 		html.push('<table width="510" height="15" border="0" cellpadding="0" cellspacing="0">');
 		html.push('<tr>');
 		html.push('<td width="255">共有评论28条 您现在查看的是1-10条</td><td width="268">前十条 上一页 1 2 3 下一页 后十条</td>');
 		html.push('</tr>');
 		html.push('</table>');
+		*/
 		html.push('<div id="replylist_' + this.id + '">');
-		for(var i = 0, l = this.element.length; i < l; ++i){
-			html.push(this.element[i].getHtml());
-		}
 		html.push('</div>');
 		html.push('<table width="510" border="0" cellspacing="0" cellpadding="0">');
 		html.push('<tr>');
@@ -99,8 +91,24 @@ replyBox.prototype = {
 		this.element = [];
 		this._element = [];
 	}
+	,setpage : function(totalCount,pageCount,currentPage,pageSize){
+		this.totalCount = totalCount;
+		this.pageCount = pageCount;
+		this.currentPage = currentPage;
+		this.pageSize = pageSize;
+	}
 	,showList : function(){
 		var html  = [];
+		var count = (((this.currentPage - 1) * this.pageSize) + 1);
+		var str = count + '-' + ((count + this.pageSize) > this.totalCount ? this.totalCount : (count + this.pageSize) -1 );
+		html.push('<div style="width:495px;text-align:left;padding: 10px 0 5px 5px;"><b>共有评论 ' + this.totalCount + ' 条,您正在查看的是 ' + str + ' 条</b><span style="float:right;">');
+		if(this.currentPage != 1){
+			html.push('<a href="javascript:replyPre(' + this.id + ')"> 上一页 </a>');
+		}
+		if(this.currentPage != Math.ceil(this.totalCount/this.pageSize)){
+			html.push('<a href="javascript:replyNext(' + this.id + ')"> 下一页 </a>');
+		}
+		html.push('</span></div>');
 		for(var i = 0, l = this.element.length; i < l; ++i){
 			html.push(this.element[i].getHtml());
 		}
@@ -110,6 +118,41 @@ replyBox.prototype = {
 	,getElementById : function(id){
 		return this._element[id];
 	}
+	,nextPage : function(){
+		++this.currentPage;
+		this.pageAjax();
+	}
+	,prePage : function(){
+		--this.currentPage;
+		this.pageAjax();
+	}
+	,initPage : function(){
+		this.currentPage = 1;
+		this.pageAjax();
+	}
+	,pageAjax : function(){
+		var self = this;
+		DaolifeAjax.getDaoReply(self.currentPage,self.id,function(data){
+			if(data){
+				self.empty();
+				self.setpage(data.totalCount,data.pageCount,data.currentPage,data.pageSize)
+				for(var i = 0, l = data.items.length; i < l; ++i){
+					self.add(new reply(data.items[i].commentId,data.items[i].contentId,data.items[i].userId,data.items[i].dlUsers.userNickName,data.items[i].commentBody,getTime(data.items[i].posttime),'images/myhome_39.gif'));
+				}
+				if(l){
+					self.showList();
+				}else{
+					$('#replylist_' + self.id).get(0).innerHTML = '';
+				}
+			}
+		});
+	}
+}
+function replyNext(id){
+	myBox.replyBox[id].nextPage();
+}
+function replyPre(id){
+	myBox.replyBox[id].prePage();
 }
 function doReply(id){
 	var rb = myBox.replyBox[id];
@@ -117,20 +160,9 @@ function doReply(id){
 	if($('#replymsg_' + id).val() != '' && $('#replymsg_' + id).val() != ''){
 		$('#replybutton_' + id).get(0).innerHTML = '<div style="height:22px;"><img src="images/floading.gif" /></div>';
 		DaolifeAjax.addComment(id,$('#replymsg_' + id).val(),replyid,function(rs){
+			$('#replymsg_' + id).val('');
 			$('#replybutton_' + id).get(0).innerHTML = '<a href="javascript:doReply(' + id + ')"><img src="images/myhome_46.gif" width="88" height="22" /></a>';
-			DaolifeAjax.getDaoReply(1,id,function(data){
-				alert(data.items.length);
-				if(data){
-					rb.empty();
-					for(var i = 0, l = data.items.length; i < l; ++i){
-						rb.add(new reply(data.items[i].commentId,data.items[i].commentId,data.items[i].dlUsers.userNickName,data.items[i].commentBody,data.items[i].posttime,'images/myhome_39.gif'));
-					}
-					rb.showList();	
-				}
-			});
-			//for(var i = 0, l = rs.length; ++i){
-				//rb.add(new reply());
-			//}
+			rb.initPage();
 		});
 	}
 }
@@ -145,13 +177,10 @@ function doArticle(id){
 		}); 
 	}else{
 		myBox.replyBox[id] = new replyBox(id);
-		myBox.replyBox[id].add(new reply(1+id,id,'Tony','没妞怎么了','2020年7月17 17:24','images/myhome_39.gif'));
-		myBox.replyBox[id].add(new reply(2+id,id,'Sam','有什么大不了的','2020年7月17 17:24','images/myhome_39.gif'));
-		myBox.replyBox[id].add(new reply(3+id,id,'Sam','有什么大不了的','2020年7月17 17:24','images/myhome_39.gif'));
-		myBox.replyBox[id].add(new reply(4+id,id,'Sam','有什么大不了的','2020年7月17 17:24','images/myhome_39.gif'));
-		myBox.replyBox[id].add(new reply(5+id,id,'Sam','有什么大不了的','2020年7月17 17:24','images/myhome_39.gif'));
 		$('#article_' + id).get(0).innerHTML += myBox.replyBox[id].getHtml();
+		$('#replylist_' + id).get(0).innerHTML += '<div style="text-align:center;height:24px;"><img src="images/floading.gif" /></div>';
 		$('#replybox_' +id).fadeIn(1100);
+		myBox.replyBox[id].initPage();
 	}
 }
 //发布的单条数据
@@ -180,7 +209,7 @@ article.prototype = {
 	}
 	,getElement : function(){
 		var html = [];
-		html.push('<div style="width:530px;margin:10px 5px;height:auto;max-height:none;min-height:80px;overflow:hidden;text-align:left;">');
+		html.push('<div style="width:523px;margin:10px 5px;height:auto;max-height:none;min-height:80px;overflow:hidden;text-align:left;">');
 		html.push('<div style="width:80px;height:80px;float:left;padding:0px;border:1px #D8D8D8;"><a href="PersonPage.action?userId=' + this.uid + '"><img src="images/myhome_30.gif" width="80" height="80" /></a></div>');
 		html.push('<div style="width:440px;float:right;padding-top:3px;line-height:19px;min-height:60px;">');
 		html.push('<a href="PersonPage.action?userId=' + this.uid + '">' + this.name + '</a> ：' + this.content);

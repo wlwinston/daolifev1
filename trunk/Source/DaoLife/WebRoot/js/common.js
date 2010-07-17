@@ -320,6 +320,9 @@ function doDlinfo(){
 						case 2:
 							str = '<a href="attentionMe.jsp">有' + rs[i][0] + '条关注您</a>';
 							break;
+						case 3:
+							str = '<a href="replyMe.jsp">有' + rs[i][0] + '条回复您</a>';
+							break;
 						default:
 							str = '&nbsp;';
 					}
@@ -457,7 +460,7 @@ personal.prototype = {
 			html.push('<td>');
 			html.push('<a href="atMe.jsp">﹫我的</a>');
 			html.push('</td>');
-			html.push('<td><a href="javascript://">&nbsp;</a></td>');
+			html.push('<td><a href="replyMe.jsp">回复我的</a></td>');
 			html.push('</tr>');
 			html.push('</div>');
 		}
@@ -475,7 +478,7 @@ logon.prototype = {
 		html.push('<table width="266" border="0" cellspacing="5" cellpadding="0">');
 		html.push('<tr>');
 		html.push('<td height="36" background="images/zhuce.gif">');
-		html.push('<label>&nbsp;账号：<input name="userName" type="text" id="userName" size="25" maxlength="45" style="border: 0;" /></label>');
+		html.push('<label>&nbsp;账号：<input name="userName"  type="text" id="userName" size="25" maxlength="45" style="border: 0;" /></label>');
 		html.push('</td>');
 		html.push('</tr>');
 		html.push('<tr>');
