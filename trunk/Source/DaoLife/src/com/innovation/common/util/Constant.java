@@ -20,7 +20,7 @@ public enum Constant
 	/*********每页数量********/
 	PAGESIZE_FRIENDDAO(20),
 	PAGESIZE_MYDAO(20),
-	
+	PAGESIZE_DAOCOMMENT(5),
 	/*********网站角色***********/
 	//普通用户
 	WEBSITE_ROLES_DEFAULT("daolife_user"),

@@ -902,7 +902,7 @@ public class CommonAjax {
 		if (pages < 0) {
 			pages = 1;
 		}
-		int pageSize = Constant.PAGESIZE_MYDAO.getIntValue();
+		int pageSize = Constant.PAGESIZE_DAOCOMMENT.getIntValue();
 		int startIndex = pageSize * (pages - 1);
 		PaginationSupport paginationSupport = new PaginationSupport(pageSize,
 				startIndex);
