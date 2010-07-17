@@ -47,44 +47,6 @@ replyBox.prototype = {
 		html.push('</div>');
 		html.push('<div><img src="images/myhome_45.gif" width="523" height="7" /></div>');
 		html.push('</div>');
-		/*
-		html.push('<table id="replybox_' + this.id+ '" width="487" border="0" cellspacing="0" cellpadding="0" style="display:none;margin-bottom:10px;">');
-		html.push('<tr><td width="487"><img src="images/myhome_34.gif" width="523" height="6" /></td></tr>');
-		html.push('<tr>');
-		html.push('<td align="center" valign="top" background="images/myhome_37.gif">');
-		html.push('<div id="replylist_' + this.id + '" style="min-height:15px;">');
-		html.push('</div>');
-		html.push('<table width="510" border="0" cellspacing="0" cellpadding="0">');
-		html.push('<tr>');
-		html.push('<td height="74" colspan="2" align="center" valign="top">');
-		html.push('<form action="" method="post" enctype="multipart/form-data" name="hueifu" id="hueifu">');
-		html.push('<table width="493" border="0" cellspacing="4" cellpadding="0">');
-		html.push('<tr>');
-		html.push('<td height="62" colspan="2" align="center" valign="top">');
-		html.push('<label>');
-		html.push('<textarea name="textarea" class="tabledao" style="border: 0;max-width:495px;max-height:53px; width: 495px; height: 53px;resize: none; " id="replymsg_' + this.id + '"></textarea>');
-		html.push('</label>');
-		html.push('</td>');
-		html.push('</tr>');
-		html.push('<tr>');
-		html.push('<td width="370" height="22" align="left" valign="top">');
-		html.push('</td>');
-		html.push('<td width="90" align="center" id="replybutton_' + this.id + '"><a href="javascript:doReply(' + this.id + ')"><img src="images/myhome_46.gif" width="88" height="22" /></a></td>');
-		html.push('</tr>');
-		html.push('</table>');
-		html.push('</form>');
-		html.push('</td>');
-		html.push('</tr>');
-		html.push('</table>');
-		html.push('</td>');
-		html.push('</tr>');
-		html.push('<tr>');
-		html.push('<td>');
-		html.push('<img src="images/myhome_45.gif" width="523" height="7" />');
-		html.push('</td>');
-		html.push('</tr>');
-		html.push('</table>');
-		*/
 		return html.join('');
 	}
 	,add : function(reply){
@@ -167,9 +129,6 @@ function doReply(id){
 			myBox.articleBox.getElementById(id).reload(function(){
 				doArticle(id)
 			});
-			//$('#replymsg_' + id).val('');
-			//$('#replybutton_' + id).get(0).innerHTML = '<a href="javascript:doReply(' + id + ')"><img src="images/myhome_46.gif" width="88" height="22" /></a>';
-			//rb.initPage();
 		});
 	}
 }
@@ -219,10 +178,10 @@ article.prototype = {
 		var html = [];
 		html.push('<div style="width:523px;margin:10px 5px;height:auto;max-height:none;min-height:80px;overflow:hidden;text-align:left;">');
 		html.push('<div style="width:80px;height:80px;float:left;padding:0px;border:1px #D8D8D8;"><a href="PersonPage.action?userId=' + this.uid + '"><img src="images/myhome_30.gif" width="80" height="80" /></a></div>');
-		html.push('<div style="width:440px;float:right;padding-top:3px;line-height:19px;min-height:60px;">');
+		html.push('<div style="width:432px;float:right;padding-top:3px;line-height:19px;min-height:60px;">');
 		html.push('<a href="PersonPage.action?userId=' + this.uid + '">' + this.name + '</a> ：' + this.content);
 		html.push('</div>');
-		html.push('<div style="width:440px;float:right;font-size:12px;">' + this.time + '<span style="float:right">');
+		html.push('<div style="width:432px;float:right;font-size:12px;">' + this.time + '<span style="float:right">');
 		html.push('<a href="javascript:doArticle(' + this.id + ')">回复（' + this.replyNum + '）</a>');
 		html.push(' | ');
 		html.push('<a href="javascript:doForwardBox(' + this.id + ')">转发（' + this.forwardAmount + '）</a>');
@@ -274,47 +233,6 @@ forwardBox.prototype = {
 		html.push('</div>');
 		html.push('<div><img src="images/myhome_45.gif" width="523" height="7" /></div>');
 		html.push('</div>');
-		/*
-		html.push('<table id="forwardbox_' + this.id + '" width="487" border="0" cellspacing="0" cellpadding="0" style="display:none;margin-bottom:10px;">');
-		html.push('<tr><td width="487"><img src="images/myhome_34.gif" width="523" height="6" /></td></tr>');
-		html.push('<tr>');
-		html.push('<td align="center" valign="top" background="images/myhome_37.gif">');
-		html.push('<table width="510" height="15" border="0" cellpadding="0" cellspacing="0">');
-		html.push('<tr>');
-		html.push('<td width="255">&nbsp;</td>');
-		html.push('</tr>');
-		html.push('</table>');
-		html.push('<table width="510" border="0" cellspacing="0" cellpadding="0">');
-		html.push('<tr>');
-		html.push('<td height="74" colspan="2" align="center" valign="top">');
-		html.push('<form action="" method="post" enctype="multipart/form-data" name="hueifu" id="hueifu">');
-		html.push('<table width="493" border="0" cellspacing="4" cellpadding="0">');
-		html.push('<tr>');
-		html.push('<td height="62" colspan="2" align="center" valign="top">');
-		html.push('<label>');
-		html.push('<textarea name="textarea" cols="45" rows="5" class="tabledao" style="border: 0;max-width:495px; min-height:53px; width: 495px; height: 53px; resize: none; " id="forwardmsg_' + this.id + '">转 @' + item.name + ' : ' + item.content.replace(/<[^>].*?>/g,"") + '</textarea>');
-		html.push('</label>');
-		html.push('</td>');
-		html.push('</tr>');
-		html.push('<tr>');
-		html.push('<td width="370" height="22" align="left" valign="top">');
-		html.push('</td>');
-		html.push('<td width="90" align="center" id="forwardbutton_' + this.id + '"><a href="javascript:doForward(' + this.id + ')"><img src="images/myhome_46.gif" width="88" height="22" /></a></td>');
-		html.push('</tr>');
-		html.push('</table>');
-		html.push('</form>');
-		html.push('</td>');
-		html.push('</tr>');
-		html.push('</table>');
-		html.push('</td>');
-		html.push('</tr>');
-		html.push('<tr>');
-		html.push('<td>');
-		html.push('<img src="images/myhome_45.gif" width="523" height="7" />');
-		html.push('</td>');
-		html.push('</tr>');
-		html.push('</table>');
-		*/
 		return html.join('');
 	}
 }
