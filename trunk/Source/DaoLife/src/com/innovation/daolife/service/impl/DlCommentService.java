@@ -144,5 +144,13 @@ public class DlCommentService implements IDlCommentService {
 			IDaoContentBodyConvertService daoContentBodyConvert) {
 		this.daoContentBodyConvert = daoContentBodyConvert;
 	}
+
+	public IDlContentDao getDlContentDao() {
+		return dlContentDao;
+	}
+
+	public void setDlContentDao(IDlContentDao dlContentDao) {
+		this.dlContentDao = dlContentDao;
+	}
 	
 }
