@@ -21,7 +21,7 @@ public class DlComment implements java.io.Serializable {
 	private Short userId;
 	private String status;
 	private Date posttime;
-	
+	private DlUsers dlUsers;
 	private DlContent dlContents;
 
 	// Constructors
@@ -125,6 +125,14 @@ public class DlComment implements java.io.Serializable {
 
 	public void setDlContents(DlContent dlContents) {
 		this.dlContents = dlContents;
+	}
+
+	public DlUsers getDlUsers() {
+		return dlUsers;
+	}
+
+	public void setDlUsers(DlUsers dlUsers) {
+		this.dlUsers = dlUsers;
 	}
 
 }
