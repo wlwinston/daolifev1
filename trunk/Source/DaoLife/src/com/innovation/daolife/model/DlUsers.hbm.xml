@@ -106,6 +106,12 @@
 		     </key>  
 		     <one-to-many class="com.innovation.daolife.model.DlContent" />  
  		</set>
+ 		<set name="dlComments" inverse="true" lazy="false"  cascade="all" >  
+		     <key>  
+		         <column name="user_id" not-null="true" />  
+		     </key>  
+		     <one-to-many class="com.innovation.daolife.model.DlComment" />  
+ 		</set>
  		<set name="dlHotdaos" inverse="true" lazy="false"  cascade="all" >  
 		     <key>  
 		         <column name="user_id" not-null="true" />  

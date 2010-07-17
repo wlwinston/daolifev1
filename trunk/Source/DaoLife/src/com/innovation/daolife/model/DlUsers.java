@@ -50,6 +50,7 @@ public class DlUsers implements java.io.Serializable {
 	private Byte userlock;
 	private Set dlHotdaos;
 	private Set dlContents;
+	private Set dlComments;
 	private Set dlFollowers;
 	private Set dlFancers;
 	private Set dlProductfollow;
@@ -458,6 +459,14 @@ public class DlUsers implements java.io.Serializable {
 
 	public void setCityName(String cityName) {
 		this.cityName = cityName;
+	}
+
+	public Set getDlComments() {
+		return dlComments;
+	}
+
+	public void setDlComments(Set dlComments) {
+		this.dlComments = dlComments;
 	}
 
 	

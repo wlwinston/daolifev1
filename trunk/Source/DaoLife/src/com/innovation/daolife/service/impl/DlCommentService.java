@@ -11,8 +11,6 @@ import com.innovation.daolife.dao.IDlMessagesDao;
 import com.innovation.daolife.dao.IDlTopicDao;
 import com.innovation.daolife.model.DlComment;
 import com.innovation.daolife.model.DlContent;
-import com.innovation.daolife.model.DlContentat;
-import com.innovation.daolife.model.DlContenttopic;
 import com.innovation.daolife.model.DlCustomerDaoEntry;
 import com.innovation.daolife.model.DlMessages;
 import com.innovation.daolife.model.DlUsers;
@@ -83,13 +81,18 @@ public class DlCommentService implements IDlCommentService {
 	 */
 	public PaginationSupport getCommentListByContentId(
 			PaginationSupport paginationSupport, Short contentId) {
-		String querysql = " Select c From DlContent u INNER JOIN u.dlComments c where  c.status='0' and c.contentId = "
+		String querysql = " Select c From DlComment c where  c.status='0' and c.contentId = "
 				+ contentId + "order by c.posttime desc";
-		String countsql = " Select count(c.contentId) From DlContent u INNER JOIN u.dlComments c where  c.status='0' and c.contentId = "
+		String countsql = " Select count(c.contentId) From DlComment c where  c.status='0' and c.contentId = "
 				+ contentId + "order by c.posttime desc";
 		paginationSupport = dlCommentDao.findPageByQuery(querysql, countsql,
 				paginationSupport.getPageSize(), paginationSupport
-						.getStartIndex());
+						.getStartIndex()); 
+		List items = paginationSupport.getItems();
+		DlComment comment = (DlComment)items.get(0);
+		DlUsers users = comment.getDlUsers();
+		System.out.println(comment.getUserId());
+		System.out.println(users.getUserName());
 		return paginationSupport;
 	}
 	
