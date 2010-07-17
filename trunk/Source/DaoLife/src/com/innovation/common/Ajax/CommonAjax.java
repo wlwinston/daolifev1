@@ -966,7 +966,7 @@ public class CommonAjax {
 			DlUsers user = (DlUsers) session.getAttribute(Constant.SESSION_USER_KEY.getStrValue());
 			paginationSupport = dlCommentService.getCommentMeList(paginationSupport, user.getUserId());
 			paginationSupport.setNowUid(user.getUserId());
-			dlMessagesService.dealReadState(user.getUserId(),"2");
+			dlMessagesService.dealReadState(user.getUserId(),"3");
 		}else {
 			return null;
 		}
