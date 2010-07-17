@@ -41,7 +41,7 @@ replyBox.prototype = {
 		html.push('<div id="replybox_' + this.id + '" style="width:523px;display:none;margin-bottom:10px;">');
 		html.push('<div><img src="images/myhome_34.gif" width="523" height="6" /></div>');
 		html.push('<div style="background:url(\'images/myhome_37.gif\');">');
-		html.push('<div id="replylist_' + this.id + '" style="padding: 10px 0;background:#eeeeee;"></div>');
+		html.push('<div id="replylist_' + this.id + '" style="padding: 10px 0;background:url(\'images/myhome_37.gif\');"></div>');
 		html.push('<div><textarea name="textarea" class="tabledao" style="border: 0;max-width:495px;max-height:53px; width: 495px; height: 53px;resize: none; " id="replymsg_' + this.id + '"></textarea></div>');
 		html.push('<div style="margin: 7px auto 0;text-align:right;width:495px;"><span style="float:left;line-height:22px;font-weight:bold;">回复</span><span id="replybutton_' + this.id + '"><a href="javascript:doReply(' + this.id + ')"><img src="images/myhome_46.gif" /></a></span></div>');
 		html.push('</div>');
