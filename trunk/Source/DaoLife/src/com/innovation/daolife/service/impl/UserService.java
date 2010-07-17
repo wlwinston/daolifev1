@@ -394,6 +394,7 @@ public class UserService implements IUserService {
 			DlUsers user = new DlUsers();
 			BeanUtils.copyProperties(dlContent.getDlUsers(), user);
 			dlContent.setDlUsers(user);
+			
 		}
 		paginationSupport.setItems(itemList);
 		return paginationSupport;

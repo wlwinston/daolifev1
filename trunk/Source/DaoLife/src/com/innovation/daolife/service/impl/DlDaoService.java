@@ -124,6 +124,7 @@ public class DlDaoService implements IDlDaoService {
 		//默认被转数量和被顶数量
 		content.setRetwittNum((short) 0);
 		content.setUpNum((short) 0);
+		content.setReplyNum((short)0);
 		content.setStatus(Constant.CONTENT_STATUS_INIT.getStrValue());
 		content.setUserId(user.getUserId());
 		// 叨发布形式类型

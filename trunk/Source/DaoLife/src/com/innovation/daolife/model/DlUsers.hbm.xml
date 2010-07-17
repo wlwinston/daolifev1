@@ -100,32 +100,32 @@
         <property name="userlock" type="java.lang.Byte">
             <column name="userlock" not-null="true" />
         </property>
-        <set name="dlContents" inverse="true" lazy="false"  cascade="all" >  
+        <set name="dlContents" inverse="true" lazy="true"  cascade="all" >  
 		     <key>  
 		         <column name="user_id" not-null="true" />  
 		     </key>  
 		     <one-to-many class="com.innovation.daolife.model.DlContent" />  
  		</set>
- 		<set name="dlComments" inverse="true" lazy="false"  cascade="all" >  
+ 		<set name="dlComments" inverse="true" lazy="true"  cascade="all" >  
 		     <key>  
 		         <column name="user_id" not-null="true" />  
 		     </key>  
 		     <one-to-many class="com.innovation.daolife.model.DlComment" />  
  		</set>
- 		<set name="dlHotdaos" inverse="true" lazy="false"  cascade="all" >  
+ 		<set name="dlHotdaos" inverse="true" lazy="true"  cascade="all" >  
 		     <key>  
 		         <column name="user_id" not-null="true" />  
 		     </key>  
 		     <one-to-many class="com.innovation.daolife.model.DlHotdao" />  
  		</set>
- 		<set name="dlFollowers" table="dl_friend" inverse="true" lazy="false"  cascade="all" order-by="fri_id desc">  
+ 		<set name="dlFollowers" table="dl_friend" inverse="true" lazy="true"  cascade="all" order-by="fri_id desc">  
 		     <key>  
 		         <column name="fid_fans" not-null="true" />  
 		     </key>  
 		   <many-to-many class="com.innovation.daolife.model.DlUsers" column="fid_follow" />
  		</set>
 
- 		<set name="dlFancers" table="dl_friend" inverse="true" lazy="false"  cascade="all" order-by="fri_id desc">  
+ 		<set name="dlFancers" table="dl_friend" inverse="true" lazy="true"  cascade="all" order-by="fri_id desc">  
 
  		     <key>  
 		         <column name="fid_follow" not-null="true" />  
@@ -133,13 +133,13 @@
 		   <many-to-many class="com.innovation.daolife.model.DlUsers" column="fid_fans" />
  		</set>
  		
- 		<set name="contentatmes" table="dl_contentat" inverse="true" lazy="false"  cascade="all">  
+ 		<set name="contentatmes" table="dl_contentat" inverse="true" lazy="true"  cascade="all">  
 		     <key>  
 		         <column name="status_uid" not-null="true" />  
 		     </key>  
 		   <many-to-many class="com.innovation.daolife.model.DlContent" column="content_id" />
  		</set>
- 		<set name="dlProductfollow" inverse="true" lazy="false"  cascade="all" >  
+ 		<set name="dlProductfollow" inverse="true" lazy="true"  cascade="all" >  
 		     <key>  
 		         <column name="productfollow_userid" not-null="true" />  
 		     </key>  

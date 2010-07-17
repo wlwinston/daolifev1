@@ -5,14 +5,20 @@
 <dwr>	
 	<allow>
 		<convert match="com.innovation.daolife.model.User" converter="bean"></convert>
-		<convert match="com.innovation.daolife.model.DlUsers" converter="bean"></convert>
-		<convert match="com.innovation.daolife.model.DlContent" converter="bean"></convert>
+		<convert match="com.innovation.daolife.model.DlUsers" converter="bean">
+			<param name="exclude" value="dlHotdaos,dlContents,dlComments,dlFollowers,dlFancers,dlProductfollow,contentatmes"/>
+		</convert>
+		<convert match="com.innovation.daolife.model.DlContent" converter="bean">
+			<param name="exclude" value="atUsers,contentTopic,dlComments"/>
+		</convert>
 		<convert match="com.innovation.daolife.model.DlComment" converter="bean"></convert>
 		<convert match="com.innovation.daolife.model.DlContentat" converter="bean"></convert>
 		<convert match="com.innovation.daolife.model.DlMessages" converter="bean"></convert>
 		<convert match="com.innovation.daolife.model.DlHotdao" converter="bean"></convert>
 		<convert match="com.innovation.daolife.model.DlCustomerDaoEntry" converter="bean"></convert>
-		<convert match="com.innovation.daolife.model.DlTopic" converter="bean"></convert>
+		<convert match="com.innovation.daolife.model.DlTopic" converter="bean">
+			<param name="exclude" value="topicContent"/>
+		</convert>
 		<convert match="com.innovation.daolife.model.DlContenttopic" converter="bean"></convert>
 		<convert match="com.innovation.daolife.model.DlProductfollow" converter="bean"></convert>
 		<convert match="com.innovation.common.util.PaginationSupport" converter="bean"></convert>
