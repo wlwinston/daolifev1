@@ -23,22 +23,9 @@
 				<img src="images/top_08.gif" />
 			</div>
 			<div class="tiao3" >
-				<table width="98%" border="0" cellspacing="0" cellpadding="0">
-					<tr>
-						<td>
-							<img src="images/top_09.gif" width="118" height="8" />
-						</td>
-					</tr>
-					<tr>
-						<td id="dlinfo" height="53" align="center" background="images/top_11.gif">
-						</td>
-					</tr>
-					<tr>
-						<td align="left" valign="top">
-							<img src="images/top_13.gif" width="118" height="6" />
-						</td>
-					</tr>
-				</table>
+				<div><img src="images/top_09.gif" width="118" height="8" /></div>
+				<div style="background:url('images/top_11.gif');height:66px;text-align:left;" id = "dlinfo"></div>
+				<div><img src="images/top_13.gif" width="118" height="6" /></div>
 			</div>
 		</div>
 		<!--表单-->
