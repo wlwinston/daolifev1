@@ -11,7 +11,7 @@ public interface IDlCommentService {
 	
 	public DlCustomerDaoEntry addComment(DlUsers user, String contextBody,Short contentId,Short relaId)throws Exception ;
 
-	public boolean deleteDao(Short id);
+	public boolean deleteComment(Short id);
 	
 	public PaginationSupport getCommentListByContentId(PaginationSupport paginationSupport, Short contentId);
 	
