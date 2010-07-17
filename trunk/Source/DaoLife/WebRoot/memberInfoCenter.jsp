@@ -55,7 +55,7 @@
 																			<td width="525" height="172">
 																				<textarea id='articlecontent' name="textarea3" cols="45" rows="5"
 																					class="tabledao" id="textarea3"
-																					style="background-image: url(images/myhome_07.gif); border: 0; width: 521px; height: 138px; overflow: hidden; resize: none; "></textarea>
+																					style="border: 0; width: 521px; height: 138px; overflow: hidden; resize: none; "></textarea>
 																			</td>
 																		</tr>
 																		<tr>
