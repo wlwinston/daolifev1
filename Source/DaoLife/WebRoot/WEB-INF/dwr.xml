@@ -7,6 +7,7 @@
 		<convert match="com.innovation.daolife.model.User" converter="bean"></convert>
 		<convert match="com.innovation.daolife.model.DlUsers" converter="bean"></convert>
 		<convert match="com.innovation.daolife.model.DlContent" converter="bean"></convert>
+		<convert match="com.innovation.daolife.model.DlComment" converter="bean"></convert>
 		<convert match="com.innovation.daolife.model.DlContentat" converter="bean"></convert>
 		<convert match="com.innovation.daolife.model.DlMessages" converter="bean"></convert>
 		<convert match="com.innovation.daolife.model.DlHotdao" converter="bean"></convert>
