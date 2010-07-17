@@ -308,9 +308,9 @@ var msg = {
 function doDlinfo(){
 	DaolifeAjax.getMessageStatistics(function(rs){
 		var html = [];
-		html.push('<table width="68" border="0" cellspacing="0" cellpadding="0">');
 		if(rs){
 			if(rs.length){
+				var lh = Math.round(66 / rs.length);
 				for(var i = 0, l = rs.length; i < l; ++i){
 					var str = '';
 					switch(parseInt(rs[i][1])){
@@ -326,15 +326,14 @@ function doDlinfo(){
 						default:
 							str = '&nbsp;';
 					}
-					html.push('<tr><td align="center">' + str + '</td></tr>');
+					html.push('<div style="line-height:' + lh + 'px;height:' + lh + 'px;text-indent:1.5em;width:100%">' + str + '</div>');
 				}
 			}else{
-				html.push('<tr><td align="center">没有新信息</td></tr>');
+				html.push('<div style="line-height:66px;text-align:center;height:66px;">没有新信息</div>');
 			}
 		}else{
-			html.push('<tr><td align="center">没有新信息</td></tr>');
+			html.push('<div style="line-height:66px;text-align:center;height:66px;">没有新信息</div>');
 		}
-		html.push('</table>');
 		$('#dlinfo').get(0).innerHTML = html.join(''); 
 		setTimeout('doDlinfo()',10000);
 	});
