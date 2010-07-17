@@ -10,6 +10,8 @@
             <column name="comment_id" />
             <generator class="identity" />
         </id>
+        <many-to-one name="dlUsers" column="user_id" class="com.innovation.daolife.model.DlUsers"  insert="false" update="false" not-null="true" >
+  		</many-to-one>
         <many-to-one name="dlContents" column="content_id" class="com.innovation.daolife.model.DlContent"  insert="false" update="false" not-null="true" >
   		</many-to-one>
         <property name="contentId" type="java.lang.Short">
