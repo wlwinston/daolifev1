@@ -468,6 +468,12 @@ personal.prototype = {
 		return html.join('');
 	}
 }
+function submitDoLogin(event){
+	event = window.event || event;
+	if(event.keyCode == 13){
+		doLogin();
+	}
+}
 function logon(){}
 logon.prototype = {
 	getHtml : function(){
@@ -482,7 +488,7 @@ logon.prototype = {
 		html.push('</td>');
 		html.push('</tr>');
 		html.push('<tr>');
-		html.push('<td height="36" background="images/zhuce.gif">&nbsp;密码：<input name="password" type="password" id="password" size="25" maxlength="45" style="border: 0;" />');
+		html.push('<td height="36" background="images/zhuce.gif">&nbsp;密码：<input onkeyup="submitDoLogin(event)" name="password" type="password" id="password" size="25" maxlength="45" style="border: 0;" />');
 		html.push('</td>');
 		html.push('</tr>');
 		html.push('<tr>');
