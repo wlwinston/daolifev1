@@ -1,7 +1,10 @@
 package com.innovation.daolife.service.impl;
 
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
+
+import org.springframework.beans.BeanUtils;
 
 import com.innovation.common.util.Constant;
 import com.innovation.common.util.PaginationSupport;
@@ -12,6 +15,7 @@ import com.innovation.daolife.dao.IDlTopicDao;
 import com.innovation.daolife.model.DlComment;
 import com.innovation.daolife.model.DlContent;
 import com.innovation.daolife.model.DlCustomerDaoEntry;
+import com.innovation.daolife.model.DlHotdao;
 import com.innovation.daolife.model.DlMessages;
 import com.innovation.daolife.model.DlUsers;
 import com.innovation.daolife.service.IDaoContentBodyConvertService;
@@ -88,11 +92,14 @@ public class DlCommentService implements IDlCommentService {
 		paginationSupport = dlCommentDao.findPageByQuery(querysql, countsql,
 				paginationSupport.getPageSize(), paginationSupport
 						.getStartIndex()); 
-		List items = paginationSupport.getItems();
-		DlComment comment = (DlComment)items.get(0);
-		DlUsers users = comment.getDlUsers();
-		System.out.println(comment.getUserId());
-		System.out.println(users.getUserName());
+		List<DlComment> itemList = paginationSupport.getItems();
+		for(Iterator<DlComment> it = itemList.iterator();it.hasNext();)
+		{
+			DlComment comment = it.next();
+			DlUsers user = new DlUsers();
+			BeanUtils.copyProperties(comment.getDlUsers(), user);
+			comment.setDlUsers(user);
+		}
 		return paginationSupport;
 	}
 	
@@ -106,6 +113,14 @@ public class DlCommentService implements IDlCommentService {
 		paginationSupport = dlCommentDao.findPageByQuery(querysql, countsql,
 				paginationSupport.getPageSize(), paginationSupport
 						.getStartIndex());
+		List<DlComment> itemList = paginationSupport.getItems();
+		for(Iterator<DlComment> it = itemList.iterator();it.hasNext();)
+		{
+			DlComment comment = it.next();
+			DlUsers user = new DlUsers();
+			BeanUtils.copyProperties(comment.getDlUsers(), user);
+			comment.setDlUsers(user);
+		}
 		return paginationSupport;
 	}
 	
@@ -119,6 +134,14 @@ public class DlCommentService implements IDlCommentService {
 		paginationSupport = dlCommentDao.findPageByQuery(querysql, countsql,
 				paginationSupport.getPageSize(), paginationSupport
 						.getStartIndex());
+		List<DlComment> itemList = paginationSupport.getItems();
+		for(Iterator<DlComment> it = itemList.iterator();it.hasNext();)
+		{
+			DlComment comment = it.next();
+			DlUsers user = new DlUsers();
+			BeanUtils.copyProperties(comment.getDlUsers(), user);
+			comment.setDlUsers(user);
+		}
 		return paginationSupport;
 	}
 	
