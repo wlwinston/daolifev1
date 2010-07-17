@@ -59,7 +59,7 @@ replyBox.prototype = {
 		html.push('<tr>');
 		html.push('<td height="62" colspan="2" align="center" valign="top">');
 		html.push('<label>');
-		html.push('<textarea name="textarea" cols="45" rows="5" class="tabledao" style="background-image: url(images/myhome_42.gif); border: 0; width: 495px; height: 53px;" id="replymsg_' + this.id + '"></textarea>');
+		html.push('<textarea name="textarea" class="tabledao" style="border: 0;max-width:495px;max-height:53px; width: 495px; height: 53px;resize: none; " id="replymsg_' + this.id + '"></textarea>');
 		html.push('</label>');
 		html.push('</td>');
 		html.push('</tr>');
@@ -278,7 +278,7 @@ forwardBox.prototype = {
 		html.push('<tr>');
 		html.push('<td height="62" colspan="2" align="center" valign="top">');
 		html.push('<label>');
-		html.push('<textarea name="textarea" cols="45" rows="5" class="tabledao" style="background-image: url(images/myhome_42.gif); border: 0; width: 495px; height: 53px; resize: none; " id="forwardmsg_' + this.id + '">转 @' + item.name + ' : ' + item.content.replace(/<[^>].*?>/g,"") + '</textarea>');
+		html.push('<textarea name="textarea" cols="45" rows="5" class="tabledao" style="border: 0;max-width:495px; min-height:53px; width: 495px; height: 53px; resize: none; " id="forwardmsg_' + this.id + '">转 @' + item.name + ' : ' + item.content.replace(/<[^>].*?>/g,"") + '</textarea>');
 		html.push('</label>');
 		html.push('</td>');
 		html.push('</tr>');
