@@ -160,9 +160,12 @@ function doReply(id){
 	if($('#replymsg_' + id).val() != '' && $('#replymsg_' + id).val() != ''){
 		$('#replybutton_' + id).get(0).innerHTML = '<div style="height:22px;"><img src="images/floading.gif" /></div>';
 		DaolifeAjax.addComment(id,$('#replymsg_' + id).val(),replyid,function(rs){
-			$('#replymsg_' + id).val('');
-			$('#replybutton_' + id).get(0).innerHTML = '<a href="javascript:doReply(' + id + ')"><img src="images/myhome_46.gif" width="88" height="22" /></a>';
-			rb.initPage();
+			myBox.articleBox.getElementById(id).reload(function(){
+				doArticle(id)
+			});
+			//$('#replymsg_' + id).val('');
+			//$('#replybutton_' + id).get(0).innerHTML = '<a href="javascript:doReply(' + id + ')"><img src="images/myhome_46.gif" width="88" height="22" /></a>';
+			//rb.initPage();
 		});
 	}
 }
@@ -184,7 +187,7 @@ function doArticle(id){
 	}
 }
 //发布的单条数据
-function article(id,uid,name,content,picurl,replyAmount,forwardAmount,dingAmount,time,nowuid){
+function article(id,uid,name,content,picurl,replyAmount,forwardAmount,dingAmount,time,nowuid,replyNum){
 	this.id = id;
 	this.uid = uid;
 	this.name = name;
@@ -196,6 +199,7 @@ function article(id,uid,name,content,picurl,replyAmount,forwardAmount,dingAmount
 	this.isDingValid = true;
 	this.time = time;
 	this.nowuid =nowuid;
+	this.replyNum = replyNum;
 }
 function doMouseover(id){
 	$('#article_' + id).css('background','#F5F5F5');
@@ -215,7 +219,7 @@ article.prototype = {
 		html.push('<a href="PersonPage.action?userId=' + this.uid + '">' + this.name + '</a> ：' + this.content);
 		html.push('</div>');
 		html.push('<div style="width:440px;float:right;font-size:12px;">' + this.time + '<span style="float:right">');
-		html.push('<a href="javascript:doArticle(' + this.id + ')">回复</a>');
+		html.push('<a href="javascript:doArticle(' + this.id + ')">回复（' + this.replyNum + '）</a>');
 		html.push(' | ');
 		html.push('<a href="javascript:doForwardBox(' + this.id + ')">转发（' + this.forwardAmount + '）</a>');
 		html.push(' | ');
@@ -227,14 +231,18 @@ article.prototype = {
 		html.push('</div>');
 		return html.join('');
 	}
-	,reload : function(){
+	,reload : function(fn){
 		//this.isDingValid = false;
 		var myself = this;
+		fn = fn || function(){}
 		DaolifeAjax.getDlContentById(this.id,function(rs){
 			myself.forwardAmount = rs.retwittNum;
 			myself.dingAmount = rs.upNum; 
+			myself.replyNum = rs.replyNum;
 			$('#article_' + myself.id).get(0).innerHTML = myself.getElement();
+			fn();
 		});
+		
 	}
 	,getId : function(){
 		return this.id;
@@ -425,7 +433,7 @@ function doReload(fn){
 	var func = function(rs){
 		myBox.articleBox.setpage(rs.totalCount,rs.pageCount,rs.currentPage);
 		for(var i = 0, l = rs.items.length; i < l; ++i){
-			myBox.articleBox.add(new article(rs.items[i].contentId,rs.items[i].dlUsers.userId,rs.items[i].dlUsers.userNickName,rs.items[i].contentBody,'images/myhome_30.gif',0,rs.items[i].retwittNum,rs.items[i].upNum,getTime(rs.items[i].posttime),rs.nowUid));
+			myBox.articleBox.add(new article(rs.items[i].contentId,rs.items[i].dlUsers.userId,rs.items[i].dlUsers.userNickName,rs.items[i].contentBody,'images/myhome_30.gif',0,rs.items[i].retwittNum,rs.items[i].upNum,getTime(rs.items[i].posttime),rs.nowUid,rs.items[i].replyNum));
 		}
 		if(fn){
 			fn();
