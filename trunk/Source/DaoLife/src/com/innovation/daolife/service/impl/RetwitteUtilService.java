@@ -63,6 +63,12 @@ public class RetwitteUtilService implements IRetwitteUtilService{
 				originSource = String.valueOf(originId);
 			}
 			originContent.setRetwittNum((short)(originContent.getRetwittNum()+1));
+			DlHotdao hotdaoOld = dlHotdaoDao.get(originId);
+			if(hotdaoOld != null && hotdaoOld.getHotdaoId() != null)
+			{
+				hotdaoOld.setRetwittNum(originContent.getRetwittNum());
+				dlHotdaoDao.saveOrUpdate(hotdaoOld);
+			}
 			customerDaoEntry.getDlContent().setOriginId(originId);
 			customerDaoEntry.getDlContent().setOriginAllid(originSource);
 			
