@@ -116,7 +116,7 @@
 						<!--左边区域-->
 						<div class="zuo">
 							<div class="Box">
-								注册就送Tee ！
+								是的！日和系列！
 							</div>
 							<div class="guanggao">
 								<a href="product.action"><center>
@@ -126,10 +126,9 @@
 							</div>
 							
 							<span class="text" style="line-height:17px;"><br />
-								想把你说的话印在Tee上么？那就快来www.daolife.com注册吧。每第一百名有效注册(邮箱真实有效，至少发一条叨，转发别人一次。)的用户将得到daolife送出的免费Tee，邮费我们也付啦。如果你说的话受欢迎，我们将会把你说的话印在Tee上。作为作者的你，将会免费得到这件当期Tee，并且，这件Tee每卖出一件，我们将付给你一元钱。还等什么,快来www.daolife.com注册吧。<br>
-								活动时间：2010-06-15—2010-07-31<br>
-								我们会邮件通知您中奖情况，请保持邮箱通畅。<br>
-								友情提醒：世界杯虽好，可别冷淡了可人的她。<br>
+								如果你还没有看过《日和》，好吧。<br/>
+								这几款Tee只为“日和”迷推出。目前只愉快并薄情的制作了四款，剩下的由你们来完成。《日和》里面带感的台词简直太多了，如果你不想被别人抢先，那就别愣着了，赶紧发叨吧，加了个油。<br/>
+								如果你想找到你的同类，赶紧下单吧。还有杂念没关系，但不要等到第二天，零点。<br/>
 								<table width="97%" border="0" cellspacing="0" cellpadding="0">
 									<tr>
 										<td width="86%" align="right">
