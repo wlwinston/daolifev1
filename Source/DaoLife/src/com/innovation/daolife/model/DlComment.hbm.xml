@@ -14,6 +14,8 @@
   		</many-to-one>
         <many-to-one name="dlContents" column="content_id" class="com.innovation.daolife.model.DlContent"  insert="false" update="false" not-null="true" >
   		</many-to-one>
+  		<many-to-one name="reComment" column="rela_commentid" class="com.innovation.daolife.model.DlComment"  insert="false" update="false" not-null="true" >
+  		</many-to-one>
         <property name="contentId" type="java.lang.Short">
             <column name="content_id" not-null="true" />
         </property>
