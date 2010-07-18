@@ -1,10 +1,11 @@
-function daoHot(id,uid,index,name,content,picurl){
+function daoHot(id,uid,index,name,content,picurl,origin){
 	this.id = id;
 	this.uid = uid;
 	this.index = index;
 	this.name = name;
 	this.content = content;
 	this.picurl = picurl;
+	this.origin = origin;
 }
 daoHot.prototype = {
 	getHtml : function(){
@@ -30,7 +31,7 @@ daoHot.prototype = {
 		html.push('<td width="150" rowspan="4">&nbsp;</td>');
 		html.push('<td width="149" rowspan="2" align="center">&nbsp;</td>');
 		html.push('</tr>');
-		html.push('<tr><td align="left">' + this.content + '</td></tr>');
+		html.push('<tr><td align="left"><p>' + this.origin + '</p><p>' + this.content + '</p></td></tr>');
 		html.push('<tr><td>&nbsp;</td><td width="149" align="center">&nbsp;</td></tr>');
 		//html.push('<tr><td height="14">&nbsp;</td><td width="149" align="center"><a href="javascript://">回复</a>&nbsp;&nbsp;<a href="javascript:doForward(' + this.id + ')">转发</a>&nbsp;&nbsp;<a href="javascript:doDing(' + this.id + ')">顶他</a></td></tr>');
 		html.push('</table>');
@@ -109,7 +110,7 @@ function doReload(fn){
 	var func = function(rs){
 		myBox.articleBox.setpage(rs.totalCount,rs.pageCount,rs.currentPage);
 		for(var i = 0, l = rs.items.length; i < l; ++i){
-			myBox.articleBox.add(new daoHot(rs.items[i].contentId,rs.items[i].userId,((rs.currentPage - 1) * rs.pageSize) + (i + 1),rs.items[i].dlUsers.userNickName,rs.items[i].commentBody,'images/myhome_30.gif'));
+			myBox.articleBox.add(new daoHot(rs.items[i].contentId,rs.items[i].userId,((rs.currentPage - 1) * rs.pageSize) + (i + 1),rs.items[i].dlUsers.userNickName,rs.items[i].commentBody,'images/myhome_30.gif',rs.items[i].originBody));
 		}
 		if(fn){
 			fn();
