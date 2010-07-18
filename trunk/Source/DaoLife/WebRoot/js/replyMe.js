@@ -1,4 +1,4 @@
-function daoHot(id,uid,index,name,content,picurl,origin){
+function daoHot(id,uid,index,name,content,picurl,origin,relacomid){
 	this.id = id;
 	this.uid = uid;
 	this.index = index;
@@ -6,6 +6,7 @@ function daoHot(id,uid,index,name,content,picurl,origin){
 	this.content = content;
 	this.picurl = picurl;
 	this.origin = origin;
+	this.relacomid=relacomid;
 }
 daoHot.prototype = {
 	getHtml : function(){
@@ -31,7 +32,12 @@ daoHot.prototype = {
 		html.push('<td width="150" rowspan="4">&nbsp;</td>');
 		html.push('<td width="149" rowspan="2" align="center">&nbsp;</td>');
 		html.push('</tr>');
-		html.push('<tr><td align="left"><p>' + this.content + '</p><p><span style="color:#999;">回复我的叨 ：</span>“ ' + this.origin + ' ”</p></td></tr>');
+		if(this.relacomid){
+			html.push('<tr><td align="left"><p>' + this.content + '</p><p><span style="color:#999;">回复我的回复 ：</span>“ ' + this.origin + ' ”</p></td></tr>');
+		}
+		else{
+			html.push('<tr><td align="left"><p>' + this.content + '</p><p><span style="color:#999;">回复我的叨 ：</span>“ ' + this.origin + ' ”</p></td></tr>');
+		}
 		html.push('<tr><td>&nbsp;</td><td width="149" align="center">&nbsp;</td></tr>');
 		//html.push('<tr><td height="14">&nbsp;</td><td width="149" align="center"><a href="javascript://">回复</a>&nbsp;&nbsp;<a href="javascript:doForward(' + this.id + ')">转发</a>&nbsp;&nbsp;<a href="javascript:doDing(' + this.id + ')">顶他</a></td></tr>');
 		html.push('</table>');
@@ -110,7 +116,7 @@ function doReload(fn){
 	var func = function(rs){
 		myBox.articleBox.setpage(rs.totalCount,rs.pageCount,rs.currentPage);
 		for(var i = 0, l = rs.items.length; i < l; ++i){
-			myBox.articleBox.add(new daoHot(rs.items[i].contentId,rs.items[i].userId,((rs.currentPage - 1) * rs.pageSize) + (i + 1),rs.items[i].dlUsers.userNickName,rs.items[i].commentBody,'images/myhome_30.gif',rs.items[i].originBody));
+			myBox.articleBox.add(new daoHot(rs.items[i].contentId,rs.items[i].userId,((rs.currentPage - 1) * rs.pageSize) + (i + 1),rs.items[i].dlUsers.userNickName,rs.items[i].commentBody,'images/myhome_30.gif',rs.items[i].originBody,rs.items[i].relaCommentid));
 		}
 		if(fn){
 			fn();
