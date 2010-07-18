@@ -31,7 +31,7 @@ daoHot.prototype = {
 		html.push('<td width="150" rowspan="4">&nbsp;</td>');
 		html.push('<td width="149" rowspan="2" align="center">&nbsp;</td>');
 		html.push('</tr>');
-		html.push('<tr><td align="left"><p>' + this.origin + '</p><p>' + this.content + '</p></td></tr>');
+		html.push('<tr><td align="left"><p>' + this.content + '</p><p><span style="color:#999;">回复我的叨 ：</span>“ ' + this.origin + ' ”</p></td></tr>');
 		html.push('<tr><td>&nbsp;</td><td width="149" align="center">&nbsp;</td></tr>');
 		//html.push('<tr><td height="14">&nbsp;</td><td width="149" align="center"><a href="javascript://">回复</a>&nbsp;&nbsp;<a href="javascript:doForward(' + this.id + ')">转发</a>&nbsp;&nbsp;<a href="javascript:doDing(' + this.id + ')">顶他</a></td></tr>');
 		html.push('</table>');
