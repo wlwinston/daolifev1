@@ -389,7 +389,7 @@
 .daolist {
 	padding-left:25px;
 }
-.daolist > div{
+.daolist div{
 	width : 110px;
 	float : left;
 	text-align : center;
