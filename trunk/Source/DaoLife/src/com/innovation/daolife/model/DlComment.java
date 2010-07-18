@@ -23,6 +23,8 @@ public class DlComment implements java.io.Serializable {
 	private Date posttime;
 	private DlUsers dlUsers;
 	private DlContent dlContents;
+	private DlComment reComment;
+	private String originBody;
 
 	// Constructors
 
@@ -134,5 +136,23 @@ public class DlComment implements java.io.Serializable {
 	public void setDlUsers(DlUsers dlUsers) {
 		this.dlUsers = dlUsers;
 	}
+
+	public DlComment getReComment() {
+		return reComment;
+	}
+
+	public void setReComment(DlComment reComment) {
+		this.reComment = reComment;
+	}
+
+	public String getOriginBody() {
+		return originBody;
+	}
+
+	public void setOriginBody(String originBody) {
+		this.originBody = originBody;
+	}
+
+	
 
 }

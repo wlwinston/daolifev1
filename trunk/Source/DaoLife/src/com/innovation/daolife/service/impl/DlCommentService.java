@@ -119,6 +119,13 @@ public class DlCommentService implements IDlCommentService {
 			DlComment comment = it.next();
 			DlUsers user = new DlUsers();
 			BeanUtils.copyProperties(comment.getDlUsers(), user);
+			if(comment.getRelaCommentid()!=null && comment.getRelaCommentid()!=0)
+			{
+				comment.setOriginBody(comment.getReComment().getCommentBody());
+			}
+			else{
+				comment.setOriginBody(comment.getDlContents().getContentBody());
+			}
 			comment.setDlUsers(user);
 		}
 		return paginationSupport;
