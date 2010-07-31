@@ -467,6 +467,12 @@ personal.prototype = {
 		return html.join('');
 	}
 }
+function doTab(event){
+	event = window.event || event;
+	if(event.keyCode == 13){
+		$('#password').focus();
+	}
+}
 function submitDoLogin(event){
 	event = window.event || event;
 	if(event.keyCode == 13){
@@ -483,11 +489,11 @@ logon.prototype = {
 		html.push('<table width="266" border="0" cellspacing="5" cellpadding="0">');
 		html.push('<tr>');
 		html.push('<td height="36" background="images/zhuce.gif">');
-		html.push('<label>&nbsp;账号：<input name="userName"  type="text" id="userName" size="25" maxlength="45" style="border: 0;" /></label>');
+		html.push('<label>&nbsp;账号：<input name="userName"  type="text" onkeyup="doTab(event)" id="userName" size="25" maxlength="45" style="border: 0;" /></label>');
 		html.push('</td>');
 		html.push('</tr>');
 		html.push('<tr>');
-		html.push('<td height="36" background="images/zhuce.gif">&nbsp;密码：<input onkeyup="submitDoLogin(event)" name="password" type="password" id="password" size="25" maxlength="45" style="border: 0;" />');
+		html.push('<td height="36" background="images/zhuce.gif">&nbsp;密码：<input onkeyup="submitDoLogin(event)" id="password"  name="password" type="password" id="password" size="25" maxlength="45" style="border: 0;" />');
 		html.push('</td>');
 		html.push('</tr>');
 		html.push('<tr>');
