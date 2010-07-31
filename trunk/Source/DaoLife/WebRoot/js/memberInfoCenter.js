@@ -124,11 +124,11 @@ function doReply(id){
 	var rb = myBox.replyBox[id];
 	var replyid = rb.reply ? rb.reply.id : null;
 	if($('#replymsg_' + id).val() != '' && $('#replymsg_' + id).val() != ''){
-		$('#replybutton_' + id).get(0).innerHTML = '<span style="margin-right:42px;"><img src="images/floading.gif" /></span>';
+		$('#replybutton_' + id).get(0).innerHTML = '<span style="margin-right:42px;line-height:22px;"><img src="images/floading.gif" /></span>';
 		DaolifeAjax.addComment(id,$('#replymsg_' + id).val(),replyid,function(rs){
-			myBox.articleBox.getElementById(id).reload(function(){
-				doArticle(id)
-			});
+			//myBox.articleBox.getElementById(id).reload(function(){
+				//doArticle(id)
+			//});
 		});
 	}
 }
