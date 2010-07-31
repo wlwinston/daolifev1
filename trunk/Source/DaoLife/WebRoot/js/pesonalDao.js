@@ -369,7 +369,7 @@ function doReload(fn){
 }
 function doForward(id){
 	if($('#forwardmsg_' + id).val()){
-		$('#forwardbutton_' + id).get(0).innerHTML = '<img src="images/floading.gif" />';
+		$('#forwardbutton_' + id).get(0).innerHTML = '<span style="margin-right:42px;line-height:22px;"><img src="images/floading.gif" /></span>';
 		DaolifeAjax.addRetwitteDao($('#forwardmsg_' + id).val(),id,function(rs){
 			if(rs){
 				myBox.articleBox.getElementById(id).reload();
