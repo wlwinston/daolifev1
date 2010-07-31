@@ -15,7 +15,7 @@ reply.prototype = {
 		html.push('<div style="width:38px;height:38px;float:left;"><img src="images/myhome_39.gif" /></div>');
 		html.push('<div style="width:452px;float:right;height:auto;max-height:none;overflow:hidden;">');
 		html.push('<div style="min-height:22px;height:auto;max-height:none;line-height:19px;margin-top:1px;"><a href="PersonPage.action?userId=' + this.uid + '">' + this.name + '</a> ：' + this.content + '</div>');
-		html.push('<div style="font-size:12px;text-align:right;"><span style="float:left;">' + this.time + '</span><a href="javascript:rereply(' + this.id + ',' + this.toid + ')">回复</a> <!--| <a href="javascript://">删除</a>--></div>')
+		html.push('<div style="font-size:12px;text-align:right;"><span style="float:left;color:#999;">' + this.time + '</span><a href="javascript:rereply(' + this.id + ',' + this.toid + ')">回复</a> <!--| <a href="javascript://">删除</a>--></div>')
 		html.push('</div>');
 		html.push('</div>');
 		return html.join('');
@@ -181,7 +181,7 @@ article.prototype = {
 		html.push('<div style="width:432px;float:right;padding-top:3px;line-height:19px;min-height:60px;">');
 		html.push('<a href="PersonPage.action?userId=' + this.uid + '">' + this.name + '</a> ：' + this.content);
 		html.push('</div>');
-		html.push('<div style="width:432px;float:right;font-size:12px;">' + this.time + '<span style="float:right">');
+		html.push('<div style="width:432px;float:right;font-size:12px;"><span style="color:#999;">' + this.time + '</span><span style="float:right">');
 		html.push('<a href="javascript:doArticle(' + this.id + ')">回复（' + this.replyNum + '）</a>');
 		html.push(' | ');
 		html.push('<a href="javascript:doForwardBox(' + this.id + ')">转发（' + this.forwardAmount + '）</a>');
