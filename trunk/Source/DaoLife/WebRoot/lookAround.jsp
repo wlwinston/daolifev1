@@ -21,6 +21,7 @@
 		<script type="text/javascript" src="js/jquery-1.3.2.min.js"></script>
 		<script type="text/javascript" src="js/common.js"></script>
 		<script type="text/javascript" src="js/lookAround.js"></script>
+		<script type="text/javascript" src="js/replyBox.js"></script>
 	</head>
 	<body>
 		<jsp:include page="menu.jsp?id=4" flush="true"></jsp:include>

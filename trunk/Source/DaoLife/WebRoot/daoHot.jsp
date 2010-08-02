@@ -21,6 +21,7 @@
 		<script type="text/javascript" src="js/jquery-1.3.2.min.js"></script>
 		<script type="text/javascript" src="js/common.js"></script>
 		<script type="text/javascript" src="js/daoHot.js"></script>
+		<script type="text/javascript" src="js/replyBox.js"></script>
 	</head>
 
 	<body>
