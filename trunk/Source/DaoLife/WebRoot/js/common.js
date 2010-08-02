@@ -108,9 +108,7 @@ function mask(html,fn,s){
 	if(typeof s == 'undefined'){
 		s = true;
 	}
-	$('body').append('<div id="mask-overlay"></div><div id="mask-forward">' + html + '</div>').css({
-		overflow : 'hidden'
-	});
+	$('body').append('<div id="mask-overlay"></div><div id="mask-forward">' + html + '</div>');
 	var arrPageSizes = getPageSize();
 	var arrPageScroll = getPageScroll();
 	$('#mask-forward').css({
@@ -139,9 +137,6 @@ function mask(html,fn,s){
 	$('#button-no').click(maskHide);
 }
 function maskHide(){
-	$('body').css({
-		overflow : 'auto'
-	});
 	$('#mask-forward').fadeOut(function(){
 		$(this).remove();
 	})
