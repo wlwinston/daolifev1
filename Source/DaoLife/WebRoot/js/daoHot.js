@@ -1,4 +1,4 @@
-function daoHot(id,uid,index,name,content,picurl,forwardAmount,dingAmount){
+function daoHot(id,uid,index,name,content,picurl,forwardAmount,dingAmount,replyNum){
 	this.id = id;
 	this.uid = uid;
 	this.index = index;
@@ -7,6 +7,7 @@ function daoHot(id,uid,index,name,content,picurl,forwardAmount,dingAmount){
 	this.picurl = picurl;
 	this.forwardAmount = forwardAmount;
 	this.dingAmount = dingAmount;
+	this.replyNum = replyNum;
 }
 daoHot.prototype = {
 	getHtml : function(){
@@ -34,7 +35,7 @@ daoHot.prototype = {
 		html.push('</tr>');
 		html.push('<tr><td align="left">' + this.content + '</td></tr>');
 		html.push('<tr><td>&nbsp;</td><td width="149" align="center">&nbsp;</td></tr>');
-		html.push('<tr><td height="14">&nbsp;</td><td width="200" align="right"><a href="javascript://">&nbsp;</a>&nbsp;&nbsp;<a href="javascript:doForward(' + this.id + ')">转发（' + this.forwardAmount + '）</a>&nbsp;&nbsp;<a href="javascript:doDing(' + this.id + ')">顶他（' + this.dingAmount + '）</a></td></tr>');
+		html.push('<tr><td height="14">&nbsp;</td><td width="300" align="right"><a href="javascript:doDaoReply(' + this.id + ')">回复（' + this.replyNum + '）</a>&nbsp;&nbsp;<a href="javascript:doForward(' + this.id + ')">转发（' + this.forwardAmount + '）</a>&nbsp;&nbsp;<a href="javascript:doDing(' + this.id + ')">顶他（' + this.dingAmount + '）</a></td></tr>');
 		html.push('</table>');
 		return html.join('');
 	}
@@ -44,6 +45,7 @@ daoHot.prototype = {
 		DaolifeAjax.getDlContentById(this.id,function(rs){
 			myself.forwardAmount = rs.retwittNum;
 			myself.dingAmount = rs.upNum; 
+			myself.replyNum = rs.replyNum;
 			$('#daohot_' + myself.id).get(0).innerHTML = myself.getElement();
 		});
 	}
@@ -120,7 +122,7 @@ function doReload(fn){
 	var func = function(rs){
 		myBox.articleBox.setpage(rs.totalCount,rs.pageCount,rs.currentPage);
 		for(var i = 0, l = rs.items.length; i < l; ++i){
-			myBox.articleBox.add(new daoHot(rs.items[i].hotdaoId,rs.items[i].userId,((rs.currentPage - 1) * rs.pageSize) + (i + 1),rs.items[i].dlUsers.userNickName,rs.items[i].contentBody,'images/myhome_30.gif',rs.items[i].retwittNum,rs.items[i].upSum));
+			myBox.articleBox.add(new daoHot(rs.items[i].hotdaoId,rs.items[i].userId,((rs.currentPage - 1) * rs.pageSize) + (i + 1),rs.items[i].dlUsers.userNickName,rs.items[i].contentBody,'images/myhome_30.gif',rs.items[i].retwittNum,rs.items[i].upSum,rs.items[i].replyNum));
 		}
 		if(fn){
 			fn();
@@ -128,6 +130,24 @@ function doReload(fn){
 	}
 	DaolifeAjax.getHotDao(myBox.articleBox.currentPage,func);
 }
+function doDaoReply(id){
+	myBox.replyBox[id] = new replyBox(id);
+	mask(myBox.replyBox[id].getHtml(),function(){},false);
+	var fn = function(obj){
+		doReply(obj.data.id,function(){
+			myBox.replyBox[id].initPage(function(){
+				$('#replymsg_' + id).val('');
+				$('#replybutton_' + id).html('<a href="javascript://" id="replybox-button-submit-' + id + '"><img src="images/myhome_46.gif" /></a>&nbsp;&nbsp;<input type="image" href="images/myhome_11.gif" src="images/pinglun_181.gif" id="button-no">');
+				$('#replybox-button-submit-' + id).bind('click',{id:id},fn);
+				$('#button-no').bind('click',maskHide);
+				myBox.articleBox.getElementById(id).reload();
+			});
+		});
+	}
+	$('#replybox-button-submit-' + id).bind('click',{id:id},fn);
+	myBox.replyBox[id].initPage();
+}
+myBox.replyBox = [];
 function doForward(id){
 	var item =myBox.articleBox.getElementById(id);
 	if(item){
@@ -154,6 +174,24 @@ function doDing(id){
 		}
 	});
 }
+function doDaoReply(id){
+	myBox.replyBox[id] = new replyBox(id);
+	mask(myBox.replyBox[id].getHtml(),function(){},false);
+	var fn = function(obj){
+		doReply(obj.data.id,function(){
+			myBox.replyBox[id].initPage(function(){
+				$('#replymsg_' + id).val('');
+				$('#replybutton_' + id).html('<a href="javascript://" id="replybox-button-submit-' + id + '"><img src="images/myhome_46.gif" /></a>&nbsp;&nbsp;<input type="image" href="images/myhome_11.gif" src="images/pinglun_181.gif" id="button-no">');
+				$('#replybox-button-submit-' + id).bind('click',{id:id},fn);
+				$('#button-no').bind('click',maskHide);
+				myBox.articleBox.getElementById(id).reload();
+			});
+		});
+	}
+	$('#replybox-button-submit-' + id).bind('click',{id:id},fn);
+	myBox.replyBox[id].initPage();
+}
+myBox.replyBox = [];
 $(function($){
 	doReload(function(){
 		myBox.articleBox.load();

@@ -1,10 +1,13 @@
-function daoHot(id,uid,index,name,content,picurl){
+function daoHot(id,uid,index,name,content,picurl,forwardAmount,dingAmount,replyNum){
 	this.id = id;
 	this.uid = uid;
 	this.index = index;
 	this.name = name;
 	this.content = content;
 	this.picurl = picurl;
+	this.forwardAmount = forwardAmount;
+	this.dingAmount = dingAmount;
+	this.replyNum = replyNum;
 }
 daoHot.prototype = {
 	getHtml : function(){
@@ -32,9 +35,19 @@ daoHot.prototype = {
 		html.push('</tr>');
 		html.push('<tr><td align="left">' + this.content + '</td></tr>');
 		html.push('<tr><td>&nbsp;</td><td width="149" align="center">&nbsp;</td></tr>');
-		html.push('<tr><td height="14">&nbsp;</td><td width="149" align="center"><a href="javascript://">回复</a>&nbsp;&nbsp;<a href="javascript:doForward(' + this.id + ')">转发</a>&nbsp;&nbsp;<a href="javascript:doDing(' + this.id + ')">顶他</a></td></tr>');
+		html.push('<tr><td height="14">&nbsp;</td><td width="300" align="right"><a href="javascript:doDaoReply(' + this.id + ')">回复（' + this.replyNum + '）</a>&nbsp;&nbsp;<a href="javascript:doForward(' + this.id + ')">转发（' + this.forwardAmount + '）</a>&nbsp;&nbsp;<a href="javascript:doDing(' + this.id + ')">顶他（' + this.dingAmount + '）</a></td></tr>');
 		html.push('</table>');
 		return html.join('');
+	}
+	,reload : function(){
+		//this.isDingValid = false;
+		var myself = this;
+		DaolifeAjax.getDlContentById(this.id,function(rs){
+			myself.forwardAmount = rs.retwittNum;
+			myself.dingAmount = rs.upNum; 
+			myself.replyNum = rs.replyNum; 
+			$('#daohot_' + myself.id).get(0).innerHTML = myself.getElement();
+		});
 	}
 }
 function daoHotBox(){
@@ -58,6 +71,12 @@ daoHotBox.prototype = {
 	,add : function(article){
 		this.element.push(article);
 		this._element[article.id] = article;
+	}
+	,getElementById : function(id){
+		if(this._element[id]){
+			return this._element[id];
+		}
+		return null;
 	}
 	,getElementById : function(id){
 		if(this._element[id]){
@@ -109,7 +128,7 @@ function doReload(fn){
 	var func = function(rs){
 		myBox.articleBox.setpage(rs.totalCount,rs.pageCount,rs.currentPage);
 		for(var i = 0, l = rs.items.length; i < l; ++i){
-			myBox.articleBox.add(new daoHot(rs.items[i].contentId,rs.items[i].userId,((rs.currentPage - 1) * rs.pageSize) + (i + 1),rs.items[i].dlUsers.userNickName,rs.items[i].contentBody,'images/myhome_30.gif'));
+			myBox.articleBox.add(new daoHot(rs.items[i].contentId,rs.items[i].userId,((rs.currentPage - 1) * rs.pageSize) + (i + 1),rs.items[i].dlUsers.userNickName,rs.items[i].contentBody,'images/myhome_30.gif',rs.items[i].retwittNum,rs.items[i].upNum,rs.items[i].replyNum));
 		}
 		if(fn){
 			fn();
@@ -125,6 +144,12 @@ function doForward(id){
 			DaolifeAjax.addRetwitteDao($('#forward-msg').val(),id,function(rs){
 				if(rs){
 					maskHide();
+					doReload(function(){
+						myBox.articleBox.load();
+					})
+				}else{
+					maskHide();
+					alert('请先登录后在执行此操作！');
 				}
 			})
 		});
@@ -139,6 +164,24 @@ function doDing(id){
 		}
 	});
 }
+function doDaoReply(id){
+	myBox.replyBox[id] = new replyBox(id);
+	mask(myBox.replyBox[id].getHtml(),function(){},false);
+	var fn = function(obj){
+		doReply(obj.data.id,function(){
+			myBox.replyBox[id].initPage(function(){
+				$('#replymsg_' + id).val('');
+				$('#replybutton_' + id).html('<a href="javascript://" id="replybox-button-submit-' + id + '"><img src="images/myhome_46.gif" /></a>&nbsp;&nbsp;<input type="image" href="images/myhome_11.gif" src="images/pinglun_181.gif" id="button-no">');
+				$('#replybox-button-submit-' + id).bind('click',{id:id},fn);
+				$('#button-no').bind('click',maskHide);
+				myBox.articleBox.getElementById(id).reload();
+			});
+		});
+	}
+	$('#replybox-button-submit-' + id).bind('click',{id:id},fn);
+	myBox.replyBox[id].initPage();
+}
+myBox.replyBox = [];
 $(function($){
 	doReload(function(){
 		myBox.articleBox.load();
