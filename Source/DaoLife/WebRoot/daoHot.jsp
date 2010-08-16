@@ -46,7 +46,7 @@
 									</a>
 								</td>
 								<td width="75%">
-									&nbsp;
+									<img style="float:right;margin-bottom:10px;" src="images/hotdaologo.png" />
 								</td>
 							</tr>
 							<tr></tr>
