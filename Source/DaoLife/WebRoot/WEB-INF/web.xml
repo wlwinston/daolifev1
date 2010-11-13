@@ -26,7 +26,21 @@
 	</listener>
 	<listener>  
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>  
-	</listener>  
+	</listener>
+	<filter>  
+        <filter-name>encodingFilter</filter-name>  
+        <filter-class>  
+            org.springframework.web.filter.CharacterEncodingFilter  
+        </filter-class>  
+        <init-param>  
+            <param-name>encoding</param-name>  
+            <param-value>UTF-8</param-value>  
+        </init-param>  
+    </filter>
+     <filter-mapping>  
+        <filter-name>encodingFilter</filter-name>  
+        <url-pattern>/*</url-pattern>  
+    </filter-mapping>  
 	<filter>
 		<filter-name>OpenSessionInViewFilter</filter-name>
 		<filter-class>org.springframework.orm.hibernate3.support.OpenSessionInViewFilter</filter-class>
@@ -43,6 +57,14 @@
   <servlet>
   	<servlet-name>DWR</servlet-name>
   	<servlet-class>org.directwebremoting.servlet.DwrServlet</servlet-class>
+  	<init-param>   
+	    <param-name>scriptCompressed</param-name>   
+	    <param-value>true</param-value>   
+	</init-param> 
+	<!--<init-param>   
+	   <param-name>compressionLevel</param-name>   
+	   <param-value>47</param-value>   
+	</init-param>-->
   	<load-on-startup>5</load-on-startup>
   </servlet>
   <!-- auth Image -->
@@ -59,6 +81,22 @@
         <servlet-name>RandomImageServlet</servlet-name>
         <url-pattern>*.auth</url-pattern>
   </servlet-mapping>
+  
+  <filter>  
+        <filter-name>UrlRewriteFilter</filter-name>  
+        <filter-class>  
+            org.tuckey.web.filters.urlrewrite.UrlRewriteFilter  
+        </filter-class>
+        <init-param>  
+            <param-name>logLevel</param-name>  
+            <param-value>DEBUG</param-value>  
+        </init-param>    
+    </filter>  
+    <filter-mapping>  
+        <filter-name>UrlRewriteFilter</filter-name>  
+        <url-pattern>/*</url-pattern>
+          
+    </filter-mapping>    
   <!-- Image File Manager 
   <filter>
         <filter-name>fileManager</filter-name>
@@ -84,11 +122,19 @@
 
    <filter-mapping>
         <filter-name>struts2</filter-name>
-        <url-pattern>/*</url-pattern>
+        <url-pattern>*.action</url-pattern>
+        <dispatcher>REQUEST</dispatcher>    
+        <dispatcher>FORWARD</dispatcher>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>struts2</filter-name>
+        <url-pattern>*.jsp</url-pattern>
+        <dispatcher>REQUEST</dispatcher>    
+        <dispatcher>FORWARD</dispatcher>
     </filter-mapping>
     
   <welcome-file-list>
-    <welcome-file>index.action</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
   </welcome-file-list>
   
   <error-page>  

@@ -704,7 +704,6 @@ public class CommonAjax {
 		if (topicId!=null) {
 			paginationSupport = dlDaoService.getTopicListContent(
 					paginationSupport, topicId);
-			//dlMessagesService.dealReadState(userId,"2");
 		} else {
 			return null;
 		}
@@ -840,7 +839,7 @@ public class CommonAjax {
 				  response.addCookie(userNameCookie);
 				  response.addCookie(authCodeCookie);
 				  response.addCookie(loginTimeCookie);
-				  logger.info(userName+"'s Cookie Save Success!");
+				  //logger.info(userName+"'s Cookie Save Success!");
 			}
 		}
 		return loginInfo;
