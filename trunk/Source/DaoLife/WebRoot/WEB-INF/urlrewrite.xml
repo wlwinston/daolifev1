@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE urlrewrite PUBLIC "-//tuckey.org//DTD UrlRewrite 3.2//EN"
+        "http://tuckey.org/res/dtds/urlrewrite3.2.dtd">
+
+<!--
+
+    Configuration file for UrlRewriteFilter
+    http://tuckey.org/urlrewrite/
+
+-->
+<urlrewrite decode-using="null"> 
+	<rule>   
+        <from>^/$</from>   
+        <to>/index.action</to>   
+    </rule>  
+    <rule>   
+        <from>^/([a-zA-Z0-9%^/]+)$</from>   
+        <to>/PersonalUrl.action?perUrl=${escape:$1}</to>   
+    </rule>   
+    <rule>   
+        <from>^/product_([0-9]+).html$</from>   
+        <to>/daolifemare.action?productId=$1</to>   
+    </rule>   
+    <outbound-rule>   
+        <note>   
+        The outbound-rule specifies that when response.encodeURL is called (if you are using JSTL c:url)   
+        the url /rewrite-status will be rewritten to /test/status/.   
+          
+        The above rule and this outbound-rule means that end users should never see the   
+        url /rewrite-status only /test/status/ both in thier location bar and in hyperlinks   
+        in your pages.   
+        </note>   
+        <from>^/([a-z]+)$</from>   
+        <to>/error.jsp</to>    
+    </outbound-rule>  
+</urlrewrite>

@@ -7,6 +7,7 @@
 package com.innovation.daolife.action;
 
 import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.security.NoSuchAlgorithmException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -44,6 +45,7 @@ public class UserAction extends ActionSupport implements SessionAware, ServletRe
 	private static String REGISTERFAILURE="registerFailure";
 	private static String USERLIST = "list";
 	private Map att;
+	private String perUrl ;
     private HttpServletRequest request;
     private HttpServletResponse response; 
 	private DlUsers user;
@@ -309,12 +311,14 @@ public class UserAction extends ActionSupport implements SessionAware, ServletRe
 		Short uid = myUser.getUserId();
 		if(userId == null)
 		{
-			String actionUrl = myRequest.getServletPath();
-			if(actionUrl.length() > 1)
-			{
-				actionUrl = actionUrl.substring(1, actionUrl.length());
-				if(actionUrl.indexOf("//")<0)
-				{
+			//String actionUrl = myRequest.getServletPath();
+			//if(actionUrl.length() > 1)
+			//{
+				//actionUrl = actionUrl.substring(1, actionUrl.length());
+				//if(actionUrl.indexOf("//")<0)
+				//{
+					//System.out.println("HHHHHHHHH=========================================="+request.getContextPath());
+					String actionUrl = URLDecoder.decode(perUrl,"UTF-8");
 					personalInfo = userService.getUserByUrl(actionUrl);
 					if(personalInfo != null)
 					{
@@ -323,14 +327,14 @@ public class UserAction extends ActionSupport implements SessionAware, ServletRe
 					else{
 						return NOPERSON;
 					}
-				}
-				else{
-					return NOPERSON;
-				}
-			}
-			else{
-				return NOPERSON;
-			}
+				//}
+				//else{
+				//	return NOPERSON;
+				//}
+			//}
+			//else{
+				//return NOPERSON;
+			//}
 		}
 		else{
 			personalInfo = userService.getUsersById(userId);
@@ -577,6 +581,12 @@ public class UserAction extends ActionSupport implements SessionAware, ServletRe
 	}
 	public void setCity_select(String city_select) {
 		this.city_select = city_select;
+	}
+	public String getPerUrl() {
+		return perUrl;
+	}
+	public void setPerUrl(String perUrl) {
+		this.perUrl = perUrl;
 	}
 
 }

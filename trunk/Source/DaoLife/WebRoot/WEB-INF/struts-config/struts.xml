@@ -22,7 +22,7 @@
 			<!-- 指Action抛出Exception异常时，转入名为exception的结果。 -->
 			<exception-mapping exception="java.lang.Exception" result="exception"/>
 		</global-exception-mappings>
-		 <action name="UnderConstruction" class="UserAction" method="personalPage">
+		 <action name="PersonalUrl" class="UserAction" method="personalPage">
 			<result name="noPerson">/404.jsp</result>	
 			<result name="personPage">pesonalDao.jsp</result>
 			<result name="myPage" type="redirect">MyPage.action</result>
@@ -160,12 +160,7 @@
 		 	<interceptor-ref name="defaultStack" /> 
 		</action>
 		
-		<action name="" class="WebCommonAction" method="index">
-			<interceptor-ref name="webCookie"/>  
-			<result name="index">index.jsp</result>
-			 <interceptor-ref name="webCookie"/>  
-		 	<interceptor-ref name="defaultStack" /> 
-		</action>
+	
 		<action name="MyPage" class="UserAction" method="myPage">
 			<result name="myPageSuccess">/memberInfoCenter.jsp</result>	
 			<result name="forbidden" type="redirect">index.action</result>

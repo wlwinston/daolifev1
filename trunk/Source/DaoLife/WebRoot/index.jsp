@@ -116,26 +116,34 @@
 						<!--左边区域-->
 						<div class="zuo">
 							<div class="Box">
-								是的！日和系列！
+								卡贴还可以这样玩！
 							</div>
 							<div class="guanggao">
 								<a href="product.action"><center>
-										<img src="images/ad.jpg" alt="" />
+										<img src="images/katie004.jpg" alt="" />
 									</center>
 								</a>
 							</div>
 							
 							<span class="text" style="line-height:17px;"><br />
-								如果你还没有看过《日和》，好吧。<br/>
-								这几款Tee只为“日和”迷推出。目前只愉快并薄情的制作了四款，剩下的由你们来完成。《日和》里面带感的台词简直太多了，如果你不想被别人抢先，那就别愣着了，赶紧发叨吧，加了个油。<br/>
-								如果你想找到你的同类，赶紧下单吧。还有杂念没关系，但不要等到第二天，零点。<br/>
+								一张卡贴要花多少钱？4块钱！<br />
+一张自己设计的卡贴要花多少钱？不要钱！<br />
+不错，参加我们的线上活动，提交您自己的卡贴创意，就有机会获得自己设计的卡贴！从一名普通的消费者成为一名设计师，您不需要花一毛钱，只要动动您的鼠标，把您的创意与大家分享！赶快来参加吧！<br />
+活动细则：<br />
+1．在卡贴上添加文字，可以是最热的网络流行语，也可以是展现生活态度的一句话；<br />
+2．注册并登陆<a href="http://www.daotee.com" target="_blank">www.daotee.com</a>后将你想添加在卡贴上的文字以一条叨的形式发表，具体格式为“#卡贴#我想说的话”即可；<br />
+3．活动时间内被广大网友关注最多的前三个创意将被我们印刷在卡贴上并赠送给上传者和关注这些图案的网友，获奖上传者也将同时获得一百元的奖金；<br />
+4．本活动截止至10月20日，并将于21日公布获奖名单。<br />
+
+
+								<a href="http://www.daolife.com/topicDetail.action?topicId=17" >点击查看活动页面</a><br/>
 								<table width="97%" border="0" cellspacing="0" cellpadding="0">
 									<tr>
 										<td width="86%" align="right">
 											<img src="images/moer.gif" width="14" height="13" />
 										</td>
 										<td width="14%" align="right">
-											<a href="product.action">查看详情</a>
+											<a href="http://www.daolife.com/topicDetail.action?topicId=17">查看详情</a>
 										</td>
 									</tr>
 								</table> </span>

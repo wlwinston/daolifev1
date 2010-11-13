@@ -348,9 +348,9 @@ public class DlDaoService implements IDlDaoService {
 	public PaginationSupport getTopicListContent(
 			PaginationSupport paginationSupport,Short topicId){
 		String querysql = " Select c From DlTopic t INNER JOIN t.topicContent c where  t.topicId = "
-			+ topicId + " and c.status='0' order by c.posttime  desc";
+			+ topicId + " and c.status='0' order by c.upNum  desc";
 		String countsql = " Select count(c.contentId) From DlTopic t INNER JOIN t.topicContent c where  t.topicId = "
-			+ topicId + " and c.status='0' order by c.posttime desc";
+			+ topicId + " and c.status='0' order by c.upNum desc";
 		paginationSupport = dlContentatDao.findPageByQuery(querysql, countsql,
 				paginationSupport.getPageSize(), paginationSupport
 						.getStartIndex());
