@@ -9,19 +9,28 @@
     	<script type="text/javascript" src="js/jquery-1.3.2.min.js"></script>
     	<script type="text/javascript" src="js/form.js"></script>
 		<script language="JavaScript">
-		
+		function getTime(time){
+			var time = new Date(time);
+	var year = time.getFullYear();
+	var month = (time.getMonth() + 1);
+	var day = time.getDate();
+	var hours = time.getHours();
+	var seconds = time.getSeconds();
+	var minutes = time.getMinutes();
+	var date = new Date();
+	var str = '';
+	str = year + '年' + month + '月' + day + '日';
+	return  str + ' ' + hours + ':' + minutes;
+		}
 			function showUserInfo()
 			{   
 				//var id=$F("userId");
-				DaolifeAjax.getAllDao(2,showresult);
+				//DaolifeAjax.login('wangleimsh@163.com','wangleimsh',true);
+				DaolifeAjax.getAllDao(1,showresult);
 			}
 			function showresult(result)
 			{	
-				if(result != null)
-				{
-					alert(result.items[0].dlUsers.userName);
-					//alert("userName===="+result.username+"\n"+"password===="+result.password+"\n"+"email===="+result.email);
-				}
+				alert(result.items[0].contentBody+"============"+result.items[0].posttime+"============"+getTime(result.items[0].posttime));
 			}	
 			function refresh(){
 				$("authImg").src="authImg?now="+new Date();

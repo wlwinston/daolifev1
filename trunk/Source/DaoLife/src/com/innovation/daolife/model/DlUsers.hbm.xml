@@ -13,6 +13,12 @@
         <property name="userName" type="java.lang.String">
             <column name="user_name" length="64" not-null="true" />
         </property>
+        <property name="sinaId" type="java.lang.String">
+            <column name="sina_id" length="20" />
+        </property>
+        <property name="sinaFlag" type="java.lang.String">
+            <column name="sina_flag" length="1" not-null="true" />
+        </property>
         <property name="userNickName" type="java.lang.String">
             <column name="user_nickname" length="64" not-null="true" />
         </property>

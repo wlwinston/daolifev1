@@ -58,6 +58,24 @@ public class DlUsers implements java.io.Serializable {
 	private boolean followFlag = false;
 	private int  contentsSize;
 	private String cityName;
+	private String sinaId;
+	public String getSinaId() {
+		return sinaId;
+	}
+
+	public void setSinaId(String sinaId) {
+		this.sinaId = sinaId;
+	}
+
+	public String getSinaFlag() {
+		return sinaFlag;
+	}
+
+	public void setSinaFlag(String sinaFlag) {
+		this.sinaFlag = sinaFlag;
+	}
+
+	private String sinaFlag;
 	//用户的角色列表�û��Ľ�ɫ�б�
 	private List<DlUserroles> userRolesList = null ;
 

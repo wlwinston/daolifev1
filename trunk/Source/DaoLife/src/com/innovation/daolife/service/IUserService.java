@@ -47,4 +47,5 @@ public interface IUserService {
 	public PaginationSupport getFollowProductUser(PaginationSupport paginationSupport,Short Id);
 	public PaginationSupport getOtherFanListByUser(PaginationSupport paginationSupport,Short userId,Short sessionId) ;
 	public PaginationSupport getOtherFollowListByUser(PaginationSupport paginationSupport,Short userId,Short sessionId) ;
+	public DlUsers getSinaUserByID(String sinaIdStr);
 }

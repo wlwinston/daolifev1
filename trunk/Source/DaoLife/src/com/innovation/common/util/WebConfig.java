@@ -9,6 +9,15 @@ public class WebConfig {
 	public static String linkUserPrefix="";
 	//网站话题ID
 	public static String linkTopicPrefix ="";
+	//新浪登录回写URL
+	public static String sinaRewriteUrl  ="";
+	
+	public  String getSinaRewriteUrl() {
+		return sinaRewriteUrl;
+	}
+	public  void setSinaRewriteUrl(String sinaRewriteUrl) {
+		WebConfig.sinaRewriteUrl = sinaRewriteUrl;
+	}
 	public  String getLinkWebPrefix() {
 		return linkWebPrefix;
 	}

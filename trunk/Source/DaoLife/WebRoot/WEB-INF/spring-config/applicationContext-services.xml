@@ -148,5 +148,27 @@
 		   
 </bean>
  -->
-
+<bean id="sinaTwitterUtil" class="com.innovation.common.util.SinaTwitterUtil">
+		   <property name="dlContentDao">
+		        <ref bean="dlContentDao"/>
+		    </property>
+		    <property name="dlUsersDao">
+		        <ref bean="dlUsersDao"/>
+		    </property>
+		    <property name="daoContentBodyConvert">
+		        <ref bean="daoContentBodyConvert"/>
+		    </property>
+		    <property name="dlContenttopicDao">
+		        <ref bean="dlContenttopicDao"/>
+		    </property>
+		    <property name="dlContentatDao">
+		        <ref bean="dlContentatDao"/>
+		    </property>
+		     <property name="dlTopicDao">
+		        <ref bean="dlTopicDao"/>
+		    </property>
+		    <property name="dlMessagesDao">
+		        <ref bean="dlMessagesDao"/>
+		    </property>
+</bean>
 </beans>

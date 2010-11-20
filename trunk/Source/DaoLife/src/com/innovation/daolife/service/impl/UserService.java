@@ -537,7 +537,10 @@ public class UserService implements IUserService {
 		user.setAtWeekNum((short) 0);
 		user.setFansNum((short) 0);
 		user.setFollowNum((short) 0);
-		user.setUserInfo("");
+		if(user.getUserInfo() == null || user.getUserInfo().trim().length()<1)
+		{
+			user.setUserInfo("");
+		}
 		user.setUserHead("default");
 		user.setRecommendInd(Constant.USER_RECOMMENDIND_NO.getStrValue());
 		user.setIsclose(new Byte(Constant.USER_ISCLOSED_NO.getStrValue()));
@@ -554,6 +557,11 @@ public class UserService implements IUserService {
 		user.setSignupdate(now);
 		user.setUserlock(new Byte(Constant.USER_USERLOCK_NO.getStrValue()));
 		user.setAuthEmail(Constant.USER_AUTHMAIL_NOMAIL.getStrValue());
+		//如果没有设置赋值新浪标志的时候，默认为非新浪用户
+		if(user.getSinaFlag() == null || user.getSinaFlag().trim().length()<1)
+		{
+			user.setSinaFlag(Constant.USER_SINAFLAG_NO.getStrValue());
+		}
 		dlUsersDao.save(user);
 		//增加默认网站用户
 		DlUserroles userRoles = new DlUserroles();
@@ -722,6 +730,17 @@ public class UserService implements IUserService {
 
 	public void setDlAreaDao(IDlAreaDao dlAreaDao) {
 		this.dlAreaDao = dlAreaDao;
+	}
+
+	public DlUsers getSinaUserByID(String sinaIdStr) {
+		DlUsers user = null;
+		String searchSql = " From DlUsers u where u.sinaId=?";
+		List<DlUsers> userList = dlUsersDao.find(searchSql,sinaIdStr);
+		if(userList != null && userList.size()>0)
+		{
+			user = userList.iterator().next();
+		}
+		return user;
 	}
 
 }

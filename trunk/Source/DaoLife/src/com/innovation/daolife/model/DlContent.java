@@ -30,6 +30,15 @@ public class DlContent implements java.io.Serializable {
 	private Short replyNum;
 	private String status;
 	private String type;
+	private String sinaTextId;
+	public String getSinaTextId() {
+		return sinaTextId;
+	}
+
+	public void setSinaTextId(String sinaTextId) {
+		this.sinaTextId = sinaTextId;
+	}
+
 	//��߶����Ϣ
 	private DlUsers dlUsers;
 	private Set atUsers;
