@@ -238,7 +238,22 @@
 			<interceptor-ref name="webCookie"/>  
 			<interceptor-ref name="defaultStack" /> 
 		</action>
-		
+		<action name="SinaLogin" class="UserAction" method="sinaLogin">
+			<result name="sinaLogin">sinaLogin.jsp</result>
+			<interceptor-ref name="webCookie"/>  
+			<interceptor-ref name="defaultStack" /> 
+		</action>
+		<action name="sinaloginresult" class="UserAction" method="sinaLoginResult">
+			<result name="sinaLoginResult">sinaLoginResult.jsp</result>
+			<result name="sinaLoginSuccess" type="redirect">index.action</result>
+			<interceptor-ref name="webCookie"/>  
+			<interceptor-ref name="defaultStack" /> 
+		</action>
+		<action name="SinaLoginNext" class="UserAction" method="sinaLoginNext">
+			<result name="success" type="redirect">index.action</result>
+			<interceptor-ref name="webCookie"/>  
+			<interceptor-ref name="defaultStack" /> 
+		</action>
 		<action name="InitUpdate" class="UserAction" method="initUpdate">
 			<result name="initUpdateSuccess">/setup.jsp</result>	
 			<interceptor-ref name="webCookie"/> 
@@ -247,7 +262,14 @@
 			</interceptor-ref> 
 		 	<interceptor-ref name="defaultStack" /> 
 		</action>
-		
-    </package> 
+		<!--<action name="InitUpdate" class="UserAction" method="initUpdate">
+			<result name="initUpdateSuccess">/setup.jsp</result>	
+			<interceptor-ref name="webCookie"/> 
+			<interceptor-ref name="auth"> 
+		        <param name="allowedRoles">daolife_user</param> 
+			</interceptor-ref> 
+		 	<interceptor-ref name="defaultStack" /> 
+		</action>
+    --></package> 
 
 </struts>

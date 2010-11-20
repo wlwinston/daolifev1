@@ -26,6 +26,10 @@ import org.apache.struts2.interceptor.ServletRequestAware;
 import org.apache.struts2.interceptor.ServletResponseAware;
 import org.apache.struts2.interceptor.SessionAware;
 
+import weibo4j.Weibo;
+import weibo4j.http.AccessToken;
+import weibo4j.http.RequestToken;
+
 import com.innovation.common.util.Constant;
 import com.innovation.common.util.Md5Util;
 import com.innovation.common.util.PaginationSupport;
@@ -82,6 +86,48 @@ public class UserAction extends ActionSupport implements SessionAware, ServletRe
 	private static String NOPERSON = "noPerson";
 	private static String PERSONPAGE = "personPage";
 	private static String NOLOGIN = "unLogin";
+	private String sinaLoginFlag;
+	private String existUser;
+	private String existPassword;
+	public String getExistPassword() {
+		return existPassword;
+	}
+	public void setExistPassword(String existPassword) {
+		this.existPassword = existPassword;
+	}
+	public String getExistUser() {
+		return existUser;
+	}
+	public void setExistUser(String existUser) {
+		this.existUser = existUser;
+	}
+	public String getSinaLoginFlag() {
+		return sinaLoginFlag;
+	}
+	public void setSinaLoginFlag(String sinaLoginFlag) {
+		this.sinaLoginFlag = sinaLoginFlag;
+	}
+	private String oauth_verifier;
+	private weibo4j.User sinaUser;
+	private DlUsers newUser;
+	public DlUsers getNewUser() {
+		return newUser;
+	}
+	public void setNewUser(DlUsers newUser) {
+		this.newUser = newUser;
+	}
+	public weibo4j.User getSinaUser() {
+		return sinaUser;
+	}
+	public void setSinaUser(weibo4j.User sinaUser) {
+		this.sinaUser = sinaUser;
+	}
+	public String getOauth_verifier() {
+		return oauth_verifier;
+	}
+	public void setOauth_verifier(String oauthVerifier) {
+		oauth_verifier = oauthVerifier;
+	}
 	public void setUserService(IUserService userService) {
 		this.userService = userService;
 	}
@@ -431,7 +477,168 @@ public class UserAction extends ActionSupport implements SessionAware, ServletRe
 			return LOGINSUCCESS;
 		}
 	}
-	
+	/**
+	 * @ wanglei
+	 * sina登录
+	 * */
+	public String sinaLogin() throws Exception{
+			RequestToken resToken=this.sinaRequest(WebConfig.sinaRewriteUrl);
+			if(resToken!=null){
+				att.put("resToken",resToken);
+				response.sendRedirect(resToken.getAuthorizationURL());
+			}else{
+				System.out.println("request error");
+			}
+			return LOGINSUCCESS;
+		
+	}
+	/**
+	 * @ wanglei
+	 * sina登录结果
+	 * */
+	public String sinaLoginResult() throws Exception{
+			
+		if(oauth_verifier!=null)
+		{
+			System.out.println("oauth:"+oauth_verifier);
+			RequestToken resToken=(RequestToken) att.get("resToken");
+
+			if(resToken!=null)
+			{
+				AccessToken accessToken=this.requstAccessToken(resToken,oauth_verifier);
+					if(accessToken!=null)
+					{
+						//out.println(accessToken.getToken());
+						//out.println(accessToken.getTokenSecret());
+						//第二个参数每次只能用一次，发表微博内容不能重复，如果重复发会返回400错误
+						//这个accessToken不用每次访问都重新取，可以存到session里面用
+						Weibo weibo = new Weibo();
+						weibo.setToken(accessToken.getToken(), accessToken.getTokenSecret());
+						
+						int sinaId = accessToken.getUserId();
+						String sinaIdStr = String.valueOf(sinaId);
+						sinaUser = weibo.getUserDetail(sinaIdStr);
+						DlUsers user  = userService.getSinaUserByID(sinaIdStr);
+						if(user != null)
+						{
+							int size = userService.getUserDao(user.getUserId()).size();
+							user.setContentsSize(size);
+							att.put(Constant.SESSION_USER_KEY.getStrValue(), user);
+							return "sinaLoginSuccess";
+						}
+						//newUser = new DlUsers();
+						//newUser.setUserNickName(sinaUser.getScreenName());
+						//newUser.setUserInfo(sinaUser.getDescription());
+						//weibo.updateStatus("http://www.daolife.com daolife可以将微博放到T恤上，很好玩");
+									
+					}else
+						{
+						System.out.println("access token request error");
+						}
+			
+			}
+			else
+				{
+					System.out.println("request token session error");
+				}
+		}
+		else
+			{
+				System.out.println("verifier String error");
+			}
+		return "sinaLoginResult";
+	}
+	/**
+	 * @ wanglei
+	 * sina登录下一步
+	 * */
+	public String sinaLoginNext() throws Exception{
+		/**注册新的用户**/
+		if(sinaLoginFlag!=null && sinaLoginFlag.equals("0"))
+		{
+			user.setSinaFlag(Constant.USER_SINAFLAG_YES.getStrValue());
+			user.setUserName("SinaUser_"+user.getUserNickName());
+			try{
+				userService.regist(user);
+				att.put(Constant.SESSION_USER_KEY.getStrValue(), user);
+			}
+				catch(Exception e){
+					request.setAttribute("ErrorInfo", "注册新用户失败!");
+					return "sinaLoginFailue";
+			}
+		}
+		else{
+			DlUsers dlUser = userService.getUserByNameOrEmail(existUser);
+			if(dlUser==null){
+				request.setAttribute("ErrorInfo", "用户不存在!");
+				return "sinaLoginFailue";
+			}
+			
+			String salt = dlUser.getSalt();
+			String oldpasswd = dlUser.getPassword();
+			boolean flag = Md5Util.getInstance().checkpassword(existPassword, salt, oldpasswd);
+			if(!flag){
+				request.setAttribute("ErrorInfo", "密码错误!");
+				return "sinaLoginFailue";
+			}else{
+				//获取用户角色
+				List<DlUserroles> userRolesList = userService.getRolesListByUserId(dlUser.getUserId());
+				dlUser.setUserRolesList(userRolesList);
+				int size = userService.getUserDao(dlUser.getUserId()).size();
+				dlUser.setContentsSize(size);
+				att.put(Constant.SESSION_USER_KEY.getStrValue(), dlUser);
+				dlUser.setSinaFlag(Constant.USER_SINAFLAG_YES.getStrValue());
+				dlUser.setSinaId(user.getSinaId());
+				userService.update(dlUser, dlUser);
+			}
+			
+		}
+		return "success";
+	}
+	public static AccessToken requstAccessToken(RequestToken requestToken,
+			String verifier) {
+		try {
+			System.setProperty("weibo4j.oauth.consumerKey", Weibo.CONSUMER_KEY);
+			System.setProperty("weibo4j.oauth.consumerSecret",
+					Weibo.CONSUMER_SECRET);
+
+			Weibo weibo = new Weibo();
+			// set callback url, desktop app please set to null
+			// http://callback_url?oauth_token=xxx&oauth_verifier=xxx
+			AccessToken accessToken = weibo.getOAuthAccessToken(requestToken
+					.getToken(), requestToken.getTokenSecret(), verifier);
+
+			System.out.println("Got access token.");
+			System.out.println("access token: " + accessToken.getToken());
+			System.out.println("access token secret: "
+					+ accessToken.getTokenSecret());
+			return accessToken;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	public static RequestToken sinaRequest(String backUrl) {
+		try {
+			System.setProperty("weibo4j.oauth.consumerKey", Weibo.CONSUMER_KEY);
+			System.setProperty("weibo4j.oauth.consumerSecret",
+					Weibo.CONSUMER_SECRET);
+
+			Weibo weibo = new Weibo();
+			// set callback url, desktop app please set to null
+			// http://callback_url?oauth_token=xxx&oauth_verifier=xxx
+			RequestToken requestToken = weibo.getOAuthRequestToken(backUrl);
+
+			//System.out.println("Got request token.");
+			//System.out.println("Request token: " + requestToken.getToken());
+			//System.out.println("Request token secret: "
+			//		+ requestToken.getTokenSecret());
+			return requestToken;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
 	/**
 	 * @ fengsn
 	 * 登录

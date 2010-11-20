@@ -21,6 +21,9 @@ public enum Constant
 	PAGESIZE_FRIENDDAO(20),
 	PAGESIZE_MYDAO(20),
 	PAGESIZE_DAOCOMMENT(5),
+	/*********是否是新浪用户********/
+    USER_SINAFLAG_NO("0"),
+    USER_SINAFLAG_YES("1"),
 	/*********网站角色***********/
 	//普通用户
 	WEBSITE_ROLES_DEFAULT("daolife_user"),

@@ -30,6 +30,9 @@
          <property name="originAllid" type="java.lang.String">
             <column name="origin_allid" length="400" />
         </property>
+        <property name="sinaTextId" type="java.lang.String">
+            <column name="sina_text_id" length="30" />
+        </property>
         <property name="retwittNum" type="java.lang.Short">
             <column name="retwitt_num" not-null="true" />
         </property>
