@@ -38,7 +38,7 @@ body {
 
 <body>
 <div class="w">
-<form action="sinaLogin.action">
+<form action="SinaLogin.action" method="post">
   <table width="763" border="0">
     <tr>
       <td width="339">
