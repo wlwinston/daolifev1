@@ -16,7 +16,14 @@ public class DlCustomerDaoEntry implements java.io.Serializable {
 	private List<DlContenttopic> dlContenttopicList = new ArrayList<DlContenttopic>();
 	private List<DlMessages> dlMessageList = new ArrayList<DlMessages>();
 	private DlComment dlComment = new DlComment();
+	private String sinaApiUrl = "";
 	
+	public String getSinaApiUrl() {
+		return sinaApiUrl;
+	}
+	public void setSinaApiUrl(String sinaApiUrl) {
+		this.sinaApiUrl = sinaApiUrl;
+	}
 	public DlContent getDlContent() {
 		return dlContent;
 	}

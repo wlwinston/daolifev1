@@ -6,6 +6,7 @@ import java.util.Date;
 import java.util.List;
 
 
+import weibo4j.Paging;
 import weibo4j.Status;
 import weibo4j.Weibo;
 
@@ -95,21 +96,26 @@ public class SinaTwitterUtil {
 	
 	public void getAtTwitter(){
 		try {
+			
         	Weibo weibo = getWeibo(false,"1656783420","88589871604");
-        	List<Status> list = weibo.getMentions();
+        	Paging sinaPage = new Paging(1, 200);
+        	List<Status> list = weibo.getMentions(sinaPage);
 			DlUsers user = (DlUsers)dlUsersDao.get((short)1);
         	for(Status status : list) {
-        		String userName  = status.getUser().getScreenName();
-        		String id= String.valueOf(status.getId());
-        		System.out.println( userName + "  : "+status.getText());
-        		//System.out.println( status.getRetweetDetails().toString());
-        		List contentList =  dlContentDao.find(" From DlContent c where c.sinaTextId=?", id);
-        		if(contentList.size() == 0)
+        		if(status.getRetweetedStatus() == null)
         		{
-        			DlCustomerDaoEntry customerDaoDao = daoContentBodyConvert
-    				.covertContent(userName + "  : "+status.getText());
-        			customerDaoDao.getDlContent().setSinaTextId(id);
-        			this.saveDao(customerDaoDao, user);
+        			String userName  = status.getUser().getScreenName();
+        			String id= String.valueOf(status.getId());
+        			System.out.println( userName + "  : "+status.getText());
+	        		//System.out.println( status.getRetweetDetails().toString());
+	        		List contentList =  dlContentDao.find(" From DlContent c where c.sinaTextId=?", id);
+	        		if(contentList.size() == 0)
+	        		{
+	        			DlCustomerDaoEntry customerDaoDao = daoContentBodyConvert
+	    				.covertContent(userName + "  : "+status.getText());
+	        			customerDaoDao.getDlContent().setSinaTextId(id);
+	        			this.saveDao(customerDaoDao, user);
+	        		}
         		}
         	}
 		} catch (Exception e) {

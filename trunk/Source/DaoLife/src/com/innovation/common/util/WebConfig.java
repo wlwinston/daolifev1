@@ -11,7 +11,15 @@ public class WebConfig {
 	public static String linkTopicPrefix ="";
 	//新浪登录回写URL
 	public static String sinaRewriteUrl  ="";
+	//新浪发叨登录回写URL
+	public static String sinaAddDaoLoginRewriteUrl = "";
 	
+	public  String getSinaAddDaoLoginRewriteUrl() {
+		return sinaAddDaoLoginRewriteUrl;
+	}
+	public  void setSinaAddDaoLoginRewriteUrl(String sinaAddDaoLoginRewriteUrl) {
+		WebConfig.sinaAddDaoLoginRewriteUrl = sinaAddDaoLoginRewriteUrl;
+	}
 	public  String getSinaRewriteUrl() {
 		return sinaRewriteUrl;
 	}

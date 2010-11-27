@@ -40,6 +40,7 @@ import com.innovation.daolife.model.DlUserroles;
 import com.innovation.daolife.model.DlUsers;
 import com.innovation.daolife.model.User;
 import com.innovation.daolife.service.IDlAreaService;
+import com.innovation.daolife.service.IDlDaoService;
 import com.innovation.daolife.service.IUserService;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
@@ -58,6 +59,13 @@ public class UserAction extends ActionSupport implements SessionAware, ServletRe
 	private PaginationSupport paginationSupport ;
 	private UserSearch userSearch;
 	private IUserService userService;
+	private IDlDaoService dlDaoService;
+	public IDlDaoService getDlDaoService() {
+		return dlDaoService;
+	}
+	public void setDlDaoService(IDlDaoService dlDaoService) {
+		this.dlDaoService = dlDaoService;
+	}
 	private IDlAreaService dlAreaService;
 	private String userName;
 	private String findPwUserName;
@@ -501,6 +509,7 @@ public class UserAction extends ActionSupport implements SessionAware, ServletRe
 		if(oauth_verifier!=null)
 		{
 			System.out.println("oauth:"+oauth_verifier);
+			att.put("oauth",oauth_verifier);
 			RequestToken resToken=(RequestToken) att.get("resToken");
 
 			if(resToken!=null)
@@ -514,7 +523,7 @@ public class UserAction extends ActionSupport implements SessionAware, ServletRe
 						//这个accessToken不用每次访问都重新取，可以存到session里面用
 						Weibo weibo = new Weibo();
 						weibo.setToken(accessToken.getToken(), accessToken.getTokenSecret());
-						
+						att.put("accessToken", accessToken);
 						int sinaId = accessToken.getUserId();
 						String sinaIdStr = String.valueOf(sinaId);
 						sinaUser = weibo.getUserDetail(sinaIdStr);
@@ -522,6 +531,8 @@ public class UserAction extends ActionSupport implements SessionAware, ServletRe
 						if(user != null)
 						{
 							int size = userService.getUserDao(user.getUserId()).size();
+							List<DlUserroles> userRolesList = userService.getRolesListByUserId(user.getUserId());
+							user.setUserRolesList(userRolesList);
 							user.setContentsSize(size);
 							att.put(Constant.SESSION_USER_KEY.getStrValue(), user);
 							return "sinaLoginSuccess";
@@ -548,6 +559,75 @@ public class UserAction extends ActionSupport implements SessionAware, ServletRe
 			}
 		return "sinaLoginResult";
 	}
+	
+	
+	
+	/**
+	 * @ wanglei
+	 * sina登录结果
+	 * */
+	public String sinaAddDaoLoginRewrite() throws Exception{
+			
+		if(oauth_verifier!=null)
+		{
+			System.out.println("oauth:"+oauth_verifier);
+			att.put("oauth",oauth_verifier);
+			RequestToken resToken=(RequestToken) att.get("resToken");
+
+			if(resToken!=null)
+			{
+				AccessToken accessToken=this.requstAccessToken(resToken,oauth_verifier);
+					if(accessToken!=null)
+					{
+						//out.println(accessToken.getToken());
+						//out.println(accessToken.getTokenSecret());
+						//第二个参数每次只能用一次，发表微博内容不能重复，如果重复发会返回400错误
+						//这个accessToken不用每次访问都重新取，可以存到session里面用
+						Weibo weibo = new Weibo();
+						weibo.setToken(accessToken.getToken(), accessToken.getTokenSecret());
+						att.put("accessToken", accessToken);
+						String contentBody =(String)att.get("tempSaveContentBody");
+						weibo.updateStatus(contentBody);
+						DlUsers user  = (DlUsers) att
+											.get(Constant.SESSION_USER_KEY.getStrValue());
+						dlDaoService.addDao(user, contentBody);
+						/*int sinaId = accessToken.getUserId();
+						String sinaIdStr = String.valueOf(sinaId);
+						sinaUser = weibo.getUserDetail(sinaIdStr);
+						DlUsers user  = userService.getSinaUserByID(sinaIdStr);
+						if(user != null)
+						{
+							int size = userService.getUserDao(user.getUserId()).size();
+							List<DlUserroles> userRolesList = userService.getRolesListByUserId(user.getUserId());
+							user.setUserRolesList(userRolesList);
+							user.setContentsSize(size);
+							att.put(Constant.SESSION_USER_KEY.getStrValue(), user);
+							return "sinaLoginSuccess";
+						}*/
+						//newUser = new DlUsers();
+						//newUser.setUserNickName(sinaUser.getScreenName());
+						//newUser.setUserInfo(sinaUser.getDescription());
+						//weibo.updateStatus("http://www.daolife.com daolife可以将微博放到T恤上，很好玩");
+									
+					}else
+						{
+						System.out.println("access token request error");
+						}
+			
+			}
+			else
+				{
+					System.out.println("request token session error");
+				}
+		}
+		else
+			{
+				System.out.println("verifier String error");
+			}
+		return "sinaLoginSuccess";
+	}
+	
+	
 	/**
 	 * @ wanglei
 	 * sina登录下一步
