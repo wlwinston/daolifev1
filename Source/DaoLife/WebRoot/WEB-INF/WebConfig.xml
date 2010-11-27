@@ -9,5 +9,6 @@
 		<property name="linkUserPrefix" value="PersonPage.action?userId=" />
 		<property name="linkTopicPrefix" value="topicDetail.action?topicId=" />
 		<property name="sinaRewriteUrl" value="http://localhost:8001/daolife/sinaloginresult.action" />
+		<property name="sinaAddDaoLoginRewriteUrl" value="http://localhost:8001/daolife/sinaadddaologinrewrite.action" />
 	</bean>
 </beans>

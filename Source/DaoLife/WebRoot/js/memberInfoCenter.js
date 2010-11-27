@@ -388,6 +388,10 @@ function doSubmit(){
 	if($('#articlecontent').val() != null){
 		DaolifeAjax.addDao($('#articlecontent').val().substr(0,140),function(rs){
 			if(rs != null){
+				if(rs.sinaApiUrl!= "")
+				{
+					window.location.href =rs.sinaApiUrl;
+				}
 				$('#fontlength').get(0).innerHTML = 140;
 				$('#articlecontent').val('');
 				doReload(function(){

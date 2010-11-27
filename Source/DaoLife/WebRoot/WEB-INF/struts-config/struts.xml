@@ -249,6 +249,12 @@
 			<interceptor-ref name="webCookie"/>  
 			<interceptor-ref name="defaultStack" /> 
 		</action>
+		<action name="sinaadddaologinrewrite" class="UserAction" method="sinaAddDaoLoginRewrite">
+			<result name="sinaAddDaoNoBinding">sinaAddDaoNoBinding.jsp</result>
+			<result name="sinaLoginSuccess" type="redirect">MyPage.action</result>
+			<interceptor-ref name="webCookie"/>  
+			<interceptor-ref name="defaultStack" /> 
+		</action>
 		<action name="SinaLoginNext" class="UserAction" method="sinaLoginNext">
 			<result name="success" type="redirect">index.action</result>
 			<interceptor-ref name="webCookie"/>  

@@ -23,6 +23,10 @@ import org.apache.log4j.Logger;
 import org.directwebremoting.WebContext;
 import org.directwebremoting.WebContextFactory;
 
+import weibo4j.Weibo;
+import weibo4j.http.AccessToken;
+import weibo4j.http.RequestToken;
+
 import com.innovation.common.util.Constant;
 import com.innovation.common.util.EmailUtils;
 import com.innovation.common.util.IPUtils;
@@ -48,7 +52,7 @@ import com.innovation.daolife.service.IFollowrelationService;
 import com.innovation.daolife.service.IUserService;
 
 /**
- * ����Ϊ����ҳ������dwr���÷���ʱ�����Խ����е�����ķ���д�������
+ * Ajax共用类
  * 
  * @author Winston
  * 
@@ -511,7 +515,33 @@ public class CommonAjax {
 			DlUsers user = (DlUsers) session
 					.getAttribute(Constant.SESSION_USER_KEY.getStrValue());
 			try {
+				boolean sinaFlag = true;
+				if(sinaFlag)
+				{
+					if(session.getAttribute("accessToken")!= null )
+					{
+						//RequestToken resToken=(RequestToken) session.getAttribute("resToken");
+						//String oauth_verifier = (String)session.getAttribute("oauth");
+						AccessToken accessToken= (AccessToken)session.getAttribute("accessToken");
+						Weibo weibo = new Weibo();
+						weibo.setToken(accessToken.getToken(), accessToken.getTokenSecret());
+						weibo.updateStatus(contentBody);
+					}
+					else{
+						RequestToken resToken=this.sinaRequest(WebConfig.sinaAddDaoLoginRewriteUrl);
+						if(resToken!=null){
+							session.setAttribute("resToken",resToken);
+							customerDao = new DlCustomerDaoEntry();
+							customerDao.setSinaApiUrl(resToken.getAuthorizationURL());
+							session.setAttribute("tempSaveContentBody",contentBody);
+							return customerDao;
+						}else{
+							System.out.println("request error");
+						}
+					}
+				}
 				customerDao = dlDaoService.addDao(user, contentBody);
+				
 			} catch (Exception e) {
 				logger.info(e.getStackTrace());
 				customerDao = null;
@@ -520,6 +550,45 @@ public class CommonAjax {
 		return customerDao;
 	}
 
+	
+	public static RequestToken sinaRequest(String backUrl) {
+		try {
+			System.setProperty("weibo4j.oauth.consumerKey", Weibo.CONSUMER_KEY);
+			System.setProperty("weibo4j.oauth.consumerSecret",
+					Weibo.CONSUMER_SECRET);
+			Weibo weibo = new Weibo();
+			RequestToken requestToken = weibo.getOAuthRequestToken(backUrl);
+
+			return requestToken;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	public static AccessToken requstAccessToken(RequestToken requestToken,
+			String verifier) {
+		try {
+			System.setProperty("weibo4j.oauth.consumerKey", Weibo.CONSUMER_KEY);
+			System.setProperty("weibo4j.oauth.consumerSecret",
+					Weibo.CONSUMER_SECRET);
+
+			Weibo weibo = new Weibo();
+			// set callback url, desktop app please set to null
+			// http://callback_url?oauth_token=xxx&oauth_verifier=xxx
+			AccessToken accessToken = weibo.getOAuthAccessToken(requestToken
+					.getToken(), requestToken.getTokenSecret(), verifier);
+
+			System.out.println("Got access token.");
+			System.out.println("access token: " + accessToken.getToken());
+			System.out.println("access token secret: "
+					+ accessToken.getTokenSecret());
+			return accessToken;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
 	/**
 	 * ת߶
 	 * 
