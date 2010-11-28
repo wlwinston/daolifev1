@@ -398,3 +398,25 @@
 	width : 380px;
 	height : 269px;
 }
+.sendmessage,.sendmessageweibo{
+	background:url("../images/myhome.gif");
+	text-indent:-9999px;
+	outline:medium none;
+	display:block;
+	float:right;
+	width:173px;
+	height:32px;
+	margin-right:4px;
+}
+.sendmessage{
+	background-position:0px -64px;
+}
+.sendmessage:hover{
+	background-position:0px -96px;
+}
+.sendmessageweibo{
+	background-position:0px 0px;
+}
+.sendmessageweibo:hover{
+	background-position:0px -32px;
+}

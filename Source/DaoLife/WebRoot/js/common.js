@@ -185,11 +185,21 @@ var Form = {
 		}
 		return true;
 	}
+	,elements : []
+	,remove : function(){
+		Form.valid = {};
+		for(var i = 0 , l = Form.elements.length; i <l; ++i){
+			$(Form.elements[i].id).unbind(Form.elements[i].event[0].name,Form.elements[i].event[0].data);
+			$(Form.elements[i].id).unbind(Form.elements[i].event[1].name,Form.elements[i].event[1].data);
+		}
+		Form.elements = [];
+	}
 	,add : function(id, ajax, ftext, ttext){
 		ftext = ftext || '';
 		ttext = ttext || '';
 		Form.valid[id] = false;
-		$('#' + id).blur(function(){
+		var event = [];
+		var blueEvent = function(){
 			ajax($(this).val(), function(result){
 				switch($('#' + id).get(0).type){
 					case 'password':
@@ -198,8 +208,11 @@ var Form = {
 						break;
 				}
 			});
-		});
-		$('#' + id).focus(function(){
+		}
+		event.push({name: 'blue', data : blueEvent});
+		$('#' + id).blur(blueEvent);
+		
+		var focusEvent = function(){
 			$('#' + id).css({
 				backgroundColor:'#F4FFD4'
 				,borderColor:'#A5C760'
@@ -211,6 +224,13 @@ var Form = {
 				});
 			}
 			$('#' + id + '_info').html(ttext);
+		}
+		event.push({name : 'focus' , data : focusEvent});
+		$('#' + id).focus(focusEvent);
+		
+		Form.elements.push({
+			id : id
+			,event:event
 		});
 		if($('#' + id + '_info')){
 			$('#' + id + '_info').html(ttext);
@@ -478,10 +498,13 @@ function logon(){}
 logon.prototype = {
 	getHtml : function(){
 		var html = [];
-		html.push('<div class="Box">登陆</div>');
+		//html.push('<div class="Box">登陆<span><a href="javascript:;" style="background:url(images/sinaLogin.png);display:block;width:126px;height:24px;font-size:12px;text-indent:-9999px;margin-top:11px;">用微博帐号登录</a></span></div>');
+		//html.push('<div class="Box">登陆<span><a href="javascript://">用新浪微博登录</a></span></div>');
+		html.push('<div style="color:#000000;height:50px;margin:10px 25px 18px;border-bottom:1px solid #D8D8D8;"><div style="font-size:20px;heigth:50px;line-height:50px;width:100px;float:left;text-indent:10px;font-weight:bold;">登录</div><div style="float:right;width:126px;height:24px;margin-top:11px;margin-right:10px;"><a href="SinaLogin.action" style="background:url(images/sinaLogin.png);width:126px;height:24px;display:block;text-indent:-9999px;">用微博帐号登录</a></div></div>');
 		html.push('<div class="zhuce">');
 		html.push('<form id="login" name="zhuce" method="post" action="Login.action"  onsubmit="return false">');
 		html.push('<table width="266" border="0" cellspacing="5" cellpadding="0">');
+		html.push('<tr></tr>');
 		html.push('<tr>');
 		html.push('<td height="36" background="images/zhuce.gif">');
 		html.push('<label>&nbsp;账号：<input name="userName"  type="text" onkeyup="doTab(event)" id="userName" size="25" maxlength="45" style="border: 0;" /></label>');

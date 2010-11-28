@@ -55,13 +55,14 @@
 																			<td width="525" height="172">
 																				<textarea id='articlecontent' name="textarea3" cols="45" rows="5"
 																					class="tabledao" id="textarea3"
-																					style="border: 0; width: 521px; height: 138px; overflow: hidden; resize: none; "></textarea>
+																					style="border: 0; width: 521px; height: 138px; overflow: hidden; resize: none;background-image:url('images/myhome_07.gif'); "></textarea>
 																			</td>
 																		</tr>
 																		<tr>
 																			<td align="right">
 																				<label>
-																					<input type="image" src="images/myhome_11.gif" onclick="doSubmit()"/>
+																					<a href="javascript:;" onclick="doSubmit(1)" class="sendmessageweibo"></a>
+																					<a href="javascript:;" onclick="doSubmit(0)" class="sendmessage"></a>
 																				</label>
 																			</td>
 																		</tr>

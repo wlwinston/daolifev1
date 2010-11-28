@@ -384,9 +384,9 @@ function doReload(fn){
 			break;
 	}
 }
-function doSubmit(){
+function doSubmit(sinaFlag){
 	if($('#articlecontent').val() != null){
-		DaolifeAjax.addDao($('#articlecontent').val().substr(0,140),function(rs){
+		DaolifeAjax.addDao($('#articlecontent').val().substr(0,140),sinaFlag,function(rs){
 			if(rs != null){
 				if(rs.sinaApiUrl!= "")
 				{
