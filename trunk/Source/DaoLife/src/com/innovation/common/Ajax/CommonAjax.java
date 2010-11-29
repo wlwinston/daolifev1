@@ -505,7 +505,7 @@ public class CommonAjax {
 	 * @throws Exception
 	 * @author winston
 	 */
-	public DlCustomerDaoEntry addDao(String contentBody,boolean sinaFlag) throws Exception {
+	public DlCustomerDaoEntry addDao(String contentBody,String sinaFlag) throws Exception {
 		WebContext request = WebContextFactory.get();
 		DlCustomerDaoEntry customerDao = null;
 		HttpSession session = request.getSession(false);
@@ -515,7 +515,7 @@ public class CommonAjax {
 			DlUsers user = (DlUsers) session
 					.getAttribute(Constant.SESSION_USER_KEY.getStrValue());
 			try {
-				if(sinaFlag)
+				if(sinaFlag != null && sinaFlag.equals("1"))
 				{
 					if(session.getAttribute("accessToken")!= null )
 					{
