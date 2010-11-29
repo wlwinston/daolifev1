@@ -591,23 +591,6 @@ public class UserAction extends ActionSupport implements SessionAware, ServletRe
 						DlUsers user  = (DlUsers) att
 											.get(Constant.SESSION_USER_KEY.getStrValue());
 						dlDaoService.addDao(user, contentBody);
-						/*int sinaId = accessToken.getUserId();
-						String sinaIdStr = String.valueOf(sinaId);
-						sinaUser = weibo.getUserDetail(sinaIdStr);
-						DlUsers user  = userService.getSinaUserByID(sinaIdStr);
-						if(user != null)
-						{
-							int size = userService.getUserDao(user.getUserId()).size();
-							List<DlUserroles> userRolesList = userService.getRolesListByUserId(user.getUserId());
-							user.setUserRolesList(userRolesList);
-							user.setContentsSize(size);
-							att.put(Constant.SESSION_USER_KEY.getStrValue(), user);
-							return "sinaLoginSuccess";
-						}*/
-						//newUser = new DlUsers();
-						//newUser.setUserNickName(sinaUser.getScreenName());
-						//newUser.setUserInfo(sinaUser.getDescription());
-						//weibo.updateStatus("http://www.daolife.com daolife可以将微博放到T恤上，很好玩");
 									
 					}else
 						{
@@ -633,9 +616,17 @@ public class UserAction extends ActionSupport implements SessionAware, ServletRe
 	 * sina登录下一步
 	 * */
 	public String sinaLoginNext() throws Exception{
+		AccessToken accessToken = (AccessToken)att.get("accessToken");
+		int sinaId = accessToken.getUserId();
+		String sinaIdStr = String.valueOf(sinaId);
+		Weibo weibo = new Weibo();
+		weibo.setToken(accessToken.getToken(), accessToken.getTokenSecret());
+		sinaUser = weibo.getUserDetail(sinaIdStr);
 		/**注册新的用户**/
 		if(sinaLoginFlag!=null && sinaLoginFlag.equals("0"))
 		{
+			user.setUserInfo(sinaUser.getDescription());
+			user.setSinaId(sinaIdStr);
 			user.setSinaFlag(Constant.USER_SINAFLAG_YES.getStrValue());
 			user.setUserName("SinaUser_"+user.getUserNickName());
 			try{
@@ -668,7 +659,7 @@ public class UserAction extends ActionSupport implements SessionAware, ServletRe
 				dlUser.setContentsSize(size);
 				att.put(Constant.SESSION_USER_KEY.getStrValue(), dlUser);
 				dlUser.setSinaFlag(Constant.USER_SINAFLAG_YES.getStrValue());
-				dlUser.setSinaId(user.getSinaId());
+				dlUser.setSinaId(sinaIdStr);
 				userService.update(dlUser, dlUser);
 			}
 			
