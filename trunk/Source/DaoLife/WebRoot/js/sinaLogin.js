@@ -1,6 +1,7 @@
 function userRegist(){
 	Form.remove();
 	var html = [];
+	var sinaUserName = $('#sinaUserName').get(0).value;
 	html.push('<table width="623" border="0" cellspacing="3" cellpadding="0">');
 	html.push('<tr>');
 	html.push('<th height="2" align="right">');
@@ -17,7 +18,7 @@ function userRegist(){
 	html.push('</th>');
 	html.push('<td>');
 	html.push('<label>');
-	html.push('<input type="text" name="user.userNickName" id="nick" value="" />');
+	html.push('<input type="text" name="user.userNickName" id="nick" value="' + sinaUserName + '" />');
 	html.push('<span id="nick_info" class="info"></span>');
 	html.push('</label>');
 	html.push('</td>');
@@ -131,6 +132,7 @@ function userRegist(){
 function userLogin(){
 	Form.remove();
 	var html = [];
+	var sinaUserName = $('#sinaUserName').get(0).value;
 	html.push('<table width="623" border="0" cellspacing="3" cellpadding="0">');
 	html.push('<tr>');
 	html.push('<th height="2" align="right">');
@@ -146,7 +148,7 @@ function userLogin(){
 	html.push('</th>');
 	html.push('<td>');
 	html.push('<label>');
-	html.push('<input type="text" name="existUser" id="existUser" value="" />');
+	html.push('<input type="text" name="existUser" id="existUser" value="' + sinaUserName + '" />');
 	html.push('<span id="existUser_info" class="info"></span>');
 	html.push('</label>');
 	html.push('</td>');
