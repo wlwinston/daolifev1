@@ -22,15 +22,21 @@
 		<jsp:include page="menu.jsp" flush="true"></jsp:include> 
 		<div class="zhuti">
 			<!--<div class="regist">  -->
-				<table width="539" border="0" align="center" cellpadding="4" cellspacing="4" class="zhuti3" style="height:463px;font-size:15px;">
-				    <tr><td height="20"><s:property value="sinaUser.screenName"/></td></tr>
-				    <tr><td><image src="<s:property value="sinaUser.profileImageURL"/>"/></td></tr>
-					<tr>
-						<td width="523" height="197" align="left" valign="top">
-							<s:form action="SinaLoginNext.action" method="post" enctype="multipart/form-data" name="regist" id="regist">
+				<table width="539" border="0" align="center" cellpadding="4" cellspacing="4" class="zhuti3" style="padding-top:30px;padding-bottom:200px;font-size:15px;">
+				    <tr>
+				    	<td width="220">
+				    		<div style="height:260px;text-align:center;">
+				    		<p><b>新浪账户信息</b></p>
+				    		<image src="<s:property value="sinaUser.profileImageURL"/>"/>
+							<p><b><s:property value="sinaUser.screenName"/></b></p>
+							<input id="sinaUserName" type="hidden" value="<s:property value="sinaUser.screenName"/>"/>
+				    		</div>
+				    	</td>
+				    	<td>
+				    		<s:form action="SinaLoginNext.action" method="post" enctype="multipart/form-data" name="regist" id="regist">
 							</s:form>
-						</td>
-					</tr>
+				    	</td>
+				    </tr>
 				</table>
 			<!--</div>  -->
 		</div>
