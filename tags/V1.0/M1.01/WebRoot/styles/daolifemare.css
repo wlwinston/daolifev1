@@ -1,0 +1,28 @@
+.touxiang3 {
+	margin-left: 15px;
+	width: 300px;
+	padding-left: 0px;
+}
+
+.text1 {
+	padding-top: 10px;
+	line-height: 25px;
+}
+.Box1  {
+	font-weight: bold;
+	font-size: 20px;
+	font-family: Arial, Helvetica, sans-serif;
+	font-style: normal;
+	color: #000000;
+	margin-top: 10px;
+	line-height: 50px;
+	text-indent: 10px;
+	margin-right: 25px;
+	margin-bottom: 18px;
+	margin-left: 25px;
+}
+.xia1 {
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+	border-bottom-color: #cccccc;
+}

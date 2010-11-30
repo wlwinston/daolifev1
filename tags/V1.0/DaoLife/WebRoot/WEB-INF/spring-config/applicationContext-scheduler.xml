@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN" "http://www.springframework.org/dtd/spring-beans-2.0.dtd">
+<beans>
+	
+   <bean id="getSinaTwitterDetail"
+		class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject" ref="sinaTwitterUtil" />
+		<property name="targetMethod" value="getAtTwitter" />
+   </bean>
+   <bean id="getSinaTwitterTrigger" class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail">
+			<ref bean="getSinaTwitterDetail" />
+		</property>
+		<property name="cronExpression">
+			<value>0 0/1 * * * ?</value>
+		</property>
+	</bean>
+	<bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+		<property name="triggers">
+			<list>
+				<ref local="getSinaTwitterTrigger" />
+			</list>
+		</property>
+	</bean>
+
+
+</beans>

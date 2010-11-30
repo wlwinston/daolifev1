@@ -1,0 +1,67 @@
+.chanpin {
+	width: 980px;
+	border-right-width: 1px;
+	border-bottom-width: 1px;
+	border-right-style: solid;
+	border-bottom-style: solid;
+	border-right-color: #d8d8d8;
+	border-bottom-color: #d8d8d8;
+	padding-top: 10px;
+	height: auto;
+	background-color: #f8f8f8;
+	margin-top: 0px;
+	margin-right: auto;
+	margin-bottom: 0px;
+	margin-left: auto;
+	border-left-width: 1px;
+	border-left-style: solid;
+	border-left-color: #d8d8d8;
+}
+
+
+.chanpin1 {
+	height: auto;
+	width: 850px;
+	margin-top: 5px;
+	margin-right: auto;
+	margin-bottom: 0px;
+	margin-left: auto;
+}
+.hang11 {
+	height: 360px;
+	width: 850px;
+	margin-bottom: 6px;
+}
+.Box3  {
+	font-weight: bold;
+	font-size: 20px;
+	font-family: Arial, Helvetica, sans-serif;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+	border-bottom-color: #d8d8d8;
+	font-style: normal;
+	color: #000000;
+	margin-top: 10px;
+	line-height: 50px;
+	text-indent: 10px;
+	margin-right: 40px;
+	margin-bottom: 18px;
+	margin-left: 40px;
+}
+.ganggao1 {
+	line-height: 1.8em;
+	text-align: left;
+	margin-right: 10px;
+	margin-left: 10px;
+}
+.huodong11 {
+	height: auto;
+	width: 530px;
+	margin-left: 50px;
+	border-bottom-width: 1px;
+	border-bottom-style: dashed;
+	border-bottom-color: #999999;
+	line-height: 1.8em;
+	text-align: left;
+	margin-top: 10px;
+}

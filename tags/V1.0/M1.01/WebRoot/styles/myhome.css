@@ -1,0 +1,46 @@
+.yem {
+	height: 24px;
+	width: 280px;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 10px;
+	margin-left: auto;
+	font-family: Arial, Helvetica, sans-serif;
+}
+.yem ul {
+	margin: 0px;
+	padding-left: 120px;
+}
+.yem li {
+	height: 24px;
+	width: 24px;
+	float: left;
+	margin-right: 1px;
+	margin-left: 1px;
+	text-align: center;
+	line-height: 23px;
+	font-size: 14px;
+	font-weight: bold;
+	color: #518884;
+}
+.yem li a {
+	display: block;
+	color: #999999;
+}
+.yem li a:hover{
+	background-image:url(../images/daohot_19.gif);
+	height: 24px;
+	width: 24px;
+	display: block;
+	background-position: center top;
+	color: #5AC3F0;
+}
+.yonghu {
+	margin-top: 18px;
+}
+.shezhi {
+	height: 55px;
+	width: 300px;
+	margin-left: 40px;
+	margin-top: 5px;
+}

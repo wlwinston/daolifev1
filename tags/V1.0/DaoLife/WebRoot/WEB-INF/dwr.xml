@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE dwr PUBLIC
+    "-//GetAhead Limited//DTD Direct Web Remoting 2.0//EN"
+    "/WEB-INF/dwr20.dtd">
+<dwr>	
+	<allow>
+		<convert match="com.innovation.daolife.model.User" converter="bean"></convert>
+		<convert match="com.innovation.daolife.model.DlUsers" converter="bean">
+			<param name="exclude" value="dlHotdaos,dlContents,dlComments,dlFollowers,dlFancers,dlProductfollow,contentatmes"/>
+		</convert>
+		<convert match="com.innovation.daolife.model.DlContent" converter="bean">
+			<param name="exclude" value="atUsers,contentTopic,dlComments"/>
+		</convert>
+		<convert match="com.innovation.daolife.model.DlComment" converter="bean">
+			<param name="exclude" value="reComment"/>
+		</convert>
+		<convert match="com.innovation.daolife.model.DlContentat" converter="bean"></convert>
+		<convert match="com.innovation.daolife.model.DlMessages" converter="bean"></convert>
+		<convert match="com.innovation.daolife.model.DlHotdao" converter="bean"></convert>
+		<convert match="com.innovation.daolife.model.DlCustomerDaoEntry" converter="bean"></convert>
+		<convert match="com.innovation.daolife.model.DlTopic" converter="bean">
+			<param name="exclude" value="topicContent"/>
+		</convert>
+		<convert match="com.innovation.daolife.model.DlContenttopic" converter="bean"></convert>
+		<convert match="com.innovation.daolife.model.DlProductfollow" converter="bean"></convert>
+		<convert match="com.innovation.common.util.PaginationSupport" converter="bean"></convert>
+		<create creator="spring" javascript="DaolifeAjax">
+			<param name="beanName" value="CommonAjax" />
+			<include method="getUserById" />
+			<include method="checkUserName" />
+			<include method="checkUserEmail" />
+			<include method="checkUserAddress" />
+			<include method="checkUserNickName" />
+			<include method="unFollow" />
+			<include method="follow" />
+			<include method="upDao" />
+			<include method="addDao" />
+			<include method="addRetwitteDao" />
+			<include method="getAllDao" />
+			<include method="getHotUser" />
+			<include method="getHotDao" />
+			<include method="getMyDao" />
+			<include method="getRewriteContentDao" />
+			<include method="getContentsByTime" />
+			<include method="getMyFollowFriend" />
+			<include method="getMyFanFriend" />
+			<include method="getOtherFollowFriend" />
+			<include method="getOtherFanFriend" />
+			<include method="getPesonalDao" />
+			<include method="getPesonalUserById" />
+			<include method="checkAuthCode" />
+			<include method="getAtContentDao" />
+			<include method="getProvinces" />
+			<include method="getCitys" />
+			<include method="getUserInfo" />
+			<include method="getMessageStatistics" />
+			<include method="getDlContentById" />
+			<include method="getTopicContent" />
+			<include method="deleteDao" />
+			<include method="addComment" /><!--新增回复  -->
+			<include method="deleteComment" /><!--删除回复  -->
+			<include method="getDaoReply" /><!--获得某条叨的回复  -->
+			<include method="getMyReply" /><!--获得我的回复  -->
+			<include method="getReplyMe" /><!--获得回复我的  -->
+			<include method="login" />
+		</create>
+	</allow>
+</dwr>
+
